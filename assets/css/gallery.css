@@ -1,0 +1,209 @@
+/* ============================================================
+   GALLERY PAGE — matches Home aesthetic (dark, same cards)
+   ============================================================ */
+
+.fu { opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+.fu.vis { opacity:1; transform:none; }
+.fd1{transition-delay:.1s} .fd2{transition-delay:.2s} .fd3{transition-delay:.3s}
+
+.label-tag {
+  font-family:var(--font-mono);
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+  padding:4px 12px; border-radius:100px;
+  display:inline-block;
+}
+
+/* ── Hero ── */
+.gl-hero {
+  min-height:60vh;
+  display:flex; align-items:flex-end; justify-content:space-between;
+  padding:140px 64px 64px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  gap:32px;
+}
+
+.gl-hero-inner { flex:1; }
+
+.gl-eyebrow {
+  font-family:var(--font-mono);
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--text-muted);
+  display:block; margin-bottom:28px;
+}
+
+.gl-hero h1 {
+  font-family:var(--font-serif);
+  font-size:clamp(72px,10vw,140px);
+  font-weight:300; line-height:.9;
+  letter-spacing:-.02em; color:var(--white);
+  margin-bottom:24px;
+}
+.gl-hero h1 em { font-style:italic; color:var(--text-muted); }
+
+.gl-sub {
+  font-size:15px; font-weight:300;
+  color:var(--text-muted); max-width:420px; line-height:1.7;
+}
+
+.gl-hero-count {
+  display:flex; flex-direction:column; align-items:flex-end;
+  gap:4px; flex-shrink:0; align-self:flex-end;
+}
+.gl-count-n {
+  font-family:var(--font-serif);
+  font-size:100px; font-weight:300;
+  line-height:1; color:rgba(255,255,255,.08);
+}
+.gl-count-l {
+  font-family:var(--font-mono);
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* ── Works section ── */
+.gl-works {
+  background:var(--bg);
+  padding:0 0 100px;
+}
+
+.gl-works-head {
+  padding:48px 64px 32px;
+}
+
+/* Shared card styles already in index.css via style.css vars.
+   We re-declare the card + track here so gallery works standalone. */
+
+/* Track */
+.gl-track-wrap {
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:0 64px 24px;
+  cursor:grab;
+}
+.gl-track-wrap::-webkit-scrollbar { display:none; }
+.gl-track-wrap:active { cursor:grabbing; }
+
+.gl-track {
+  display:flex; gap:20px;
+  width:max-content; padding-bottom:8px;
+}
+
+/* Reuse .wcard from index, defined inline here for gallery standalone */
+.wcard {
+  width:300px; height:440px;
+  border-radius:var(--r-lg);
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  position:relative; overflow:hidden;
+  flex-shrink:0;
+  scroll-snap-align:start;
+  cursor:pointer;
+  transition:transform .35s var(--ease),border-color .35s var(--ease);
+}
+.wcard:hover { transform:translateY(-6px); border-color:var(--border-h); }
+.wcard:hover .wcard-reveal { opacity:1; transform:translateY(0); }
+.wcard:hover .wcard-foot { opacity:0; transform:translateY(6px); }
+
+.wcard-bg { position:absolute; inset:0; border-radius:inherit; }
+.wbg1 { background:radial-gradient(ellipse at 70% 30%,rgba(30,40,60,.9) 0%,#0a0a10 80%); }
+.wbg2 { background:radial-gradient(ellipse at 30% 60%,rgba(20,50,40,.9) 0%,#080a0a 80%); }
+.wbg3 { background:radial-gradient(ellipse at 60% 40%,rgba(40,20,60,.9) 0%,#0a080f 80%); }
+.wbg4 { background:radial-gradient(ellipse at 50% 70%,rgba(50,30,20,.9) 0%,#0f0800 80%); }
+.wbg5 { background:radial-gradient(ellipse at 40% 30%,rgba(20,40,50,.9) 0%,#080c10 80%); }
+.wbg6 { background:radial-gradient(ellipse at 60% 35%,rgba(0,118,255,.35) 0%,#070a10 82%); }
+
+.wcard-mock { position:absolute; top:32px; left:20px; right:20px; background:rgba(255,255,255,.04); border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.wmock-bar { height:22px; background:rgba(255,255,255,.05); display:flex; align-items:center; gap:5px; padding:0 10px; }
+.wmock-bar span { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.15); }
+.wmock-body { padding:10px 12px; display:flex; flex-direction:column; gap:7px; }
+.ml { border-radius:3px; background:rgba(255,255,255,.08); height:8px; }
+.ml.a{width:90%} .ml.l{width:75%} .ml.m{width:60%} .ml.s{width:40%}
+
+.wcard-veil { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,.95) 30%,transparent 80%); pointer-events:none; }
+.wcard-num { position:absolute; top:16px; right:20px; font-family:var(--font-mono); font-size:11px; color:rgba(255,255,255,.25); letter-spacing:.1em; }
+.wcard-foot { position:absolute; bottom:24px; left:24px; right:24px; transition:opacity .3s var(--ease),transform .3s var(--ease); }
+.wcard-cat { font-family:var(--font-mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:8px; }
+.wcard-title { font-family:var(--font-serif); font-size:28px; font-weight:400; line-height:1.1; color:var(--white); }
+.wcard-reveal { position:absolute; inset:0; padding:24px; display:flex; flex-direction:column; justify-content:flex-end; gap:14px; background:linear-gradient(to top,rgba(8,8,8,.97) 60%,rgba(8,8,8,.6)); opacity:0; transform:translateY(8px); transition:opacity .3s var(--ease),transform .3s var(--ease); }
+.wcard-reveal p { font-size:13px; font-weight:300; color:var(--text-dim); line-height:1.6; }
+.rtags { display:flex; gap:6px; flex-wrap:wrap; }
+.rtags span { font-family:var(--font-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border-h); padding:2px 8px; border-radius:3px; }
+.rlink { display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--white); }
+.rarrow { width:26px; height:26px; border:1px solid var(--border-h); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+/* ── List section ── */
+.gl-list {
+  max-width:1100px; margin:0 auto;
+  padding:0 64px;
+}
+.gl-list-header {
+  padding:56px 0 32px;
+  border-top:1px solid var(--border);
+}
+
+.gl-item {
+  display:grid;
+  grid-template-columns:52px 1fr auto auto;
+  align-items:center;
+  gap:24px;
+  padding:28px 0;
+  border-bottom:1px solid var(--border);
+  text-decoration:none;
+  transition:opacity .2s;
+}
+.gl-item:hover { opacity:.65; }
+.gl-item:hover .gl-item-arrow { transform:translate(3px,-3px); border-color:var(--border-h); }
+
+.gl-item-num {
+  font-family:var(--font-mono); font-size:11px;
+  color:rgba(255,255,255,.2); letter-spacing:.1em;
+}
+
+.gl-item-info { flex:1; }
+
+.gl-item-tags {
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-bottom:6px;
+}
+.gl-item-tags span {
+  font-family:var(--font-mono); font-size:9px;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--text-muted); border:1px solid var(--border);
+  padding:2px 8px; border-radius:3px;
+}
+
+.gl-item-info h3 {
+  font-family:var(--font-serif);
+  font-size:28px; font-weight:400; color:var(--white); line-height:1.1;
+}
+
+.gl-item-year {
+  font-family:var(--font-mono); font-size:11px;
+  color:rgba(255,255,255,.2); letter-spacing:.1em;
+}
+
+.gl-item-arrow {
+  width:36px; height:36px;
+  border:1px solid var(--border); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--white);
+  transition:transform .2s,border-color .2s;
+}
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  .gl-hero { padding:110px 24px 48px; flex-direction:column; align-items:flex-start; }
+  .gl-hero-count { align-self:flex-start; flex-direction:row; align-items:baseline; gap:12px; }
+  .gl-count-n { font-size:60px; }
+  .gl-works-head { padding:40px 24px 24px; }
+  .gl-track-wrap { padding:0 24px 16px; }
+  .wcard { width:260px; height:400px; }
+  .gl-list { padding:0 24px; }
+  .gl-item { grid-template-columns:36px 1fr auto; }
+  .gl-item-year { display:none; }
+}

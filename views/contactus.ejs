@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/png" href="/assets/DIN.png">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="din-cursor" id="dinCursor"></div>
+<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+<!-- NAV -->
+<header class="nav" id="topnav">
+  <div class="logo">
+    <a href="/"><img src="/assets/DIN.png" alt="DIN Logo" class="logo-img"></a>
+  </div>
+  <button class="burger" id="burger" aria-label="Open menu" type="button">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="menu">
+    <a href="/">Home</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/about">About</a>
+    <a class="active" href="/contact">Contact</a>
+  </nav>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-top">
+      <span class="mobile-logo">DIN</span>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="mobile-menu-links">
+      <a href="/">Home</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a class="active" href="/contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="contact-hero">
+  <span class="contact-hero-eyebrow fade-up">Let's connect</span>
+  <h1 class="fade-up delay-1">Say <em>hello</em></h1>
+  <p class="fade-up delay-2">Any question or remarks? Write me a message and I'll get back to you as soon as possible.</p>
+</section>
+
+<!-- MAIN CONTACT AREA -->
+<div class="contact-main fade-up delay-3">
+
+  <!-- LEFT PANEL -->
+  <div class="contact-left">
+    <h2>Contact Information</h2>
+    <p class="contact-left-sub">Fill out the form and I'll be in touch soon.</p>
+
+    <div class="contact-detail">
+      <div class="contact-detail-icon"><img src="/assets/images/phone.svg" alt=""></div>
+      <div>
+        <p class="contact-detail-label">Phone</p>
+        <p class="contact-detail-value">+1 012 3456 789</p>
+      </div>
+    </div>
+
+    <div class="contact-detail">
+      <div class="contact-detail-icon"><img src="/assets/images/email.svg" alt=""></div>
+      <div>
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-value">din.design.studio@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="contact-detail">
+      <div class="contact-detail-icon"><img src="/assets/images/location.svg" alt=""></div>
+      <div>
+        <p class="contact-detail-label">Location</p>
+        <p class="contact-detail-value">Canada</p>
+      </div>
+    </div>
+
+    <div class="contact-socials">
+      <a href="#" class="social-btn" aria-label="Twitter"><img src="/assets/images/social1.svg" alt=""></a>
+      <a href="#" class="social-btn" aria-label="Instagram"><img src="/assets/images/social.svg" alt=""></a>
+      <a href="#" class="social-btn" aria-label="LinkedIn"><img src="/assets/images/social3.svg" alt=""></a>
+    </div>
+  </div>
+
+  <!-- FORM (id=contactForm — handled by main.js) -->
+  <form class="contact-right" id="contactForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input id="firstName" name="firstName" type="text" placeholder="John" required>
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" name="lastName" type="text" placeholder="Doe" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="john@example.com" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" placeholder="+1 012 3456 789">
+      </div>
+      <div class="field full">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+      </div>
+    </div>
+    <div class="form-footer">
+      <p class="form-note">I'll reply within 24 hours.</p>
+      <button class="send-btn" type="submit">
+        Send Message
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- SUCCESS POPUP (id=popup — matches main.js) -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <div class="popup-icon">✓</div>
+    <h3>Message Sent!</h3>
+    <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+    <button class="popup-close" id="popupClose">Done</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand">
+      <img src="/assets/DIN.png" alt="DIN Logo" class="site-footer__logo-img">
+      <p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Navigation</p>
+      <nav class="site-footer__nav">
+        <a href="/">Home</a><a href="/gallery">Gallery</a>
+        <a href="/about">About</a><a class="is-active" href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Contact</p>
+      <div class="site-footer__item">din.design.studio@gmail.com</div>
+      <div class="site-footer__item">Canada</div>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Newsletter</p>
+      <p class="site-footer__form-label">Stay updated with new projects and design insights.</p>
+      <form class="site-footer__form" id="newsletterForm">
+        <input id="newsletterEmail" type="email" placeholder="your@email.com">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2025 DIN. All rights reserved.</span>
+    <span>Designed &amp; built with care</span>
+  </div>
+</footer>
+
+<!-- main.js handles: mobile menu, contactForm popup, field highlights, newsletter -->
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

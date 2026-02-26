@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="icon" type="image/png" href="/assets/DIN.png">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="din-cursor" id="dinCursor"></div>
+<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+<!-- NAV -->
+<header class="nav" id="topnav">
+  <div class="logo">
+    <a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu" type="button">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="menu">
+    <a class="active" href="/">Home</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-top">
+      <div class="mobile-logo">DIN</div>
+      <button class="mobile-close" id="mobileClose" type="button">&times;</button>
+    </div>
+    <div class="mobile-menu-links">
+      <a class="active" href="/">Home</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="idx-hero">
+  <!-- Particle canvas — single, full hero -->
+  <canvas id="heroCanvas" class="idx-hero-canvas" aria-hidden="true"></canvas>
+
+  <div class="idx-hero-inner">
+    <p class="idx-eyebrow fu">Design &amp; Development · 2025</p>
+    <h1 class="fu fd1">
+      Crafting<br>
+      <em>digital</em><br>
+      experiences
+    </h1>
+    <p class="idx-sub fu fd2">
+      Selected works in UI/UX &amp; frontend — where ideas become interfaces.
+    </p>
+    <a href="#works" class="idx-scroll fu fd3">
+      <span>Scroll to explore</span>
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="idx-hero-hint" aria-hidden="true">Move your mouse</div>
+</section>
+
+<!-- ═══ WORKS ═══ -->
+<section class="idx-works" id="works">
+  <div class="idx-works-head">
+    <div class="idx-works-labels">
+      <span class="label-tag">Portfolio</span>
+      <div class="idx-works-title">
+        <span class="wt-script">Recent</span>
+        <span class="wt-bold">WORK</span>
+      </div>
+      <p class="wt-desc">Selected projects — click to explore the full case study.</p>
+    </div>
+    <div class="idx-works-nav">
+      <button class="wnav-btn" id="wPrev" aria-label="Prev">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <div class="wnav-track"><div class="wnav-fill" id="wFill"></div></div>
+      <button class="wnav-btn" id="wNext" aria-label="Next">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <span class="wnav-counter"><span id="wNum">01</span>&thinsp;/&thinsp;<span id="wTotal">06</span></span>
+    </div>
+    <a href="/gallery" class="all-link">● All projects</a>
+  </div>
+
+  <div class="idx-track-wrap" id="wTrackWrap">
+    <div class="idx-track" id="wTrack">
+
+      <article class="wcard" data-href="/portfolio/unnie-box">
+        <div class="wcard-bg wbg1"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">01</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">UI Web Design</div>
+          <h3 class="wcard-title">UnnieBox<br>Landing Page</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>High fidelity landing page case with UI kit, modals and design system.</p>
+          <div class="rtags"><span>Figma</span><span>UI Kit</span><span>Case Study</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="/portfolio/learnlogicify">
+        <div class="wcard-bg wbg1"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">02</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">UI Web Design</div>
+          <h3 class="wcard-title">Learnlogicify<br>Landing Page</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Conversion-focused landing page for an EdTech platform with bold visual identity.</p>
+          <div class="rtags"><span>Figma</span><span>HTML CSS</span><span>UI Design</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="/portfolio/gemini-clone">
+        <div class="wcard-bg wbg2"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml m"></div><div class="ml l"></div><div class="ml s"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">03</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">Clone Frontend Dev</div>
+          <h3 class="wcard-title">Gemini<br>Clone</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Pixel-perfect recreation of modern AI interface exploring UX patterns.</p>
+          <div class="rtags"><span>JavaScript</span><span>CSS</span><span>AI UI</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="/portfolio/winzee-chat">
+        <div class="wcard-bg wbg3"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml s"></div><div class="ml l"></div><div class="ml m"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">04</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">App Design Chat</div>
+          <h3 class="wcard-title">Winzee<br>Chat App</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Real-time messaging app with refined dark UI — clarity, speed, comfort.</p>
+          <div class="rtags"><span>UI Design</span><span>Figma</span><span>Prototype</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="/portfolio/chatgpt-clone">
+        <div class="wcard-bg wbg4"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">05</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">Clone AI Interface</div>
+          <h3 class="wcard-title">ChatGPT<br>Clone</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Functional chat UI decoding interaction design and layout rules.</p>
+          <div class="rtags"><span>JavaScript</span><span>API</span><span>Frontend</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="/portfolio/jobhelper">
+        <div class="wcard-bg wbg5"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml m"></div><div class="ml s"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">06</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">Web App Dashboard</div>
+          <h3 class="wcard-title">JobHelper<br>Platform</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Job search dashboard designed for clarity and focus under pressure.</p>
+          <div class="rtags"><span>UX Research</span><span>Figma</span><span>Frontend</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="idx-about" id="about-us">
+  <div class="idx-about-inner">
+    <div class="idx-about-left">
+      <span class="label-tag">About</span>
+      <h2>Design<br>with<br><em>purpose</em></h2>
+    </div>
+    <div class="idx-about-right">
+      <p class="about-lead">
+        Designer and developer with a certified background in Web Design, Interactive Media, and Front-End Development — currently based in Canada.
+      </p>
+      <div class="about-certs">
+        <div class="cert-item"><span class="cert-icon">◆</span><div><span class="cert-title">Web Design</span><span class="cert-school">Skillbox · Certificate</span></div></div>
+        <div class="cert-item"><span class="cert-icon">◆</span><div><span class="cert-title">Interactive Media Design</span><span class="cert-school">Seneca College · Diploma</span></div></div>
+      </div>
+      <div class="about-skills-grid">
+        <div class="skill-group">
+          <span class="sg-label">Design Tools</span>
+          <div class="sg-tags">
+            <span>Figma</span><span>Canva</span><span>Adobe Photoshop</span>
+            <span>Adobe Illustrator</span><span>Adobe XD</span>
+            <span>Adobe InDesign</span><span>Adobe After Effects</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="sg-label">Development</span>
+          <div class="sg-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>EJS</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="sg-label">Disciplines</span>
+          <div class="sg-tags">
+            <span>UI / UX Design</span><span>Graphic Design</span>
+            <span>3D Modelling</span><span>Motion Graphics</span>
+            <span>Brand Identity</span><span>Responsive Design</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-ctas">
+        <a href="/about" class="btn-primary">Full story</a>
+        <a href="/contact" class="btn-ghost">Get in touch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand">
+      <img src="/assets/DIN.png" alt="DIN Logo" class="site-footer__logo-img">
+      <p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Navigation</p>
+      <nav class="site-footer__nav">
+        <a href="/">Home</a><a href="/gallery">Gallery</a>
+        <a href="/about">About</a><a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Contact</p>
+      <div class="site-footer__item">din.design.studio@gmail.com</div>
+      <div class="site-footer__item">Canada</div>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Newsletter</p>
+      <p class="site-footer__form-label">Stay updated with new projects.</p>
+      <form class="site-footer__form" id="newsletterForm">
+        <input id="newsletterEmail" type="email" placeholder="your@email.com">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2025 DIN. All rights reserved.</span>
+    <span>Designed &amp; built with care</span>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/index.js" defer></script>
+</body>
+</html>

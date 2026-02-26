@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – UnnieBox Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
+  <link rel="stylesheet" href="/assets/css/unniebox.css">
+  <link rel="icon" type="image/png" href="/assets/DIN.png">
+  <style>
+    body.ub-body { background: #04091a; }
+    body.ub-body::before { display: none; }
+    .ub-bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .ub-bg::before { content:''; position:absolute; inset:0; background:#04091a; }
+    .ub-bg::after { content:''; position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 80% 55% at 8% 0%, rgba(11,109,255,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 95% 18%, rgba(74,162,255,0.13) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 80% at 50% 105%, rgba(11,109,255,0.12) 0%, transparent 58%),
+        radial-gradient(ellipse 38% 38% at 80% 70%, rgba(232,193,90,0.07) 0%, transparent 52%);
+    }
+    .ub-grid-overlay { position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image: linear-gradient(rgba(11,109,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11,109,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .ub-orb { position:fixed; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; animation:ubFloat 14s ease-in-out infinite; }
+    .ub-orb-1 { width:640px; height:640px; background:#0b6dff; opacity:.065; top:-160px; left:-240px; }
+    .ub-orb-2 { width:500px; height:500px; background:#4aa2ff; opacity:.055; top:38%; right:-200px; animation-delay:-5s; }
+    .ub-orb-3 { width:420px; height:420px; background:#0b6dff; opacity:.045; bottom:5%; left:18%; animation-delay:-9s; }
+    .ub-orb-4 { width:260px; height:260px; background:#e8c15a; opacity:.04; bottom:28%; right:10%; animation-delay:-3s; }
+    @keyframes ubFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-32px) scale(1.04)} }
+    .ub-page-wrap > * { position:relative; z-index:1; }
+    .ub-body .nav { background:rgba(4,9,26,0.88)!important; border-bottom:1px solid rgba(11,109,255,0.2)!important; backdrop-filter:blur(22px)!important; }
+    .ub-body .case-subnav-pill { background:rgba(4,9,26,0.78); border-color:rgba(11,109,255,0.3); box-shadow:0 0 40px rgba(11,109,255,0.1); }
+    .ub-body .case-subnav-pill a { color:rgba(255,255,255,0.7); }
+    .ub-body .case-subnav-pill a.active, .ub-body .case-subnav-pill a:hover { background:rgba(11,109,255,0.18); color:#fff; }
+    .ub-hero-accent { width:44px; height:3px; background:linear-gradient(90deg,#0b6dff,#4aa2ff); border-radius:99px; margin-bottom:16px; }
+    .ub-body .meta-card { border-color:rgba(11,109,255,0.18); background:rgba(11,109,255,0.06); }
+    .ub-body .meta-k { color:rgba(74,162,255,0.85); }
+    .ub-hero-image-wrap { position:relative; border-radius:26px; overflow:hidden; border:1px solid rgba(11,109,255,0.2); box-shadow:0 0 60px rgba(11,109,255,0.18),0 24px 80px rgba(0,0,0,0.5); }
+    .ub-hero-image-wrap img { display:block; width:100%; height:auto; }
+    .ub-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(4,9,26,0.65) 0%,transparent 55%); }
+    .ub-hero-badge { position:absolute; bottom:18px; right:18px; background:rgba(11,109,255,0.92); color:#fff; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px; border-radius:999px; font-family:'Space Mono',monospace; backdrop-filter:blur(8px); box-shadow:0 8px 24px rgba(11,109,255,0.4); }
+    .ub-body .case-section { border-top-color:rgba(11,109,255,0.18); }
+    .ub-body .stat-n { color:#4aa2ff; text-shadow:0 0 24px rgba(74,162,255,0.4); }
+    .ub-body .case-stats .stat { border-color:rgba(11,109,255,0.18); background:rgba(11,109,255,0.06); transition:transform .3s,box-shadow .3s; }
+    .ub-body .case-stats .stat:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(11,109,255,0.2); }
+    .ub-products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+    .ub-product-card { position:relative; border-radius:22px; overflow:hidden; border:1px solid rgba(11,109,255,0.2); background:rgba(11,109,255,0.06); transition:transform .32s,box-shadow .32s; cursor:zoom-in; }
+    .ub-product-card:hover { transform:translateY(-7px) scale(1.01); box-shadow:0 24px 64px rgba(11,109,255,0.25); }
+    .ub-product-card img { display:block; width:100%; height:auto; }
+    .ub-product-pill { position:absolute; bottom:12px; left:12px; background:rgba(4,9,26,0.88); color:rgba(255,255,255,0.92); border:1px solid rgba(11,109,255,0.35); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; font-family:'Space Mono',monospace; backdrop-filter:blur(10px); }
+    .ub-body .pstep { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); transition:transform .28s,border-color .28s; }
+    .ub-body .pstep:hover { transform:translateY(-4px); border-color:rgba(11,109,255,0.35); }
+    .ub-body .pnum { color:rgba(74,162,255,0.7); }
+    .ub-body .sw { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); }
+    .ub-body .landing-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); }
+    .ub-body .landing-expand { border-color:rgba(11,109,255,0.3); background:rgba(11,109,255,0.1); color:#fff; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.1em; transition:background .2s,box-shadow .2s; }
+    .ub-body .landing-expand:hover { background:rgba(11,109,255,0.22); box-shadow:0 0 20px rgba(11,109,255,0.2); }
+    .ub-body .modal-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); }
+    .ub-screens-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+    .ub-screen-card { position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); transition:transform .25s,box-shadow .25s; cursor:zoom-in; }
+    .ub-screen-card:hover { transform:translateY(-4px); box-shadow:0 18px 50px rgba(11,109,255,0.22); }
+    .ub-screen-card.full { grid-column:span 2; }
+    .ub-screen-card img { display:block; width:100%; height:auto; }
+    .ub-screen-tag { position:absolute; top:12px; left:12px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.16em; text-transform:uppercase; background:rgba(11,109,255,0.92); color:#fff; padding:5px 11px; border-radius:999px; box-shadow:0 4px 16px rgba(11,109,255,0.35); }
+    .ub-body .case-img { border-color:rgba(11,109,255,0.14); background:rgba(11,109,255,0.04); transition:box-shadow .3s; cursor:zoom-in; }
+    .ub-body .case-img:hover { box-shadow:0 12px 40px rgba(11,109,255,0.2); }
+    .ub-body .learn-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); transition:transform .28s,border-color .28s; }
+    .ub-body .learn-card:hover { transform:translateY(-4px); border-color:rgba(11,109,255,0.35); }
+    .ub-body .learn-n { color:rgba(74,162,255,0.5); }
+    .ub-cta-banner { margin-top:24px; border-radius:24px; padding:48px 36px; background:linear-gradient(135deg,#0b4fc4 0%,#0b6dff 50%,#2e82ff 100%); position:relative; overflow:hidden; text-align:center; }
+    .ub-cta-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 80% 20%,rgba(255,255,255,0.08) 0%,transparent 60%); }
+    .ub-cta-banner h3 { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:400; line-height:1.05; color:#fff; margin:0 0 12px; position:relative; }
+    .ub-cta-banner p { color:rgba(255,255,255,0.88); margin:0 auto 24px; max-width:480px; font-size:15px; position:relative; }
+    .ub-cta-banner .cta-actions { position:relative; }
+    .ub-cta-banner .btn-case.primary { background:#fff; color:#0b4fc4; font-weight:600; border-color:#fff; }
+    .ub-cta-banner .btn-case { border-color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.12); color:#fff; }
+    .ub-cta-banner .btn-case:hover { background:rgba(255,255,255,0.22); }
+    .ub-progress-bar { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,#0b6dff,#4aa2ff); z-index:999; transition:width .1s linear; }
+    .ub-body .case-toc { border-color:rgba(11,109,255,0.2); background:rgba(4,9,26,0.75); }
+    .ub-body .case-toc a.active { background:rgba(11,109,255,0.15); color:#fff; }
+    .ub-body .case-toc a:hover { background:rgba(11,109,255,0.1); color:#fff; }
+    [data-reveal] { opacity:0; transform:translateY(28px); transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1); }
+    [data-reveal].revealed { opacity:1; transform:translateY(0); }
+    [data-reveal-delay="1"]{transition-delay:.1s} [data-reveal-delay="2"]{transition-delay:.2s} [data-reveal-delay="3"]{transition-delay:.3s} [data-reveal-delay="4"]{transition-delay:.45s} [data-reveal-delay="5"]{transition-delay:.6s}
+    /* FOOTER */
+    .ub-site-footer { background:rgba(4,9,26,0.95); border-top:1px solid rgba(11,109,255,0.22); padding:60px 48px 40px; position:relative; z-index:1; }
+    .ub-site-footer__inner { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:60px; align-items:start; }
+    .ub-site-footer__logo-img { width:38px; height:38px; object-fit:contain; margin-bottom:12px; opacity:.9; filter:drop-shadow(0 0 8px rgba(11,109,255,0.4)); }
+    .ub-site-footer__tagline { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.7; max-width:220px; }
+    .ub-site-footer__col-title { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(74,162,255,0.85); margin-bottom:18px; }
+    .ub-site-footer__nav { display:flex; flex-direction:column; gap:11px; }
+    .ub-site-footer__nav a { font-size:14px; color:rgba(255,255,255,0.5); text-decoration:none; transition:color .2s,transform .2s; display:inline-block; }
+    .ub-site-footer__nav a:hover { color:#fff; transform:translateX(4px); }
+    .ub-site-footer__item { font-size:13px; color:rgba(255,255,255,0.45); margin-bottom:9px; }
+    .ub-site-footer__form-label { font-size:13px; color:rgba(255,255,255,0.4); margin-bottom:12px; line-height:1.6; }
+    .ub-site-footer__form { display:flex; gap:8px; }
+    .ub-site-footer__form input { flex:1; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(11,109,255,0.22); border-radius:8px; color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; outline:none; transition:border-color .2s; }
+    .ub-site-footer__form input:focus { border-color:rgba(11,109,255,0.6); }
+    .ub-site-footer__form input::placeholder { color:rgba(255,255,255,0.28); }
+    .ub-site-footer__form button { padding:10px 16px; background:#0b6dff; border:none; border-radius:8px; color:#fff; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer; white-space:nowrap; transition:background .2s,transform .2s,box-shadow .2s; }
+    .ub-site-footer__form button:hover { background:#2e82ff; transform:scale(1.03); box-shadow:0 6px 20px rgba(11,109,255,0.4); }
+    .ub-site-footer__bottom { max-width:1120px; margin:36px auto 0; padding-top:22px; border-top:1px solid rgba(11,109,255,0.14); display:flex; justify-content:space-between; align-items:center; font-size:12px; color:rgba(255,255,255,0.3); flex-wrap:wrap; gap:12px; }
+    .ub-proj-nav { display:flex; gap:10px; align-items:center; }
+    .ub-proj-nav a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:12px; padding:7px 14px; border-radius:999px; border:1px solid rgba(11,109,255,0.22); transition:all .2s; }
+    .ub-proj-nav a:hover { background:rgba(11,109,255,0.18); color:#fff; border-color:rgba(11,109,255,0.5); }
+    .ub-proj-nav a.cta { background:#0b6dff; color:#fff; border-color:#0b6dff; }
+    .ub-proj-nav a.cta:hover { background:#2e82ff; }
+    @media(max-width:980px){
+      .ub-products-grid{grid-template-columns:1fr 1fr}
+      .ub-screens-grid{grid-template-columns:1fr}
+      .ub-screen-card.full{grid-column:span 1}
+      .ub-site-footer__inner{grid-template-columns:1fr 1fr;gap:36px}
+      .ub-site-footer{padding:50px 24px 36px}
+      .ub-cta-banner h3{font-size:38px}
+    }
+    @media(max-width:640px){
+      .ub-products-grid{grid-template-columns:1fr}
+      .ub-site-footer__inner{grid-template-columns:1fr;gap:28px}
+      .ub-site-footer__bottom{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body class="ub-body">
+
+<div class="ub-bg"></div>
+<div class="ub-grid-overlay"></div>
+<div class="ub-orb ub-orb-1"></div>
+<div class="ub-orb ub-orb-2"></div>
+<div class="ub-orb ub-orb-3"></div>
+<div class="ub-orb ub-orb-4"></div>
+<div class="ub-progress-bar" id="ubProgress"></div>
+<div class="din-cursor" id="dinCursor"></div>
+<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+<div class="ub-page-wrap">
+
+  <!-- NAV -->
+  <header class="nav" id="topnav">
+    <div class="logo"><a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a></div>
+    <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
+    <nav class="menu">
+      <a href="/">Home</a>
+      <a class="active" href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-top">
+        <div class="mobile-logo">DIN</div>
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu" type="button">×</button>
+      </div>
+      <a href="/">Home</a><a href="/gallery">Gallery</a><a href="/about">About</a><a href="/contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- SUBNAV -->
+  <div class="case-subnav" style="padding-top:72px">
+    <div class="case-subnav-inner">
+      <div class="case-subnav-pill">
+        <a href="#overview">Overview</a>
+        <a href="#products">Products</a>
+        <a href="#process">Process</a>
+        <a href="#landing">Screens</a>
+        <a href="#modals">Modals</a>
+        <a href="#branding">Brand</a>
+        <a href="#learnings">Impact</a>
+      </div>
+    </div>
+  </div>
+
+  <main style="position:relative;z-index:1;color:#fff;padding-top:18px">
+    <div class="case-wrap" style="padding-top:20px">
+
+      <!-- HERO -->
+      <div class="case-hero" data-reveal>
+        <div>
+          <div class="ub-hero-accent"></div>
+          <div class="case-eyebrow">UI WEB DESIGN · CASE STUDY</div>
+          <h1 class="case-title">UnnieBox</h1>
+          <p class="case-sub">Premium landing page and UI system for a Korean beauty box subscription. Trust, clarity, and conversion — through clean typography, smart modal flows, and strong calls-to-action.</p>
+          <div class="case-actions">
+            <a class="btn-case primary" href="/gallery">Back to gallery</a>
+            <a class="btn-case" href="/contact">Get in touch</a>
+            <% if (nav && nav.prev) { %><a class="btn-case" href="/portfolio/<%= nav.prev.slug %>">← Prev</a><% } %>
+            <% if (nav && nav.next) { %><a class="btn-case" href="/portfolio/<%= nav.next.slug %>">Next →</a><% } %>
+          </div>
+          <div class="case-meta" style="margin-top:22px">
+            <div class="meta-card"><div class="meta-k">Role</div><div class="meta-v"><%= project?.role || "UI / UX Designer" %></div></div>
+            <div class="meta-card"><div class="meta-k">Tools</div><div class="meta-v"><%= project?.tools || "Figma" %></div></div>
+            <div class="meta-card"><div class="meta-k">Focus</div><div class="meta-v">Landing page · Design system · Components</div></div>
+            <div class="meta-card"><div class="meta-k">Deliverables</div><div class="meta-v">Screens · UI kit · Logo · Mockups</div></div>
+          </div>
+        </div>
+        <div class="ub-hero-image-wrap" data-reveal data-reveal-delay="2">
+          <img src="/assets/images/unniebox/image.png" alt="Korean beauty model">
+          <div class="ub-hero-overlay"></div>
+          <span class="ub-hero-badge">Korean Skincare</span>
+        </div>
+      </div>
+
+      <!-- LAYOUT -->
+      <div class="case-layout" style="margin-top:36px">
+        <aside class="case-toc">
+          <a href="#overview"><span>Overview</span><span>01</span></a>
+          <a href="#products"><span>Products</span><span>02</span></a>
+          <a href="#problem"><span>Problem</span><span>03</span></a>
+          <a href="#process"><span>Process</span><span>04</span></a>
+          <a href="#system"><span>Colors &amp; type</span><span>05</span></a>
+          <a href="#landing"><span>Full page</span><span>06</span></a>
+          <a href="#uikit"><span>UI kit</span><span>07</span></a>
+          <a href="#modals"><span>Modals</span><span>08</span></a>
+          <a href="#branding"><span>Branding</span><span>09</span></a>
+          <a href="#learnings"><span>Learnings</span><span>10</span></a>
+        </aside>
+
+        <section class="case-sections">
+
+          <!-- 01 OVERVIEW -->
+          <section class="case-section" id="overview" data-reveal>
+            <div class="case-overview-top">
+              <div class="case-eyebrow">PROJECT OVERVIEW</div>
+              <h2 class="case-h2">Beauty boxes from Korea, reimagined.</h2>
+              <p class="case-p">UnnieBox is a subscription beauty service curating boxes with Korean skincare and cosmetics, shipped internationally. The challenge: design a complete landing page that builds trust fast, communicates product value visually, and guides users through a simple order flow — all without losing the premium, clean aesthetic the brand needed.</p>
+              <p class="case-p" style="margin-top:10px">I designed the full UI system — from logo and favicon to every button state, modal, and micro-interaction. The result is a production-ready component library that stays consistent across the entire page.</p>
+              <div class="case-stats" style="margin-top:24px">
+                <div class="stat" data-reveal data-reveal-delay="1"><div class="stat-n">9+</div><div class="stat-t">Unique page sections designed</div></div>
+                <div class="stat" data-reveal data-reveal-delay="2"><div class="stat-n">5</div><div class="stat-t">Modal flow variants</div></div>
+                <div class="stat" data-reveal data-reveal-delay="3"><div class="stat-n">100%</div><div class="stat-t">Custom UI kit from scratch</div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 PRODUCTS -->
+          <section class="case-section" id="products" data-reveal>
+            <h2 class="case-h2">Featured products</h2>
+            <p class="case-p">Each box is curated with dermatologist-tested Korean beauty products. Clean formulas, certified ingredients — zero SLS, SLES, sulfates, or artificial dyes.</p>
+            <div class="ub-products-grid">
+              <div class="ub-product-card" data-reveal data-reveal-delay="1">
+                <img src="/assets/images/unniebox/group_1000004353.png" alt="Cleanser">
+                <span class="ub-product-pill">Cleanser</span>
+              </div>
+              <div class="ub-product-card" data-reveal data-reveal-delay="2">
+                <img src="/assets/images/unniebox/group_1000004354.png" alt="Moisturizer">
+                <span class="ub-product-pill">Moisturizer</span>
+              </div>
+              <div class="ub-product-card" data-reveal data-reveal-delay="3">
+                <img src="/assets/images/unniebox/group_1000004358.png" alt="SPF 50+">
+                <span class="ub-product-pill">SPF 50+</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section class="case-section" id="problem" data-reveal>
+            <h2 class="case-h2">Problem and goals</h2>
+            <div class="case-grid2">
+              <div class="case-card" data-reveal data-reveal-delay="1">
+                <h3>Problem</h3>
+                <p>Beauty boxes require trust. Users need proof, clarity, and confidence before they share contact details or pay. Generic layouts kill conversions.</p>
+              </div>
+              <div class="case-card" data-reveal data-reveal-delay="2">
+                <h3>Goals</h3>
+                <p>Build a premium look, explain the offer fast, and guide users through a simple flow — learn, trust, order. Every section should answer an objection.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 PROCESS -->
+          <section class="case-section" id="process" data-reveal>
+            <h2 class="case-h2">Process</h2>
+            <p class="case-p">I worked from story structure to reusable components. Each step focused on clarity, hierarchy, and conversion.</p>
+            <div class="case-process">
+              <div class="pstep" data-reveal data-reveal-delay="1"><div class="pnum">01</div><div class="ptitle">Story and layout</div><div class="pdesc">Defined the page narrative, section order, and CTA rhythm for a smooth user journey.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="2"><div class="pnum">02</div><div class="ptitle">Design system</div><div class="pdesc">Set colors, typography, spacing, and card styles to keep everything consistent.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="3"><div class="pnum">03</div><div class="ptitle">Components</div><div class="pdesc">Built a UI kit of buttons, inputs, tags, icons, and card templates to speed up design.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="4"><div class="pnum">04</div><div class="ptitle">Interaction and polish</div><div class="pdesc">Designed modal flows, micro-interactions, and final visual refinements for a premium feel.</div></div>
+            </div>
+          </section>
+
+          <!-- 05 COLORS & TYPE -->
+          <section class="case-section" id="system" data-reveal>
+            <h2 class="case-h2">Colors and typography</h2>
+            <p class="case-p">A calm, clean palette with one strong blue for actions. Editorial headings create a premium vibe, while the UI font keeps details readable.</p>
+            <div class="case-swatch-row" style="margin-top:18px">
+              <div class="sw" style="--c:#0b6dff"><span>Accent</span><b>#0B6DFF</b></div>
+              <div class="sw" style="--c:#111318"><span>Text</span><b>#111318</b></div>
+              <div class="sw" style="--c:#4aa2ff"><span>Secondary</span><b>#4AA2FF</b></div>
+              <div class="sw" style="--c:#eaf3ff"><span>Surface</span><b>#EAF3FF</b></div>
+              <div class="sw" style="--c:#e8c15a"><span>Warm</span><b>#E8C15A</b></div>
+            </div>
+            <div class="case-type-row">
+              <div class="type-card"><div class="type-k">Display font</div><div class="type-s">Cormorant Garamond</div><div class="type-ex">Beauty from Korea</div></div>
+              <div class="type-card"><div class="type-k">UI font</div><div class="type-s" style="font-family:'DM Sans',sans-serif">DM Sans</div><div class="type-ex" style="font-family:'DM Sans',sans-serif">Clear UI and body text</div></div>
+            </div>
+            <div class="case-gallery">
+              <div class="case-img g-col-12" data-reveal><img src="/assets/images/unniebox/group_1000004359.png" alt="Colors and typography system"></div>
+            </div>
+          </section>
+
+          <!-- 06 FULL PAGE -->
+          <section class="case-section" id="landing" data-reveal>
+            <div class="landing-head">
+              <div class="case-eyebrow">FULL PAGE DESIGN</div>
+              <h2 class="case-h2">The complete landing experience.</h2>
+            </div>
+            <div class="landing-grid">
+              <div class="landing-full">
+                <div class="landing-card"><img src="/assets/images/unniebox/group_1000004357.png" alt="Full landing page design"></div>
+                <button class="landing-expand" type="button" id="expandFull">Expand full page ↗</button>
+              </div>
+              <div class="landing-modals">
+                <div class="modal-card" data-reveal data-reveal-delay="1"><div class="modal-tag">LEAD CAPTURE</div><img src="/assets/images/unniebox/group_1000004350.png" alt="Lead capture modal"></div>
+                <div class="modal-card" data-reveal data-reveal-delay="2"><div class="modal-tag">INSTAGRAM CTA</div><img src="/assets/images/unniebox/group_1000004351.png" alt="Instagram modal"></div>
+                <div class="modal-card" data-reveal data-reveal-delay="3"><div class="modal-tag">PAYMENT HELP</div><img src="/assets/images/unniebox/group_1000004352.png" alt="Payment modal"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 07 UI KIT -->
+          <section class="case-section" id="uikit" data-reveal>
+            <h2 class="case-h2">UI kit</h2>
+            <p class="case-p">Reusable components designed for speed: buttons, cards, icons, tags, and input fields. This makes the system scalable and consistent across every new screen.</p>
+            <div class="case-gallery">
+              <div class="case-img g-col-12" data-reveal><img src="/assets/images/unniebox/group_428.png" alt="UI kit components"></div>
+            </div>
+          </section>
+
+          <!-- 08 MODALS -->
+          <section class="case-section" id="modals" data-reveal>
+            <h2 class="case-h2">Modal UX flows</h2>
+            <p class="case-p">Instead of pushing users away from the main flow, key interactions open in modals. This keeps focus on conversion while still giving extra information and handling edge cases like payment failures.</p>
+            <div class="ub-screens-grid">
+              <div class="ub-screen-card" data-reveal data-reveal-delay="1"><span class="ub-screen-tag">Skin guide CTA</span><img src="/assets/images/unniebox/group_1000004350.png" alt="Skin guide modal"></div>
+              <div class="ub-screen-card" data-reveal data-reveal-delay="2"><span class="ub-screen-tag">Instagram follow</span><img src="/assets/images/unniebox/group_1000004351.png" alt="Instagram modal"></div>
+              <div class="ub-screen-card" data-reveal data-reveal-delay="3"><span class="ub-screen-tag">Payment troubleshoot</span><img src="/assets/images/unniebox/group_1000004352.png" alt="Payment modal"></div>
+              <div class="ub-screen-card" data-reveal data-reveal-delay="4"><span class="ub-screen-tag">Order form</span><img src="/assets/images/unniebox/group_1000004354.png" alt="Order form modal"></div>
+              <div class="ub-screen-card full" data-reveal data-reveal-delay="1"><span class="ub-screen-tag">Daily care tip</span><img src="/assets/images/unniebox/group_1000004358.png" alt="Daily care modal"></div>
+            </div>
+          </section>
+
+          <!-- 09 BRANDING -->
+          <section class="case-section" id="branding" data-reveal>
+            <h2 class="case-h2">Branding and mockups</h2>
+            <p class="case-p">The wordmark uses a simple gift icon replacing the "O" in BOX — making the idea instantly readable. Variants prepared for both light and dark backgrounds, plus real-world mockups.</p>
+            <div class="case-gallery">
+              <div class="case-img g-col-6" data-reveal data-reveal-delay="1"><img src="/assets/images/unniebox/group_424.png" alt="Logo dark"></div>
+              <div class="case-img g-col-6" data-reveal data-reveal-delay="2"><img src="/assets/images/unniebox/group_427.png" alt="Logo light"></div>
+              <div class="case-img g-col-12" data-reveal data-reveal-delay="1"><img src="/assets/images/unniebox/mask_group.png" alt="Logo mockup"></div>
+              <div class="case-img g-col-12" data-reveal data-reveal-delay="2"><img src="/assets/images/unniebox/mask_group_1.png" alt="Logo mockup 2"></div>
+            </div>
+          </section>
+
+          <!-- 10 LEARNINGS -->
+          <section class="case-section" id="learnings" data-reveal>
+            <div class="case-eyebrow">KEY LEARNINGS</div>
+            <h2 class="case-h2">What I learned building this.</h2>
+            <div class="learn-grid">
+              <div class="learn-card" data-reveal data-reveal-delay="1"><div class="learn-n">01</div><div class="learn-t">Conversion flows need storytelling</div><div class="learn-p">Each section must answer an objection and guide the user to the next step confidently.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="2"><div class="learn-n">02</div><div class="learn-t">Design systems save time</div><div class="learn-p">A strong UI kit makes every new section faster and keeps the page visually consistent.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="3"><div class="learn-n">03</div><div class="learn-t">Typography sets the tone</div><div class="learn-p">Editorial display type feels premium but must be balanced with clean UI text.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="4"><div class="learn-n">04</div><div class="learn-t">Trust signals must be authentic</div><div class="learn-p">Real credentials, clear reviews, and transparent steps build confidence quickly.</div></div>
+            </div>
+            <div class="ub-cta-banner" data-reveal>
+              <h3>Let's build something great together.</h3>
+              <p>I'm a UI/UX designer focused on clean, conversion-friendly experiences. Let's talk.</p>
+              <div class="cta-actions">
+                <a class="btn-case primary" href="/contact">Get in touch</a>
+                <a class="btn-case" href="/gallery">All projects</a>
+              </div>
+            </div>
+          </section>
+
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SITE FOOTER — same structure as homepage -->
+  <footer class="ub-site-footer">
+    <div class="ub-site-footer__inner">
+      <div>
+        <img src="/assets/DIN.png" alt="DIN Logo" class="ub-site-footer__logo-img">
+        <p class="ub-site-footer__tagline">Creative designer crafting digital experiences that matter.</p>
+      </div>
+      <div>
+        <p class="ub-site-footer__col-title">Navigation</p>
+        <nav class="ub-site-footer__nav">
+          <a href="/">Home</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <p class="ub-site-footer__col-title">Contact</p>
+        <div class="ub-site-footer__item">din.design.studio@gmail.com</div>
+        <div class="ub-site-footer__item">Canada</div>
+      </div>
+      <div>
+        <p class="ub-site-footer__col-title">Newsletter</p>
+        <p class="ub-site-footer__form-label">Stay updated with new projects.</p>
+        <div class="ub-site-footer__form">
+          <input type="email" placeholder="your@email.com" id="ubNewsletterEmail">
+          <button type="button" onclick="ubSubscribe()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="ub-site-footer__bottom">
+      <span>© 2025 DIN. All rights reserved.</span>
+      <span style="color:rgba(255,255,255,0.18)">UnnieBox · UI/UX Case Study</span>
+      <div class="ub-proj-nav">
+        <% if (nav && nav.prev) { %><a href="/portfolio/<%= nav.prev.slug %>">← Prev</a><% } %>
+        <a href="/gallery">All projects</a>
+        <a class="cta" href="/contact">Hire me →</a>
+        <% if (nav && nav.next) { %><a href="/portfolio/<%= nav.next.slug %>">Next →</a><% } %>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="img-modal" id="imgModal" aria-hidden="true">
+  <div class="img-modal-backdrop" data-close></div>
+  <div class="img-modal-card" role="dialog" aria-modal="true">
+    <button class="img-modal-close" type="button" data-close>✕</button>
+    <img id="imgModalSrc" src="/assets/images/unniebox/group_1000004357.png" alt="Preview">
+  </div>
+</div>
+
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/unniebox.js"></script>
+<script>
+  /* SCROLL PROGRESS */
+  const progressBar = document.getElementById('ubProgress');
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  /* SCROLL REVEAL */
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revObs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
+
+  /* TOC ACTIVE */
+  const tocLinks = document.querySelectorAll('.case-toc a');
+  const subnavLinks = document.querySelectorAll('.case-subnav-pill a');
+  const secObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id;
+      [...tocLinks, ...subnavLinks].forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    });
+  }, { threshold: 0.22 });
+  document.querySelectorAll('.case-section[id]').forEach(s => secObs.observe(s));
+
+  /* LIGHTBOX */
+  const modal = document.getElementById('imgModal');
+  const modalImg = document.getElementById('imgModalSrc');
+  function openModal(src) {
+    modalImg.src = src;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+  }
+  document.querySelectorAll('.ub-product-card img, .ub-screen-card img, .case-img img, .landing-card img, .modal-card img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openModal(img.src));
+  });
+  document.getElementById('expandFull')?.addEventListener('click', () => openModal('/assets/images/unniebox/group_1000004357.png'));
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.classList.remove('open'); document.body.classList.remove('no-scroll'); } });
+
+  /* NEWSLETTER */
+  function ubSubscribe() {
+    const input = document.getElementById('ubNewsletterEmail');
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = 'rgba(255,80,80,0.7)';
+      setTimeout(() => { input.style.borderColor = ''; }, 1500);
+      return;
+    }
+    input.value = '';
+    const btn = input.nextElementSibling;
+    const orig = btn.textContent;
+    btn.textContent = 'Done ✓';
+    btn.style.background = '#22c55e';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2500);
+  }
+</script>
+</body>
+</html>
