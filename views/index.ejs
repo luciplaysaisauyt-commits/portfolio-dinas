@@ -13,41 +13,8 @@
 </head>
 <body>
 
-<!-- CUSTOM CURSOR -->
-<div class="din-cursor" id="dinCursor"></div>
-<div class="din-cursor-ring" id="dinCursorRing"></div>
+<%- include('partials/header') %>
 
-<!-- NAV -->
-<header class="nav" id="topnav">
-  <div class="logo">
-    <a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a>
-  </div>
-  <button class="burger" id="burger" aria-label="Menu" type="button">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="menu">
-    <a class="active" href="/">Home</a>
-    <a href="/gallery">Gallery</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</header>
-
-<!-- MOBILE MENU -->
-<nav class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-panel">
-    <div class="mobile-menu-top">
-      <div class="mobile-logo">DIN</div>
-      <button class="mobile-close" id="mobileClose" type="button">&times;</button>
-    </div>
-    <div class="mobile-menu-links">
-      <a class="active" href="/">Home</a>
-      <a href="/gallery">Gallery</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </div>
-</nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="idx-hero">
@@ -106,10 +73,26 @@
   <div class="idx-track-wrap" id="wTrackWrap">
     <div class="idx-track" id="wTrack">
 
+
+      <article class="wcard" data-href="/portfolio/clm">
+        <div class="wcard-bg wbg7"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">01</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">UI UX Redesign</div>
+          <h3 class="wcard-title">CLM<br>Mafia Platform</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Full platform redesign for competitive Mafia community with ratings, tournaments and admin.</p>
+          <div class="rtags"><span>Figma</span><span>Design System</span><span>Case Study</span></div>
+          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+        </div>
+      </article>
+
       <article class="wcard" data-href="/portfolio/unnie-box">
         <div class="wcard-bg wbg1"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
         <div class="wcard-veil"></div>
-        <div class="wcard-num">01</div>
+        <div class="wcard-num">02</div>
         <div class="wcard-foot">
           <div class="wcard-cat">UI Web Design</div>
           <h3 class="wcard-title">UnnieBox<br>Landing Page</h3>
@@ -117,81 +100,6 @@
         <div class="wcard-reveal">
           <p>High fidelity landing page case with UI kit, modals and design system.</p>
           <div class="rtags"><span>Figma</span><span>UI Kit</span><span>Case Study</span></div>
-          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/learnlogicify">
-        <div class="wcard-bg wbg1"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">02</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">UI Web Design</div>
-          <h3 class="wcard-title">Learnlogicify<br>Landing Page</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Conversion-focused landing page for an EdTech platform with bold visual identity.</p>
-          <div class="rtags"><span>Figma</span><span>HTML CSS</span><span>UI Design</span></div>
-          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/gemini-clone">
-        <div class="wcard-bg wbg2"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml m"></div><div class="ml l"></div><div class="ml s"></div></div></div></div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">03</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">Clone Frontend Dev</div>
-          <h3 class="wcard-title">Gemini<br>Clone</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Pixel-perfect recreation of modern AI interface exploring UX patterns.</p>
-          <div class="rtags"><span>JavaScript</span><span>CSS</span><span>AI UI</span></div>
-          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/winzee-chat">
-        <div class="wcard-bg wbg3"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml s"></div><div class="ml l"></div><div class="ml m"></div></div></div></div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">04</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">App Design Chat</div>
-          <h3 class="wcard-title">Winzee<br>Chat App</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Real-time messaging app with refined dark UI — clarity, speed, comfort.</p>
-          <div class="rtags"><span>UI Design</span><span>Figma</span><span>Prototype</span></div>
-          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/chatgpt-clone">
-        <div class="wcard-bg wbg4"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div></div></div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">05</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">Clone AI Interface</div>
-          <h3 class="wcard-title">ChatGPT<br>Clone</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Functional chat UI decoding interaction design and layout rules.</p>
-          <div class="rtags"><span>JavaScript</span><span>API</span><span>Frontend</span></div>
-          <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/jobhelper">
-        <div class="wcard-bg wbg5"><div class="wcard-mock"><div class="wmock-bar"><span></span><span></span><span></span></div><div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml m"></div><div class="ml s"></div></div></div></div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">06</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">Web App Dashboard</div>
-          <h3 class="wcard-title">JobHelper<br>Platform</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Job search dashboard designed for clarity and focus under pressure.</p>
-          <div class="rtags"><span>UX Research</span><span>Figma</span><span>Frontend</span></div>
           <div class="rlink">Open case study<div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
         </div>
       </article>

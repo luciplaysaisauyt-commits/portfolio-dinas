@@ -11,171 +11,46 @@
   <link rel="stylesheet" href="/assets/css/portfolio.css">
   <link rel="stylesheet" href="/assets/css/unniebox.css">
   <link rel="icon" type="image/png" href="/assets/DIN.png">
-  <style>
-    body.ub-body { background: #04091a; }
-    body.ub-body::before { display: none; }
-    .ub-bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
-    .ub-bg::before { content:''; position:absolute; inset:0; background:#04091a; }
-    .ub-bg::after { content:''; position:absolute; inset:0;
-      background:
-        radial-gradient(ellipse 80% 55% at 8% 0%, rgba(11,109,255,0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 95% 18%, rgba(74,162,255,0.13) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 80% at 50% 105%, rgba(11,109,255,0.12) 0%, transparent 58%),
-        radial-gradient(ellipse 38% 38% at 80% 70%, rgba(232,193,90,0.07) 0%, transparent 52%);
-    }
-    .ub-grid-overlay { position:fixed; inset:0; z-index:0; pointer-events:none;
-      background-image: linear-gradient(rgba(11,109,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11,109,255,0.04) 1px, transparent 1px);
-      background-size: 64px 64px;
-    }
-    .ub-orb { position:fixed; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; animation:ubFloat 14s ease-in-out infinite; }
-    .ub-orb-1 { width:640px; height:640px; background:#0b6dff; opacity:.065; top:-160px; left:-240px; }
-    .ub-orb-2 { width:500px; height:500px; background:#4aa2ff; opacity:.055; top:38%; right:-200px; animation-delay:-5s; }
-    .ub-orb-3 { width:420px; height:420px; background:#0b6dff; opacity:.045; bottom:5%; left:18%; animation-delay:-9s; }
-    .ub-orb-4 { width:260px; height:260px; background:#e8c15a; opacity:.04; bottom:28%; right:10%; animation-delay:-3s; }
-    @keyframes ubFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-32px) scale(1.04)} }
-    .ub-page-wrap > * { position:relative; z-index:1; }
-    .ub-body .nav { background:rgba(4,9,26,0.88)!important; border-bottom:1px solid rgba(11,109,255,0.2)!important; backdrop-filter:blur(22px)!important; }
-    .ub-body .case-subnav-pill { background:rgba(4,9,26,0.78); border-color:rgba(11,109,255,0.3); box-shadow:0 0 40px rgba(11,109,255,0.1); }
-    .ub-body .case-subnav-pill a { color:rgba(255,255,255,0.7); }
-    .ub-body .case-subnav-pill a.active, .ub-body .case-subnav-pill a:hover { background:rgba(11,109,255,0.18); color:#fff; }
-    .ub-hero-accent { width:44px; height:3px; background:linear-gradient(90deg,#0b6dff,#4aa2ff); border-radius:99px; margin-bottom:16px; }
-    .ub-body .meta-card { border-color:rgba(11,109,255,0.18); background:rgba(11,109,255,0.06); }
-    .ub-body .meta-k { color:rgba(74,162,255,0.85); }
-    .ub-hero-image-wrap { position:relative; border-radius:26px; overflow:hidden; border:1px solid rgba(11,109,255,0.2); box-shadow:0 0 60px rgba(11,109,255,0.18),0 24px 80px rgba(0,0,0,0.5); }
-    .ub-hero-image-wrap img { display:block; width:100%; height:auto; }
-    .ub-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(4,9,26,0.65) 0%,transparent 55%); }
-    .ub-hero-badge { position:absolute; bottom:18px; right:18px; background:rgba(11,109,255,0.92); color:#fff; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px; border-radius:999px; font-family:'Space Mono',monospace; backdrop-filter:blur(8px); box-shadow:0 8px 24px rgba(11,109,255,0.4); }
-    .ub-body .case-section { border-top-color:rgba(11,109,255,0.18); }
-    .ub-body .stat-n { color:#4aa2ff; text-shadow:0 0 24px rgba(74,162,255,0.4); }
-    .ub-body .case-stats .stat { border-color:rgba(11,109,255,0.18); background:rgba(11,109,255,0.06); transition:transform .3s,box-shadow .3s; }
-    .ub-body .case-stats .stat:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(11,109,255,0.2); }
-    .ub-products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
-    .ub-product-card { position:relative; border-radius:22px; overflow:hidden; border:1px solid rgba(11,109,255,0.2); background:rgba(11,109,255,0.06); transition:transform .32s,box-shadow .32s; cursor:zoom-in; }
-    .ub-product-card:hover { transform:translateY(-7px) scale(1.01); box-shadow:0 24px 64px rgba(11,109,255,0.25); }
-    .ub-product-card img { display:block; width:100%; height:auto; }
-    .ub-product-pill { position:absolute; bottom:12px; left:12px; background:rgba(4,9,26,0.88); color:rgba(255,255,255,0.92); border:1px solid rgba(11,109,255,0.35); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; font-family:'Space Mono',monospace; backdrop-filter:blur(10px); }
-    .ub-body .pstep { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); transition:transform .28s,border-color .28s; }
-    .ub-body .pstep:hover { transform:translateY(-4px); border-color:rgba(11,109,255,0.35); }
-    .ub-body .pnum { color:rgba(74,162,255,0.7); }
-    .ub-body .sw { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); }
-    .ub-body .landing-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); }
-    .ub-body .landing-expand { border-color:rgba(11,109,255,0.3); background:rgba(11,109,255,0.1); color:#fff; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.1em; transition:background .2s,box-shadow .2s; }
-    .ub-body .landing-expand:hover { background:rgba(11,109,255,0.22); box-shadow:0 0 20px rgba(11,109,255,0.2); }
-    .ub-body .modal-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); }
-    .ub-screens-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
-    .ub-screen-card { position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(11,109,255,0.15); background:rgba(11,109,255,0.04); transition:transform .25s,box-shadow .25s; cursor:zoom-in; }
-    .ub-screen-card:hover { transform:translateY(-4px); box-shadow:0 18px 50px rgba(11,109,255,0.22); }
-    .ub-screen-card.full { grid-column:span 2; }
-    .ub-screen-card img { display:block; width:100%; height:auto; }
-    .ub-screen-tag { position:absolute; top:12px; left:12px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.16em; text-transform:uppercase; background:rgba(11,109,255,0.92); color:#fff; padding:5px 11px; border-radius:999px; box-shadow:0 4px 16px rgba(11,109,255,0.35); }
-    .ub-body .case-img { border-color:rgba(11,109,255,0.14); background:rgba(11,109,255,0.04); transition:box-shadow .3s; cursor:zoom-in; }
-    .ub-body .case-img:hover { box-shadow:0 12px 40px rgba(11,109,255,0.2); }
-    .ub-body .learn-card { border-color:rgba(11,109,255,0.15); background:rgba(11,109,255,0.05); transition:transform .28s,border-color .28s; }
-    .ub-body .learn-card:hover { transform:translateY(-4px); border-color:rgba(11,109,255,0.35); }
-    .ub-body .learn-n { color:rgba(74,162,255,0.5); }
-    .ub-cta-banner { margin-top:24px; border-radius:24px; padding:48px 36px; background:linear-gradient(135deg,#0b4fc4 0%,#0b6dff 50%,#2e82ff 100%); position:relative; overflow:hidden; text-align:center; }
-    .ub-cta-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 80% 20%,rgba(255,255,255,0.08) 0%,transparent 60%); }
-    .ub-cta-banner h3 { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:400; line-height:1.05; color:#fff; margin:0 0 12px; position:relative; }
-    .ub-cta-banner p { color:rgba(255,255,255,0.88); margin:0 auto 24px; max-width:480px; font-size:15px; position:relative; }
-    .ub-cta-banner .cta-actions { position:relative; }
-    .ub-cta-banner .btn-case.primary { background:#fff; color:#0b4fc4; font-weight:600; border-color:#fff; }
-    .ub-cta-banner .btn-case { border-color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.12); color:#fff; }
-    .ub-cta-banner .btn-case:hover { background:rgba(255,255,255,0.22); }
-    .ub-progress-bar { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,#0b6dff,#4aa2ff); z-index:999; transition:width .1s linear; }
-    .ub-body .case-toc { border-color:rgba(11,109,255,0.2); background:rgba(4,9,26,0.75); }
-    .ub-body .case-toc a.active { background:rgba(11,109,255,0.15); color:#fff; }
-    .ub-body .case-toc a:hover { background:rgba(11,109,255,0.1); color:#fff; }
-    [data-reveal] { opacity:0; transform:translateY(28px); transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1); }
-    [data-reveal].revealed { opacity:1; transform:translateY(0); }
-    [data-reveal-delay="1"]{transition-delay:.1s} [data-reveal-delay="2"]{transition-delay:.2s} [data-reveal-delay="3"]{transition-delay:.3s} [data-reveal-delay="4"]{transition-delay:.45s} [data-reveal-delay="5"]{transition-delay:.6s}
-    /* FOOTER */
-    .ub-site-footer { background:rgba(4,9,26,0.95); border-top:1px solid rgba(11,109,255,0.22); padding:60px 48px 40px; position:relative; z-index:1; }
-    .ub-site-footer__inner { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:60px; align-items:start; }
-    .ub-site-footer__logo-img { width:38px; height:38px; object-fit:contain; margin-bottom:12px; opacity:.9; filter:drop-shadow(0 0 8px rgba(11,109,255,0.4)); }
-    .ub-site-footer__tagline { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.7; max-width:220px; }
-    .ub-site-footer__col-title { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(74,162,255,0.85); margin-bottom:18px; }
-    .ub-site-footer__nav { display:flex; flex-direction:column; gap:11px; }
-    .ub-site-footer__nav a { font-size:14px; color:rgba(255,255,255,0.5); text-decoration:none; transition:color .2s,transform .2s; display:inline-block; }
-    .ub-site-footer__nav a:hover { color:#fff; transform:translateX(4px); }
-    .ub-site-footer__item { font-size:13px; color:rgba(255,255,255,0.45); margin-bottom:9px; }
-    .ub-site-footer__form-label { font-size:13px; color:rgba(255,255,255,0.4); margin-bottom:12px; line-height:1.6; }
-    .ub-site-footer__form { display:flex; gap:8px; }
-    .ub-site-footer__form input { flex:1; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(11,109,255,0.22); border-radius:8px; color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; outline:none; transition:border-color .2s; }
-    .ub-site-footer__form input:focus { border-color:rgba(11,109,255,0.6); }
-    .ub-site-footer__form input::placeholder { color:rgba(255,255,255,0.28); }
-    .ub-site-footer__form button { padding:10px 16px; background:#0b6dff; border:none; border-radius:8px; color:#fff; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer; white-space:nowrap; transition:background .2s,transform .2s,box-shadow .2s; }
-    .ub-site-footer__form button:hover { background:#2e82ff; transform:scale(1.03); box-shadow:0 6px 20px rgba(11,109,255,0.4); }
-    .ub-site-footer__bottom { max-width:1120px; margin:36px auto 0; padding-top:22px; border-top:1px solid rgba(11,109,255,0.14); display:flex; justify-content:space-between; align-items:center; font-size:12px; color:rgba(255,255,255,0.3); flex-wrap:wrap; gap:12px; }
-    .ub-proj-nav { display:flex; gap:10px; align-items:center; }
-    .ub-proj-nav a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:12px; padding:7px 14px; border-radius:999px; border:1px solid rgba(11,109,255,0.22); transition:all .2s; }
-    .ub-proj-nav a:hover { background:rgba(11,109,255,0.18); color:#fff; border-color:rgba(11,109,255,0.5); }
-    .ub-proj-nav a.cta { background:#0b6dff; color:#fff; border-color:#0b6dff; }
-    .ub-proj-nav a.cta:hover { background:#2e82ff; }
-    @media(max-width:980px){
-      .ub-products-grid{grid-template-columns:1fr 1fr}
-      .ub-screens-grid{grid-template-columns:1fr}
-      .ub-screen-card.full{grid-column:span 1}
-      .ub-site-footer__inner{grid-template-columns:1fr 1fr;gap:36px}
-      .ub-site-footer{padding:50px 24px 36px}
-      .ub-cta-banner h3{font-size:38px}
-    }
-    @media(max-width:640px){
-      .ub-products-grid{grid-template-columns:1fr}
-      .ub-site-footer__inner{grid-template-columns:1fr;gap:28px}
-      .ub-site-footer__bottom{flex-direction:column;align-items:flex-start}
-    }
-  </style>
 </head>
 <body class="ub-body">
 
-<div class="ub-bg"></div>
-<div class="ub-grid-overlay"></div>
-<div class="ub-orb ub-orb-1"></div>
-<div class="ub-orb ub-orb-2"></div>
-<div class="ub-orb ub-orb-3"></div>
-<div class="ub-orb ub-orb-4"></div>
-<div class="ub-progress-bar" id="ubProgress"></div>
-<div class="din-cursor" id="dinCursor"></div>
-<div class="din-cursor-ring" id="dinCursorRing"></div>
+  <div class="ub-bg"></div>
+  <div class="ub-grid-overlay"></div>
+  <div class="ub-orb ub-orb-1"></div>
+  <div class="ub-orb ub-orb-2"></div>
+  <div class="ub-orb ub-orb-3"></div>
+  <div class="ub-orb ub-orb-4"></div>
+  <div class="ub-progress-bar" id="ubProgress"></div>
+  <div class="din-cursor" id="dinCursor"></div>
+  <div class="din-cursor-ring" id="dinCursorRing"></div>
 
-<div class="ub-page-wrap">
+  <%- include('../partials/header') %>
 
-  <!-- NAV -->
-  <header class="nav" id="topnav">
-    <div class="logo"><a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a></div>
-    <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
-    <nav class="menu">
-      <a href="/">Home</a>
-      <a class="active" href="/gallery">Gallery</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
-
-  <nav class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-panel">
-      <div class="mobile-menu-top">
-        <div class="mobile-logo">DIN</div>
-        <button class="mobile-close" id="mobileClose" aria-label="Close menu" type="button">×</button>
-      </div>
-      <a href="/">Home</a><a href="/gallery">Gallery</a><a href="/about">About</a><a href="/contact">Contact</a>
-    </div>
-  </nav>
-
-  <!-- SUBNAV -->
-  <div class="case-subnav" style="padding-top:72px">
-    <div class="case-subnav-inner">
-      <div class="case-subnav-pill">
-        <a href="#overview">Overview</a>
-        <a href="#products">Products</a>
-        <a href="#process">Process</a>
-        <a href="#landing">Screens</a>
-        <a href="#modals">Modals</a>
-        <a href="#branding">Brand</a>
-        <a href="#learnings">Impact</a>
-      </div>
-    </div>
+  <%
+    const subnavItems = [
+      { id: "overview",  label: "Overview" },
+      { id: "products",  label: "Products" },
+      { id: "problem",   label: "Problem" },
+      { id: "process",   label: "Process" },
+      { id: "colors",    label: "Colors & Type" },
+      { id: "landing",   label: "Full Page" },
+      { id: "uikit",     label: "UI Kit" },
+      { id: "modals",    label: "Modals" },
+      { id: "branding",  label: "Branding" },
+      { id: "learnings", label: "Learnings" }
+    ];
+  %>
+    </main>
   </div>
+</body>
+
+
+  <div class="ub-page-wrap">
+    <%- include("../partials/caseSubnav", { subnavItems }) %>
+
+    <main class="ub-content">
+      <!-- твой контент страницы дальше сюда -->
+
 
   <main style="position:relative;z-index:1;color:#fff;padding-top:18px">
     <div class="case-wrap" style="padding-top:20px">
@@ -195,7 +70,7 @@
           </div>
           <div class="case-meta" style="margin-top:22px">
             <div class="meta-card"><div class="meta-k">Role</div><div class="meta-v"><%= project?.role || "UI / UX Designer" %></div></div>
-            <div class="meta-card"><div class="meta-k">Tools</div><div class="meta-v"><%= project?.tools || "Figma" %></div></div>
+            <div class="meta-card"><div class="meta-k">Tools</div><div class="meta-v"><span class="chip">Figma</span><span class="chip">Adobe Illustrator</span></div></div>
             <div class="meta-card"><div class="meta-k">Focus</div><div class="meta-v">Landing page · Design system · Components</div></div>
             <div class="meta-card"><div class="meta-k">Deliverables</div><div class="meta-v">Screens · UI kit · Logo · Mockups</div></div>
           </div>
@@ -207,20 +82,6 @@
         </div>
       </div>
 
-      <!-- LAYOUT -->
-      <div class="case-layout" style="margin-top:36px">
-        <aside class="case-toc">
-          <a href="#overview"><span>Overview</span><span>01</span></a>
-          <a href="#products"><span>Products</span><span>02</span></a>
-          <a href="#problem"><span>Problem</span><span>03</span></a>
-          <a href="#process"><span>Process</span><span>04</span></a>
-          <a href="#system"><span>Colors &amp; type</span><span>05</span></a>
-          <a href="#landing"><span>Full page</span><span>06</span></a>
-          <a href="#uikit"><span>UI kit</span><span>07</span></a>
-          <a href="#modals"><span>Modals</span><span>08</span></a>
-          <a href="#branding"><span>Branding</span><span>09</span></a>
-          <a href="#learnings"><span>Learnings</span><span>10</span></a>
-        </aside>
 
         <section class="case-sections">
 
@@ -385,49 +246,7 @@
     </div>
   </main>
 
-  <!-- SITE FOOTER — same structure as homepage -->
-  <footer class="ub-site-footer">
-    <div class="ub-site-footer__inner">
-      <div>
-        <img src="/assets/DIN.png" alt="DIN Logo" class="ub-site-footer__logo-img">
-        <p class="ub-site-footer__tagline">Creative designer crafting digital experiences that matter.</p>
-      </div>
-      <div>
-        <p class="ub-site-footer__col-title">Navigation</p>
-        <nav class="ub-site-footer__nav">
-          <a href="/">Home</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-        </nav>
-      </div>
-      <div>
-        <p class="ub-site-footer__col-title">Contact</p>
-        <div class="ub-site-footer__item">din.design.studio@gmail.com</div>
-        <div class="ub-site-footer__item">Canada</div>
-      </div>
-      <div>
-        <p class="ub-site-footer__col-title">Newsletter</p>
-        <p class="ub-site-footer__form-label">Stay updated with new projects.</p>
-        <div class="ub-site-footer__form">
-          <input type="email" placeholder="your@email.com" id="ubNewsletterEmail">
-          <button type="button" onclick="ubSubscribe()">Subscribe</button>
-        </div>
-      </div>
-    </div>
-    <div class="ub-site-footer__bottom">
-      <span>© 2025 DIN. All rights reserved.</span>
-      <span style="color:rgba(255,255,255,0.18)">UnnieBox · UI/UX Case Study</span>
-      <div class="ub-proj-nav">
-        <% if (nav && nav.prev) { %><a href="/portfolio/<%= nav.prev.slug %>">← Prev</a><% } %>
-        <a href="/gallery">All projects</a>
-        <a class="cta" href="/contact">Hire me →</a>
-        <% if (nav && nav.next) { %><a href="/portfolio/<%= nav.next.slug %>">Next →</a><% } %>
-      </div>
-    </div>
-  </footer>
-
-</div>
+  <%- include("../partials/caseFooter", { nav, caseName: "UnnieBox", theme: "ub" }) %>
 
 <!-- LIGHTBOX -->
 <div class="img-modal" id="imgModal" aria-hidden="true">
@@ -502,6 +321,10 @@
     btn.style.background = '#22c55e';
     setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2500);
   }
+
+  
 </script>
+
+
 </body>
 </html>

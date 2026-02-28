@@ -13,21 +13,7 @@
 </head>
 <body>
 
-<!-- NAV -->
-<header class="nav" id="topnav">
-  <div class="logo">
-    <a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a>
-  </div>
-  <button class="burger" id="burger" aria-label="Menu" type="button">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="menu">
-    <a href="/">Home</a>
-    <a class="active" href="/gallery">Gallery</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a> 
-  </nav>
-</header>
+<%- include('partials/header') %>
 
 <!-- CASE NAV -->
 <div class="case-nav" role="navigation" aria-label="Project navigation">
@@ -41,20 +27,6 @@
   <% } %>
 </div>
 
-<nav class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-panel">
-    <div class="mobile-menu-top">
-      <div class="mobile-logo">DIN</div>
-      <button class="mobile-close" id="mobileClose" type="button">&times;</button>
-    </div>
-    <div class="mobile-menu-links">
-      <a href="/">Home</a>
-      <a class="active" href="/gallery">Gallery</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </div>
-</nav>
 
 <!-- BREADCRUMB -->
 <div class="pf-breadcrumb">

@@ -1,0 +1,17 @@
+<%
+// items example:
+// [{ id: "overview", label: "Overview" }, ...]
+const items = (typeof subnavItems !== "undefined" && subnavItems) ? subnavItems : [];
+%>
+
+<% if (items.length) { %>
+  <div class="case-subnav" data-case-subnav>
+    <div class="case-subnav-inner">
+      <div class="case-subnav-pill" role="navigation" aria-label="Case sections">
+        <% items.forEach(it => { %>
+          <a href="#<%= it.id %>" class="case-subnav-link"><%= it.label %></a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+<% } %>

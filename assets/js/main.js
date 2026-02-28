@@ -3,6 +3,8 @@
    ============================================================ */
 (() => {
 
+  const isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
   // ── PAGE ENTER ANIMATION HOOK ──
   // adds a class after full load so pages can fade in smoothly
   window.addEventListener('load', () => {
@@ -119,7 +121,7 @@
   // ── CUSTOM CURSOR ──
   const cursor     = document.getElementById('dinCursor');
   const cursorRing = document.getElementById('dinCursorRing');
-  if (cursor && cursorRing) {
+  if (cursor && cursorRing && !isTouch) {
     let mx = -200, my = -200, rx = -200, ry = -200;
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
@@ -135,6 +137,99 @@
     })();
   }
 
+
+  /* ============================================================
+   CASE SUBNAV UNIVERSAL
+   Works on any page that has:
+   1 header with id="topnav"
+   2 subnav wrapper with data-case-subnav
+   3 sections with class="case-section" and id
+   ============================================================ */
+
+(() => {
+  const nav = document.getElementById("topnav");
+
+  const setNavH = () => {
+    if (!nav) return;
+    document.documentElement.style.setProperty("--navH", nav.offsetHeight + "px");
+  };
+
+  setNavH();
+  window.addEventListener("resize", setNavH);
+
+  const subnav = document.querySelector("[data-case-subnav]");
+  if (!subnav) return;
+
+  document.body.classList.add("has-case-subnav");
+
+  const setSubnavH = () => {
+    document.documentElement.style.setProperty("--caseSubnavH", subnav.offsetHeight + "px");
+  };
+
+  setSubnavH();
+  window.addEventListener("resize", setSubnavH);
+
+  const subLinks = subnav.querySelectorAll("a[href^='#']");
+  const sections = document.querySelectorAll(".case-section[id]");
+
+  if (subLinks.length && sections.length) {
+    const secObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const id = e.target.id;
+        subLinks.forEach((l) => {
+          l.classList.toggle("active", l.getAttribute("href") === "#" + id);
+        });
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach((s) => secObs.observe(s));
+  }
+
+  subLinks.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--navH")) || 0;
+      const subH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--caseSubnavH")) || 0;
+
+      const offset = navH + subH + 24;
+      const y = target.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+})();
+window.caseSubscribe = function(form){
+  const input = form.querySelector('input[type="email"]')
+  const btn = form.querySelector('button[type="submit"]')
+
+  if (!input || !btn) return
+
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(255,80,80,0.7)'
+    setTimeout(() => { input.style.borderColor = '' }, 1500)
+    return
+  }
+
+  input.value = ''
+  const orig = btn.textContent
+  btn.textContent = 'Done ✓'
+  btn.style.background = 'rgba(34,197,94,0.95)'
+  btn.style.borderColor = 'rgba(34,197,94,0.95)'
+
+  setTimeout(() => {
+    btn.textContent = orig
+    btn.style.background = ''
+    btn.style.borderColor = ''
+  }, 2500)
+}
 })();
 
 

@@ -17,36 +17,7 @@
 <div class="din-cursor" id="dinCursor"></div>
 <div class="din-cursor-ring" id="dinCursorRing"></div>
 
-<!-- NAV -->
-<header class="nav" id="topnav">
-  <div class="logo">
-    <a href="/"><img src="/assets/DIN.png" alt="DIN" class="logo-img"></a>
-  </div>
-  <button class="burger" id="burger" aria-label="Menu" type="button">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="menu">
-    <a href="/">Home</a>
-    <a class="active" href="/gallery">Gallery</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</header>
-
-<nav class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-panel">
-    <div class="mobile-menu-top">
-      <div class="mobile-logo">DIN</div>
-      <button class="mobile-close" id="mobileClose" type="button">&times;</button>
-    </div>
-    <div class="mobile-menu-links">
-      <a href="/">Home</a>
-      <a class="active" href="/gallery">Gallery</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </div>
-</nav>
+<%- include('partials/header') %>
 
 <!-- HERO -->
 <section class="gl-hero">
@@ -58,7 +29,7 @@
     </p>
   </div>
   <div class="gl-hero-count fu fd3">
-    <span class="gl-count-n">10</span>
+    <span class="gl-count-n">11</span>
     <span class="gl-count-l">Projects</span>
   </div>
 </section>
@@ -72,8 +43,9 @@
   <div class="gl-track-wrap" id="glWrap">
     <div class="gl-track" id="glTrack">
 
-      <article class="wcard" data-href="/portfolio/jobhelper">
-        <div class="wcard-bg wbg5">
+
+      <article class="wcard" data-href="/portfolio/clm">
+        <div class="wcard-bg wbg7">
           <div class="wcard-mock">
             <div class="wmock-bar"><span></span><span></span><span></span></div>
             <div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml m"></div><div class="ml s"></div></div>
@@ -82,95 +54,16 @@
         <div class="wcard-veil"></div>
         <div class="wcard-num">01</div>
         <div class="wcard-foot">
-          <div class="wcard-cat">Web App Dashboard</div>
-          <h3 class="wcard-title">JobHelper</h3>
+          <div class="wcard-cat">UI UX Redesign</div>
+          <h3 class="wcard-title">CLM<br>Mafia Platform</h3>
         </div>
         <div class="wcard-reveal">
-          <p>Job search management dashboard for clarity and focus under pressure.</p>
-          <div class="rtags"><span>UX Research</span><span>Figma</span><span>Frontend</span></div>
+          <p>Full redesign of Mafia platform with ratings, tournaments, clubs and admin panel.</p>
+          <div class="rtags"><span>Figma</span><span>Design System</span><span>Case Study</span></div>
           <div class="rlink">Open case study <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
         </div>
       </article>
 
-      <article class="wcard" data-href="/portfolio/learnlogicify">
-        <div class="wcard-bg wbg1">
-          <div class="wcard-mock">
-            <div class="wmock-bar"><span></span><span></span><span></span></div>
-            <div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div>
-          </div>
-        </div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">02</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">UI Web Design</div>
-          <h3 class="wcard-title">Learnlogicify<br>Landing Page</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Conversion-focused EdTech landing page with bold visual identity.</p>
-          <div class="rtags"><span>Figma</span><span>HTML CSS</span><span>UI Design</span></div>
-          <div class="rlink">Open case study <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/gemini-clone">
-        <div class="wcard-bg wbg2">
-          <div class="wcard-mock">
-            <div class="wmock-bar"><span></span><span></span><span></span></div>
-            <div class="wmock-body"><div class="ml a"></div><div class="ml m"></div><div class="ml l"></div><div class="ml s"></div></div>
-          </div>
-        </div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">03</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">Clone Frontend Dev</div>
-          <h3 class="wcard-title">Gemini<br>Clone</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Pixel-perfect recreation of Google's Gemini AI interface.</p>
-          <div class="rtags"><span>JavaScript</span><span>CSS</span><span>AI UI</span></div>
-          <div class="rlink">Open case study <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/winzee-chat">
-        <div class="wcard-bg wbg3">
-          <div class="wcard-mock">
-            <div class="wmock-bar"><span></span><span></span><span></span></div>
-            <div class="wmock-body"><div class="ml a"></div><div class="ml s"></div><div class="ml l"></div><div class="ml m"></div></div>
-          </div>
-        </div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">04</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">App Design</div>
-          <h3 class="wcard-title">Winzee<br>Chat App</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Real-time messaging app with refined dark UI — clarity, speed, comfort.</p>
-          <div class="rtags"><span>UI Design</span><span>Figma</span><span>Prototype</span></div>
-          <div class="rlink">Open case study <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
-
-      <article class="wcard" data-href="/portfolio/chatgpt-clone">
-        <div class="wcard-bg wbg4">
-          <div class="wcard-mock">
-            <div class="wmock-bar"><span></span><span></span><span></span></div>
-            <div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div>
-          </div>
-        </div>
-        <div class="wcard-veil"></div>
-        <div class="wcard-num">05</div>
-        <div class="wcard-foot">
-          <div class="wcard-cat">Clone AI Interface</div>
-          <h3 class="wcard-title">ChatGPT<br>Clone</h3>
-        </div>
-        <div class="wcard-reveal">
-          <p>Functional chat UI decoding AI interaction design and layout rules.</p>
-          <div class="rtags"><span>JavaScript</span><span>API</span><span>Frontend</span></div>
-          <div class="rlink">Open case study <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
-        </div>
-      </article>
 
       <article class="wcard" data-href="/portfolio/unnie-box">
         <div class="wcard-bg wbg6">
@@ -180,7 +73,7 @@
           </div>
         </div>
         <div class="wcard-veil"></div>
-        <div class="wcard-num">06</div>
+        <div class="wcard-num">04</div>
         <div class="wcard-foot">
           <div class="wcard-cat">UI UX Design</div>
           <h3 class="wcard-title">Unnie Box<br>Landing Page</h3>
@@ -195,84 +88,7 @@
     </div>
   </div>
 
-  <!-- ROW 2 — remaining projects as list -->
-  <div class="gl-list">
-    <div class="gl-list-header">
-      <span class="label-tag">More Projects</span>
-    </div>
 
-    <a class="gl-item fu" href="#">
-      <div class="gl-item-num">07</div>
-      <div class="gl-item-info">
-        <div class="gl-item-tags"><span>Landing Page</span><span>Visual Design</span></div>
-        <h3>Polapro</h3>
-      </div>
-      <div class="gl-item-year">2024</div>
-      <div class="gl-item-arrow">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-      </div>
-    </a>
-
-    <a class="gl-item fu" href="#">
-      <div class="gl-item-num">08</div>
-      <div class="gl-item-info">
-        <div class="gl-item-tags"><span>Branding</span><span>Web Design</span></div>
-        <h3>Le Lab</h3>
-      </div>
-      <div class="gl-item-year">2024</div>
-      <div class="gl-item-arrow">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-      </div>
-    </a>
-
-    <a class="gl-item fu" href="#">
-      <div class="gl-item-num">09</div>
-      <div class="gl-item-info">
-        <div class="gl-item-tags"><span>UI Design</span><span>Prototype</span></div>
-        <h3>Micro</h3>
-      </div>
-      <div class="gl-item-year">2024</div>
-      <div class="gl-item-arrow">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-      </div>
-    </a>
-
-    <a class="gl-item fu" href="#">
-      <div class="gl-item-num">09</div>
-      <div class="gl-item-info">
-        <div class="gl-item-tags"><span>Graphic Design</span><span>Identity</span></div>
-        <h3>Maia.dk</h3>
-      </div>
-      <div class="gl-item-year">2024</div>
-      <div class="gl-item-arrow">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-      </div>
-    </a>
-
-    <a class="gl-item fu" href="#">
-      <div class="gl-item-num">10</div>
-      <div class="gl-item-info">
-        <div class="gl-item-tags"><span>Web App</span><span>Dashboard</span></div>
-        <h3>Optimizer</h3>
-      </div>
-      <div class="gl-item-year">2023</div>
-      <div class="gl-item-arrow">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-      </div>
-    </a>
-
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer class="site-footer">

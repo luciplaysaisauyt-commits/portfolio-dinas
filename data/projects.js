@@ -1,15 +1,26 @@
 // Portfolio project data
 // Order is used for prev and next navigation on case study pages
 const order = [
+  'clm',
   'unnie-box',
-  'learnlogicify',
-  'gemini-clone',
-  'winzee-chat',
   'chatgpt-clone',
   'jobhelper'
 ];
 
 const projects = {
+  'clm': {
+    title: 'CLM Mafia Platform',
+    category: 'UI UX Redesign',
+    year: '2026',
+    tagline: 'Full platform redesign for competitive Mafia community ratings tournaments clubs and game tracking.',
+    tags: ['UI UX', 'Figma', 'Design System', 'Redesign'],
+    role: 'UI UX Designer',
+    duration: '—',
+    tools: 'Figma',
+    template: 'portfolio/clm',
+    next: { title: 'Unnie Box', slug: 'unnie-box' }
+  },
+
   'unnie-box': {
     title: 'Unnie Box',
     category: 'UI Web Design',
@@ -21,22 +32,7 @@ const projects = {
     tools: '—',
     // Dedicated case-study page (from unniebox_portfolio_v2.html)
     template: 'portfolio/unnie-box',
-    next: { title: 'Learnlogicify Landing Page', slug: 'learnlogicify' }
-  },
 
-  'learnlogicify': {
-    title: 'Learnlogicify Landing Page',
-    category: 'UI Web Design',
-    year: '2025',
-    tagline: 'Conversion-focused landing page for an EdTech platform with bold visual identity and responsive layout.',
-    tags: ['Figma', 'HTML', 'CSS', 'UI Design', 'EdTech'],
-    role: 'UI/UX Designer & Frontend Dev',
-    duration: '3 weeks',
-    tools: 'Figma, HTML, CSS, JS',
-    challenge: {
-      title: 'Building Trust in 5 Seconds',
-      text: 'The main challenge was to communicate the platform\'s core value proposition — accessible, structured online learning — in the first few seconds of a visit. EdTech is a crowded space, and users are skeptical. The design had to simultaneously feel premium, approachable, and credible, while driving sign-ups.'
-    },
     process: {
       title: 'Research, Wireframe, Iterate',
       text: 'The project started with competitive analysis of 8 leading EdTech platforms to identify patterns and opportunities. Then came rapid wireframing in Figma before moving into high-fidelity prototypes.',
@@ -47,6 +43,7 @@ const projects = {
         { name: 'Frontend Build', desc: 'Coded the full page in semantic HTML + CSS with custom animations and mobile-first responsive layout.' }
       ]
     },
+
     results: {
       title: 'A Measurable Outcome',
       text: 'The completed landing page achieved strong visual clarity and usability scores in peer review sessions. The design language established a cohesive brand system that was later extended to other pages.',
@@ -56,88 +53,12 @@ const projects = {
         { value: '6', label: 'Sections Designed' }
       ]
     },
-    learnings: {
-      title: 'What I Took Away',
-      text: 'This project taught me the importance of hierarchy in landing page design — every element needs a clear role. I also learned how powerful whitespace is as a design tool: it draws attention to what matters rather than filling every inch with content.'
-    },
-    next: { title: 'Gemini Clone', slug: 'gemini-clone' }
-  },
 
-  'gemini-clone': {
-    title: 'Gemini Clone',
-    category: 'Frontend Development',
-    year: '2025',
-    tagline: 'Pixel-perfect recreation of Google\'s Gemini AI interface, exploring modern UX patterns and dark-mode theming.',
-    tags: ['JavaScript', 'CSS', 'AI UI', 'Clone', 'Frontend'],
-    role: 'Frontend Developer',
-    duration: '2 weeks',
-    tools: 'HTML, CSS, JavaScript',
-    challenge: {
-      title: 'Replicating Production-Level UI',
-      text: 'Recreating an interface built by Google\'s team with near-unlimited resources meant pushing my CSS precision to its limits. The challenge was not just visual accuracy, but also replicating smooth interactions, responsive behaviour, and micro-animations that define the Gemini experience.'
-    },
-    process: {
-      title: 'Deconstruct, Rebuild, Refine',
-      text: 'The process was methodical: study the original interface in detail, then rebuild each component from scratch without copying any code.',
-      steps: [
-        { name: 'Interface Audit', desc: 'Documented every visual component, spacing unit, color value, and animation in the original interface.' },
-        { name: 'Component Architecture', desc: 'Built a structured CSS system with custom properties mirroring Google\'s design tokens.' },
-        { name: 'Interaction Design', desc: 'Replicated hover states, focus rings, smooth transitions, and loading animations using CSS and vanilla JS.' },
-        { name: 'Responsive Polish', desc: 'Ensured accurate rendering across mobile, tablet, and desktop breakpoints.' }
-      ]
-    },
-    results: {
-      title: 'Visual & Technical Fidelity',
-      text: 'The final clone achieved high visual fidelity with the original interface. This project significantly deepened my understanding of how large-scale design systems are structured at a code level.',
-      metrics: [
-        { value: '~95%', label: 'Visual Accuracy' },
-        { value: '0', label: 'Frameworks Used' },
-        { value: '14', label: 'Components Built' }
-      ]
-    },
     learnings: {
       title: 'What I Took Away',
-      text: 'Cloning a polished interface forces you to pay attention to details you would otherwise ignore — 4px vs 6px padding, 0.15s vs 0.25s transitions, the exact weight of a border. This project made me a more precise and observant developer.'
+      text: 'This project taught me the importance of hierarchy in landing page design. Every element needs a clear role. I also learned how powerful whitespace is as a design tool. It draws attention to what matters rather than filling every inch with content.'
     },
-    next: { title: 'Winzee Chat App', slug: 'winzee-chat' }
-  },
 
-  'winzee-chat': {
-    title: 'Winzee Chat App',
-    category: 'App Design',
-    year: '2024',
-    tagline: 'Real-time messaging app concept with a refined dark UI designed for daily communication comfort.',
-    tags: ['UI Design', 'Figma', 'Prototype', 'Mobile', 'Chat'],
-    role: 'UI/UX Designer',
-    duration: '4 weeks',
-    tools: 'Figma, Prototyping',
-    challenge: {
-      title: 'Designing for Constant Use',
-      text: 'Chat apps are used dozens of times per day, often in fragmented moments of attention. The challenge was to design an interface that is instantly readable, never fatiguing to look at, and fast to navigate — all while maintaining a distinctive visual identity that stands out from WhatsApp, Telegram, and iMessage.'
-    },
-    process: {
-      title: 'User-First, Then Aesthetic',
-      text: 'The process began with a user needs analysis and competitive benchmarking, before moving into information architecture and then visual design.',
-      steps: [
-        { name: 'User Research', desc: 'Surveyed 12 regular messaging app users about their pain points: notification overload, poor dark mode, cluttered interfaces.' },
-        { name: 'Information Architecture', desc: 'Mapped all app states and user flows: conversation list, active chat, settings, search, and media viewer.' },
-        { name: 'Dark UI Design System', desc: 'Built a refined dark color palette with carefully calibrated contrast ratios for readability without eye strain.' },
-        { name: 'Prototyping', desc: 'Created a fully interactive Figma prototype with realistic transitions for user testing.' }
-      ]
-    },
-    results: {
-      title: 'A Calm, Focused Experience',
-      text: 'The app design achieved its goal: a messaging interface that feels premium and calm. User testing showed strong preference for the notification system and typography choices over existing apps.',
-      metrics: [
-        { value: '12', label: 'App Screens Designed' },
-        { value: '4.7/5', label: 'Usability Score' },
-        { value: '100%', label: 'WCAG AA Contrast' }
-      ]
-    },
-    learnings: {
-      title: 'What I Took Away',
-      text: 'This was my deepest dive into interaction design. I learned that the best UI work is invisible — the user never thinks about the design, they just feel like everything is exactly where it should be. Dark mode design also demands much more care than light mode: every shadow, every surface elevation matters.'
-    },
     next: { title: 'ChatGPT Clone', slug: 'chatgpt-clone' }
   },
 
@@ -214,9 +135,9 @@ const projects = {
     },
     learnings: {
       title: 'What I Took Away',
-      text: 'JobHelper was my most user-research intensive project. I learned that the best features often come from listening more than designing. The follow-up reminder system — which became the most praised feature — was suggested by a user in the first interview. Good design starts with good listening.'
+      text: 'JobHelper was my most user-research intensive project. I learned that the best features often come from listening more than designing. The follow-up reminder system, which became the most praised feature, was suggested by a user in the first interview. Good design starts with good listening.'
     },
-    next: { title: 'Learnlogicify Landing Page', slug: 'learnlogicify' }
+    next: { title: 'ChatGPT Clone', slug: 'chatgpt-clone' }
   }
 };
 

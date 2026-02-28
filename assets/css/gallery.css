@@ -116,6 +116,7 @@
 .wbg4 { background:radial-gradient(ellipse at 50% 70%,rgba(50,30,20,.9) 0%,#0f0800 80%); }
 .wbg5 { background:radial-gradient(ellipse at 40% 30%,rgba(20,40,50,.9) 0%,#080c10 80%); }
 .wbg6 { background:radial-gradient(ellipse at 60% 35%,rgba(0,118,255,.35) 0%,#070a10 82%); }
+.wbg7 { background:radial-gradient(ellipse at 55% 30%,rgba(255,60,60,.28) 0%,#07070b 82%); }
 
 .wcard-mock { position:absolute; top:32px; left:20px; right:20px; background:rgba(255,255,255,.04); border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
 .wmock-bar { height:22px; background:rgba(255,255,255,.05); display:flex; align-items:center; gap:5px; padding:0 10px; }
@@ -136,26 +137,7 @@
 .rlink { display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--white); }
 .rarrow { width:26px; height:26px; border:1px solid var(--border-h); border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-/* ── List section ── */
-.gl-list {
-  max-width:1100px; margin:0 auto;
-  padding:0 64px;
-}
-.gl-list-header {
-  padding:56px 0 32px;
-  border-top:1px solid var(--border);
-}
 
-.gl-item {
-  display:grid;
-  grid-template-columns:52px 1fr auto auto;
-  align-items:center;
-  gap:24px;
-  padding:28px 0;
-  border-bottom:1px solid var(--border);
-  text-decoration:none;
-  transition:opacity .2s;
-}
 .gl-item:hover { opacity:.65; }
 .gl-item:hover .gl-item-arrow { transform:translate(3px,-3px); border-color:var(--border-h); }
 

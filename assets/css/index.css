@@ -200,6 +200,7 @@
 .wbg4 { background:radial-gradient(ellipse at 50% 70%,rgba(50,30,20,.9) 0%,#0f0800 80%); }
 .wbg5 { background:radial-gradient(ellipse at 40% 30%,rgba(20,40,50,.9) 0%,#080c10 80%); }
 .wbg6 { background:radial-gradient(ellipse at 60% 35%,rgba(0,118,255,.35) 0%,#070a10 82%); }
+.wbg7 { background:radial-gradient(ellipse at 55% 30%,rgba(255,60,60,.28) 0%,#07070b 82%); }
 
 /* Mock browser inside card */
 .wcard-mock {
