@@ -10,26 +10,88 @@
     document.body.classList.add('is-loaded');
   });
 
-  // ── MOBILE MENU ──
-  const burger     = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose= document.getElementById('mobileClose');
+  // ── LOAD HEADER ──
+  const headerPlaceholder = document.getElementById('header-placeholder');
+  if (headerPlaceholder) {
+    fetch('/assets/public/header.html')
+      .then(r => r.text())
+      .then(html => {
+        headerPlaceholder.innerHTML = html;
 
-  if (burger && mobileMenu)
-    burger.addEventListener('click', () => mobileMenu.classList.add('open'));
-  if (mobileClose && mobileMenu)
-    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-  if (mobileMenu)
-    mobileMenu.addEventListener('click', e => {
-      if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+        // ── MOBILE MENU (после загрузки хедера) ──
+        const burger      = document.getElementById('burger');
+        const mobileMenu  = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+
+        if (burger && mobileMenu)
+          burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+        if (mobileClose && mobileMenu)
+          mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        if (mobileMenu)
+          mobileMenu.addEventListener('click', e => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+          });
+
+        // ── NAV SHRINK ON SCROLL ──
+        const nav = document.getElementById('topnav');
+        if (nav) {
+          const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+          window.addEventListener('scroll', onScroll);
+          onScroll();
+        }
+
+        // ── ACTIVE NAV LINK ──
+        const page = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.menu a, .mobile-menu-links a').forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href') || '';
+          const linkPage = href.split('/').pop();
+          if (!linkPage) return;
+          if (linkPage === page) { link.classList.add('active'); return; }
+          if (
+            (page === '' || page === 'index.html') &&
+            (linkPage === 'index.html' || href === '/' || href === '../' || href === './')
+          ) {
+            link.classList.add('active');
+          }
+        });
+      });
+  } else {
+    // Хедер уже в HTML (не через placeholder)
+    const burger      = document.getElementById('burger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    if (burger && mobileMenu)
+      burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    if (mobileClose && mobileMenu)
+      mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    if (mobileMenu)
+      mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+      });
+
+    const nav = document.getElementById('topnav');
+    if (nav) {
+      const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    }
+
+    const page = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.menu a, .mobile-menu-links a').forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href') || '';
+      const linkPage = href.split('/').pop();
+      if (!linkPage) return;
+      if (linkPage === page) { link.classList.add('active'); return; }
+      if (
+        (page === '' || page === 'index.html') &&
+        (linkPage === 'index.html' || href === '/' || href === '../' || href === './')
+      ) {
+        link.classList.add('active');
+      }
     });
-
-  // ── NAV SHRINK ON SCROLL ──
-  const nav = document.getElementById('topnav');
-  if (nav) {
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    onScroll();
   }
 
   // ── CONTACT FORM POPUP ──
@@ -52,19 +114,39 @@
         message:   document.getElementById('message').value
       };
 
+      const EMAILJS_PUBLIC_KEY  = 'mJztgAOONni1NaDaq';
+      const EMAILJS_SERVICE_ID  = 'service_ewg5w2n';
+      const EMAILJS_TEMPLATE_ID = 'template_ce4qo7t';
+      const TG_BOT_TOKEN        = '8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4';
+      const TG_CHAT_ID          = '1525265767';
+
       try {
-        const res = await fetch('/contact', {
+        await fetch('https://api.emailjs.com/api/v1.0/email/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify({
+            service_id:  EMAILJS_SERVICE_ID,
+            template_id: EMAILJS_TEMPLATE_ID,
+            user_id:     EMAILJS_PUBLIC_KEY,
+            template_params: {
+              firstName: data.firstName,
+              lastName:  data.lastName,
+              email:     data.email,
+              message:   data.message
+            }
+          })
         });
 
-        if (res.ok) {
-          form.reset();
-          if (popup) popup.classList.add('show');
-        } else {
-          alert('Send error. Please try again.');
-        }
+        const tgText = `New message from your site!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+        await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TG_CHAT_ID, text: tgText })
+        });
+
+        form.reset();
+        if (popup) popup.classList.add('show');
+
       } catch (err) {
         alert('Connection error. Check your internet.');
       } finally {
@@ -85,8 +167,18 @@
   const nlForm  = document.getElementById('newsletterForm');
   const nlEmail = document.getElementById('newsletterEmail');
   if (nlForm) {
-    nlForm.addEventListener('submit', e => {
+    nlForm.addEventListener('submit', async e => {
       e.preventDefault();
+      const email = nlEmail ? nlEmail.value : '';
+      if (email) {
+        const TG_BOT_TOKEN = '8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4';
+        const TG_CHAT_ID   = '1525265767';
+        await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TG_CHAT_ID, text: `📧 New subscriber: ${email}` })
+        });
+      }
       if (nlEmail) nlEmail.value = '';
     });
   }
@@ -147,7 +239,7 @@
     counterEls.forEach(el => cio.observe(el));
   }
 
-  // ── CUSTOM CURSOR ── (fixed: starts off-screen)
+  // ── CUSTOM CURSOR ──
   const cursor     = document.getElementById('dinCursor');
   const cursorRing = document.getElementById('dinCursorRing');
   if (cursor && cursorRing && !isTouch) {
@@ -158,6 +250,8 @@
     cursor.style.top  = '-999px';
     cursorRing.style.left = '-999px';
     cursorRing.style.top  = '-999px';
+    cursor.style.opacity = '0';
+    cursorRing.style.opacity = '0';
 
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
@@ -169,9 +263,6 @@
         cursorRing.style.opacity = '1';
       }
     });
-
-    cursor.style.opacity = '0';
-    cursorRing.style.opacity = '0';
 
     (function animRing() {
       rx += (mx - rx) * 0.09;
@@ -270,6 +361,26 @@
       btn.style.borderColor = '';
     }, 2500);
   };
+
+  // ── VISIT NOTIFICATION ──
+  (async () => {
+    const TG_BOT_TOKEN = '8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4';
+    const TG_CHAT_ID   = '1525265767';
+
+    const pag   = window.location.pathname;
+    const ref    = document.referrer ? `\nОткуда: ${document.referrer}` : '\nОткуда: прямой заход';
+    const device = /Mobi|Android/i.test(navigator.userAgent) ? '📱 Мобильный' : '🖥 Десктоп';
+    const lang   = navigator.language || '—';
+    const time   = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
+
+    const text = `👁 Новый посетитель!\n\nСтраница: ${page}\n${ref}\nУстройство: ${device}\nЯзык: ${lang}\nВремя (МСК): ${time}`;
+
+    await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text })
+    });
+  })();
 
 })();
 
@@ -405,4 +516,66 @@ if (nav) {
       document.body.classList.add('no-scroll');
     }
   };
+
+
+ // ── MUSIC PLAYLIST ──
+const musicBtn = document.getElementById('musicBtn');
+const bgMusic  = document.getElementById('bgMusic');
+if (musicBtn && bgMusic) {
+  const playlist = [
+    '/assets/music/igra-na-pianino-ochen-krasivaya-muzyka.mp3',
+    '/assets/music/muzyka-ochen-krasivaya-pianino.mp3',
+    '/assets/music/ochen-krasivaya-muzyka-na-pianino.mp3',
+    '/assets/music/pianino-ochen-krasivaya-muzyka.mp3',
+    '/assets/music/pianino-pod-dozhdem-ochen-krasivaya-muzyka.mp3'
+  ];
+
+  let currentTrack = parseInt(localStorage.getItem('musicTrack') || '0');
+  const savedTime  = parseFloat(localStorage.getItem('musicTime') || '0');
+  const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+
+  bgMusic.volume = 0.1;
+  bgMusic.src = playlist[currentTrack];
+
+  bgMusic.addEventListener('canplay', () => {
+    if (savedTime > 0) bgMusic.currentTime = savedTime;
+    if (wasPlaying) {
+      bgMusic.play();
+      musicBtn.textContent = '🔊';
+      musicBtn.classList.add('playing');
+    }
+  }, { once: true });
+
+  // Сохраняем позицию каждую секунду
+  setInterval(() => {
+    if (!bgMusic.paused) {
+      localStorage.setItem('musicTime', bgMusic.currentTime);
+      localStorage.setItem('musicTrack', currentTrack);
+    }
+  }, 1000);
+
+ bgMusic.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    localStorage.setItem('musicTrack', currentTrack);
+    localStorage.setItem('musicTime', '0');
+    bgMusic.src = playlist[currentTrack];
+    bgMusic.load();
+    bgMusic.play();
+  });
+  
+  musicBtn.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      musicBtn.textContent = '🔊';
+      musicBtn.classList.add('playing');
+      localStorage.setItem('musicPlaying', 'true');
+    } else {
+      bgMusic.pause();
+      musicBtn.textContent = '🎵';
+      musicBtn.classList.remove('playing');
+      localStorage.setItem('musicPlaying', 'false');
+    }
+  });
+}
+
 })();

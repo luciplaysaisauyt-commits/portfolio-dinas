@@ -1,0 +1,85 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN-Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+  <link rel="stylesheet" href="/assets/css/contact.css">
+
+</head>
+<body>
+<div class="din-cursor" id="dinCursor"></div>
+<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+
+<div id="header-placeholder"></div>
+
+<section class="contact-hero">
+  <span class="contact-hero-eyebrow fade-up">Let's connect</span>
+  <h1 class="fade-up delay-1">Say <em>hello</em></h1>
+  <p class="fade-up delay-2">Any question or remarks? Write me a message and I'll get back to you as soon as possible.</p>
+</section>
+
+<div class="contact-main fade-up delay-3">
+  <div class="contact-left">
+    <h2>Contact Information</h2>
+    <p class="contact-left-sub">Fill out the form and I'll be in touch soon.</p>
+    <div class="contact-details-wrap">
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+        <div><p class="contact-detail-label">Email</p><p class="contact-detail-value">din.design.world@gmail.com</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div><p class="contact-detail-label">Location</p><p class="contact-detail-value">Canada</p></div>
+      </div>
+    </div>
+    <div class="contact-quote"><p>"Great design is not just what it looks like — it's how it works."</p></div>
+    <div class="contact-availability"><span class="avail-dot"></span><span>Available for new projects</span></div>
+  </div>
+
+  <form class="contact-right" id="contactForm">
+    <div class="form-grid">
+      <div class="field"><label for="firstName">First Name</label><input id="firstName" name="firstName" type="text" placeholder="John" required></div>
+      <div class="field"><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Doe" required></div>
+      <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="john@example.com" required></div>
+      <div class="field full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea></div>
+    </div>
+    <div class="form-footer">
+      <p class="form-note">I'll reply within 24 hours.</p>
+      <button class="send-btn" type="submit">Send Message <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+    </div>
+  </form>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <div class="popup-icon">✓</div>
+    <h3>Message Sent!</h3>
+    <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+    <button class="popup-close" id="popupClose">Done</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand"><img src="/assets/images/DIN.png" alt="DIN Logo" class="site-footer__logo-img"><p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Navigation</p><nav class="site-footer__nav"><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contactus.html">Contact</a></nav></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Contact</p><div class="site-footer__item">din.design.world@gmail.com</div><div class="site-footer__item">Canada</div></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Newsletter</p><p class="site-footer__form-label">Stay updated with new projects.</p><form class="site-footer__form" id="newsletterForm"><input type="email" id="newsletterEmail" placeholder="your@email.com"><button type="submit">Subscribe</button></form></div></div>
+  <div class="site-footer__bottom"><span>© 2025 DIN. All rights reserved.</span><span>Designed &amp; built with care</span></div>
+</footer>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/index.js" defer></script>
+
+<audio id="bgMusic" src="/assets/music/muzyka-ochen-krasivaya-pianino.mp3" loop></audio>
+<button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
+
+</body>
+</html>

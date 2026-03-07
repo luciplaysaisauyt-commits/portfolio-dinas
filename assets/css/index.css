@@ -647,3 +647,22 @@
   .idx-hero-corner { display: none; }
   .idx-works::before { left: 24px; right: 24px; }
 }
+
+
+.idx-hero-inner {
+  padding: 0 0 0 64px;
+  padding-top: calc(var(--navH) + 40px);
+}
+
+/* ── HERO TEXT BRIGHTER ── */
+.idx-eyebrow {
+  color: rgba(255,255,255,0.6);
+}
+
+.idx-sub {
+  color: rgba(255,255,255,0.65);
+}
+
+.idx-scroll {
+  color: rgba(255,255,255,0.5);
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/PORTFOLIO-HTML/clean-project/assets/public/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+  
+</head>
+<body>
+
+<div class="din-cursor" id="dinCursor"></div>
+<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+<div id="header-placeholder"></div>
+
+
+<!-- HERO -->
+<section class="idx-hero">
+  <canvas id="heroCanvas" class="idx-hero-canvas" aria-hidden="true"></canvas>
+  <div class="idx-hero-corner idx-hero-corner--tl" aria-hidden="true">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 20 L0 0 L20 0"/></svg>
+  </div>
+  <div class="idx-hero-corner idx-hero-corner--br" aria-hidden="true">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 0 L20 20 L0 20"/></svg>
+  </div>
+  <div class="idx-hero-inner">
+    <div class="idx-din-label fu">Studio · Portfolio</div>
+    <p class="idx-eyebrow fu fd1">Design &amp; Development · 2025</p>
+    <h1 class="fu fd1">Crafting<br><em>digital</em><br>experiences</h1>
+    <div class="idx-hero-divider fu fd2"></div>
+    <p class="idx-sub fu fd2">Selected works in UI/UX &amp; frontend — where ideas become interfaces.</p>
+    <a href="#works" class="idx-scroll fu fd3">
+      <span>Scroll to explore</span>
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+  </div>
+  <div class="idx-hero-hint" aria-hidden="true">Move your mouse · Click to burst</div>
+</section>
+
+<!-- WORKS -->
+<section class="idx-works" id="works">
+  <div class="idx-works-head">
+    <div class="idx-works-labels">
+      <span class="label-tag">Portfolio</span>
+      <div class="idx-works-title">
+        <span class="wt-script">Recent</span>
+        <span class="wt-bold">WORK</span>
+      </div>
+      <p class="wt-desc">Selected projects — click to explore the full case study.</p>
+    </div>
+    <div class="idx-works-nav">
+      <button class="wnav-btn" id="wPrev" aria-label="Prev">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="wnav-track"><div class="wnav-fill" id="wFill"></div></div>
+      <button class="wnav-btn" id="wNext" aria-label="Next">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <span class="wnav-counter"><span id="wNum">01</span>&thinsp;/&thinsp;<span id="wTotal">06</span></span>
+    </div>
+    <a href="gallery.html" class="all-link">● All projects</a>
+  </div>
+
+  <div class="idx-track-wrap" id="wTrackWrap">
+    <div class="idx-track" id="wTrack">
+
+      <article class="wcard" data-href="portfolio/clm.html">
+        <div class="wcard-bg wbg7">
+          <div class="wcard-mock">
+            <div class="wmock-bar"><span></span><span></span><span></span></div>
+            <div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div>
+          </div>
+        </div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">01</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">UI UX Redesign</div>
+          <h3 class="wcard-title">CLM<br>Mafia Platform</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>Full platform redesign for competitive Mafia community with ratings, tournaments and admin.</p>
+          <div class="rtags"><span>Figma</span><span>Design System</span><span>Case Study</span></div>
+          <div class="rlink">Open case study
+            <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="wcard" data-href="portfolio/unnie-box.html">
+        <div class="wcard-bg wbg1">
+          <div class="wcard-mock">
+            <div class="wmock-bar"><span></span><span></span><span></span></div>
+            <div class="wmock-body"><div class="ml a"></div><div class="ml l"></div><div class="ml s"></div><div class="ml m"></div></div>
+          </div>
+        </div>
+        <div class="wcard-veil"></div>
+        <div class="wcard-num">02</div>
+        <div class="wcard-foot">
+          <div class="wcard-cat">UI Web Design</div>
+          <h3 class="wcard-title">UnnieBox<br>Landing Page</h3>
+        </div>
+        <div class="wcard-reveal">
+          <p>High fidelity landing page case with UI kit, modals and design system.</p>
+          <div class="rtags"><span>Figma</span><span>UI Kit</span><span>Case Study</span></div>
+          <div class="rlink">Open case study
+            <div class="rarrow"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand"><img src="/assets/images/DIN.png" alt="DIN Logo" class="site-footer__logo-img"><p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Navigation</p><nav class="site-footer__nav"><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contactus.html">Contact</a></nav></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Contact</p><div class="site-footer__item">din.design.world@gmail.com</div><div class="site-footer__item">Canada</div></div>
+    <div class="site-footer__col"><p class="site-footer__col-title">Newsletter</p><p class="site-footer__form-label">Stay updated with new projects.</p><form class="site-footer__form" id="newsletterForm"><input type="email" id="newsletterEmail" placeholder="your@email.com"><button type="submit">Subscribe</button></form></div>
+  </div>
+  <div class="site-footer__bottom"><span>© 2025 DIN. All rights reserved.</span><span>Designed &amp; built with care</span></div>
+</footer>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/index.js" defer></script>
+
+<audio id="bgMusic" src="/assets/music/" loop></audio>
+<button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
+
+
+</body>
+
+</html>
