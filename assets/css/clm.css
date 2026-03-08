@@ -929,3 +929,36 @@ body {
 
 .next-card:hover .next-cta { gap: 14px; color: rgba(255,100,80,1); }
 
+/* ======= FIX HEADER (match UnnieBox behavior) ======= */
+
+:root {
+  --navH: 72px;
+  --subnavH: 64px;
+}
+
+#topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 200;
+  background: rgba(4,9,26,0.88);
+  border-bottom: 1px solid rgba(255,60,60,0.2);
+  backdrop-filter: blur(22px);
+}
+
+.clm-page-wrap {
+  padding-top: calc(var(--navH) + env(safe-area-inset-top));
+}
+
+.case-subnav {
+  position: sticky;
+  top: calc(var(--navH) + env(safe-area-inset-top));
+  z-index: 120;
+  background: rgba(10,11,14,0.78);
+  border-bottom: 1px solid rgba(255,60,60,0.2);
+  backdrop-filter: blur(14px);
+}
+
+.case-section {
+  scroll-margin-top: calc(var(--navH) + var(--subnavH) + 24px);
+}
