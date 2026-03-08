@@ -193,15 +193,22 @@
   }
 
   // ── FADE-UP (.fu -> .vis) ──
-  const fuEls = document.querySelectorAll('.fu');
-  if (fuEls.length) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    fuEls.forEach(el => io.observe(el));
-  }
+const fuEls = document.querySelectorAll('.fu');
+if (fuEls.length) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+  fuEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('vis'); // уже видно — сразу показать
+    } else {
+      io.observe(el);
+    }
+  });
+}
 
   // ── FADE-UP (.fade-up -> .visible) ──
   const fadeEls = document.querySelectorAll('.fade-up');
@@ -577,5 +584,27 @@ if (musicBtn && bgMusic) {
     }
   });
 }
+
+
+// ── Scroll Reveal (все страницы) ──
+(function () {
+  const fuEls = document.querySelectorAll('.fu');
+  if (!fuEls.length) return;
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.10 });
+    fuEls.forEach(el => io.observe(el));
+  } else {
+    fuEls.forEach(el => el.classList.add('vis'));
+  }
+})();
+
 
 })();

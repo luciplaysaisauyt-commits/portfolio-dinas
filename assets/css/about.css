@@ -132,7 +132,7 @@
 }
 
 .about-hero-stats {
-  display: flex;
+   display: flex;
   align-items: center;
   gap: 24px;
   margin-bottom: 40px;
@@ -140,6 +140,7 @@
   background: rgba(255,255,255,0.02);
   border: 1px solid var(--border);
   border-radius: 16px;
+  width: fit-content;
 }
 
 .stat { display: flex; flex-direction: column; gap: 4px; }
@@ -505,16 +506,12 @@
 }
 
 @media (max-width: 480px) {
-  .about-hero-stats { flex-direction: column; gap: 16px; }
-  .stat-divider { width: 60px; height: 1px; }
-  .cta-field { flex-direction: column; gap: 8px; align-items: flex-start; }
-  .cta-field p { text-align: left; }
+  /* надо */
+.about-hero-stats { flex-direction: row; gap: 2; justify-content: space-between; padding: 16px; }
+.stat-divider { width: 1px; height: 32px; }
+.stat { align-items: center; }
+.stat-num { font-size: 24px; }
 }
-
-.idx-hero-inner { padding: 0 0 0 64px; padding-top: calc(var(--navH) + 40px); }
-.idx-eyebrow { color: rgba(255,255,255,0.6); }
-.idx-sub { color: rgba(255,255,255,0.65); }
-.idx-scroll { color: rgba(255,255,255,0.5); }
 
 
 /* ============================================
@@ -522,8 +519,6 @@
    (replaces old .about-cta block)
    ============================================ */
 
-/* Remove old styles */
-.about-cta { all: unset; display: block; }
 
 .about-cta {
   position: relative;
