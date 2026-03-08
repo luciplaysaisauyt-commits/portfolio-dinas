@@ -929,36 +929,90 @@ body {
 
 .next-card:hover .next-cta { gap: 14px; color: rgba(255,100,80,1); }
 
-/* ======= FIX HEADER (match UnnieBox behavior) ======= */
 
-:root {
-  --navH: 72px;
-  --subnavH: 64px;
-}
 
-#topnav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  width: 100%;
-  z-index: 200;
-  background: rgba(4,9,26,0.88);
-  border-bottom: 1px solid rgba(255,60,60,0.2);
-  backdrop-filter: blur(22px);
-}
+/* ==========================================
+   CLM — MOBILE HERO LAYOUT (как обсуждали)
+   Фото поднимаем вверх; meta — ниже и 1 колонка
+   ========================================== */
+@media (max-width: 640px) {
 
-.clm-page-wrap {
-  padding-top: calc(var(--navH) + env(safe-area-inset-top));
-}
+  /* Hero в одну колонку */
+  .clm-body .hero,
+  .clm-body .case-hero {             /* если где-то используется case-hero */
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    margin-top: 0;
+    padding-top: 12px;               /* немного «воздуха» сверху */
+  }
 
-.case-subnav {
-  position: sticky;
-  top: calc(var(--navH) + env(safe-area-inset-top));
-  z-index: 120;
-  background: rgba(10,11,14,0.78);
-  border-bottom: 1px solid rgba(255,60,60,0.2);
-  backdrop-filter: blur(14px);
-}
+  /* Текстовый столбец первым */
+  .clm-body .hero > div:first-child,
+  .clm-body .case-hero > div:first-child {
+    order: 1;
+  }
 
-.case-section {
-  scroll-margin-top: calc(var(--navH) + var(--subnavH) + 24px);
+  /* Фото — сразу под текстом (поднять вверх) */
+  .clm-body .hero-img-wrap,
+  .clm-body .case-hero-media {
+    order: 2;
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  /* Ряд кнопок — идёт вместе с текстом (как сейчас в CLM) */
+  .clm-body .btn-row,
+  .clm-body .case-actions {
+    order: 1;
+    margin-top: 16px;
+  }
+
+  /* Meta-блоки — ниже фото и в одну колонку */
+  .clm-body .case-meta {
+    order: 3;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  /* Плотность карточек meta – та же, что и в текущем CLM */
+  .clm-body .meta-card {
+    border: 1px solid rgba(255,60,60,0.18);
+    background: rgba(255,60,60,0.06);
+    border-radius: 16px;
+    padding: 13px 15px;
+  }
+
+  .clm-body .meta-k {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,100,80,0.85);
+  }
+
+  .clm-body .meta-v {
+    margin-top: 5px;
+    color: rgba(255,255,255,.9);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .clm-body .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255,255,255,.92);
+  }
 }
