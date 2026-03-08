@@ -13,7 +13,7 @@
   // ── LOAD HEADER ──
   const headerPlaceholder = document.getElementById('header-placeholder');
   if (headerPlaceholder) {
-    fetch('/assets/public/header.html')
+    fetch('header.html')
       .then(r => r.text())
       .then(html => {
         headerPlaceholder.innerHTML = html;
