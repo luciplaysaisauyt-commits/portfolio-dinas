@@ -69,7 +69,7 @@ html { scroll-behavior: smooth; }
 body {
   background: #0a0b0e;
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family:  'Poppins', sans-serif
   font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -307,7 +307,7 @@ body {
 }
 
 .stat-n {
-  font-family: 'Cormorant Garamond', serif;
+  font-family:  'MinionPro', Georgia, serif;
   font-size: 50px;
   line-height: 1;
   margin-bottom: 10px;
@@ -501,7 +501,7 @@ body {
 .type-s { font-weight: 700; margin-top: 8px; font-size: 15px; }
 
 .type-ex {
-  font-family: 'Cormorant Garamond', serif;
+  font-family:  'MinionPro', Georgia, serif;
   font-size: 28px;
   margin-top: 10px;
   color: rgba(255,255,255,.88);
@@ -523,7 +523,7 @@ body {
 }
 
 .learn-n {
-  font-family: 'Cormorant Garamond', serif;
+  font-family:  'MinionPro', Georgia, serif;
   font-size: 28px;
   color: rgba(255,60,60,0.5);
   margin-bottom: 8px;
@@ -551,7 +551,7 @@ body {
 }
 
 .cta-banner h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family:  'MinionPro', Georgia, serif;
   font-size: 52px;
   font-weight: 400;
   line-height: 1.05;
@@ -896,7 +896,7 @@ body {
 }
 
 .next-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family:  'MinionPro', Georgia, serif;
   font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 300;
   line-height: 0.95;

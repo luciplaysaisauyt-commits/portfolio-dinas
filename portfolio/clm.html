@@ -6,11 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DIN – CLM Mafia Platform Case Study</title>
   <link rel="icon" type="image/png" href="/assets/images/DIN.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/clm.css">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Yeseva+One">
+  
 </head>
 <body>
   <div class="bg-layer"></div>
@@ -78,6 +84,7 @@
               <a class="btn primary" href="../gallery.html">← Back to gallery</a>
               <a class="btn" href="../contactus.html">Get in touch</a>
               <a class="btn" href="unnie-box.html">Next →</a>
+              
             </div>
             <div class="case-meta" style="margin-top:22px">
               <div class="meta-card"><div class="meta-k">Role</div><div class="meta-v">UI / UX Designer</div></div>
@@ -242,34 +249,7 @@
     </div>
   </div>
 
-  <script>
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-      window.addEventListener('scroll', () => {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        progressBar.style.width = (window.scrollY / total * 100) + '%';
-      }, { passive: true });
-    }
-    const revObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revObs.unobserve(e.target); } });
-    }, { threshold: 0.07 });
-    document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
-    const subnavLinks = document.querySelectorAll('.case-subnav-pill a');
-    const secObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        subnavLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-      });
-    }, { threshold: 0.22 });
-    document.querySelectorAll('.case-section[id]').forEach(s => secObs.observe(s));
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('imgModalSrc');
-    function openModal(src) { modalImg.src = src; modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll'); }
-    document.querySelectorAll('.screen-card img, .ba-card img, .hero-img-wrap img').forEach(img => { img.style.cursor = 'zoom-in'; img.addEventListener('click', () => openModal(img.src)); });
-    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); }));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.classList.remove('open'); document.body.classList.remove('no-scroll'); } });
-  </script>
+
 
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/clm.js" defer></script>
