@@ -719,4 +719,48 @@ if (nav) {
 })();
 
 
+// После вставки header.html — выставляем --navH
+const setNavH = () => {
+  const n = document.getElementById('topnav');
+  if (!n) return;
+  document.documentElement.style.setProperty('--navH', n.offsetHeight + 'px');
+};
+setNavH();
+window.addEventListener('resize', setNavH);\
+
+
+
+(() => {
+  const nav = document.getElementById("topnav");
+
+  const setNavH = () => {
+    if (!nav) return;
+    document.documentElement.style.setProperty("--navH", nav.offsetHeight + "px");
+  };
+  ...
+})();
+
+
+(() => {
+  const setNavH = () => {
+    const nav = document.getElementById("topnav"); // <- ре‑квери
+    if (!nav) return;
+    document.documentElement.style.setProperty("--navH", nav.offsetHeight + "px");
+  };
+
+  setNavH();
+  window.addEventListener("resize", setNavH);
+
+  const subnav = document.querySelector("[data-case-subnav]");
+  if (!subnav) return;
+
+  document.body.classList.add("has-case-subnav");
+
+  const setSubnavH = () => {
+    document.documentElement.style.setProperty("--caseSubnavH", subnav.offsetHeight + "px");
+  };
+  setSubnavH();
+  window.addEventListener("resize", setSubnavH);
+
+  ...
 })();
