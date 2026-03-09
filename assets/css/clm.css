@@ -18,7 +18,7 @@
   gap: 36px;
   align-items: center;
   margin-top: 16px;
-  padding-top: 40px !important; /* ← добавь это */
+  padding-top: 40px;
 }
 
 /* page-wrap starts below header */
@@ -31,20 +31,14 @@
   position: sticky;
   top: var(--navH);
   z-index: 120;
-  
 }
-
-@media (max-width: 640px){
-  :root{ --navH: 72px; --subnavH: 72px; }
-}
-
 
 /* anchors clear header + subnav when scrolled to */
 .clm-content .case-section {
   scroll-margin-top: calc(var(--navH) + var(--subnavH) + 24px);
 }
 
-/* page enter animation — same as UnnieBox */
+/* page enter animation */
 body:not(.is-loaded) .clm-content { opacity: 0; transform: translateY(14px); }
 .clm-content { transition: opacity 520ms ease, transform 520ms ease; }
 
@@ -52,24 +46,18 @@ body:not(.is-loaded) .clm-content { opacity: 0; transform: translateY(14px); }
   :root { --navH: 72px; --subnavH: 64px; }
 }
 
-/* CLM case page styles only */
-/* Header styles intentionally not included */
-/* Uses global header from /assets/style.css */
-
 /* safe page-only reset without breaking header */
-.case-wrap, .case-wrap * , 
+.case-wrap, .case-wrap *,
 .case-wrap *::before, .case-wrap *::after {
   box-sizing: border-box;
 }
-
-
 
 html { scroll-behavior: smooth; }
 
 body {
   background: #0a0b0e;
   color: #fff;
-  font-family:  'Poppins', sans-serif
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -113,43 +101,36 @@ body {
 }
 
 .orb-1 {
-  width: 680px;
-  height: 680px;
+  width: 680px; height: 680px;
   background: #ff3c3c;
   opacity: .055;
-  top: -200px;
-  left: -260px;
+  top: -200px; left: -260px;
 }
 
 .orb-2 {
-  width: 480px;
-  height: 480px;
+  width: 480px; height: 480px;
   background: #ff6b35;
   opacity: .04;
-  top: 40%;
-  right: -200px;
+  top: 40%; right: -200px;
   animation-delay: -6s;
 }
 
 .orb-3 {
-  width: 400px;
-  height: 400px;
+  width: 400px; height: 400px;
   background: #ff3c3c;
   opacity: .035;
-  bottom: 8%;
-  left: 20%;
+  bottom: 8%; left: 20%;
   animation-delay: -11s;
 }
 
 @keyframes orbFloat {
   0%,100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-36px) scale(1.05); }
+  50%      { transform: translateY(-36px) scale(1.05); }
 }
 
 .progress-bar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   height: 2px;
   width: 0%;
   background: linear-gradient(90deg, #ff3c3c, #ff6b35);
@@ -157,24 +138,18 @@ body {
   transition: width .1s linear;
 }
 
-
 .case-wrap {
   max-width: 1120px;
   margin: 0 auto;
   padding: 96px 24px 120px;
 }
 
-
-
 .hero-accent {
-  width: 44px;
-  height: 3px;
+  width: 44px; height: 3px;
   background: linear-gradient(90deg, #ff3c3c, #ff6b35);
   border-radius: 99px;
   margin-bottom: 16px;
 }
-
-
 
 .case-sub {
   max-width: 48ch;
@@ -204,10 +179,7 @@ body {
   transition: transform .2s, background .2s;
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.1);
-}
+.btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.1); }
 
 .btn.primary {
   background: #ff3c3c;
@@ -231,12 +203,13 @@ body {
   padding: 13px 15px;
 }
 
-
-
 .meta-v {
   margin-top: 5px;
   color: rgba(255,255,255,.9);
   font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .hero-img-wrap {
@@ -258,8 +231,7 @@ body {
 
 .hero-badge {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
+  bottom: 16px; right: 16px;
   background: rgba(255,60,60,0.92);
   color: #fff;
   font-size: 10px;
@@ -277,8 +249,6 @@ body {
   border-top: 1px solid rgba(255,60,60,0.15);
   padding-top: 32px;
 }
-
-
 
 .case-p {
   color: rgba(255,255,255,.76);
@@ -307,7 +277,7 @@ body {
 }
 
 .stat-n {
-  font-family:  'MinionPro', Georgia, serif;
+  font-family: 'MinionPro', Georgia, serif;
   font-size: 50px;
   line-height: 1;
   margin-bottom: 10px;
@@ -321,90 +291,98 @@ body {
   line-height: 1.45;
 }
 
+/* ============================================
+   КАРТОЧКИ СО СКРИНАМИ — единый стиль
+   ============================================ */
+
+/* Все гриды */
+.screens-grid,
+.ub-screens-grid,
+.ps-screens-grid,
 .ba-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  align-items: stretch;
   margin-top: 20px;
 }
 
+/* Все карточки */
+.screen-card,
+.ub-screen-card,
+.ps-screen-card,
 .ba-card {
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255,60,60,0.15);
-  background: rgba(255,255,255,.03);
-  transition: transform .28s, box-shadow .28s;
   cursor: zoom-in;
+  border: 1px solid rgba(255, 60, 60, 0.22);
+  background: #0d0d0d;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
+.screen-card:hover,
+.ub-screen-card:hover,
+.ps-screen-card:hover,
 .ba-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 50px rgba(255,60,60,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(255, 60, 60, 0.15);
+  border-color: rgba(255, 60, 60, 0.5);
 }
 
-.ba-card img { display: block; width: 100%; height: auto; }
+/* Картинки — полная ширина, высота авто */
+.screen-card img,
+.ub-screen-card img,
+.ps-screen-card img,
+.ba-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  flex: 1;
+}
 
+/* .full — на всю строку */
+.screen-card.full,
+.ub-screen-card.full,
+.ps-screen-card.full {
+  grid-column: span 2;
+}
+
+/* Теги поверх карточек */
+.screen-tag,
 .ba-tag {
   position: absolute;
   top: 12px;
   left: 12px;
+  z-index: 2;
   font-family: 'Space Mono', monospace;
   font-size: 9px;
-  letter-spacing: .16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 5px 10px;
   border-radius: 999px;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 60, 60, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
 }
 
-.ba-tag.before { background: rgba(100,100,100,0.88); }
+.ba-tag.before {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.55);
+}
 
 .ba-tag.after {
-  background: rgba(255,60,60,0.92);
-  box-shadow: 0 4px 16px rgba(255,60,60,0.35);
+  border-color: rgba(255, 60, 60, 0.55);
+  color: #ff6b6b;
 }
 
-.screens-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.screen-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(255,60,60,0.15);
-  background: rgba(255,255,255,.03);
-  transition: transform .25s, box-shadow .25s;
-  cursor: zoom-in;
-}
-
-.screen-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 50px rgba(255,60,60,0.2);
-}
-
-.screen-card.full { grid-column: span 2; }
-
-.screen-card img { display: block; width: 100%; height: auto; }
-
-.screen-tag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  font-family: 'Space Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  background: rgba(255,60,60,0.92);
-  color: #fff;
-  padding: 5px 11px;
-  border-radius: 999px;
-  box-shadow: 0 4px 16px rgba(255,60,60,0.35);
-}
+/* ============================================
+   ОСТАЛЬНЫЕ СЕКЦИИ
+   ============================================ */
 
 .process-grid {
   display: grid;
@@ -425,7 +403,6 @@ body {
   transform: translateY(-4px);
   border-color: rgba(255,60,60,0.35);
 }
-
 
 .ptitle { font-weight: 600; margin-bottom: 8px; font-size: 15px; }
 
@@ -476,11 +453,11 @@ body {
 
 .sw b { display: block; padding: 3px 10px 10px; font-size: 11px; letter-spacing: .05em; color: rgba(255,255,255,.9); }
 
-.type-row { 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; /* должно быть 1fr 1fr */
-  gap: 12px; 
-  margin-bottom: 16px; 
+.type-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .type-card {
@@ -501,13 +478,18 @@ body {
 .type-s { font-weight: 700; margin-top: 8px; font-size: 15px; }
 
 .type-ex {
-  font-family:  'MinionPro', Georgia, serif;
+  font-family: 'MinionPro', Georgia, serif;
   font-size: 28px;
   margin-top: 10px;
   color: rgba(255,255,255,.88);
 }
 
-.learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
 
 .learn-card {
   background: rgba(255,60,60,0.05);
@@ -523,7 +505,7 @@ body {
 }
 
 .learn-n {
-  font-family:  'MinionPro', Georgia, serif;
+  font-family: 'MinionPro', Georgia, serif;
   font-size: 28px;
   color: rgba(255,60,60,0.5);
   margin-bottom: 8px;
@@ -551,7 +533,7 @@ body {
 }
 
 .cta-banner h3 {
-  font-family:  'MinionPro', Georgia, serif;
+  font-family: 'MinionPro', Georgia, serif;
   font-size: 52px;
   font-weight: 400;
   line-height: 1.05;
@@ -584,7 +566,24 @@ body {
   font-weight: 600;
 }
 
-/* Footer for this page */
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.04);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
 .site-footer {
   background: rgba(10,11,14,.95);
   border-top: 1px solid rgba(255,60,60,0.2);
@@ -673,134 +672,37 @@ body {
 
 .footer-proj-nav a.cta:hover { background: #ff5555; }
 
-/* Lightbox */
-.img-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
-.img-modal.open { display: block; }
+/* ============================================
+   CASE FOOTER — CLM THEME
+   ============================================ */
 
-.img-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.78); }
-
-.img-modal-card {
-  position: relative;
-  max-width: min(1100px, 93vw);
-  max-height: 88vh;
-  margin: 5vh auto 0;
-  border-radius: 20px;
-  overflow: auto;
-  background: #0a0b0e;
-  border: 1px solid rgba(255,60,60,0.2);
-  box-shadow: 0 30px 80px rgba(0,0,0,.6);
-}
-
-.img-modal-card img { width: 100%; display: block; height: auto; }
-
-.img-modal-close {
-  position: sticky;
-  top: 0;
-  float: right;
-  margin: 10px;
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.no-scroll { overflow: hidden; }
-
-/* Reveal */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
-}
-
-[data-reveal].revealed { opacity: 1; transform: translateY(0); }
-
-[data-reveal-delay="1"] { transition-delay: .1s; }
-[data-reveal-delay="2"] { transition-delay: .2s; }
-[data-reveal-delay="3"] { transition-delay: .3s; }
-[data-reveal-delay="4"] { transition-delay: .45s; }
-
-/* Chips */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(255,255,255,.04);
-  font-size: 12px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.meta-v { display: flex; flex-wrap: wrap; gap: 10px; }
-
-/* Responsive */
-@media (max-width: 980px) {
-  .hero { grid-template-columns: 1fr; gap: 20px; }
-  .case-title { font-size: 58px; }
-  .stats-grid,
-  .ba-grid,
-  .screens-grid,
-  .process-grid,
-  .grid2,
-  .type-row,
-  .learn-grid { grid-template-columns: 1fr; }
-  .screen-card.full { grid-column: span 1; }
-  .swatch-row { grid-template-columns: repeat(2, 1fr); }
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
-  .site-footer { padding: 50px 24px 36px; }
-  .cta-banner h3 { font-size: 38px; }
-}
-
-@media (max-width: 640px) {
-  .case-title { font-size: 46px; }
-  .case-meta { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-}
-
-.case-footer--clm{
+.case-footer--clm {
   --accent: #ff3c3c;
   --accent2: rgba(255,60,60,0.22);
-
   border-top-color: rgba(255,60,60,0.22);
 }
 
-.case-footer--clm .case-footer__title{
-  color: rgba(255,120,100,0.85);
-}
+.case-footer--clm .case-footer__title { color: rgba(255,120,100,0.85); }
 
-.case-footer--clm .case-footer__form input{
-  border-color: rgba(255,60,60,0.22);
-}
+.case-footer--clm .case-footer__form input { border-color: rgba(255,60,60,0.22); }
 
-.case-footer--clm .case-footer__proj-nav a{
-  border-color: rgba(255,60,60,0.22);
-}
+.case-footer--clm .case-footer__proj-nav a { border-color: rgba(255,60,60,0.22); }
 
-.case-footer--clm .case-footer__proj-nav a:hover{
+.case-footer--clm .case-footer__proj-nav a:hover {
   background: rgba(255,60,60,0.14);
   border-color: rgba(255,60,60,0.45);
   color: #fff;
 }
 
-.case-footer--clm .case-footer__form button{
+.case-footer--clm .case-footer__form button {
   background: rgba(255,60,60,0.18);
   border-color: rgba(255,60,60,0.22);
 }
 
-.case-footer--clm .case-footer__form button:hover{
-  background: rgba(255,60,60,0.26);
-}
+.case-footer--clm .case-footer__form button:hover { background: rgba(255,60,60,0.26); }
 
 /* ============================================
-   NEXT PROJECT SECTION — добавь в clm.css
+   NEXT PROJECT SECTION
    ============================================ */
 
 .next-project {
@@ -825,13 +727,11 @@ body {
 
 .next-line {
   display: block;
-  width: 36px;
-  height: 1px;
+  width: 36px; height: 1px;
   background: rgba(255,255,255,0.2);
   flex-shrink: 0;
 }
 
-/* The big card */
 .next-card {
   position: relative;
   border-radius: 28px;
@@ -843,7 +743,6 @@ body {
   transition: border-color 0.4s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
 }
 
-/* Glow bg on hover */
 .next-card-bg {
   position: absolute;
   inset: 0;
@@ -854,7 +753,7 @@ body {
   pointer-events: none;
 }
 
-.next-card:hover { 
+.next-card:hover {
   border-color: rgba(255,60,60,0.45);
   transform: translateY(-6px);
   box-shadow: 0 30px 80px rgba(255,60,60,0.15), 0 0 0 1px rgba(255,60,60,0.15);
@@ -896,7 +795,7 @@ body {
 }
 
 .next-title {
-  font-family:  'MinionPro', Georgia, serif;
+  font-family: 'MinionPro', Georgia, serif;
   font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 300;
   line-height: 0.95;
@@ -929,31 +828,121 @@ body {
 
 .next-card:hover .next-cta { gap: 14px; color: rgba(255,100,80,1); }
 
+/* ============================================
+   LIGHTBOX
+   ============================================ */
 
+.img-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
+.img-modal.open { display: block; }
 
-/* ==========================================
-   CLM — MOBILE HERO LAYOUT (как обсуждали)
-   Фото поднимаем вверх; meta — ниже и 1 колонка
-   ========================================== */
+.img-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.78); }
+
+.img-modal-card {
+  position: relative;
+  max-width: min(1100px, 93vw);
+  max-height: 88vh;
+  margin: 5vh auto 0;
+  border-radius: 20px;
+  overflow: auto;
+  background: #0a0b0e;
+  border: 1px solid rgba(255,60,60,0.2);
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+}
+
+.img-modal-card img { width: 100%; display: block; height: auto; }
+
+.img-modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: 10px;
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.no-scroll { overflow: hidden; }
+
+/* ============================================
+   REVEAL ANIMATION
+   ============================================ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
+}
+
+[data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+[data-reveal-delay="1"] { transition-delay: .1s; }
+[data-reveal-delay="2"] { transition-delay: .2s; }
+[data-reveal-delay="3"] { transition-delay: .3s; }
+[data-reveal-delay="4"] { transition-delay: .45s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 20px; }
+  .case-title { font-size: 58px; }
+  .stats-grid,
+  .ba-grid,
+  .screens-grid,
+  .process-grid,
+  .grid2,
+  .type-row,
+  .learn-grid { grid-template-columns: 1fr; }
+  .screen-card.full { grid-column: span 1; }
+  .swatch-row { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .site-footer { padding: 50px 24px 36px; }
+  .cta-banner h3 { font-size: 38px; }
+}
+
+@media (max-width: 768px) {
+  .screens-grid,
+  .ub-screens-grid,
+  .ps-screens-grid,
+  .ba-grid {
+    grid-template-columns: 1fr;
+  }
+  .screen-card.full,
+  .ub-screen-card.full,
+  .ps-screen-card.full {
+    grid-column: span 1;
+  }
+}
+
 @media (max-width: 640px) {
+  .case-title { font-size: 46px; }
+  .case-meta { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
 
-  /* Hero в одну колонку */
+/* ============================================
+   MOBILE HERO LAYOUT
+   ============================================ */
+
+@media (max-width: 640px) {
   .clm-body .hero,
-  .clm-body .case-hero {             /* если где-то используется case-hero */
+  .clm-body .case-hero {
     display: grid;
     grid-template-columns: 1fr !important;
     gap: 24px;
     margin-top: 0;
-    padding-top: 12px;               /* немного «воздуха» сверху */
+    padding-top: 12px;
   }
 
-  /* Текстовый столбец первым */
   .clm-body .hero > div:first-child,
-  .clm-body .case-hero > div:first-child {
-    order: 1;
-  }
+  .clm-body .case-hero > div:first-child { order: 1; }
 
-  /* Фото — сразу под текстом (поднять вверх) */
   .clm-body .hero-img-wrap,
   .clm-body .case-hero-media {
     order: 2;
@@ -961,14 +950,12 @@ body {
     border-radius: 22px;
   }
 
-  /* Ряд кнопок — идёт вместе с текстом (как сейчас в CLM) */
   .clm-body .btn-row,
   .clm-body .case-actions {
     order: 1;
     margin-top: 16px;
   }
 
-  /* Meta-блоки — ниже фото и в одну колонку */
   .clm-body .case-meta {
     order: 3;
     grid-template-columns: 1fr;
@@ -976,7 +963,6 @@ body {
     margin-top: 22px;
   }
 
-  /* Плотность карточек meta – та же, что и в текущем CLM */
   .clm-body .meta-card {
     border: 1px solid rgba(255,60,60,0.18);
     background: rgba(255,60,60,0.06);
@@ -1003,7 +989,7 @@ body {
 
   .clm-body .chip {
     display: inline-flex;
-    align-items: center;git commit -m "Updated CLM & UnnieBox mobile layouts, hero, meta blocks, header fix"
+    align-items: center;
     gap: 6px;
     padding: 5px 10px;
     border-radius: 999px;

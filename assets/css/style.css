@@ -601,18 +601,238 @@ input, textarea { border-bottom: 1px solid rgba(255,255,255,0.25) !important; }
 .field:focus-within label { color: var(--accent) !important; text-shadow: 0 0 12px rgba(200,169,110,0.6); }
 
 
-/* Фиксированная шапка */
-#topnav.nav {
+
+/* ============================================================
+   NAV + HEADER FIX — v3
+   ============================================================ */
+
+/* 1. Хедер всегда поверх всего контента */
+.nav {
+  z-index: 9000 !important;
+  /* iOS Safari: GPU composite layer = fixed работает без глюков */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  /* Убираем лишние transitions чтобы не лагал */
+  transition: background 0.3s ease, height 0.3s ease !important;
+}
+
+/* 2. Мобильное меню поверх хедера */
+.mobile-menu {
+  z-index: 9001 !important;
+}
+
+/* 3. placeholder резервирует высоту ДО загрузки хедера */
+#header-placeholder {
+  display: block;
+  height: var(--navH);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+/* Когда хедер вставлен — placeholder удаляется через outerHTML,
+   поэтому :not(:empty) уже не нужен */
+
+/* 4. Мобильный: убираем аппаратное ускорение с body
+   (оно конфликтует с fixed на iOS) */
+@media (max-width: 900px) {
+  body {
+    -webkit-overflow-scrolling: auto !important;
+    overflow-scrolling: auto !important;
+  }
+
+  /* Хедер уменьшается при скролле */
+  .nav.scrolled {
+    height: 60px !important;
+
+/* ============================================================
+   CASE STUDY IMAGE GRIDS — финальная версия
+   ============================================================ */
+
+/* ── 12-col система для .case-gallery ── */
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.g-col-12 { grid-column: span 12; }
+.g-col-6  { grid-column: span 6; }
+.g-col-4  { grid-column: span 4; }
+.g-col-3  { grid-column: span 3; }
+.g-col-7  { grid-column: span 7; }
+.g-col-5  { grid-column: span 5; }
+
+.case-img {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.case-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s;
+}
+.case-img:hover img { transform: scale(1.02); }
+
+/* ── Все гриды скринов — строго 2 колонки, карточки своя высота ── */
+.screens-grid,
+.ub-screens-grid,
+.ps-screens-grid,
+.ba-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  align-items: start !important;
+  margin-top: 20px;
+}
+
+/* ── Карточки — никакой фиксированной высоты ── */
+.screen-card,
+.ub-screen-card,
+.ps-screen-card,
+.ba-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: block;
+}
+
+.screen-card:hover,
+.ub-screen-card:hover,
+.ps-screen-card:hover,
+.ba-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ── Картинки — полная ширина, высота авто (не обрезать!) ── */
+.screen-card img,
+.ub-screen-card img,
+.ps-screen-card img,
+.ba-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── .full — вся ширина строки ── */
+.screen-card.full,
+.ub-screen-card.full,
+.ps-screen-card.full {
+  grid-column: span 2 !important;
+}
+
+/* ── Продукты — 3 колонки ── */
+.ps-products-grid,
+.ub-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+/* ── Lightbox modal ── */
+.img-modal {
+  display: none;
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 9999; /* выше модалок/фонов */
-  height: var(--navH); /* высота из переменной */
+  inset: 0;
+  z-index: 99000;
+  align-items: center;
+  justify-content: center;
+}
+.img-modal.open {
+  display: flex;
+  animation: modalFadeIn 0.25s ease;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.img-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+  cursor: zoom-out;
+}
+.img-modal-card {
+  position: relative;
+  z-index: 1;
+  max-width: 92vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  animation: modalSlideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes modalSlideUp {
+  from { transform: translateY(20px) scale(0.97); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+.img-modal-card img {
+  display: block;
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.img-modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+.img-modal-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
 }
 
-/* Чтобы контент не заезжал под фикс‑хедер */
-main,
-.ps-page-wrap {
-  padding-top: calc(var(--navH) + 12px); /* 12px — небольшой зазор, по вкусу */
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .screens-grid,
+  .ub-screens-grid,
+  .ps-screens-grid,
+  .ba-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .screen-card.full,
+  .ub-screen-card.full,
+  .ps-screen-card.full {
+    grid-column: span 1 !important;
+  }
+  .case-gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .g-col-12, .g-col-6, .g-col-4, .g-col-3, .g-col-7, .g-col-5 {
+    grid-column: span 6;
+  }
+  .ps-products-grid,
+  .ub-products-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-
-
+@media (max-width: 480px) {
+  .ps-products-grid,
+  .ub-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
