@@ -249,6 +249,9 @@
     }
     .btn-case.primary:hover { filter: brightness(1.1); }
 
+
+
+    
     /* meta cards */
     .case-meta { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 20px; }
     .meta-card {
