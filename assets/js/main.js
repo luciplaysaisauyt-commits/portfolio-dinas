@@ -98,6 +98,9 @@
 
   /* Кнопка */
   btn.addEventListener('click', function() {
+    /* Снимаем onFirstTouch до обработки, чтобы не было двойного вызова play() */
+    document.removeEventListener('touchstart', onFirstTouch);
+    document.removeEventListener('click',      onFirstTouch);
     btn.classList.remove('ready');
     if (audio.paused) {
       play();
