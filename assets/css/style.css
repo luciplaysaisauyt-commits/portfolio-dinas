@@ -271,6 +271,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .meta-k{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono-sm);text-transform:uppercase;margin-bottom:0}
 .meta-v{margin-top:5px;color:rgba(255,255,255,0.92);font-size:13px;display:flex;flex-wrap:wrap;gap:7px}
 .chip{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.92)}
+.case-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .btn-case{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.92);font-size:13px;font-weight:500;transition:all .25s;text-decoration:none}
 .btn-case:hover{background:rgba(255,255,255,0.14);transform:translateY(-1px);color:#fff}
 .btn-case.primary{background:linear-gradient(135deg,#c8a96e,#b8935a);border-color:transparent;color:#fff;font-weight:600}
@@ -327,9 +328,9 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
   .nav{padding:0 16px!important}
   .logo img{height:clamp(24px,calc(var(--navH) - 12px),34px)!important}
   .case-subnav{padding:8px 10px}
-  .case-subnav-pill{padding:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;width:100%;border-radius:16px}
+  .case-subnav-pill{padding:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;width:100%;border-radius:16px}
   .case-subnav-pill::-webkit-scrollbar{display:none}
-  .case-subnav-link{padding:6px 9px;font-size:9px}
+  .case-subnav-link{padding:6px 9px;font-size:9px;white-space:nowrap;flex-shrink:0}
   .case-footer__inner{grid-template-columns:1fr;gap:28px}
   .case-footer__bottom{flex-direction:column;align-items:flex-start}
 }
