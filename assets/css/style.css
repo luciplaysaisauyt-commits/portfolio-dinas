@@ -9,6 +9,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 :root {
+  
+  --case-wrap-pt: 36px;
+  --hero-mt: 0;
+  --border:rgba(255,255,255,0.11);
   --bg:#0e0e0e; --bg-2:#141414; --bg-card:#1a1a1a;
   --border:rgba(255,255,255,0.11); --border-h:rgba(255,255,255,0.24);
   --text:#f5f1eb; --text-muted:rgba(255,255,255,0.68); --text-dim:rgba(255,255,255,0.52);
@@ -23,8 +27,6 @@
   --tracking-mono:0.22em; --tracking-mono-sm:0.14em;
   --r:12px; --r-lg:20px;
   --ease:cubic-bezier(0.4,0,0.2,1);
-  /* --navBaseH: высота навбара без safe-area (меняется только через CSS/медиазапросы)
-     --navH:     фактическая высота — обновляется JS-ом (включает safe-area на iOS) */
   --navBaseH:64px;
   --navH:64px;
   --subGap:18px;
@@ -81,22 +83,123 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ps-page-wrap,.ub-page-wrap{padding-top:var(--navH)}
 
 /* ── FOOTER ── */
-.site-footer{background:var(--bg-2);border-top:1px solid var(--border);padding:60px 48px 40px}
-.site-footer__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:60px;align-items:start}
-.site-footer__logo-img{height:52px;width:auto;margin-bottom:15px;filter:brightness(0) invert(1)}
-.site-footer__tagline{font-size:var(--text-sm);color:var(--text-muted);line-height:1.7;max-width:220px}
-.site-footer__col-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.60);margin-bottom:20px}
-.site-footer__nav{display:flex;flex-direction:column;gap:12px}
-.site-footer__nav a{font-size:14px;color:var(--text-muted);transition:color 0.2s,transform 0.2s;display:inline-block}
-.site-footer__nav a:hover{color:var(--white);transform:translateX(4px)}
-.site-footer__item{display:flex;align-items:center;gap:10px;font-size:var(--text-sm);color:var(--text-muted);margin-bottom:10px}
-.site-footer__form{display:flex;gap:8px}
-.site-footer__form input{flex:1;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:var(--font-sans);font-size:var(--text-sm);outline:none;transition:border-color 0.2s}
-.site-footer__form input:focus{border-color:rgba(255,255,255,0.40)}
-.site-footer__form input::placeholder{color:var(--text-muted)}
-.site-footer__form button{padding:10px 16px;background:rgba(255,255,255,0.90);border:none;border-radius:6px;color:#080808;font-family:var(--font-sans);font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background 0.2s,transform 0.2s}
-.site-footer__form button:hover{background:#fff;transform:scale(1.02)}
-.site-footer__bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted)}
+/* ── FOOTER (унифицированный и адаптивный) ── */
+.site-footer{
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 60px 48px 40px;
+}
+.site-footer__inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+.site-footer__logo-img{
+  height: 52px; width: auto;
+  margin-bottom: 15px;
+  filter: brightness(0) invert(1);
+}
+.site-footer__tagline{
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 220px;
+}
+.site-footer__col-title{
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.60);
+  margin-bottom: 20px;
+}
+.site-footer__nav{
+  display: flex; flex-direction: column; gap: 12px;
+}
+.site-footer__nav a{
+  font-size: 14px; color: var(--text-muted);
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.site-footer__nav a:hover{ color: var(--white); transform: translateX(4px); }
+.site-footer__item{
+  display: flex; align-items: center; gap: 10px;
+  font-size: var(--text-sm); color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Лейбл newsletter — фикс «прилипания» текста к форме */
+.site-footer__form-label{
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 12px 0; /* ← отступ вниз */
+}
+
+/* Форма newsletter: надёжный gap + выравнивание */
+.site-footer__form{
+  display: flex; align-items: center; gap: 8px; flex-wrap: nowrap;
+}
+/* fallback для старых Safari, если вдруг gap не сработал */
+.site-footer__form > * + *{ margin-left: 8px; }
+
+.site-footer__form input{
+  flex: 1 1 auto;
+  min-width: 0;            /* не распирает кнопку */
+  height: 40px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.site-footer__form input:focus{
+  border-color: rgba(255,255,255,0.40);
+  background: rgba(255,255,255,0.06);
+}
+.site-footer__form input::placeholder{ color: var(--text-muted); }
+
+.site-footer__form button{
+  flex: 0 0 auto;
+  min-width: 112px;
+  height: 40px;
+  padding: 0 14px;
+  background: rgba(255,255,255,0.90);
+  border: none;
+  border-radius: 6px;
+  color: #080808;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+.site-footer__form button:hover{ background: #fff; transform: translateY(-1px); }
+
+.site-footer__bottom{
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--text-muted);
+}
+
+/* Адаптив футера */
+@media (max-width: 900px){
+  .site-footer{ padding: 40px 24px 30px; }
+  .site-footer__inner{ grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
 
 /* Animations */
 .fade-up{opacity:0;transform:translateY(30px);animation:fadeUp 0.8s var(--ease) forwards}
@@ -184,14 +287,96 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .rarrow{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-h);display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
 .wcard:hover .rarrow{background:var(--accent);border-color:var(--accent)}
 
-/* Subnav */
-.case-section{scroll-margin-top:calc(var(--navH) + 60px)}
-.case-subnav{position:sticky;top:var(--navH);z-index:90;display:flex;justify-content:center;padding:10px 16px;pointer-events:none}
-.case-subnav-inner{width:100%;display:flex;justify-content:center;pointer-events:none}
-.case-subnav-pill{pointer-events:auto;display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;padding:9px 10px;border-radius:999px;border:1px solid rgba(255,60,60,0.28);background:rgba(14,14,14,0.75);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,0.55)}
-.case-subnav-link{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.72);text-decoration:none;padding:7px 11px;border-radius:999px;transition:background .2s,color .2s,transform .2s;white-space:nowrap}
-.case-subnav-link:hover{background:rgba(255,60,60,0.14);color:#fff;transform:translateY(-1px)}
-.case-subnav-link.active{background:rgba(255,60,60,0.22);color:#fff}
+/* ── SUBNAV ── */
+.case-section{scroll-margin-top:calc(var(--navH) + 62px)}
+
+/* sticky-обёртка */
+.case-subnav{
+  position:sticky;
+  top:var(--navH);
+  z-index:90;
+  padding:10px 0 6px;
+  pointer-events:none;
+}
+
+/* центрирующий слой — десктоп */
+.case-subnav-inner{
+  pointer-events:auto;
+  display:flex;
+  justify-content:center;
+  padding:0 16px;
+}
+
+/* pill */
+.case-subnav-pill{
+  display:inline-flex;
+  gap:2px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:6px 8px;
+  border-radius:999px;
+  border:1px solid var(--subnav-border, rgba(255,255,255,0.14));
+  background:rgba(10,10,10,0.88);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.case-subnav-link{
+  font-family:var(--font-mono);
+  font-size:9.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:999px;
+  transition:background .18s, color .18s;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.case-subnav-link:hover{ background:var(--subnav-hover, rgba(255,255,255,0.10)); color:#fff; }
+.case-subnav-link.active{ background:var(--subnav-hover, rgba(255,255,255,0.12)); color:#fff; }
+
+/* ── МОБИЛКА ──
+   position:sticky + overflow не работают вместе в Safari/iOS.
+   Поэтому sticky остаётся на .case-subnav (без overflow),
+   а скролл — на .case-subnav-inner (дочерний элемент).
+*/
+@media(max-width:768px){
+  .case-subnav{
+    padding:8px 0 8px;
+  }
+  .case-subnav-inner{
+    /* скролл здесь, sticky на родителе */
+    overflow-x:scroll;
+    overflow-y:visible;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    /* центрируем содержимое */
+    justify-content:center;
+    padding:0 14px;
+  }
+  .case-subnav-inner::-webkit-scrollbar{ display:none; }
+  .case-subnav-pill{
+    /* pill может быть шире экрана — скролл включается автоматически */
+    flex-wrap:wrap;
+    flex-shrink:0;
+    justify-content:center;
+    border-radius:16px;
+    padding:6px 8px;
+    gap:2px;
+    width:auto;
+    max-width:100%;
+  }
+  .case-subnav-link{
+    font-size:9px;
+    letter-spacing:.09em;
+    padding:6px 8px;
+    flex-shrink:0;
+  }
+}
 
 /* Case footer */
 .case-footer{background:rgba(14,14,14,0.97);border-top:1px solid rgba(255,255,255,0.12);padding:60px 48px 40px;position:relative;z-index:1}
@@ -231,7 +416,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .screen-card.full,.ub-screen-card.full,.ps-screen-card.full{grid-column:span 2!important}
 .ps-products-grid,.ub-products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
 
-/* Lightbox (legacy fallback) */
+/* Lightbox */
 .img-modal{display:none;position:fixed;inset:0;z-index:99000;align-items:center;justify-content:center}
 .img-modal.open{display:flex;animation:modalFadeIn 0.25s ease}
 @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
@@ -271,7 +456,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .meta-k{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono-sm);text-transform:uppercase;margin-bottom:0}
 .meta-v{margin-top:5px;color:rgba(255,255,255,0.92);font-size:13px;display:flex;flex-wrap:wrap;gap:7px}
 .chip{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.92)}
-.case-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .btn-case{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.92);font-size:13px;font-weight:500;transition:all .25s;text-decoration:none}
 .btn-case:hover{background:rgba(255,255,255,0.14);transform:translateY(-1px);color:#fff}
 .btn-case.primary{background:linear-gradient(135deg,#c8a96e,#b8935a);border-color:transparent;color:#fff;font-weight:600}
@@ -282,10 +466,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .music-btn{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.22);background:rgba(16,16,16,0.75);color:white;font-size:18px;cursor:pointer;z-index:999;backdrop-filter:blur(10px);transition:all 0.3s;display:flex;align-items:center;justify-content:center}
 .music-btn:hover{transform:scale(1.1)}
 .music-btn.playing{border-color:rgba(255,255,255,0.45)}
-/* Кнопка пульсирует когда музыка готова но autoplay заблокирован */
 .music-btn.ready{animation:musicPulse 1.5s ease-in-out infinite;border-color:rgba(255,255,255,0.55)}
 @keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.18)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
-/* iOS safe-area снизу — не перекрываем кнопку панелью браузера */
 @supports(bottom:env(safe-area-inset-bottom)){
   .music-btn{bottom:calc(24px + env(safe-area-inset-bottom))}
 }
@@ -294,10 +476,10 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 .field label,label{color:rgba(255,255,255,0.72)!important}
 .field:focus-within label{color:var(--accent)!important}
 
-/* Case wrap — минимальный отступ сверху */
-.case-wrap{max-width:1120px;margin:0 auto;padding:16px 24px 120px}
+/* ── CASE WRAP ── */
+.case-wrap{max-width:1120px;margin:0 auto;padding:28px 24px 120px}
 
-/* Responsive */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   .nav{padding:0 20px!important;height:var(--navH)!important;-webkit-transform:translate3d(0,0,0)!important;transform:translate3d(0,0,0)!important;-webkit-backface-visibility:hidden!important;backface-visibility:hidden!important}
   .logo img{height:clamp(26px,calc(var(--navH) - 14px),38px)!important}
@@ -315,7 +497,7 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
   .works-track{padding:10px 24px}
   .case-footer__inner{grid-template-columns:1fr 1fr;gap:36px}
   .case-footer{padding:50px 24px 36px}
-  .case-wrap{padding:12px 16px 80px}
+  .case-wrap{padding:20px 16px 80px}
 }
 @media(max-width:768px){
   .screens-grid,.ub-screens-grid,.ps-screens-grid,.ba-grid{grid-template-columns:1fr!important}
@@ -327,12 +509,10 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 @media(max-width:640px){
   .nav{padding:0 16px!important}
   .logo img{height:clamp(24px,calc(var(--navH) - 12px),34px)!important}
-  .case-subnav{padding:8px 10px}
-  .case-subnav-pill{padding:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;width:100%;border-radius:16px}
-  .case-subnav-pill::-webkit-scrollbar{display:none}
-  .case-subnav-link{padding:6px 9px;font-size:9px;white-space:nowrap;flex-shrink:0}
+  /* subnav padding controlled by 768px block */
   .case-footer__inner{grid-template-columns:1fr;gap:28px}
   .case-footer__bottom{flex-direction:column;align-items:flex-start}
+  .case-wrap{padding:20px 14px 60px}
 }
 @media(max-width:520px){
   .mobile-menu.open{justify-content:center}
@@ -340,12 +520,36 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 }
 @media(max-width:480px){.ps-products-grid,.ub-products-grid{grid-template-columns:1fr}}
 
-/* iOS safe-area
-   Используем --navBaseH для расчёта высоты .nav (JS никогда не меняет эту переменную).
-   .page-wrap и суб-навигация используют --navH, который JS обновляет до реальной высоты
-   (включая safe-area), поэтому к нему safe-area добавлять повторно не нужно. */
+/* ── iOS SAFE AREA ── */
+/* ── iOS SAFE AREA ── */
 @supports(padding-top:env(safe-area-inset-top)){
-  .nav{padding-top:env(safe-area-inset-top)!important;height:calc(var(--navBaseH) + env(safe-area-inset-top))!important}
-  .page-wrap,.ps-page-wrap,.ub-page-wrap{padding-top:var(--navH)!important}
-  .case-subnav{top:var(--navH)!important}
+  .nav{
+    padding-top: env(safe-area-inset-top) !important;
+    height: calc(var(--navBaseH) + env(safe-area-inset-top)) !important;
+    /* --navH обновляется через JS (getBoundingClientRect) */
+  }
+  /* page-wrap НЕ трогаем — JS сам выставит правильный --navH */
+}
+
+/* ── SUBNAV COLORS PER PROJECT ── */
+body.theme-clm {
+  --subnav-border: rgba(255,60,60,0.28);
+  --subnav-hover:  rgba(255,60,60,0.18);
+}
+body.theme-mschf {
+  --subnav-border: rgba(255,215,0,0.28);
+  --subnav-hover:  rgba(255,215,0,0.18);
+}
+body.theme-unniebox {
+  --subnav-border: rgba(11,109,255,0.28);
+  --subnav-hover:  rgba(11,109,255,0.18);
+}
+body.theme-avion {
+  --subnav-border: rgba(114,110,141,0.28);
+  --subnav-hover:  rgba(78,77,147,0.18);
+}
+
+:root {
+  /* ... существующие переменные ... */
+  --hero-top-gap: 40px; /* расстояние от subnav до hero */
 }

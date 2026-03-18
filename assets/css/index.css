@@ -523,3 +523,28 @@
   .idx-hero-corner { display: none; }
   .idx-works::before { left: 24px; right: 24px; }
 }
+
+@media (max-width: 768px) {
+  .idx-hero {
+    min-height: auto;
+    padding-bottom: 80px;
+  }
+
+  .idx-hero-inner {
+    padding-bottom: 40px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .idx-hero {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 60px;
+  }
+
+  .idx-hero-canvas {
+    height: 100%;
+    max-height: 100vh;
+  }
+}

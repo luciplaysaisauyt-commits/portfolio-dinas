@@ -1,18 +1,13 @@
 /* ============================================================
-   MAIN.JS — v5
+   MAIN.JS — v6
    Музыка: простая и надёжная, сохраняется между страницами
    ============================================================ */
 
-/* ── MUSIC ─────────────────────────────────────────────────
-   Запускаем сразу — не ждём DOMContentLoaded
-   потому что <audio> и <button> уже в DOM (они в начале body)
-   ────────────────────────────────────────────────────────── */
 (function initMusic() {
   var btn   = document.getElementById('musicBtn');
   var audio = document.getElementById('bgMusic');
 
   if (!btn || !audio) {
-    /* Элементы ещё не в DOM — ждём */
     document.addEventListener('DOMContentLoaded', initMusic);
     return;
   }
@@ -21,7 +16,6 @@
   var KEY_TIME    = 'din:music:time';
   var TARGET_VOL  = 0.14;
 
-  /* Читаем сохранённое состояние */
   var wasPlaying = false;
   var savedTime  = 0;
   try {
@@ -32,7 +26,6 @@
   audio.volume = 0;
   audio.loop   = true;
 
-  /* Восстанавливаем позицию */
   function restoreTime() {
     if (savedTime > 1 && audio.duration && savedTime < audio.duration - 1) {
       audio.currentTime = savedTime;
@@ -41,7 +34,6 @@
   audio.addEventListener('loadedmetadata', restoreTime, { once: true });
   audio.addEventListener('durationchange',  restoreTime, { once: true });
 
-  /* Плавное изменение громкости */
   function fadeTo(target) {
     var from  = audio.volume;
     var diff  = target - from;
@@ -55,14 +47,12 @@
     requestAnimationFrame(step);
   }
 
-  /* Обновляем кнопку */
   function updateBtn(playing) {
     btn.textContent = playing ? '🔊' : '🎵';
     btn.classList.toggle('playing', playing);
     btn.classList.remove('ready');
   }
 
-  /* Воспроизведение */
   function play() {
     var promise = audio.play();
     if (promise && promise.then) {
@@ -71,7 +61,6 @@
         updateBtn(true);
         save(true);
       }).catch(function() {
-        /* Autoplay заблокирован — показываем пульсацию */
         btn.classList.add('ready');
         updateBtn(false);
       });
@@ -96,11 +85,24 @@
     } catch(e) {}
   }
 
-  /* Кнопка */
+  /* ── FIX: используем touchend + preventDefault чтобы не было двойного срабатывания ── */
+  var btnTouched = false;
+
+  btn.addEventListener('touchend', function(e) {
+    e.preventDefault(); /* блокируем последующий click */
+    btnTouched = true;
+    removeFirstTouch();
+    btn.classList.remove('ready');
+    if (audio.paused) {
+      play();
+    } else {
+      pause();
+    }
+  }, { passive: false });
+
   btn.addEventListener('click', function() {
-    /* Снимаем onFirstTouch до обработки, чтобы не было двойного вызова play() */
-    document.removeEventListener('touchstart', onFirstTouch);
-    document.removeEventListener('click',      onFirstTouch);
+    if (btnTouched) { btnTouched = false; return; } /* уже обработан через touchend */
+    removeFirstTouch();
     btn.classList.remove('ready');
     if (audio.paused) {
       play();
@@ -109,18 +111,15 @@
     }
   });
 
-  /* Сохраняем позицию каждую секунду */
   setInterval(function() {
     if (!audio.paused) {
       try { localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); } catch(e) {}
     }
   }, 1000);
 
-  /* Сохраняем при уходе со страницы */
   window.addEventListener('pagehide', function() { save(!audio.paused); });
   window.addEventListener('beforeunload', function() { save(!audio.paused); });
 
-  /* Автоплей если был включён */
   function tryAutoplay() {
     restoreTime();
     if (wasPlaying) {
@@ -131,24 +130,25 @@
   }
 
   if (audio.readyState >= 2) {
-    /* Уже загружено */
     tryAutoplay();
   } else {
     audio.addEventListener('canplay', tryAutoplay, { once: true });
-    /* Fallback — если canplay не стреляет */
     setTimeout(function() {
       if (wasPlaying && audio.paused) play();
     }, 2000);
   }
 
-  /* Если autoplay заблокирован — включаем при первом касании */
+  /* ── FIX: только touchstart для первого касания, убрали click с document ── */
   function onFirstTouch() {
+    removeFirstTouch();
     if (wasPlaying && audio.paused) play();
-    document.removeEventListener('touchstart', onFirstTouch);
-    document.removeEventListener('click',      onFirstTouch);
   }
+
+  function removeFirstTouch() {
+    document.removeEventListener('touchstart', onFirstTouch);
+  }
+
   document.addEventListener('touchstart', onFirstTouch, { passive: true });
-  document.addEventListener('click',      onFirstTouch);
 
 })();
 
@@ -190,12 +190,10 @@
     var nav         = document.getElementById('topnav');
 
     if (nav) {
-      /* iOS Safari GPU fix */
       nav.style.webkitTransform = 'translate3d(0,0,0)';
       nav.style.transform       = 'translate3d(0,0,0)';
       nav.style.willChange      = 'transform';
 
-      /* Обновляем --navH */
       function syncNavH() {
         var h = nav.getBoundingClientRect().height;
         document.documentElement.style.setProperty('--navH', h + 'px');
@@ -203,7 +201,6 @@
       syncNavH();
       window.addEventListener('resize', syncNavH, { passive: true });
 
-      /* .scrolled */
       function onScroll() {
         nav.classList.toggle('scrolled', window.scrollY > 40);
       }
@@ -211,23 +208,54 @@
       onScroll();
     }
 
-    /* Мобильное меню */
     if (burger && mobileMenu) {
+      /* ── FIX: touchend на бургере чтобы без задержки ── */
+      var burgerTouched = false;
+      burger.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        burgerTouched = true;
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }, { passive: false });
       burger.addEventListener('click', function() {
+        if (burgerTouched) { burgerTouched = false; return; }
         mobileMenu.classList.add('open');
         document.body.style.overflow = 'hidden';
       });
     }
+
     function closeMenu() {
       if (mobileMenu) mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
     }
-    if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-    if (mobileMenu)  mobileMenu.addEventListener('click', function(e) {
-      if (e.target === mobileMenu) closeMenu();
-    });
 
-    /* Активная ссылка */
+    if (mobileClose) {
+      var closeTouched = false;
+      mobileClose.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        closeTouched = true;
+        closeMenu();
+      }, { passive: false });
+      mobileClose.addEventListener('click', function() {
+        if (closeTouched) { closeTouched = false; return; }
+        closeMenu();
+      });
+    }
+
+    /* ── FIX: закрытие меню по оверлею — проверяем contains вместо === ── */
+    if (mobileMenu) {
+      mobileMenu.addEventListener('touchend', function(e) {
+        var links = mobileMenu.querySelector('.mobile-menu-links');
+        if (links && links.contains(e.target)) return;
+        if (e.target === mobileMenu) closeMenu();
+      }, { passive: true });
+      mobileMenu.addEventListener('click', function(e) {
+        var links = mobileMenu.querySelector('.mobile-menu-links');
+        if (links && links.contains(e.target)) return;
+        if (e.target === mobileMenu) closeMenu();
+      });
+    }
+
     var page = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.menu a, .mobile-menu-links a').forEach(function(link) {
       link.classList.remove('active');
@@ -333,7 +361,7 @@
     }, { threshold: 0.5 }).observe(el);
   });
 
-  /* ── CUSTOM CURSOR ── */
+  /* ── CUSTOM CURSOR — только десктоп ── */
   if (!isTouch) {
     var cursor = document.getElementById('dinCursor');
     var ring   = document.getElementById('dinCursorRing');

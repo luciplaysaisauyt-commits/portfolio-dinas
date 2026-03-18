@@ -1,9 +1,10 @@
 /* ============================================================
-   PROJECT-FRAMES.JS v4
-   - Изображение можно СКРОЛЛИТЬ вниз (длинные скриншоты)
-   - Мобилка: свайп вниз чтобы закрыть
+   PROJECT-FRAMES.JS v5
+   - Свайп влево/вправо — следующая/предыдущая картинка
+   - Свайп вниз чтобы закрыть
+   - Скролл вниз для длинных скриншотов
    - Pinch zoom + pan
-   - Десктоп: колёсико zoom + drag
+   - Десктоп: колёсико zoom + стрелки клавиатуры
    ============================================================ */
 (function () {
   'use strict';
@@ -30,7 +31,6 @@
         cursor:pointer;
       }
 
-      /* Карточка */
       .pf-modal__card {
         position:relative; z-index:1;
         display:flex; flex-direction:column;
@@ -46,19 +46,20 @@
       .pf-modal__card.snapping {
         transition:transform .3s cubic-bezier(.4,0,.2,1), opacity .3s ease;
       }
+      .pf-modal__card.sliding {
+        transition:transform .25s cubic-bezier(.4,0,.2,1), opacity .2s ease;
+      }
       @keyframes pfSlide {
         from{transform:translateY(20px) scale(.97);opacity:0}
         to{transform:none;opacity:1}
       }
 
-      /* Ручка — только мобилка */
       .pf-modal__handle {
         display:none; width:36px; height:4px;
         border-radius:99px; background:rgba(255,255,255,.28);
         margin:10px auto 6px; flex-shrink:0; cursor:grab;
       }
 
-      /* На мобилке — sheet снизу */
       @media(max-width:768px) {
         .pf-modal { align-items:flex-end; padding:0; }
         .pf-modal__card {
@@ -69,7 +70,6 @@
         .pf-modal__handle { display:block; }
       }
 
-      /* Бар управления */
       .pf-modal__bar {
         display:flex; align-items:center; gap:6px;
         padding:8px 12px; flex-shrink:0;
@@ -84,6 +84,14 @@
       }
       @media(min-width:640px){ .pf-bar-hint{display:block} }
 
+      /* Счётчик картинок */
+      .pf-counter {
+        font-family:'Space Mono',monospace; font-size:11px;
+        color:rgba(255,255,255,.35); margin-right:auto;
+        display:none;
+      }
+      .pf-counter.visible { display:block; }
+
       .pf-btn {
         width:34px; height:34px; border-radius:9px;
         border:1px solid rgba(255,255,255,.16);
@@ -97,40 +105,55 @@
       @media(max-width:640px){ .pf-btn{width:38px;height:38px;font-size:20px} }
       .pf-btn:active{transform:scale(.9);background:rgba(255,255,255,.18)}
       .pf-btn--close:active{background:rgba(255,50,50,.3)}
+      .pf-btn:disabled{opacity:.25;cursor:default;pointer-events:none}
       .pf-zoom-val {
         font-family:'Space Mono',monospace; font-size:12px;
         color:rgba(255,255,255,.5); min-width:44px; text-align:center;
       }
 
-      /* ── VIEWPORT — ключевое изменение ──
-         overflow-y:auto позволяет скроллить длинные изображения.
-         touch-action:pan-y чтобы мобилка понимала вертикальный скролл. */
+      /* Стрелки навигации — десктоп */
+      .pf-nav-btn {
+        position:absolute; top:50%; z-index:10;
+        transform:translateY(-50%);
+        width:44px; height:44px; border-radius:50%;
+        border:1px solid rgba(255,255,255,.22);
+        background:rgba(0,0,0,.6);
+        color:rgba(255,255,255,.85); font-size:22px;
+        cursor:pointer; display:flex; align-items:center; justify-content:center;
+        transition:background .2s, opacity .2s;
+        backdrop-filter:blur(8px);
+      }
+      .pf-nav-btn:hover { background:rgba(255,255,255,.15); }
+      .pf-nav-btn:disabled { opacity:0; pointer-events:none; }
+      .pf-nav-btn--prev { left:12px; }
+      .pf-nav-btn--next { right:12px; }
+      @media(max-width:768px){ .pf-nav-btn { display:none; } }
+
       .pf-modal__vp {
         flex:1;
-        overflow-y:auto;           /* СКРОЛЛ по вертикали */
+        overflow-y:auto;
         overflow-x:hidden;
         -webkit-overflow-scrolling:touch;
         position:relative;
         background:#0c0c0c;
-        touch-action:pan-y pinch-zoom;  /* нативный скролл + pinch */
+        touch-action:pan-y pinch-zoom;
         cursor:default;
       }
-      /* Кастомный скроллбар */
       .pf-modal__vp::-webkit-scrollbar { width:4px; }
       .pf-modal__vp::-webkit-scrollbar-track { background:rgba(255,255,255,.04); }
       .pf-modal__vp::-webkit-scrollbar-thumb { background:rgba(255,255,255,.22); border-radius:2px; }
 
-      /* Изображение — показываем полностью, без обрезки */
       .pf-modal__img {
         display:block;
-        width:100%;          /* занимает всю ширину */
-        height:auto;         /* высота — авто, чтобы длинные скрины скроллились */
+        width:100%;
+        height:auto;
         object-fit:contain;
         user-select:none;
         -webkit-user-drag:none;
+        transition:opacity .18s ease;
       }
+      .pf-modal__img.fading { opacity:0; }
 
-      /* Спиннер */
       .pf-loading {
         display:flex; align-items:center; justify-content:center;
         padding:48px; width:100%;
@@ -143,7 +166,6 @@
       }
       @keyframes pfSpin{to{transform:rotate(360deg)}}
 
-      /* Подсказка свайп */
       .pf-swipe-hint {
         position:fixed; bottom:32px; left:50%; transform:translateX(-50%);
         background:rgba(0,0,0,.7); color:rgba(255,255,255,.75);
@@ -157,6 +179,15 @@
         80%{opacity:1}
         100%{opacity:0;transform:translateX(-50%) translateY(-4px)}
       }
+
+      /* Индикатор свайпа влево/вправо */
+      .pf-slide-indicator {
+        position:absolute; top:50%; left:50%;
+        transform:translate(-50%,-50%);
+        font-size:48px; pointer-events:none; z-index:20;
+        opacity:0; transition:opacity .15s;
+      }
+      .pf-slide-indicator.show { opacity:0.6; }
     `;
     document.head.appendChild(css);
   }
@@ -169,7 +200,8 @@
         <div class="pf-modal__card" id="pfCard">
           <div class="pf-modal__handle" id="pfHandle"></div>
           <div class="pf-modal__bar">
-            <span class="pf-bar-hint">scroll to browse · pinch to zoom</span>
+            <span class="pf-bar-hint">scroll · swipe ← → · pinch zoom</span>
+            <span class="pf-counter" id="pfCounter"></span>
             <button class="pf-btn" id="pfZoomOut" title="Zoom out">−</button>
             <span   class="pf-zoom-val" id="pfZoomVal">100%</span>
             <button class="pf-btn" id="pfZoomIn"  title="Zoom in">+</button>
@@ -177,9 +209,12 @@
             <button class="pf-btn pf-btn--close" id="pfClose" aria-label="Close">✕</button>
           </div>
           <div class="pf-modal__vp" id="pfVp">
+            <button class="pf-nav-btn pf-nav-btn--prev" id="pfPrev">‹</button>
+            <button class="pf-nav-btn pf-nav-btn--next" id="pfNext">›</button>
             <div class="pf-loading" id="pfLoading"></div>
             <img class="pf-modal__img" id="pfImg" src="" alt="Preview"
                  draggable="false" style="display:none">
+            <div class="pf-slide-indicator" id="pfSlideInd"></div>
           </div>
         </div>
       </div>
@@ -201,6 +236,79 @@
   const resetB   = document.getElementById('pfReset');
   const zoomLbl  = document.getElementById('pfZoomVal');
   const handle   = document.getElementById('pfHandle');
+  const prevBtn  = document.getElementById('pfPrev');
+  const nextBtn  = document.getElementById('pfNext');
+  const counter  = document.getElementById('pfCounter');
+  const slideInd = document.getElementById('pfSlideInd');
+
+  /* ── Gallery state ── */
+  let gallery    = [];   /* все .pf карточки в текущей группе */
+  let currentIdx = 0;
+
+  function buildGallery(clickedCard) {
+    /* Ищем ближайший общий контейнер — родитель карточки */
+    const container = clickedCard.closest('.pf-grid, .pf-grid--ba, .pf-grid--mobile, .pf-grid--mobile-2, [data-pf-gallery]')
+                   || clickedCard.parentElement;
+    const cards = container ? Array.from(container.querySelectorAll('.pf[data-pf-bound]')) : [clickedCard];
+    gallery = cards.filter(c => {
+      const i = c.querySelector('img');
+      return i && i.src;
+    });
+    currentIdx = gallery.indexOf(clickedCard);
+    if (currentIdx < 0) currentIdx = 0;
+  }
+
+  function updateNav() {
+    if (gallery.length <= 1) {
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      counter.classList.remove('visible');
+    } else {
+      prevBtn.disabled = currentIdx <= 0;
+      nextBtn.disabled = currentIdx >= gallery.length - 1;
+      counter.textContent = (currentIdx + 1) + ' / ' + gallery.length;
+      counter.classList.add('visible');
+    }
+  }
+
+  function showImage(src, alt) {
+    img.classList.add('fading');
+    loading.style.display = 'flex';
+    img.style.display = 'none';
+
+    const tmpImg = new Image();
+    tmpImg.onload = function() {
+      img.src = src;
+      img.alt = alt || '';
+      loading.style.display = 'none';
+      img.style.display = 'block';
+      img.classList.remove('fading');
+      vp.scrollTop = 0;
+      resetScale();
+    };
+    tmpImg.onerror = function() {
+      img.src = src;
+      loading.style.display = 'none';
+      img.style.display = 'block';
+      img.classList.remove('fading');
+    };
+    tmpImg.src = src;
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= gallery.length) return;
+    currentIdx = idx;
+    const c = gallery[currentIdx];
+    const i = c.querySelector('img');
+    if (i) showImage(i.src, i.alt);
+    updateNav();
+  }
+
+  function goPrev() { goTo(currentIdx - 1); }
+  function goNext() { goTo(currentIdx + 1); }
+
+  prevBtn.addEventListener('click', goPrev);
+  nextBtn.addEventListener('click', goNext);
 
   /* ── Zoom state ── */
   let scale = 1;
@@ -209,7 +317,6 @@
   function applyScale() {
     img.style.transform = `scale(${scale})`;
     img.style.transformOrigin = 'top center';
-    /* Когда уменьшено — центрируем; когда увеличено — даём скроллиться */
     img.style.width = scale < 1 ? `${100 / scale}%` : '100%';
     zoomLbl.textContent = Math.round(scale * 100) + '%';
   }
@@ -219,22 +326,20 @@
     applyScale();
   }
 
-  function resetScale() { scale = 1; applyScale(); vp.scrollTop = 0; }
+  function resetScale() { scale = 1; applyScale(); }
 
   zoomInB.onclick  = () => zoomTo(scale + ZOOM_STEP);
   zoomOutB.onclick = () => zoomTo(scale - ZOOM_STEP);
-  resetB.onclick   = resetScale;
+  resetB.onclick   = () => { resetScale(); vp.scrollTop = 0; };
 
-  /* Колёсико — zoom на десктопе (Ctrl+scroll), обычный scroll — скролл картинки */
   vp.addEventListener('wheel', e => {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
       zoomTo(scale + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
     }
-    /* Обычный скролл — нативный, ничего не делаем */
   }, { passive: false });
 
-  /* Pinch zoom на мобилке */
+  /* ── Pinch zoom ── */
   let pinchStartDist = null;
   let pinchStartScale = 1;
 
@@ -262,61 +367,159 @@
 
   vp.addEventListener('touchend', () => { pinchStartDist = null; });
 
-  /* ── Свайп вниз чтобы закрыть (handle + начало страницы) ── */
-  const SWIPE_CLOSE = 90;
+  /* ── Свайп влево/вправо + вниз для закрытия ── */
+const SWIPE_CLOSE_Y = 90;
+const SWIPE_NAV_X   = 50;
+const LOCK_ANGLE    = 30; /* градусов от горизонтали — порог для горизонтального свайпа */
 
-  function setupSwipeClose(el) {
-    let startY = 0, currentY = 0, dragging = false;
+let touchStartX  = 0;
+let touchStartY  = 0;
+let touchDX      = 0;
+let touchDY      = 0;
+let swipeDir     = null; /* 'x' | 'y' | null */
+let swipeLocked  = false;
+let velX         = 0;
+let lastTouchX   = 0;
+let lastTouchT   = 0;
 
-    el.addEventListener('touchstart', e => {
-      /* Только если скролл в самом верху или это handle */
-      if (el === handle || vp.scrollTop <= 0) {
-        startY   = e.touches[0].clientY;
-        currentY = 0;
-        dragging = true;
-      }
-    }, { passive: true });
+function showIndicator(dir) {
+  slideInd.textContent = dir === 'prev' ? '‹' : '›';
+  slideInd.classList.add('show');
+  clearTimeout(slideInd._t);
+  slideInd._t = setTimeout(() => slideInd.classList.remove('show'), 400);
+}
 
-    el.addEventListener('touchmove', e => {
-      if (!dragging) return;
-      const dy = e.touches[0].clientY - startY;
-      if (dy < 0) { dragging = false; return; } /* вверх — отменяем */
-      currentY = dy;
-      const r = el === handle ? 0.65 : 0.45;
-      card.classList.remove('snapping');
-      card.style.transform = `translateY(${currentY * r}px)`;
-      card.style.opacity   = String(Math.max(0.4, 1 - currentY / 280));
-    }, { passive: true });
+/* touchstart — только запоминаем точку начала, ничего не блокируем */
+vp.addEventListener('touchstart', e => {
+  if (e.touches.length !== 1) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  touchDX     = 0;
+  touchDY     = 0;
+  swipeDir    = null;
+  swipeLocked = false;
+  velX        = 0;
+  lastTouchX  = touchStartX;
+  lastTouchT  = Date.now();
+  card.classList.remove('snapping', 'sliding');
+}, { passive: true }); /* passive:true — не тормозим скролл на старте */
 
-    el.addEventListener('touchend', () => {
-      if (!dragging) return;
-      dragging = false;
-      card.classList.add('snapping');
+/* touchmove — определяем направление, тогда блокируем если надо */
+vp.addEventListener('touchmove', e => {
+  if (e.touches.length !== 1 || swipeLocked) return;
 
-      if (currentY > SWIPE_CLOSE) {
-        card.style.transform = 'translateY(110%)';
-        card.style.opacity   = '0';
-        setTimeout(close, 280);
-      } else {
-        card.style.transform = '';
-        card.style.opacity   = '';
-        setTimeout(() => card.classList.remove('snapping'), 320);
-      }
-      currentY = 0;
-    }, { passive: true });
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+  touchDX = dx;
+  touchDY = dy;
+
+  const now = Date.now();
+  const dt  = now - lastTouchT;
+  if (dt > 0) velX = (e.touches[0].clientX - lastTouchX) / dt;
+  lastTouchX = e.touches[0].clientX;
+  lastTouchT = now;
+
+  /* Определяем направление после 8px движения */
+  if (!swipeDir) {
+    const absDX = Math.abs(dx);
+    const absDY = Math.abs(dy);
+    if (absDX < 8 && absDY < 8) return; /* ждём чёткого движения */
+
+    const angle = Math.atan2(absDY, absDX) * 180 / Math.PI;
+    if (angle < LOCK_ANGLE) {
+      swipeDir = 'x'; /* горизонтальный жест */
+    } else {
+      swipeDir = 'y'; /* вертикальный — отдаём браузеру */
+    }
   }
 
-  setupSwipeClose(handle);
-  setupSwipeClose(vp); /* свайп с самого верха viewport тоже закрывает */
+  if (swipeDir === 'x' && scale === 1) {
+    /* Блокируем вертикальный скролл браузера — теперь точно горизонтальный */
+    e.preventDefault();
+
+    /* Rubber-band на краях */
+    let move = dx;
+    const atStart = currentIdx === 0 && dx > 0;
+    const atEnd   = currentIdx === gallery.length - 1 && dx < 0;
+    if (atStart || atEnd) move = dx * 0.18;
+
+    card.style.transform = `translateX(${move}px)`;
+    card.style.opacity   = '';
+
+  } else if (swipeDir === 'y' && touchDY > 0 && vp.scrollTop <= 0) {
+    /* Свайп вниз для закрытия — только если страница не скроллится */
+    /* НЕ вызываем preventDefault — пусть браузер скроллит если нужно */
+    const move = touchDY * 0.45;
+    card.style.transform = `translateY(${move}px)`;
+    card.style.opacity   = String(Math.max(0.4, 1 - touchDY / 280));
+  }
+
+}, { passive: false }); /* passive:false нужен чтобы вызвать preventDefault */
+
+vp.addEventListener('touchend', () => {
+  if (swipeLocked) return;
+  swipeLocked = true;
+
+  if (swipeDir === 'x' && scale === 1) {
+    card.classList.add('sliding');
+    card.style.opacity = '';
+
+    const fastFlick = Math.abs(velX) > 0.4;
+
+    if ((touchDX < -SWIPE_NAV_X || (fastFlick && velX < 0)) && currentIdx < gallery.length - 1) {
+      /* Следующая */
+      card.style.transform = 'translateX(-48px)';
+      setTimeout(() => {
+        card.classList.remove('sliding');
+        card.style.transform = '';
+        goNext();
+        showIndicator('next');
+      }, 220);
+    } else if ((touchDX > SWIPE_NAV_X || (fastFlick && velX > 0)) && currentIdx > 0) {
+      /* Предыдущая */
+      card.style.transform = 'translateX(48px)';
+      setTimeout(() => {
+        card.classList.remove('sliding');
+        card.style.transform = '';
+        goPrev();
+        showIndicator('prev');
+      }, 220);
+    } else {
+      /* Вернуть на место */
+      card.style.transform = '';
+      setTimeout(() => card.classList.remove('sliding'), 300);
+    }
+
+  } else if (swipeDir === 'y' && touchDY > SWIPE_CLOSE_Y && vp.scrollTop <= 0) {
+    /* Закрыть */
+    card.classList.add('snapping');
+    card.style.transform = 'translateY(110%)';
+    card.style.opacity   = '0';
+    setTimeout(close, 280);
+
+  } else {
+    /* Вернуть */
+    card.classList.add('snapping');
+    card.style.transform = '';
+    card.style.opacity   = '';
+    setTimeout(() => card.classList.remove('snapping'), 320);
+  }
+
+  touchDX  = 0;
+  touchDY  = 0;
+  swipeDir = null;
+}, { passive: true });
 
   /* ── Open / Close ── */
   let hintShown = false;
 
-  function open(src, alt) {
+  function open(clickedCard) {
+    buildGallery(clickedCard);
+
     resetScale();
     card.style.transform = '';
     card.style.opacity   = '';
-    card.classList.remove('snapping');
+    card.classList.remove('snapping', 'sliding');
 
     img.style.display = 'none';
     loading.style.display = 'flex';
@@ -325,28 +528,34 @@
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    img.onload = () => {
-      loading.style.display = 'none';
-      img.style.display = 'block';
-      vp.scrollTop = 0;
+    const c = gallery[currentIdx];
+    const i = c ? c.querySelector('img') : null;
+    if (i) {
+      img.onload = () => {
+        loading.style.display = 'none';
+        img.style.display = 'block';
+        vp.scrollTop = 0;
 
-      /* Подсказка на мобилке */
-      if (!hintShown && window.innerWidth < 768) {
-        hintShown = true;
-        const h = document.createElement('div');
-        h.className = 'pf-swipe-hint';
-        h.textContent = '↓ scroll to browse  ·  swipe down to close';
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 3200);
-      }
-    };
-    img.onerror = () => {
-      loading.style.display = 'none';
-      img.style.display = 'block';
-    };
-    img.alt = alt || '';
-    img.src = src;
+        if (!hintShown && window.innerWidth < 768) {
+          hintShown = true;
+          const h = document.createElement('div');
+          h.className = 'pf-swipe-hint';
+          h.textContent = gallery.length > 1
+            ? '← → свайп · ↓ скролл · потяни вниз чтобы закрыть'
+            : '↓ скролл · потяни вниз чтобы закрыть';
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 3500);
+        }
+      };
+      img.onerror = () => {
+        loading.style.display = 'none';
+        img.style.display = 'block';
+      };
+      img.alt = i.alt || '';
+      img.src = i.src;
+    }
 
+    updateNav();
     closeBtn.focus();
   }
 
@@ -356,39 +565,40 @@
     document.body.style.overflow = '';
     card.style.transform = '';
     card.style.opacity   = '';
-    card.classList.remove('snapping');
+    card.classList.remove('snapping', 'sliding');
     setTimeout(() => {
-      img.src          = '';
+      img.src = '';
       img.style.display = 'none';
       loading.style.display = 'flex';
       resetScale();
+      gallery = [];
     }, 280);
   }
 
   backdrop.addEventListener('click', close);
   closeBtn.addEventListener('click', close);
+
   document.addEventListener('keydown', e => {
     if (!modal.classList.contains('is-open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === '+' || e.key === '=') zoomTo(scale + ZOOM_STEP);
-    if (e.key === '-') zoomTo(scale - ZOOM_STEP);
-    if (e.key === '0') resetScale();
-    if (e.key === 'ArrowDown') vp.scrollBy({ top: 120, behavior: 'smooth' });
-    if (e.key === 'ArrowUp')   vp.scrollBy({ top: -120, behavior: 'smooth' });
+    if (e.key === 'Escape')                  close();
+    if (e.key === '+' || e.key === '=')      zoomTo(scale + ZOOM_STEP);
+    if (e.key === '-')                       zoomTo(scale - ZOOM_STEP);
+    if (e.key === '0')                       resetScale();
+    if (e.key === 'ArrowDown')               vp.scrollBy({ top: 120, behavior: 'smooth' });
+    if (e.key === 'ArrowUp')                 vp.scrollBy({ top: -120, behavior: 'smooth' });
+    if (e.key === 'ArrowRight')              goNext();
+    if (e.key === 'ArrowLeft')               goPrev();
   });
 
   /* ── Привязка карточек ── */
   function bindCards() {
-    document.querySelectorAll('.pf:not([data-pf-bound])').forEach(card => {
-      card.setAttribute('data-pf-bound', '1');
-      card.addEventListener('click', () => {
-        const i = card.querySelector('img');
-        if (i && i.src) open(i.src, i.alt);
-      });
-      card.setAttribute('role', 'button');
-      card.setAttribute('tabindex', '0');
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    document.querySelectorAll('.pf:not([data-pf-bound])').forEach(c => {
+      c.setAttribute('data-pf-bound', '1');
+      c.addEventListener('click', () => open(c));
+      c.setAttribute('role', 'button');
+      c.setAttribute('tabindex', '0');
+      c.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(c); }
       });
     });
   }
@@ -416,6 +626,14 @@
   });
   observer.observe(document.body, { childList: true, subtree: true });
 
-  window.projectFrames = { open, close, rebind: bindCards, zoom: zoomTo, reset: resetScale };
+  window.projectFrames = {
+    open: (c) => open(c),
+    close,
+    rebind: bindCards,
+    zoom: zoomTo,
+    reset: resetScale,
+    next: goNext,
+    prev: goPrev
+  };
 
 })();
