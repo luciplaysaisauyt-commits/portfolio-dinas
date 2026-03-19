@@ -702,13 +702,13 @@ a.cta-value:hover { color: var(--accent); }
 .name-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   vertical-align: middle;
   white-space: nowrap;
 }
 
 .name-logo img {
-  height: 1em;        /* масштабируется под размер шрифта */
+  height: 1.4em;        /* масштабируется под размер шрифта */
   width: auto;
   filter: brightness(0) invert(1);   /* белый на тёмном фоне */
   vertical-align: middle;
@@ -730,3 +730,4 @@ a.cta-value:hover { color: var(--accent); }
   position: relative;
   top: -0.05em;
 }
+
