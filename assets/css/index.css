@@ -280,7 +280,6 @@
 .all-link:hover { color: var(--white); border-color: var(--border-h); opacity: 1; }
 
 .idx-track-wrap {
-  overflow-x: auto;
   overflow-y: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;

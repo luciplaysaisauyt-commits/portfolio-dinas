@@ -249,7 +249,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .prog-track{width:80px;height:1px;background:var(--border);border-radius:999px;overflow:hidden}
 .prog-fill{height:100%;background:var(--accent);border-radius:999px;width:25%;transition:width 0.4s var(--ease)}
 .nav-counter{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-muted);letter-spacing:0.1em;margin-left:4px}
-.outline-link{display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border:1px solid rgba(255,255,255,0.22);border-radius:999px;color:rgba(255,255,255,0.72);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:0.1em;transition:all 0.3s;margin-top:4px}
+.outline-link{display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:999px;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:0.1em;transition:all 0.3s;margin-top:4px}
 .outline-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
 .works-area{overflow:hidden;padding:10px 0 40px;cursor:grab;user-select:none}
 .works-area:active{cursor:grabbing}
@@ -265,6 +265,91 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .wbg-mschf::after{content:'';position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:160px;height:160px;background:radial-gradient(ellipse at center,rgba(255,215,0,0.22) 0%,rgba(255,193,0,0.10) 40%,transparent 70%);pointer-events:none;border-radius:50%}
 .wbg-mschf::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FFD700,transparent);z-index:2;pointer-events:none}
 .wbg-mschf .ml.a{background:rgba(255,215,0,0.40)!important}.wbg-mschf .ml{background:rgba(255,215,0,0.10)!important}.wbg-mschf .wmock-bar span{background:rgba(255,215,0,0.25)!important}
+
+/* ── BEHANCE CARD ── */
+.wbg-behance{
+  background: linear-gradient(145deg,#001aff 0%,#0047e1 40%,#0057ff 70%,#1a6aff 100%);
+  position: relative;
+  overflow: hidden;
+}
+/* мягкое свечение по центру */
+.wbg-behance::after{
+  content:'';
+  position:absolute;
+  top:40%;left:50%;
+  transform:translate(-50%,-50%);
+  width:200px;height:200px;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,0.10) 0%,transparent 70%);
+  pointer-events:none;border-radius:50%;
+}
+/* нижняя полоска — брендовая */
+.wbg-behance::before{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,rgba(255,255,255,0.5),transparent);
+  z-index:2;pointer-events:none;
+}
+/* внутренний контент — лого + CTA по центру */
+.wcard-behance-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  gap:18px;
+  position:relative;
+  z-index:4; /* выше .wcard-veil (z-index не задан, но stacking context) */
+}
+.wcard-behance-logo{
+  width:100px;
+  height:auto;
+  color:#ffffff;
+  opacity:0.88;
+  transition:opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.wcard--external:hover .wcard-behance-logo{
+  opacity:1;
+  transform:scale(1.07);
+}
+.wcard-behance-cta{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.65);
+  transition:color 0.3s var(--ease);
+}
+.wcard--external:hover .wcard-behance-cta{
+  color:#ffffff;
+}
+/* у Behance-карточки hover подсветка синяя, а не золотая */
+.wcard--external:hover{
+  border-color:rgba(0,87,255,0.55) !important;
+  box-shadow:0 40px 80px rgba(0,40,200,0.45) !important;
+}
+/* список gl-list — строка Behance */
+.gl-item--external{
+  border-left:2px solid rgba(0,87,255,0.7);
+  padding-left:14px;
+  margin-left:-14px;
+}
+.gl-item--external:hover{
+  background:rgba(0,87,255,0.06);
+}
+/* Behance — убираем тёмный вейл, у неё свой фон */
+.wcard--external .wcard-veil{
+  background: linear-gradient(to top, rgba(0,10,40,0.92) 0%, rgba(0,20,80,0.20) 55%, transparent 100%);
+}
+/* Behance — фон не затемняем фильтром */
+.wcard--external .wcard-bg{
+  filter: none;
+}
+.wcard--external:hover .wcard-bg{
+  filter: brightness(0.75) saturate(0.8);
+  transform: scale(1.06);
+}
+/* ── END BEHANCE CARD ── */
+
 .wcard-mock{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%) rotate(-7deg);width:220px;aspect-ratio:16/10;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);opacity:0.85;transition:transform 0.6s var(--ease),opacity 0.4s}
 .wcard:hover .wcard-mock{transform:translate(-50%,-58%) rotate(-4deg) scale(1.03);opacity:0.28}
 .wmock-bar{height:20px;background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;padding:0 8px;gap:4px}
@@ -277,15 +362,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .wcard-foot{position:absolute;bottom:0;left:0;right:0;padding:24px 26px 26px;z-index:3;transition:padding-bottom 0.4s var(--ease)}
 .wcard:hover .wcard-foot{padding-bottom:170px}
 .wcard-cat{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+/* Behance card — категория синяя */
+.wcard--external .wcard-cat{ color:#6aabff; }
 .wcard-title{font-family:var(--font-serif);font-size:26px;font-weight:300;color:#fff;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,0.5)}
 .wcard-reveal{position:absolute;bottom:0;left:0;right:0;padding:0 26px 26px;z-index:4;transform:translateY(16px);opacity:0;transition:transform 0.45s var(--ease),opacity 0.4s}
 .wcard:hover .wcard-reveal{transform:translateY(0);opacity:1}
 .wcard-reveal p{font-size:var(--text-sm);color:rgba(240,236,228,0.88);line-height:1.75;margin-bottom:14px}
 .rtags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
 .rtags span{font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.24);padding:4px 10px;border-radius:999px}
+/* Behance — теги синие */
+.wcard--external .rtags span{ color:#6aabff; background:rgba(0,87,255,0.12); border-color:rgba(0,87,255,0.30); }
 .rlink{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white)}
 .rarrow{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-h);display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
 .wcard:hover .rarrow{background:var(--accent);border-color:var(--accent)}
+/* Behance — стрелка синяя */
+.wcard--external:hover .rarrow{ background:#0057ff; border-color:#0057ff; }
 
 /* ── SUBNAV ── */
 .case-section{scroll-margin-top:calc(var(--navH) + 62px)}

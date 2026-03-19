@@ -10,7 +10,7 @@ if (nav) {
 
 (() => {
   // progress bar
-  const bar = document.getElementById('progressBar');
+  const bar = document.getElementById('progressBar') || document.getElementById('psProgress');
   if (bar) {
     window.addEventListener('scroll', () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
@@ -29,21 +29,32 @@ if (nav) {
   }, { threshold: 0.07 });
   document.querySelectorAll('[data-reveal]').forEach((el) => ro.observe(el));
 
-  // subnav + toc active state
+  // subnav + toc active state — scroll-based (работает на длинных секциях)
   const tocLinks = document.querySelectorAll('.case-toc a');
   const subLinks = document.querySelectorAll('.subnav-pill a, .case-subnav-pill a');
+  const allNavLinks = [...tocLinks, ...subLinks];
+  const sections = Array.from(document.querySelectorAll('.case-section[id]'));
 
-  if (tocLinks.length || subLinks.length) {
-    const secObs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        [...tocLinks, ...subLinks].forEach((l) => {
-          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
-        });
+  if (allNavLinks.length && sections.length) {
+    function updateActiveNav() {
+      const navH = nav ? nav.offsetHeight : 64;
+      const subnavEl = document.querySelector('.case-subnav');
+      const subnavH = subnavEl ? subnavEl.offsetHeight : 52;
+      const offset = navH + subnavH + 24;
+
+      let current = sections[0].id;
+      sections.forEach((sec) => {
+        const top = sec.getBoundingClientRect().top + window.scrollY - offset;
+        if (window.scrollY >= top) current = sec.id;
       });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.case-section[id]').forEach((s) => secObs.observe(s));
+
+      allNavLinks.forEach((l) => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
   }
 
   // lightbox
@@ -51,8 +62,14 @@ if (nav) {
   const modalImg = document.getElementById('imgModalSrc');
 
   if (modal && modalImg) {
-    // auto-bind clickable images
-    document.querySelectorAll('.screen-card img, .ba-card img, .hero-img-wrap img, .uikit-img img').forEach((img) => {
+    const closeModal = () => {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    };
+
+    // все изображения в .pf контейнерах + screen-card, ba-card, hero-img-wrap
+    document.querySelectorAll('.pf img, .screen-card img, .ba-card img, .hero-img-wrap img, .uikit-img img').forEach((img) => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
         modalImg.src = img.src;
@@ -61,13 +78,6 @@ if (nav) {
         document.body.classList.add('no-scroll');
       });
     });
-
-    // close handlers
-    const closeModal = () => {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-    };
 
     modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
@@ -83,34 +93,5 @@ if (nav) {
       document.body.classList.add('no-scroll');
     }
   };
-
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-      window.addEventListener('scroll', () => {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        progressBar.style.width = (window.scrollY / total * 100) + '%';
-      }, { passive: true });
-    }
-    const revObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revObs.unobserve(e.target); } });
-    }, { threshold: 0.07 });
-    document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
-    const subnavLinks = document.querySelectorAll('.case-subnav-pill a');
-    const secObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        subnavLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-      });
-    }, { threshold: 0.22 });
-    document.querySelectorAll('.case-section[id]').forEach(s => secObs.observe(s));
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('imgModalSrc');
-    function openModal(src) { modalImg.src = src; modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('no-scroll'); }
-    document.querySelectorAll('.screen-card img, .ba-card img, .hero-img-wrap img').forEach(img => { img.style.cursor = 'zoom-in'; img.addEventListener('click', () => openModal(img.src)); });
-    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); }));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.classList.remove('open'); document.body.classList.remove('no-scroll'); } });
-
-
 
 })();

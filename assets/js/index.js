@@ -31,7 +31,7 @@
   }
 
   const CFG = {
-    count:         2200,   // меньше частиц = плавнее
+    count:         2200,
     logoScale:     0.60,
     repulse:       150,
     repulseForce:  8,
@@ -162,7 +162,6 @@
 
     draw() {
       const [r, g, b] = this.col;
-      // Используем кешированный спрайт вместо createRadialGradient каждый кадр
       if (this.glow && this.alpha > 0.05) {
         const sprite = getGlowSprite(r, g, b, this.gr);
         ctx.globalAlpha = this.alpha * 0.8;
@@ -236,7 +235,6 @@
     requestAnimationFrame(loop);
     ctx.fillStyle = 'rgba(8,8,8,0.13)';
     ctx.fillRect(0, 0, W, H);
-    // Рисуем все точки одним beginPath для скорости
     for (let i = 0; i < particles.length; i++) particles[i].update(assembled);
     for (let i = 0; i < particles.length; i++) particles[i].draw();
   }
@@ -246,45 +244,59 @@
   // ════════════════════════════════════════
   // WORKS CARD SLIDER
   // ════════════════════════════════════════
-  const track  = document.getElementById('wTrack');
-  const wrap   = document.getElementById('wTrackWrap');
-  const fill   = document.getElementById('wFill');
-  const numEl  = document.getElementById('wNum');
-  const totalEl= document.getElementById('wTotal');
-  const prevBtn= document.getElementById('wPrev');
-  const nextBtn= document.getElementById('wNext');
-  const cards  = track ? Array.from(track.querySelectorAll('.wcard')) : [];
-  const total  = cards.length;
-  let current  = 0;
+  const track   = document.getElementById('wTrack');
+  const wrap    = document.getElementById('wTrackWrap');
+  const fill    = document.getElementById('wFill');
+  const numEl   = document.getElementById('wNum');
+  const totalEl = document.getElementById('wTotal');
+  const prevBtn = document.getElementById('wPrev');
+  const nextBtn = document.getElementById('wNext');
+  const cards   = track ? Array.from(track.querySelectorAll('.wcard')) : [];
+  const total   = cards.length;
+  let current   = 0;
 
   if (track && cards.length) {
     if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+    // клик на карточку — внешние в новой вкладке
     cards.forEach(card => {
       card.addEventListener('click', () => {
-        if (card.dataset.href) window.location.href = card.dataset.href;
+        if (!card.dataset.href) return;
+        if (card.dataset.external === 'true') {
+          window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+        } else {
+          window.location.href = card.dataset.href;
+        }
       });
     });
+
+    function scrollToCard(idx) {
+      const card = cards[idx];
+      if (!card || !wrap) return;
+      // offsetLeft карточки относительно трека, трек внутри wrap
+      const trackLeft = track.getBoundingClientRect().left;
+      const wrapLeft  = wrap.getBoundingClientRect().left;
+      const offset    = card.offsetLeft - (wrapLeft - trackLeft);
+      wrap.scrollTo({ left: offset - 32, behavior: 'smooth' });
+    }
 
     function update(idx) {
       current = Math.max(0, Math.min(idx, total - 1));
       if (numEl) numEl.textContent = String(current + 1).padStart(2, '0');
       if (fill)  fill.style.width  = `${((current + 1) / total) * 100}%`;
-      const card = cards[current];
-      if (card && wrap) {
-        const cl = card.offsetLeft;
-        const wl = wrap.getBoundingClientRect().left;
-        const tl = track.getBoundingClientRect().left;
-        wrap.scrollTo({ left: cl - (wl - tl) - 32, behavior: 'smooth' });
-      }
+      scrollToCard(current);
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => update(current - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => update(current + 1));
+    // Кнопки — stopPropagation чтобы не триггерить клик на карточку
+    if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); update(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); update(current + 1); });
+
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight') update(current + 1);
       if (e.key === 'ArrowLeft')  update(current - 1);
     });
 
+    // Синхронизация счётчика при ручном скролле
     if (wrap) {
       wrap.addEventListener('scroll', () => {
         let closest = 0, minDist = Infinity;
@@ -299,18 +311,29 @@
         }
       }, { passive: true });
 
-      let isDragging = false, startX = 0, startScroll = 0;
+      // Drag to scroll (десктоп)
+      let isDragging = false, startX = 0, startScroll = 0, dragMoved = false;
       wrap.addEventListener('mousedown', e => {
-        isDragging = true; startX = e.pageX; startScroll = wrap.scrollLeft;
+        isDragging = true; dragMoved = false;
+        startX = e.pageX; startScroll = wrap.scrollLeft;
         wrap.style.cursor = 'grabbing';
       });
       wrap.addEventListener('mousemove', e => {
         if (!isDragging) return;
-        wrap.scrollLeft = startScroll - (e.pageX - startX);
+        const dx = e.pageX - startX;
+        if (Math.abs(dx) > 4) dragMoved = true;
+        wrap.scrollLeft = startScroll - dx;
       });
       ['mouseup', 'mouseleave'].forEach(ev =>
-        wrap.addEventListener(ev, () => { isDragging = false; wrap.style.cursor = 'grab'; })
+        wrap.addEventListener(ev, () => {
+          isDragging = false;
+          wrap.style.cursor = 'grab';
+        })
       );
+      // Если был drag — не переходим по клику на карточку
+      wrap.addEventListener('click', e => {
+        if (dragMoved) { e.stopPropagation(); dragMoved = false; }
+      }, true);
     }
 
     const scrollLink = document.querySelector('.idx-scroll');

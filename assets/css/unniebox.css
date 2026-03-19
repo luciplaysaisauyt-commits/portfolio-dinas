@@ -655,3 +655,41 @@ body:not(.is-loaded) .ub-content { opacity: 0; transform: translateY(14px); }
   .mobile-menu.open  { justify-content: center; }
   .mobile-menu-panel { width: 100%; border-left: none; }
 }
+
+/* ── PF GRIDS ── */
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.pf-grid .pf--full {
+  grid-column: 1 / -1;
+}
+
+.pf-grid--mobile-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  align-items: start;
+}
+
+.pf-grid--mobile-2 .pf {
+  width: 100%;
+}
+
+.pf-grid--mobile-2 .pf img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pf-grid--ba {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  align-items: start;
+}

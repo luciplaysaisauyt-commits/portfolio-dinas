@@ -4,18 +4,20 @@
 ============================================================ */
 
 const PROJECTS = [
+  /* ── Behance ── */
   {
     id:       1,
-    title:    "CLM\nMafia Platform",
-    category: "UI UX Redesign",
-    filter:   "ui-ux",
-    type:     "Case Study",
-    year:     "2024",
-    desc:     "Full redesign of Mafia platform with ratings, tournaments, clubs and admin panel.",
-    tags:     ["Figma", "Design System", "Case Study"],
-    listTags: ["UI UX", "Redesign"],
-    href:     "portfolio/clm.html",
-    bg:       "wbg7",
+    title:    "Behance\nProfile",
+    category: "More on Behance",
+    filter:   "behance",
+    type:     "External",
+    year:     "2024–25",
+    desc:     "Explore more projects, experiments and works in progress on my Behance profile.",
+    tags:     ["Behance", "Portfolio", "More Work"],
+    listTags: ["Behance", "External"],
+    href:     "https://www.behance.net/dimon_ais",
+    bg:       "wbg-behance",
+    external: true,
     featured: true,
   },
   {
@@ -60,6 +62,20 @@ const PROJECTS = [
     bg:       "wbg-mschf",
     featured: true,
   },
+  {
+    id:       5,
+    title:    "CLM\nMafia Platform",
+    category: "UI UX Redesign",
+    filter:   "ui-ux",
+    type:     "Case Study",
+    year:     "2024",
+    desc:     "Full redesign of Mafia platform with ratings, tournaments, clubs and admin panel.",
+    tags:     ["Figma", "Design System", "Case Study"],
+    listTags: ["UI UX", "Redesign"],
+    href:     "portfolio/clm.html",
+    bg:       "wbg7",
+    featured: true,
+  },
 ];
 
 
@@ -73,16 +89,26 @@ function cardHTML(p, i) {
   const titleHtml = p.title.replace('\n', '<br>');
   const tagsHtml  = p.tags.map(t => `<span>${t}</span>`).join('');
 
-  return `
-  <article class="wcard" data-href="${p.href}" data-cat="${p.filter}">
-    <div class="wcard-bg ${p.bg}">
+  /* Behance-карточка — особый bg с логотипом */
+  const behanceInner = p.external ? `
+      <div class="wcard-behance-inner">
+        <svg class="wcard-behance-logo" viewBox="0 0 76 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Behance">
+          <path d="M29.04 23.08C31.64 22.04 33.32 19.96 33.32 16.76C33.32 10.52 28.8 8.76 23.28 8.76H7.28V39.24H23.84C29.72 39.24 34.72 36.88 34.72 30.28C34.72 26.52 32.72 23.92 29.04 23.08ZM14.84 14.68H22.32C24.72 14.68 26.84 15.4 26.84 18.16C26.84 20.72 25.12 21.8 22.72 21.8H14.84V14.68ZM23.28 33.32H14.84V27.08H23.44C26.28 27.08 28.16 28.2 28.16 31.16C28.16 34.04 25.96 33.32 23.28 33.32ZM51.52 8C43.24 8 37.64 14.12 37.64 23.96C37.64 34.08 43 40 51.52 40C58.28 40 62.56 36.68 64.72 30.48H58.36C57.52 32.76 55.08 34.16 51.72 34.16C47.28 34.16 44.48 31.4 44.16 26.44H65.2C65.24 25.84 65.28 24.92 65.28 24C65.28 14.04 59.92 8 51.52 8ZM44.32 21.28C44.96 17.08 47.56 13.84 51.52 13.84C55.6 13.84 58 16.96 58.16 21.28H44.32ZM47.44 4.44H57.24V1.2H47.44V4.44Z" fill="currentColor"/>
+        </svg>
+        <span class="wcard-behance-cta">View all work ↗</span>
+      </div>` : `
       <div class="wcard-mock">
         <div class="wmock-bar"><span></span><span></span><span></span></div>
         <div class="wmock-body">
           <div class="ml a"></div><div class="ml l"></div>
           <div class="ml m"></div><div class="ml s"></div>
         </div>
-      </div>
+      </div>`;
+
+  return `
+  <article class="wcard${p.external ? ' wcard--external' : ''}" data-href="${p.href}" data-cat="${p.filter}" data-external="${p.external ? 'true' : 'false'}">
+    <div class="wcard-bg ${p.bg}">
+      ${behanceInner}
     </div>
     <div class="wcard-veil"></div>
     <div class="wcard-num">${num}</div>
@@ -93,7 +119,7 @@ function cardHTML(p, i) {
     <div class="wcard-reveal">
       <p>${p.desc}</p>
       <div class="rtags">${tagsHtml}</div>
-      <div class="rlink">Open case study
+      <div class="rlink">${p.external ? 'Visit Behance' : 'Open case study'}
         <div class="rarrow">
           <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
@@ -108,7 +134,7 @@ function listItemHTML(p, i) {
   const num      = pad(i + 1);
   const listTags = p.listTags.map(t => `<span>${t}</span>`).join('');
   return `
-  <a class="gl-item" href="${p.href}" data-cat="${p.filter}">
+  <a class="gl-item${p.external ? ' gl-item--external' : ''}" href="${p.href}" data-cat="${p.filter}"${p.external ? ' target="_blank" rel="noopener noreferrer"' : ''}>
     <span class="gl-item-num">${num}</span>
     <div class="gl-item-info">
       <div class="gl-item-tags">${listTags}</div>
@@ -127,7 +153,11 @@ function listItemHTML(p, i) {
 function bindCardClicks(container) {
   container.querySelectorAll('.wcard[data-href]').forEach(card => {
     card.addEventListener('click', () => {
-      window.location.href = card.dataset.href;
+      if (card.dataset.external === 'true') {
+        window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+      } else {
+        window.location.href = card.dataset.href;
+      }
     });
   });
 }

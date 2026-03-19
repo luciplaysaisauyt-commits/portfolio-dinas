@@ -57,25 +57,19 @@
     var promise = audio.play();
     if (promise && promise.then) {
       promise.then(function() {
-        fadeTo(TARGET_VOL);
-        updateBtn(true);
-        save(true);
+        fadeTo(TARGET_VOL); updateBtn(true); save(true);
       }).catch(function() {
-        btn.classList.add('ready');
-        updateBtn(false);
+        btn.classList.add('ready'); updateBtn(false);
       });
     } else {
-      fadeTo(TARGET_VOL);
-      updateBtn(true);
-      save(true);
+      fadeTo(TARGET_VOL); updateBtn(true); save(true);
     }
   }
 
   function pause() {
     fadeTo(0);
     setTimeout(function() { audio.pause(); }, 360);
-    updateBtn(false);
-    save(false);
+    updateBtn(false); save(false);
   }
 
   function save(playing) {
@@ -85,36 +79,20 @@
     } catch(e) {}
   }
 
-  /* ── FIX: используем touchend + preventDefault чтобы не было двойного срабатывания ── */
   var btnTouched = false;
-
   btn.addEventListener('touchend', function(e) {
-    e.preventDefault(); /* блокируем последующий click */
-    btnTouched = true;
-    removeFirstTouch();
+    e.preventDefault(); btnTouched = true; removeFirstTouch();
     btn.classList.remove('ready');
-    if (audio.paused) {
-      play();
-    } else {
-      pause();
-    }
+    if (audio.paused) { play(); } else { pause(); }
   }, { passive: false });
-
   btn.addEventListener('click', function() {
-    if (btnTouched) { btnTouched = false; return; } /* уже обработан через touchend */
-    removeFirstTouch();
-    btn.classList.remove('ready');
-    if (audio.paused) {
-      play();
-    } else {
-      pause();
-    }
+    if (btnTouched) { btnTouched = false; return; }
+    removeFirstTouch(); btn.classList.remove('ready');
+    if (audio.paused) { play(); } else { pause(); }
   });
 
   setInterval(function() {
-    if (!audio.paused) {
-      try { localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); } catch(e) {}
-    }
+    if (!audio.paused) { try { localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); } catch(e) {} }
   }, 1000);
 
   window.addEventListener('pagehide', function() { save(!audio.paused); });
@@ -122,63 +100,35 @@
 
   function tryAutoplay() {
     restoreTime();
-    if (wasPlaying) {
-      play();
-    } else {
-      updateBtn(false);
-    }
+    if (wasPlaying) { play(); } else { updateBtn(false); }
   }
 
-  if (audio.readyState >= 2) {
-    tryAutoplay();
-  } else {
+  if (audio.readyState >= 2) { tryAutoplay(); }
+  else {
     audio.addEventListener('canplay', tryAutoplay, { once: true });
-    setTimeout(function() {
-      if (wasPlaying && audio.paused) play();
-    }, 2000);
+    setTimeout(function() { if (wasPlaying && audio.paused) play(); }, 2000);
   }
 
-  /* ── FIX: только touchstart для первого касания, убрали click с document ── */
-  function onFirstTouch() {
-    removeFirstTouch();
-    if (wasPlaying && audio.paused) play();
-  }
-
-  function removeFirstTouch() {
-    document.removeEventListener('touchstart', onFirstTouch);
-  }
-
+  function onFirstTouch() { removeFirstTouch(); if (wasPlaying && audio.paused) play(); }
+  function removeFirstTouch() { document.removeEventListener('touchstart', onFirstTouch); }
   document.addEventListener('touchstart', onFirstTouch, { passive: true });
-
 })();
 
 
 /* ── MAIN APP ───────────────────────────────────────────── */
 (function() {
   var isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
-    || ('ontouchstart' in window)
-    || (navigator.maxTouchPoints > 0);
+    || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-  window.addEventListener('load', function() {
-    document.body.classList.add('is-loaded');
-  });
+  window.addEventListener('load', function() { document.body.classList.add('is-loaded'); });
 
   /* ── HEADER ── */
   var headerPlaceholder = document.getElementById('header-placeholder');
   if (headerPlaceholder) {
     fetch('/header.html')
-      .then(function(r) {
-        if (!r.ok) throw new Error('no header');
-        return r.text();
-      })
-      .then(function(html) {
-        headerPlaceholder.outerHTML = html;
-        initNav();
-      })
-      .catch(function() {
-        headerPlaceholder.style.display = 'none';
-        initNav();
-      });
+      .then(function(r) { if (!r.ok) throw new Error('no header'); return r.text(); })
+      .then(function(html) { headerPlaceholder.outerHTML = html; initNav(); })
+      .catch(function() { headerPlaceholder.style.display = 'none'; initNav(); });
   } else {
     document.addEventListener('DOMContentLoaded', initNav);
   }
@@ -193,34 +143,26 @@
       nav.style.webkitTransform = 'translate3d(0,0,0)';
       nav.style.transform       = 'translate3d(0,0,0)';
       nav.style.willChange      = 'transform';
-
       function syncNavH() {
         var h = nav.getBoundingClientRect().height;
         document.documentElement.style.setProperty('--navH', h + 'px');
       }
       syncNavH();
       window.addEventListener('resize', syncNavH, { passive: true });
-
-      function onScroll() {
-        nav.classList.toggle('scrolled', window.scrollY > 40);
-      }
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     }
 
     if (burger && mobileMenu) {
-      /* ── FIX: touchend на бургере чтобы без задержки ── */
       var burgerTouched = false;
       burger.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        burgerTouched = true;
-        mobileMenu.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        e.preventDefault(); burgerTouched = true;
+        mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden';
       }, { passive: false });
       burger.addEventListener('click', function() {
         if (burgerTouched) { burgerTouched = false; return; }
-        mobileMenu.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden';
       });
     }
 
@@ -232,17 +174,13 @@
     if (mobileClose) {
       var closeTouched = false;
       mobileClose.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        closeTouched = true;
-        closeMenu();
+        e.preventDefault(); closeTouched = true; closeMenu();
       }, { passive: false });
       mobileClose.addEventListener('click', function() {
-        if (closeTouched) { closeTouched = false; return; }
-        closeMenu();
+        if (closeTouched) { closeTouched = false; return; } closeMenu();
       });
     }
 
-    /* ── FIX: закрытие меню по оверлею — проверяем contains вместо === ── */
     if (mobileMenu) {
       mobileMenu.addEventListener('touchend', function(e) {
         var links = mobileMenu.querySelector('.mobile-menu-links');
@@ -278,8 +216,7 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = form.querySelector('.send-btn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+      btn.textContent = 'Sending...'; btn.disabled = true;
       var data = {
         firstName: (document.getElementById('firstName') || {}).value || '',
         lastName:  (document.getElementById('lastName')  || {}).value || '',
@@ -299,8 +236,7 @@
             text:'New message!\n\nName: '+data.firstName+' '+data.lastName+'\nEmail: '+data.email+'\n\nMessage:\n'+data.message })
         })
       ]).then(function() {
-        form.reset();
-        if (popup) popup.classList.add('show');
+        form.reset(); if (popup) popup.classList.add('show');
       }).catch(function() {
         alert('Connection error. Check your internet.');
       }).finally(function() {
@@ -329,18 +265,36 @@
     });
   }
 
-  /* ── FADE-UP ── */
+  /* ── FADE-UP ──
+     Элементы выше fold (видны при загрузке) — показываем МГНОВЕННО без анимации.
+     Элементы ниже fold — анимируем при скролле через IntersectionObserver.
+  ── */
   document.addEventListener('DOMContentLoaded', function() {
     var fuEls = document.querySelectorAll('.fu');
     if (!fuEls.length) return;
+
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
       });
     }, { threshold: 0.05 });
+
     fuEls.forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight * 1.1) el.classList.add('vis');
-      else io.observe(el);
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.style.transition = 'none';
+        el.style.opacity    = '1';
+        el.style.transform  = 'none';
+        el.classList.add('vis');
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            el.style.transition = '';
+            el.style.opacity    = '';
+            el.style.transform  = '';
+          });
+        });
+      } else {
+        io.observe(el);
+      }
     });
   });
 
@@ -387,9 +341,7 @@
     var subnav = document.querySelector('[data-case-subnav]');
     if (!subnav) return;
     document.body.classList.add('has-case-subnav');
-    function syncH() {
-      document.documentElement.style.setProperty('--caseSubnavH', subnav.offsetHeight + 'px');
-    }
+    function syncH() { document.documentElement.style.setProperty('--caseSubnavH', subnav.offsetHeight + 'px'); }
     syncH();
     window.addEventListener('resize', syncH, { passive: true });
 
