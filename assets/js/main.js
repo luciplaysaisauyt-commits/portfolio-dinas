@@ -1,5 +1,5 @@
 /* ============================================================
-   MAIN.JS — v7 (optimized, no lag)
+   MAIN.JS — v8 fixed nav + burger
    ============================================================ */
 
 (function initMusic() {
@@ -107,14 +107,14 @@
 })();
 
 
-/* ── MAIN APP ───────────────────────────────────────────── */
+/* ── MAIN APP ── */
 (function() {
   var isTouch = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
     || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   window.addEventListener('load', function() { document.body.classList.add('is-loaded'); });
 
-  /* ── HEADER ── */
+  /* ── HEADER (через fetch или вшитый) ── */
   var headerPlaceholder = document.getElementById('header-placeholder');
   if (headerPlaceholder) {
     fetch('/header.html')
@@ -122,40 +122,60 @@
       .then(function(html) { headerPlaceholder.outerHTML = html; initNav(); })
       .catch(function() { headerPlaceholder.style.display = 'none'; initNav(); });
   } else {
-    document.addEventListener('DOMContentLoaded', initNav);
+    // Навбар вшит в страницу — инициализируем сразу
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNav);
+    } else {
+      initNav();
+    }
   }
 
   function initNav() {
-    var burger      = document.getElementById('burger');
+    var nav = document.getElementById('topnav');
+    var burger = document.getElementById('burger');
+
+    /* ── Фиксируем навбар ── */
+    if (nav) {
+  function syncNavH() {
+    var h = nav.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--navH', h + 'px');
+  }
+  syncNavH();
+  window.addEventListener('resize', syncNavH, { passive: true });
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+    /* ── Мобильное меню ── */
+    // Ищем существующее или создаём новое
     var mobileMenu  = document.getElementById('mobileMenu');
     var mobileClose = document.getElementById('mobileClose');
-    var nav         = document.getElementById('topnav');
 
-    if (nav) {
-      nav.style.webkitTransform = 'translate3d(0,0,0)';
-      nav.style.transform       = 'translate3d(0,0,0)';
-      nav.style.willChange      = 'transform';
-      function syncNavH() {
-        var h = nav.getBoundingClientRect().height;
-        document.documentElement.style.setProperty('--navH', h + 'px');
-      }
-      syncNavH();
-      window.addEventListener('resize', syncNavH, { passive: true });
-      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+    // Если мобильного меню нет — создаём его динамически
+    if (burger && !mobileMenu) {
+      mobileMenu = document.createElement('div');
+      mobileMenu.id = 'mobileMenu';
+      mobileMenu.className = 'mobile-menu';
+      mobileMenu.innerHTML =
+        '<div class="mobile-menu-panel">' +
+          '<div class="mobile-menu-top">' +
+            '<button class="mobile-close" id="mobileClose" aria-label="Close">✕</button>' +
+          '</div>' +
+          '<nav class="mobile-menu-links">' +
+            '<a href="/index.html">Home</a>' +
+            '<a href="/gallery.html">Gallery</a>' +
+            '<a href="/about.html">About</a>' +
+            '<a href="/contactus.html">Contact</a>' +
+          '</nav>' +
+        '</div>';
+      document.body.appendChild(mobileMenu);
+      mobileClose = document.getElementById('mobileClose');
     }
 
-    if (burger && mobileMenu) {
-      var burgerTouched = false;
-      burger.addEventListener('touchend', function(e) {
-        e.preventDefault(); burgerTouched = true;
-        mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden';
-      }, { passive: false });
-      burger.addEventListener('click', function() {
-        if (burgerTouched) { burgerTouched = false; return; }
-        mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden';
-      });
+    function openMenu() {
+      if (mobileMenu) mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
@@ -163,34 +183,47 @@
       document.body.style.overflow = '';
     }
 
+    if (burger) {
+      var burgerTouched = false;
+      burger.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        burgerTouched = true;
+        openMenu();
+      }, { passive: false });
+      burger.addEventListener('click', function() {
+        if (burgerTouched) { burgerTouched = false; return; }
+        openMenu();
+      });
+    }
+
     if (mobileClose) {
       var closeTouched = false;
       mobileClose.addEventListener('touchend', function(e) {
-        e.preventDefault(); closeTouched = true; closeMenu();
+        e.preventDefault();
+        closeTouched = true;
+        closeMenu();
       }, { passive: false });
       mobileClose.addEventListener('click', function() {
-        if (closeTouched) { closeTouched = false; return; } closeMenu();
+        if (closeTouched) { closeTouched = false; return; }
+        closeMenu();
       });
     }
 
     if (mobileMenu) {
-      mobileMenu.addEventListener('touchend', function(e) {
-        var links = mobileMenu.querySelector('.mobile-menu-links');
-        if (links && links.contains(e.target)) return;
-        if (e.target === mobileMenu) closeMenu();
-      }, { passive: true });
       mobileMenu.addEventListener('click', function(e) {
-        var links = mobileMenu.querySelector('.mobile-menu-links');
-        if (links && links.contains(e.target)) return;
         if (e.target === mobileMenu) closeMenu();
       });
+      mobileMenu.addEventListener('touchend', function(e) {
+        if (e.target === mobileMenu) closeMenu();
+      }, { passive: true });
     }
 
+    /* ── Активная ссылка ── */
     var page = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.menu a, .mobile-menu-links a').forEach(function(link) {
       link.classList.remove('active');
       var href = link.getAttribute('href') || '';
-      var lp   = href.split('/').pop();
+      var lp = href.split('/').pop();
       if (!lp) return;
       if (lp === page) { link.classList.add('active'); return; }
       if ((page === '' || page === 'index.html') &&
@@ -257,12 +290,11 @@
     });
   }
 
-  /* ── FADE-UP — мгновенно для above-fold, анимация для остальных ── */
+  /* ── FADE-UP ── */
   document.addEventListener('DOMContentLoaded', function() {
     var fuEls = document.querySelectorAll('.fu');
     if (!fuEls.length) return;
 
-    // Сначала показываем все above-fold элементы без анимации
     fuEls.forEach(function(el) {
       if (el.getBoundingClientRect().top < window.innerHeight) {
         el.style.transition = 'none';
@@ -272,11 +304,9 @@
       }
     });
 
-    // Потом включаем анимацию для остальных
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
         document.body.classList.add('fu-ready');
-
         fuEls.forEach(function(el) {
           if (el.classList.contains('vis')) {
             el.style.transition = '';
@@ -284,13 +314,11 @@
             el.style.transform  = '';
           }
         });
-
         var io = new IntersectionObserver(function(entries) {
           entries.forEach(function(e) {
             if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
           });
         }, { threshold: 0.05 });
-
         fuEls.forEach(function(el) {
           if (!el.classList.contains('vis')) io.observe(el);
         });
@@ -315,7 +343,7 @@
     }, { threshold: 0.5 }).observe(el);
   });
 
-  /* ── CUSTOM CURSOR — только десктоп ── */
+  /* ── CUSTOM CURSOR ── */
   if (!isTouch) {
     var cursor = document.getElementById('dinCursor');
     var ring   = document.getElementById('dinCursorRing');
@@ -365,7 +393,7 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navH'))       || 0;
+        var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navH')) || 0;
         var subH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--caseSubnavH')) || 0;
         window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - subH - 16, behavior: 'smooth' });
       });
@@ -391,7 +419,7 @@
     document.querySelectorAll('[data-reveal]').forEach(function(el) { ro.observe(el); });
   });
 
-  /* ── VISIT NOTIFICATION — отложено на 3сек чтобы не блокировать рендер ── */
+  /* ── VISIT NOTIFICATION ── */
   setTimeout(function() {
     var page   = window.location.pathname;
     var ref    = document.referrer ? '\nОткуда: ' + document.referrer : '\nОткуда: прямой';

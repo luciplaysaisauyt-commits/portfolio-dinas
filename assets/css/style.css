@@ -38,7 +38,26 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:var(--text-base);font-weight:300;line-height:var(--leading-normal);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 300;
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  /* overflow-x: hidden убираем — ломает position:fixed на iOS */
+}
+
+/* Вместо overflow-x:hidden на body используем это */
+.gl-hero,
+.idx-hero,
+.about-hero,
+.contact-hero {
+  overflow-x: clip; /* clip не создаёт stacking context в отличие от hidden */
+}
+
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3,h4{font-family:var(--font-serif);font-weight:400;line-height:1.15;letter-spacing:-0.01em;color:#fff}
 a{text-decoration:none;color:inherit}
@@ -58,7 +77,25 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .next-title{font-family:var(--font-serif);font-size:clamp(3rem,6vw,var(--h1));font-weight:300;line-height:var(--leading-tight)}
 
 /* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;justify-content:space-between;align-items:center;padding:0 64px;background:rgba(16,16,16,0.96);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(255,255,255,0.14);height:var(--navBaseH);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:transform;transition:background 0.3s ease}
+
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 64px;
+  background: rgba(16,16,16,0.96);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  height: var(--navBaseH);
+  transition: background 0.3s ease;
+}
 .logo img{height:clamp(28px,calc(var(--navH) - 16px),44px);width:auto;display:block;filter:brightness(0) invert(1);opacity:1}
 .logo-text{font-family:var(--font-serif);font-size:22px;letter-spacing:0.08em;color:var(--white);font-weight:500}
 .menu{display:flex;align-items:center;gap:56px}

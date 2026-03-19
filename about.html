@@ -36,24 +36,62 @@
         <div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">2</span><span class="stat-label">Diplomas</span></div>
       </div>
+
+
       <div class="about-hero-actions">
-        <a href="contactus.html" class="about-cta-btn">Get in touch</a>
-        <a href="gallery.html" class="about-outline-btn">View work →</a>
-      </div>
+  <a href="contactus.html" class="about-cta-btn">Get in touch</a>
+  <a href="gallery.html" class="about-outline-btn">View work →</a>
+  <div class="cv-dropdown">
+    <button class="cv-dropdown-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      CV
+      <svg class="cv-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="cv-dropdown-menu">
+      <a href="/assets/images/pdf/Dinmukhammedrus.pdf" download="CV_DIN_RU.pdf" class="cv-dropdown-item">
+        <span class="cv-lang">RU</span>
+        <span>Скачать резюме</span>
+      </a>
+      <a href="/assets/images/pdf/Dinmukhammedeng.pdf" download="CV_DIN_EN.pdf" class="cv-dropdown-item">
+        <span class="cv-lang">EN</span>
+        <span>Download resume</span>
+      </a>
     </div>
   </div>
+</div>
 </section>
 
 <section class="about-detail" id="about">
   <div class="about-detail-inner">
     <div class="about-detail-left">
       <span class="label-tag">About</span>
-      
       <h2>Design<br>with<br><em>purpose</em></h2>
     </div>
     <div class="about-detail-right">
-      <p class="about-lead">Designer and developer with a certified background in Web Design, Interactive Media, and Front-End Development — currently based in Canada.</p>
-      <p class="about-body">As a student and self-driven designer, I constantly explore new ideas and dive deeper into modern design principles. Every project is an opportunity to learn, experiment, and push the boundaries of what's possible on screen.</p>
+      <p class="about-lead">
+  My name is <p class="about-lead">
+
+  <span class="name-logo">
+    <img src="/assets/images/DIN.png" alt="DIN logo">
+    <strong>mukhammed Aisauyt</strong>
+  </span>
+  — a creative designer and developer focused on building modern digital experiences.
+</p>
+
+<p class="about-body">
+  I work at the intersection of design and technology, creating interfaces that are not only visually strong but also functional and user-centered. My approach is driven by curiosity, experimentation, and a constant desire to improve.
+</p>
+
+<p class="about-body">
+  <img src="/assets/images/DIN.png" alt="DIN logo" class="inline-logo">
+</span> is not just a name or a logo — it’s a reflection of my journey. It represents my growth, my mindset, and the way I evolve through every project and experience. Step by step, I build, learn, and push myself forward — shaping not only my work, but who I am.
+</p>
       <div class="about-certs">
         <div class="cert-item"><span class="cert-icon">◆</span><div><span class="cert-title">Web Design</span><span class="cert-school">Skillbox · Certificate</span></div></div>
         <div class="cert-item"><span class="cert-icon">◆</span><div><span class="cert-title">Interactive Media Design</span><span class="cert-school">Seneca College · Diploma</span></div></div>
@@ -122,7 +160,7 @@
 </footer>
 
 <script src="/assets/js/main.js" defer></script>
-<!-- В начале body, ДО скриптов -->
+<script src="/assets/js/about.js" defer></script>
 <audio id="bgMusic" loop preload="auto">
   <source src="/assets/music/videoplayback_2.flac" type="audio/flac">
   <source src="/assets/music/videoplayback_1.m4a"  type="audio/mp4">
