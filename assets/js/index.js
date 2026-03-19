@@ -348,4 +348,7 @@
     update(0);
   }
 
+
+  if (wrap) wrap.style.overflowX = 'auto';
+  
 })();

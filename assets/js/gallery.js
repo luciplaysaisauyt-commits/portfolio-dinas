@@ -77,4 +77,8 @@
     );
   }
 
+
+  if (wrap) wrap.style.overflowX = 'auto';
+
+  
 })();

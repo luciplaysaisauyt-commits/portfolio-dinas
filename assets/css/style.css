@@ -644,3 +644,9 @@ body.theme-avion {
   /* ... существующие переменные ... */
   --hero-top-gap: 40px; /* расстояние от subnav до hero */
 }
+
+
+/* Убираем мигание при загрузке */
+body:not(.fu-ready) .fu { transition: none !important; }
+
+

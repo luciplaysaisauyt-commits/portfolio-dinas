@@ -1,6 +1,5 @@
 /* ============================================================
-   MAIN.JS — v6
-   Музыка: простая и надёжная, сохраняется между страницами
+   MAIN.JS — v7 (optimized, no lag)
    ============================================================ */
 
 (function initMusic() {
@@ -35,9 +34,7 @@
   audio.addEventListener('durationchange',  restoreTime, { once: true });
 
   function fadeTo(target) {
-    var from  = audio.volume;
-    var diff  = target - from;
-    var start = null;
+    var from = audio.volume, diff = target - from, start = null;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / 350, 1);
@@ -56,14 +53,9 @@
   function play() {
     var promise = audio.play();
     if (promise && promise.then) {
-      promise.then(function() {
-        fadeTo(TARGET_VOL); updateBtn(true); save(true);
-      }).catch(function() {
-        btn.classList.add('ready'); updateBtn(false);
-      });
-    } else {
-      fadeTo(TARGET_VOL); updateBtn(true); save(true);
-    }
+      promise.then(function() { fadeTo(TARGET_VOL); updateBtn(true); save(true); })
+             .catch(function() { btn.classList.add('ready'); updateBtn(false); });
+    } else { fadeTo(TARGET_VOL); updateBtn(true); save(true); }
   }
 
   function pause() {
@@ -95,7 +87,7 @@
     if (!audio.paused) { try { localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); } catch(e) {} }
   }, 1000);
 
-  window.addEventListener('pagehide', function() { save(!audio.paused); });
+  window.addEventListener('pagehide',     function() { save(!audio.paused); });
   window.addEventListener('beforeunload', function() { save(!audio.paused); });
 
   function tryAutoplay() {
@@ -265,36 +257,44 @@
     });
   }
 
-  /* ── FADE-UP ──
-     Элементы выше fold (видны при загрузке) — показываем МГНОВЕННО без анимации.
-     Элементы ниже fold — анимируем при скролле через IntersectionObserver.
-  ── */
+  /* ── FADE-UP — мгновенно для above-fold, анимация для остальных ── */
   document.addEventListener('DOMContentLoaded', function() {
     var fuEls = document.querySelectorAll('.fu');
     if (!fuEls.length) return;
 
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.05 });
-
+    // Сначала показываем все above-fold элементы без анимации
     fuEls.forEach(function(el) {
       if (el.getBoundingClientRect().top < window.innerHeight) {
         el.style.transition = 'none';
         el.style.opacity    = '1';
         el.style.transform  = 'none';
         el.classList.add('vis');
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
+      }
+    });
+
+    // Потом включаем анимацию для остальных
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        document.body.classList.add('fu-ready');
+
+        fuEls.forEach(function(el) {
+          if (el.classList.contains('vis')) {
             el.style.transition = '';
             el.style.opacity    = '';
             el.style.transform  = '';
-          });
+          }
         });
-      } else {
-        io.observe(el);
-      }
+
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.05 });
+
+        fuEls.forEach(function(el) {
+          if (!el.classList.contains('vis')) io.observe(el);
+        });
+      });
     });
   });
 
@@ -365,7 +365,7 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navH'))      || 0;
+        var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navH'))       || 0;
         var subH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--caseSubnavH')) || 0;
         window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - subH - 16, behavior: 'smooth' });
       });
@@ -391,8 +391,8 @@
     document.querySelectorAll('[data-reveal]').forEach(function(el) { ro.observe(el); });
   });
 
-  /* ── VISIT NOTIFICATION ── */
-  (function() {
+  /* ── VISIT NOTIFICATION — отложено на 3сек чтобы не блокировать рендер ── */
+  setTimeout(function() {
     var page   = window.location.pathname;
     var ref    = document.referrer ? '\nОткуда: ' + document.referrer : '\nОткуда: прямой';
     var device = /Mobi|Android/i.test(navigator.userAgent) ? '📱 Мобильный' : '🖥 Десктоп';
@@ -402,6 +402,6 @@
       body: JSON.stringify({ chat_id:'1525265767',
         text:'👁 Посетитель\n\nСтраница: '+page+ref+'\nУстройство: '+device+'\nЯзык: '+navigator.language+'\nВремя: '+time })
     }).catch(function(){});
-  })();
+  }, 3000);
 
 })();
