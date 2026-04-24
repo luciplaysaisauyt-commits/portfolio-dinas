@@ -693,3 +693,103 @@ body:not(.is-loaded) .ub-content { opacity: 0; transform: translateY(14px); }
   width: 100%;
   align-items: start;
 }
+
+/* ── UXFLOW SECTION — add to unniebox.css ── */
+
+/* TABS */
+.uxflow-tabs {
+  display: flex;
+  gap: 10px;
+}
+.uxflow-tab {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(11,109,255,0.30);
+  background: rgba(11,109,255,0.06);
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s;
+}
+.uxflow-tab:hover {
+  color: #fff;
+  border-color: rgba(11,109,255,0.55);
+  background: rgba(11,109,255,0.14);
+}
+.uxflow-tab.active {
+  background: rgba(11,109,255,0.22);
+  border-color: rgba(11,109,255,0.65);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(11,109,255,0.20);
+}
+
+/* PANELS */
+.uxflow-panel--hidden { display: none; }
+
+/* CAPTION */
+.uxflow-caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 14px;
+}
+.uxflow-cap-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-sans);
+}
+.uxflow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ac);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(11,109,255,0.6);
+}
+
+/* PATH CARDS */
+.uxflow-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.uxflow-path-card {
+  background: var(--ac-dim);
+  border: 1px solid var(--ac-bdr);
+  border-radius: 18px;
+  padding: 18px;
+  transition: transform .28s, border-color .28s, box-shadow .28s;
+}
+.uxflow-path-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ac-bdr-h);
+  box-shadow: 0 12px 40px rgba(11,109,255,0.18);
+}
+.uxflow-path-num {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: rgba(74,162,255,0.45);
+  margin-bottom: 8px;
+}
+.uxflow-path-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.uxflow-path-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .uxflow-paths { grid-template-columns: 1fr; }
+}

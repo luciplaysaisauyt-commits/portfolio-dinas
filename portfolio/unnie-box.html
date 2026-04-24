@@ -17,6 +17,108 @@
   <link rel="stylesheet" href="/assets/css/typography.css">
   <link rel="stylesheet" href="/assets/css/unniebox.css">
   <link rel="stylesheet" href="/assets/css/project-frames.css">
+
+  <!-- UXFLOW SECTION STYLES -->
+  <style>
+    /* ── UX FLOW TABS ── */
+    .uxflow-tabs {
+      display: flex;
+      gap: 10px;
+    }
+    .uxflow-tab {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,109,255,0.30);
+      background: rgba(11,109,255,0.06);
+      color: rgba(255,255,255,0.55);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .uxflow-tab:hover {
+      color: #fff;
+      border-color: rgba(11,109,255,0.55);
+      background: rgba(11,109,255,0.14);
+    }
+    .uxflow-tab.active {
+      background: rgba(11,109,255,0.22);
+      border-color: rgba(11,109,255,0.65);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(11,109,255,0.20);
+    }
+
+    /* ── PANEL ── */
+    .uxflow-panel--hidden { display: none; }
+
+    /* ── CAPTION ROW ── */
+    .uxflow-caption {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 14px;
+    }
+    .uxflow-cap-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-family: 'DM Sans', sans-serif;
+    }
+    .uxflow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0b6dff;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(11,109,255,0.6);
+    }
+
+    /* ── PATH CARDS ── */
+    .uxflow-paths {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .uxflow-path-card {
+      background: rgba(11,109,255,0.06);
+      border: 1px solid rgba(11,109,255,0.20);
+      border-radius: 18px;
+      padding: 18px;
+      transition: transform .28s, border-color .28s, box-shadow .28s;
+    }
+    .uxflow-path-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(11,109,255,0.45);
+      box-shadow: 0 12px 40px rgba(11,109,255,0.18);
+    }
+    .uxflow-path-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: rgba(74,162,255,0.45);
+      margin-bottom: 8px;
+    }
+    .uxflow-path-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .uxflow-path-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .uxflow-paths { grid-template-columns: 1fr; }
+    }
+  </style>
+
 </head>
 
 <body class="ub-body theme-unniebox">
@@ -51,6 +153,7 @@
       <a href="#products"  class="case-subnav-link">Products</a>
       <a href="#problem"   class="case-subnav-link">Problem</a>
       <a href="#process"   class="case-subnav-link">Process</a>
+      <a href="#uxflow"    class="case-subnav-link">Wireframe</a>
       <a href="#colors"    class="case-subnav-link">Colors & Type</a>
       <a href="#landing"   class="case-subnav-link">Full Page</a>
       <a href="#uikit"     class="case-subnav-link">UI Kit</a>
@@ -99,7 +202,7 @@
 
       <div class="meta-card">
         <div class="meta-k">Role</div>
-        <div class="meta-v">UI / UX Designer</div>
+        <div class="meta-v">UI Designer · UX Flows</div>
       </div>
 
       <div class="meta-card">
@@ -191,11 +294,11 @@
             <div class="case-grid2">
               <div class="case-card" data-reveal data-reveal-delay="1">
                 <h3>Problem</h3>
-                <p>Beauty boxes require trust. Users need proof, clarity, and confidence before they share contact details or pay. Generic layouts kill conversions.</p>
+                <p>Beauty subscription boxes live or die on trust. Users are asked to share personal details and pay before they've touched the product — so if the page doesn't immediately feel premium and credible, they leave. The challenge was to design a landing experience that earns trust fast, explains the offer clearly, and removes every reason to hesitate.</p>
               </div>
               <div class="case-card" data-reveal data-reveal-delay="2">
                 <h3>Goals</h3>
-                <p>Build a premium look, explain the offer fast, and guide users through a simple flow — learn, trust, order. Every section should answer an objection.</p>
+                <p>Design a premium landing page that communicates product value at a glance, guides users through a natural learn → trust → order flow, and converts hesitation into action. Every section needed to answer a real objection before the user even thought to ask it.</p>
               </div>
             </div>
           </section>
@@ -209,6 +312,56 @@
               <div class="pstep" data-reveal data-reveal-delay="2"><div class="pnum">02</div><div class="ptitle">Design system</div><div class="pdesc">Set colors, typography, spacing, and card styles to keep everything consistent.</div></div>
               <div class="pstep" data-reveal data-reveal-delay="3"><div class="pnum">03</div><div class="ptitle">Components</div><div class="pdesc">Built a UI kit of buttons, inputs, tags, icons, and card templates to speed up design.</div></div>
               <div class="pstep" data-reveal data-reveal-delay="4"><div class="pnum">04</div><div class="ptitle">Interaction and polish</div><div class="pdesc">Designed modal flows, micro-interactions, and final visual refinements for a premium feel.</div></div>
+            </div>
+          </section>
+
+
+          <!-- WIREFRAME & USER FLOW -->
+          <section class="case-section" id="uxflow" data-reveal>
+            <div class="case-eyebrow">RESEARCH & PLANNING</div>
+            <h2 class="case-h2">Wireframe &amp; User Flow.</h2>
+            <p class="case-p">Before any pixel was styled, I mapped out the complete user journey and page structure. The wireframe defines every section layout; the user flow captures all 3 paths — direct buyer, hesitant user, and lead capture — so no edge case was left undesigned.</p>
+
+            <div class="uxflow-tabs" style="margin-top:24px">
+              <button class="uxflow-tab active" data-tab="wireframe">Wireframe</button>
+              <button class="uxflow-tab" data-tab="userflow">User Flow</button>
+            </div>
+
+            <div class="uxflow-panel" id="tab-wireframe" style="margin-top:16px">
+              <div class="pf pf--full" data-reveal data-reveal-delay="1">
+                <img src="/assets/images/unniebox/wireframe.png" alt="UnnieBox Wireframe full page layout" loading="lazy" decoding="async">
+                <span class="pf__tag">Wireframe — Full Page Layout</span>
+              </div>
+              <div class="uxflow-caption">
+                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Hero + Nav structure</div>
+                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Trust signals &amp; product sections</div>
+                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Modal entry points mapped</div>
+                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Reviews, FAQ, final CTA</div>
+              </div>
+            </div>
+
+            <div class="uxflow-panel uxflow-panel--hidden" id="tab-userflow" style="margin-top:16px">
+              <div class="pf pf--full" data-reveal data-reveal-delay="1">
+                <img src="/assets/images/unniebox/Userflow.png" alt="UnnieBox User Flow 3 paths" loading="lazy" decoding="async">
+                <span class="pf__tag">User Flow — 3 Paths Mapped</span>
+              </div>
+              <div class="uxflow-paths" style="margin-top:16px">
+                <div class="uxflow-path-card" data-reveal data-reveal-delay="1">
+                  <div class="uxflow-path-num">01</div>
+                  <div class="uxflow-path-title">Direct Buyer</div>
+                  <div class="uxflow-path-desc">Hero → Composition → Order form → Payment. Quick decision maker who needs minimal convincing.</div>
+                </div>
+                <div class="uxflow-path-card" data-reveal data-reveal-delay="2">
+                  <div class="uxflow-path-num">02</div>
+                  <div class="uxflow-path-title">Hesitant User</div>
+                  <div class="uxflow-path-desc">Trust signals → Reviews → FAQ → Order. Needs social proof and clear answers before committing.</div>
+                </div>
+                <div class="uxflow-path-card" data-reveal data-reveal-delay="3">
+                  <div class="uxflow-path-num">03</div>
+                  <div class="uxflow-path-title">Lead Capture</div>
+                  <div class="uxflow-path-desc">Guide CTA → Phone number → Nurture later. Not ready to buy — captured for future conversion.</div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -421,5 +574,36 @@
   <script src="/assets/js/unniebox.js" defer></script>
   <script src="/assets/js/project-frames.js" defer></script>
 
+
+  <!-- UXFLOW TAB SCRIPT -->
+  <script>
+    (function() {
+      function initUXFlowTabs() {
+        var tabs = document.querySelectorAll('.uxflow-tab');
+        var panels = document.querySelectorAll('.uxflow-panel');
+        tabs.forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var target = this.getAttribute('data-tab');
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+            panels.forEach(function(p) {
+              if (p.id === 'tab-' + target) {
+                p.classList.remove('uxflow-panel--hidden');
+              } else {
+                p.classList.add('uxflow-panel--hidden');
+              }
+            });
+          });
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initUXFlowTabs);
+      } else {
+        initUXFlowTabs();
+      }
+    })();
+  </script>
+
 </body>
 </html>
+<!-- Note: add these styles to unniebox.css -->
