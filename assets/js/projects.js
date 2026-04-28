@@ -20,20 +20,37 @@ const PROJECTS = [
     external: true,
     featured: true,
   },
+
+  {
+    id:       6,
+    title:    "Nova Bank App",
+    category: "UI UX",
+    filter:   "ui-ux",
+    type:     "Case Study",
+    year:     "2024",
+    desc:     "Mobile banking app concept focused on clean onboarding, simple money transfers, card management, transaction tracking, and a modern financial dashboard.",
+    tags:     ["Figma", "Mobile App", "UI UX"],
+    listTags: ["UI UX", "Mobile Banking"],
+    href:     "portfolio/nova-bank.html",
+    bg:       "wbg7",
+    featured: true,
+  },
+
   {
     id:       2,
-    title:    "Unnie Box\nLanding Page",
-    category: "UI Web Design",
-    filter:   "web",
-    type:     "UI Design",
+    title:    "Unnie Box",
+    category: "UI UX Web Design",
+    filter:   "ui-ux",
+    type:     "Case Study",
     year:     "2024",
-    desc:     "Korean beauty subscription box landing page focused on trust, conversion, and delight.",
-    tags:     ["Figma", "UI Kit", "Landing"],
-    listTags: ["Web", "Landing"],
+    desc:     "Korean beauty subscription box case study focused on user experience, landing page structure, trust building, conversion flow, product presentation, and a soft modern visual identity.",
+    tags:     ["Figma", "UI UX", "Landing Page"],
+    listTags: ["UI UX", "Web Design"],
     href:     "portfolio/unnie-box.html",
     bg:       "wbg1",
     featured: true,
   },
+
   {
     id:       3,
     title:    "Avion\nFurniture Platform",
@@ -48,6 +65,7 @@ const PROJECTS = [
     bg:       "wbg6",
     featured: true,
   },
+
   {
     id:       4,
     title:    "MSCHF\nPlatform",
@@ -62,10 +80,11 @@ const PROJECTS = [
     bg:       "wbg-mschf",
     featured: true,
   },
+
   {
     id:       5,
     title:    "CLM\nMafia Platform",
-    category: "UI UX Redesign",
+    category: "UI Redesign",
     filter:   "ui-ux",
     type:     "Case Study",
     year:     "2024",
@@ -76,6 +95,7 @@ const PROJECTS = [
     bg:       "wbg7",
     featured: true,
   },
+
 ];
 
 

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – Nova Bank Case Study</title>
+  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/typography.css">
+  <link rel="stylesheet" href="/assets/css/nova-bank.css">
+  <link rel="stylesheet" href="/assets/css/project-frames.css">
+
+</head>
+
+<body class="nb-body theme-novabank">
+
+  <!-- BG -->
+  <div class="nb-bg"></div>
+  <div class="nb-grid-overlay"></div>
+  <div class="nb-orb nb-orb-1"></div>
+  <div class="nb-orb nb-orb-2"></div>
+  <div class="nb-orb nb-orb-3"></div>
+  <div class="nb-progress-bar" id="nbProgress"></div>
+
+  <!-- NAV -->
+  <header class="nav nb-nav" id="topnav">
+    <div class="logo"><a href="../index.html"><img src="/assets/images/DIN.png" alt="DIN" class="logo-img"></a></div>
+    <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
+    <nav class="menu">
+      <a href="../index.html">Home</a>
+      <a href="../gallery.html">Gallery</a>
+      <a href="../about.html">About</a>
+      <a href="../contactus.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="nb-page-wrap">
+
+    <!-- SUBNAV -->
+    <div class="case-subnav nb-subnav" data-case-subnav>
+      <div class="case-subnav-inner">
+        <div class="case-subnav-pill" role="navigation" aria-label="Case sections">
+          <a href="#overview"   class="case-subnav-link">Overview</a>
+          <a href="#research"   class="case-subnav-link">Research</a>
+          <a href="#problem"    class="case-subnav-link">Problem</a>
+          <a href="#process"    class="case-subnav-link">Process</a>
+          <a href="#wireframes" class="case-subnav-link">Wireframes</a>
+          <a href="#userflow"   class="case-subnav-link">User Flow</a>
+          <a href="#designsys"  class="case-subnav-link">Design System</a>
+          <a href="#screens"    class="case-subnav-link">Screens</a>
+          <a href="#learnings"  class="case-subnav-link">Learnings</a>
+        </div>
+      </div>
+    </div>
+
+    <main style="position:relative;z-index:1;color:#fff;padding-top:14px">
+      <div class="case-wrap">
+
+        <!-- ══════════════════════════════════════════
+             HERO
+        ═══════════════════════════════════════════ -->
+        <div class="hero case-hero nb-hero" data-reveal>
+
+          <!-- LEFT -->
+          <div>
+            <div class="hero-accent nb-accent"></div>
+
+            <div class="nb-eyebrow">
+              UI/UX DESIGN · MOBILE APP · CASE STUDY
+            </div>
+
+            <h1 class="case-title nb-title" style="font-family:'Poppins',sans-serif;font-weight:700">
+              Nova Bank
+            </h1>
+
+            <p class="case-sub nb-sub">
+             A modern mobile banking app designed for clarity, speed, and trust. Complete UI/UX case study covering research, wireframes, user flows, design system, and high fidelity mobile screens.
+            </p>
+
+            <div class="case-actions" style="margin-top:20px">
+              <a class="btn-case primary nb-btn-primary" href="../gallery.html">← Back to gallery</a>
+              <a class="btn-case nb-btn" href="../contactus.html">Get in touch</a>
+              <a class="btn-case nb-btn" href="unnie-box.html" rel="prev">← Prev</a>
+              <a class="btn-case nb-btn" href="avion.html" rel="next">Next →</a>
+            </div>
+
+            <div class="case-meta nb-meta" style="margin-top:22px">
+              <div class="meta-card nb-meta-card">
+                <div class="meta-k nb-meta-k">Role</div>
+                <div class="meta-v">UI Designer · UX Researcher</div>
+              </div>
+              <div class="meta-card nb-meta-card">
+                <div class="meta-k nb-meta-k">Tools</div>
+                <div class="meta-v">
+                  <span class="chip nb-chip">Figma</span>
+                  <span class="chip nb-chip">Adobe Illustrator</span>
+                </div>
+              </div>
+              <div class="meta-card nb-meta-card">
+                <div class="meta-k nb-meta-k">Type</div>
+                <div class="meta-v">Mobile App · UI System · Concept</div>
+              </div>
+              <div class="meta-card nb-meta-card">
+                <div class="meta-k nb-meta-k">Deliverables</div>
+                <div class="meta-v">Screens · Design System · Components</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT — hero image -->
+          <div class="pf pf--hero nb-pf-hero" data-reveal data-reveal-delay="2">
+            
+            <div class="nb-img-placeholder nb-img-placeholder--hero">
+              <div class="nb-placeholder-inner">
+                <div class="nb-placeholder-icon"></div>
+                <div class="nb-placeholder-label"></div>
+                <div class="nb-placeholder-hint"><img 
+                  class="nb-hero-img" 
+              src="/assets/images/nova-bank/home.png" alt="Nova Bank mobile app hero mockup"
+              /></div>
+              </div>
+            </div>
+            <div class="pf__overlay"></div>
+          </div>
+
+        </div><!-- /hero -->
+   
+        <!-- ══════════════════════════════════════════
+             SECTIONS
+        ═══════════════════════════════════════════ -->
+        <section class="case-sections">
+
+          <!-- ── OVERVIEW ── -->
+          <section class="case-section nb-section" id="overview" data-reveal>
+            <div class="case-overview-top">
+              <div class="nb-eyebrow">PROJECT OVERVIEW</div>
+              <h2 class="case-h2 nb-h2">Banking, redesigned for the mobile generation</h2>
+              <p class="case-p nb-p">
+                  Nova Bank is a concept fintech mobile banking app designed around clarity, speed, and trust.
+  The goal was to simplify the everyday banking experience by making balances, transfers,
+  cards, and transaction history easier to understand at a glance.
+              <p class="case-p nb-p" style="margin-top:10px">
+                 I designed the full mobile experience, including research, information architecture,
+  wireframes, user flows, a complete design system, and high fidelity screens for the main app states.
+              </p>
+              <div class="nb-stats" style="margin-top:24px">
+                <div class="nb-stat" data-reveal data-reveal-delay="1">
+                  <div class="nb-stat-n">12+</div>
+                  <div class="nb-stat-t">High-fidelity screens designed</div>
+                </div>
+                <div class="nb-stat" data-reveal data-reveal-delay="2">
+                  <div class="nb-stat-n">4</div>
+                  <div class="nb-stat-t">Core user flows mapped</div>
+                </div>
+                <div class="nb-stat" data-reveal data-reveal-delay="3">
+                  <div class="nb-stat-n">Custom</div>
+                  <div class="nb-stat-t">Full
+UI system built from scratch</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ── RESEARCH ── -->
+          <section class="case-section nb-section" id="research" data-reveal>
+            <div class="nb-eyebrow">USER RESEARCH</div>
+            <h2 class="case-h2 nb-h2">What users actually hate about banking apps</h2>
+            <p class="case-p nb-p">
+              Before designing a single screen, I analyzed competitor apps and identified the friction points 
+              that make users frustrated with traditional banking UX.
+            </p>
+
+            <div class="nb-research-grid" style="margin-top:22px">
+              <div class="nb-research-card" data-reveal data-reveal-delay="1">
+                <div class="nb-research-icon"></div>
+                <h3>Navigation overload</h3>
+                <p>Too many tabs, buried features, inconsistent IA. Users can't find what they need fast.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="2">
+                <div class="nb-research-icon"></div>
+                <h3>Trust & clarity gap</h3>
+                <p>Hidden fees, confusing transaction labels, and unclear balances erode user confidence.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="3">
+                <div class="nb-research-icon"></div>
+                <h3>Slow critical actions</h3>
+                <p>Sending money or checking a statement takes too many steps. Users expect instant feedback.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="4">
+                <div class="nb-research-icon"></div>
+                <h3>Outdated visual design</h3>
+                <p>Many banking apps feel visually outdated compared to modern consumer products. Users expect a cleaner, more premium digital experience.</p>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ── PROBLEM ── -->
+          <section class="case-section nb-section" id="problem" data-reveal>
+            <h2 class="case-h2 nb-h2">Problem and goals</h2>
+            <div class="case-grid2 nb-grid2">
+              <div class="case-card nb-card" data-reveal data-reveal-delay="1">
+                <h3>Problem</h3>
+                <p>
+                  Traditional banking apps prioritize compliance and feature completeness over user experience. 
+                  The result is cluttered interfaces with poor hierarchy, confusing navigation, and visual design 
+                  that creates anxiety rather than confidence. Users distrust what they can't read clearly.
+                </p>
+              </div>
+              <div class="case-card nb-card" data-reveal data-reveal-delay="2">
+                <h3>Goals</h3>
+                <p>
+                  Design a mobile banking app that makes balance, transactions, and transfers immediately clear. 
+                  Create a dark premium UI system that communicates trust and modernity. Reduce cognitive load 
+                  so every action takes fewer taps and zero confusion.
+                </p>
+              </div>
+            </div>
+
+            <!-- HMW statement -->
+            <div class="nb-hmw" data-reveal data-reveal-delay="3">
+              <span class="nb-hmw-label">How Might We</span>
+              <p class="nb-hmw-text" style="font-family:'Poppins',sans-serif;font-style:normal;font-size:17px;font-weight:500">
+                "How might we design a banking app that feels as intuitive and premium as the best consumer apps, 
+                while maintaining the clarity and trust that financial products demand?"
+              </p>
+            </div>
+          </section>
+
+
+          <!-- ── PROCESS ── -->
+          <section class="case-section nb-section" id="process" data-reveal>
+            <h2 class="case-h2 nb-h2">Design process</h2>
+            <p class="case-p nb-p">From research to polished UI — a structured five-stage approach.</p>
+
+            <div class="nb-process" style="margin-top:18px">
+              <div class="nb-pstep" data-reveal data-reveal-delay="1">
+                <div class="nb-pnum">01</div>
+                <div class="nb-ptitle">Discovery & Research</div>
+                <div class="nb-pdesc">Competitor audit, pain point mapping, user journey analysis to define the core problems.</div>
+              </div>
+              <div class="nb-pstep" data-reveal data-reveal-delay="2">
+                <div class="nb-pnum">02</div>
+                <div class="nb-ptitle">Information Architecture</div>
+                <div class="nb-pdesc">Defined navigation structure, feature hierarchy, and screen map for all core flows.</div>
+              </div>
+              <div class="nb-pstep" data-reveal data-reveal-delay="3">
+                <div class="nb-pnum">03</div>
+                <div class="nb-ptitle">Wireframes & User Flows</div>
+                <div class="nb-pdesc">Low-fi layouts and full interaction flows — every path from onboarding to transfer.</div>
+              </div>
+              <div class="nb-pstep" data-reveal data-reveal-delay="4">
+                <div class="nb-pnum">04</div>
+                <div class="nb-ptitle">Design System</div>
+                <div class="nb-pdesc">Built complete token set: colors, typography, spacing, components, and states.</div>
+              </div>
+              <div class="nb-pstep" data-reveal data-reveal-delay="5">
+                <div class="nb-pnum">05</div>
+                <div class="nb-ptitle">High-Fidelity UI</div>
+                <div class="nb-pdesc">Final screens for all core states: dashboard, transactions, transfer, settings, onboarding.</div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ── WIREFRAME & USER FLOW (TABBED) ── -->
+          <section class="case-section nb-section" id="wireframes" data-reveal>
+            <div class="nb-eyebrow">RESEARCH &amp; PLANNING</div>
+            <h2 class="case-h2 nb-h2">Wireframe &amp; User Flow</h2>
+            <p class="case-p nb-p">
+              Before any pixel was styled, I mapped the complete screen structure and interaction paths.
+              Wireframes define every layout and hierarchy; the user flow captures all 4 core paths —
+              onboarding, transfer, transactions, and card management — so no edge case was left undesigned.
+            </p>
+
+            <!-- TABS -->
+            <div class="nb-tabs" style="margin-top:24px">
+              <button class="nb-tab active" data-nbtab="wireframe">Wireframe</button>
+              <button class="nb-tab" data-nbtab="userflow">User Flow</button>
+            </div>
+
+            <!-- PANEL: WIREFRAME -->
+            <div class="nb-tab-panel" id="nbtab-wireframe" style="margin-top:16px">
+              <div class="pf nb-pf-full" data-reveal data-reveal-delay="1">
+                <img src="/assets/images/Nova-Bank/Wireframes.png" alt="Wireframes" style="width:100%;display:block">
+    
+                <div class="nb-img-placeholder nb-img-placeholder--full">
+                  <div class="nb-placeholder-inner">
+                    <div class="nb-placeholder-icon"></div>
+                    <div class="nb-placeholder-label">Wireframes — All Screens</div>
+                    <div class="nb-placeholder-hint">Replace with: /assets/images/novabank/wireframes.png</div>
+                  </div>
+                </div>
+                <span class="pf__tag nb-pf-tag">Wireframe — Full Screen Spread</span>
+              </div>
+
+              <div class="nb-tab-caption">
+                <div class="nb-cap-item"><span class="nb-cap-dot"></span>Navigation &amp; header structure</div>
+                <div class="nb-cap-item"><span class="nb-cap-dot"></span>Dashboard layout &amp; card hierarchy</div>
+                <div class="nb-cap-item"><span class="nb-cap-dot"></span>Transfer &amp; modal entry points</div>
+                <div class="nb-cap-item"><span class="nb-cap-dot"></span>Onboarding &amp; settings flows</div>
+              </div>
+            </div>
+
+            <!-- PANEL: USER FLOW -->
+            <div class="nb-tab-panel nb-tab-panel--hidden" id="nbtab-userflow" style="margin-top:16px">
+              <div class="pf nb-pf-full" data-reveal data-reveal-delay="1">
+              <img src="/assets/images/Nova-Bank/User flow.png" alt="User Flow" style="width:100%;display:block">
+                 
+                <div class="nb-img-placeholder nb-img-placeholder--full">
+                  <div class="nb-placeholder-inner">
+                    <div class="nb-placeholder-icon">🔀</div>
+                    <div class="nb-placeholder-label">User Flow Diagram</div>
+                    <div class="nb-placeholder-hint">Replace with: /assets/images/novabank/userflow.png</div>
+                  </div>
+                </div>
+                <span class="pf__tag nb-pf-tag">User Flow — 4 Core Paths</span>
+              </div>
+
+              <div class="nb-flow-paths" style="margin-top:16px">
+                <div class="nb-flow-card" data-reveal data-reveal-delay="1">
+                  <div class="nb-flow-num">01</div>
+                  <div class="nb-flow-title">Onboarding</div>
+                  <div class="nb-flow-desc">Sign up → ID verify → card setup → dashboard. First impression that builds trust immediately.</div>
+                </div>
+                <div class="nb-flow-card" data-reveal data-reveal-delay="2">
+                  <div class="nb-flow-num">02</div>
+                  <div class="nb-flow-title">Send Money</div>
+                  <div class="nb-flow-desc">Choose recipient → enter amount → confirm → success. Three taps, zero confusion.</div>
+                </div>
+                <div class="nb-flow-card" data-reveal data-reveal-delay="3">
+                  <div class="nb-flow-num">03</div>
+                  <div class="nb-flow-title">Transaction Detail</div>
+                  <div class="nb-flow-desc">Dashboard → tap transaction → detail view → dispute/export. Full info, no dead ends.</div>
+                </div>
+                <div class="nb-flow-card" data-reveal data-reveal-delay="4">
+                  <div class="nb-flow-num">04</div>
+                  <div class="nb-flow-title">Card Management</div>
+                  <div class="nb-flow-desc">View card → freeze/unfreeze → limits → virtual card. Full control in one place.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- anchor for subnav -->
+          <div id="userflow" style="margin-top:-52px;padding-top:52px;pointer-events:none"></div>
+
+
+          <!-- ── DESIGN SYSTEM ── -->
+          <section class="case-section nb-section" id="designsys" data-reveal>
+            <div class="nb-eyebrow">DESIGN SYSTEM</div>
+            <h2 class="case-h2 nb-h2">Design system &amp; UI kit</h2>
+            <p class="case-p nb-p">
+              A complete token-based design system built from scratch — one unified canvas covering colors, 
+              typography, reusable components, navigation states, buttons, chips, cards, inputs, 
+              status screens, and theme variants.
+            </p>
+
+           
+               <img src="/assets/images/nova-bank/uikit.png"         
+                   alt="Nova Bank UI Kit"                           
+                     style="width:100%;display:block">                
+           
+
+            <!-- COLOR TOKENS -->
+            <div class="nb-ds-block" style="margin-top:36px" data-reveal>
+              <div class="nb-ds-block-title">Color tokens</div>
+              <div class="nb-swatch-row">
+                <div class="nb-sw" style="--c:#0D0D0D"><span>Background</span><b>#0D0D0D</b></div>
+                <div class="nb-sw" style="--c:#1F1F1F"><span>Dark Surface</span><b>#1F1F1F</b></div>
+                <div class="nb-sw" style="--c:#2A2A2A"><span>Card Surface</span><b>#2A2A2A</b></div>
+                <div class="nb-sw" style="--c:#FF784D"><span>Primary Accent</span><b>#FF784D</b></div>
+                <div class="nb-sw" style="--c:#FF9F7D"><span>Accent Light</span><b>#FF9F7D</b></div>
+                <div class="nb-sw" style="--c:#EEEEEE"><span>Main Text</span><b>#EEEEEE</b></div>
+                <div class="nb-sw" style="--c:#8D8D8D"><span>Secondary Text</span><b>#8D8D8D</b></div>
+                <div class="nb-sw" style="--c:#4CAF50"><span>Success</span><b>#4CAF50</b></div>
+                <div class="nb-sw" style="--c:#F44336"><span>Error</span><b>#F44336</b></div>
+                <div class="nb-sw" style="--c:#FFC107"><span>Warning</span><b>#FFC107</b></div>
+              </div>
+            </div>
+
+            <!-- TYPOGRAPHY -->
+            <div class="nb-ds-block" style="margin-top:28px" data-reveal>
+              <div class="nb-ds-block-title">Typography</div>
+              <div class="nb-type-row" style="grid-template-columns:1fr 1fr">
+                <div class="nb-type-card">
+                  <span class="nb-type-k">PRIMARY FONT</span>
+                  <div class="nb-type-s" style="font-family:'Poppins',sans-serif;font-weight:700">Poppins</div>
+                  <div class="nb-type-ex" style="font-family:'Poppins',sans-serif;font-weight:600;font-size:28px">Your Money, Reimagined</div>
+                  <div class="nb-type-spec">300 Body · 400 Labels · 500 Buttons · 600 Nav · 700 Display</div>
+                </div>
+                <div class="nb-type-card">
+                  <span class="nb-type-k">WEIGHTS IN USE</span>
+                  <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+                    <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:#fff">Bold 700 — Screen Titles</div>
+                    <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;color:rgba(238,238,238,.9)">SemiBold 600 — Section Headers</div>
+                    <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(238,238,238,.8)">Medium 500 — Buttons &amp; Labels</div>
+                    <div style="font-family:'Poppins',sans-serif;font-weight:400;font-size:14px;color:rgba(238,238,238,.65)">Regular 400 — Body &amp; Descriptions</div>
+                    <div style="font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;color:rgba(238,238,238,.5)">Light 300 — Captions &amp; Hints</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+      <!-- SCREENS -->
+<section class="case-section nb-section" id="screens" data-reveal>
+  <div class="nb-eyebrow">HIGH FIDELITY UI</div>
+
+  <h2 class="case-h2 nb-h2">Final screens</h2>
+
+  <p class="case-p nb-p">
+    A set of high fidelity mobile screens covering the core banking experience,
+    from account overview and card management to transfers, transaction history,
+    security feedback, and system states.
+  </p>
+
+  <div class="nb-screens-grid" style="margin-top:32px">
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="1">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/home.png" alt="Nova Bank Dashboard">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">01</span>
+        Dashboard
+      </div>
+      <p class="nb-screen-desc">
+        Main overview with balance, cards, quick actions, and recent transactions.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="2">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/mycards_main.png" alt="Nova Bank My Cards">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">02</span>
+        My Cards
+      </div>
+      <p class="nb-screen-desc">
+        Card management screen with payment actions, settings, and statements.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="3">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/mycards.png" alt="Nova Bank Transaction Alert">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">03</span>
+        Transaction Alert
+      </div>
+      <p class="nb-screen-desc">
+        Security warning state for repeated or unusual transaction activity.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="1">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/PIN.png" alt="Nova Bank PIN Entry">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">04</span>
+        PIN Entry
+      </div>
+      <p class="nb-screen-desc">
+        Secure PIN access flow before confirming sensitive banking actions.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="2">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/failed.png" alt="Nova Bank Transfer Failed">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">05</span>
+        Transfer Failed
+      </div>
+      <p class="nb-screen-desc">
+        Error feedback screen explaining when a money transfer cannot be completed.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="3">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/succes.png" alt="Nova Bank Transfer Successful">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">06</span>
+        Transfer Successful
+      </div>
+      <p class="nb-screen-desc">
+        Confirmation state showing that the transaction was completed successfully.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="1">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/process.png" alt="Nova Bank Processing Transfer">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">07</span>
+        Processing Transfer
+      </div>
+      <p class="nb-screen-desc">
+        Loading state that keeps users informed while the transfer is being processed.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="2">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/profile.png" alt="Nova Bank Profile">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">08</span>
+        Profile
+      </div>
+      <p class="nb-screen-desc">
+        Personal account area with user details, settings, and app preferences.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="3">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/transactions(all).png" alt="Nova Bank All Transactions">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">09</span>
+        All Transactions
+      </div>
+      <p class="nb-screen-desc">
+        Complete transaction history with clear payment records and activity tracking.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="1">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/incorrectpin.png" alt="Nova Bank Incorrect PIN">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">10</span>
+        Incorrect PIN
+      </div>
+      <p class="nb-screen-desc">
+        Security error state designed to clearly communicate a failed PIN attempt.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="2">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/transfer.png" alt="Nova Bank Send Money">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">11</span>
+        Send Money
+      </div>
+      <p class="nb-screen-desc">
+        Simple transfer flow for choosing a recipient, amount, and confirmation.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="3">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/transactions(income).png" alt="Nova Bank Income Transactions">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">12</span>
+        Income
+      </div>
+      <p class="nb-screen-desc">
+        Filtered transaction view focused on incoming payments and deposits.
+      </p>
+    </div>
+
+    <div class="nb-screen-card" data-reveal data-reveal-delay="3">
+      <div class="nb-screen-img-wrap">
+        <img src="/assets/images/nova-bank/transactions(expense).png" alt="Nova Bank Expense Transactions">
+      </div>
+      <div class="nb-screen-label">
+        <span class="nb-screen-num">13</span>
+        Expenses
+      </div>
+      <p class="nb-screen-desc">
+        Expense focused transaction view for tracking outgoing payments.
+      </p>
+    </div>
+  </div>
+<!-- APP THEME PREVIEW -->
+<section class="case-section nb-section nb-theme-preview" data-reveal>
+  <div class="nb-eyebrow">VISUAL SYSTEM</div>
+
+  <h2 class="case-h2 nb-h2">Interface variations</h2>
+
+  <p class="case-p nb-p">
+    Different accent color explorations were tested to understand how the Nova Bank interface
+    could stay consistent while adapting to different visual moods and product directions.
+  </p>
+
+  <div class="nb-theme-image-wrap">
+    <img
+      src="/assets/images/nova-bank/varios colours srceens.png"
+      alt="Nova Bank interface color variations"
+      class="nb-theme-image"
+    >
+  </div>
+</section>
+
+
+
+</section>
+
+          <!-- ── LEARNINGS ── -->
+          <section class="case-section nb-section" id="learnings" data-reveal>
+            <div class="nb-eyebrow">KEY LEARNINGS</div>
+            <h2 class="case-h2 nb-h2">What I learned building Nova Bank</h2>
+
+            <div class="nb-learn-grid">
+              <div class="nb-learn-card" data-reveal data-reveal-delay="1">
+                <div class="nb-learn-n">01</div>
+                <div class="nb-learn-t">Trust is a design decision</div>
+                <div class="nb-learn-p">Every color, spacing choice, and label in a financial product either builds or erodes user confidence. Premium dark UI with clear hierarchy communicates reliability.</div>
+              </div>
+              <div class="nb-learn-card" data-reveal data-reveal-delay="2">
+                <div class="nb-learn-n">02</div>
+                <div class="nb-learn-t">Design systems compound</div>
+                <div class="nb-learn-p">Investing in a full token-based system upfront paid off massively. Every new screen was 3× faster to build because components were already defined.</div>
+              </div>
+              <div class="nb-learn-card" data-reveal data-reveal-delay="3">
+                <div class="nb-learn-n">03</div>
+                <div class="nb-learn-t">Mobile constraints drive creativity</div>
+                <div class="nb-learn-p">The limited viewport forces clear priority decisions. What stays on screen, what goes behind a tap — every choice reveals what actually matters to the user.</div>
+              </div>
+              <div class="nb-learn-card" data-reveal data-reveal-delay="4">
+                <div class="nb-learn-n">04</div>
+                <div class="nb-learn-t">Empty states are features</div>
+                <div class="nb-learn-p">Designing every loading, error, and empty state turns edge cases into moments of delight — or at minimum, moments of clarity rather than confusion.</div>
+              </div>
+            </div>
+
+            <!-- CTA BANNER -->
+            <div class="nb-cta-banner" data-reveal style="margin-top:36px">
+              <div class="nb-cta-glow"></div>
+              <h3>Let's build something great together</h3>
+              <p>UI/UX designer focused on premium, purposeful digital products. Available for freelance.</p>
+              <div class="cta-actions">
+                <a class="btn-case nb-btn-primary" href="../contactus.html">Get in touch</a>
+                <a class="btn-case nb-btn" href="../gallery.html">All projects</a>
+              </div>
+            </div>
+
+          </section>
+
+        </section><!-- /case-sections -->
+      </div><!-- /case-wrap -->
+    </main>
+
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════ -->
+    <footer class="nb-footer">
+      <div class="nb-footer-inner">
+        <div class="nb-footer-brand">
+          <img src="/assets/images/DIN.png" alt="DIN Logo" class="nb-footer-logo">
+          <p class="nb-footer-tagline">Creative designer crafting digital experiences that matter.</p>
+        </div>
+        <div class="nb-footer-col">
+          <p class="nb-footer-title">Navigation</p>
+          <nav class="nb-footer-nav">
+            <a href="../index.html">Home</a>
+            <a href="../gallery.html">Gallery</a>
+            <a href="../about.html">About</a>
+            <a href="../contactus.html">Contact</a>
+          </nav>
+        </div>
+        <div class="nb-footer-col">
+          <p class="nb-footer-title">Contact</p>
+          <div class="nb-footer-item">din.design.world@gmail.com</div>
+          <div class="nb-footer-item">Canada</div>
+        </div>
+        <div class="nb-footer-col">
+          <p class="nb-footer-title">Newsletter</p>
+          <p class="nb-footer-hint">Stay updated with new projects.</p>
+          <form class="nb-footer-form" onsubmit="return false">
+            <input type="email" placeholder="your@email.com">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="nb-footer-bottom">
+        <span>© 2025 DIN. All rights reserved.</span>
+        <span class="nb-footer-case-label">Nova Bank · UI UX Case Study</span>
+        <div class="nb-footer-proj-nav">
+          <a href="../gallery.html">All projects</a>
+          <a href="unnie-box.html">← Prev</a>
+          <a href="avion.html">Next →</a>
+          <a class="cta" href="../contactus.html">Hire me →</a>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /nb-page-wrap -->
+
+  <!-- SCRIPTS -->
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/project-frames.js" defer></script>
+  <script src="/assets/js/nano-bank.js" defer></script>
+  
+
+
+
+</body>
+</html>
