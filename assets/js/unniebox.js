@@ -110,4 +110,32 @@
   mClose?.addEventListener('click', closeMobileMenu);
   mobileMenu?.addEventListener('click', e => { if (e.target === mobileMenu) closeMobileMenu(); });
 
+
+
+
+     /* ── UX Flow tabs ── */
+  const uxTabs = document.querySelectorAll('.uxflow-tab');
+  const uxPanels = document.querySelectorAll('.uxflow-panel');
+
+  if (uxTabs.length && uxPanels.length) {
+    uxTabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+
+        const target = tab.dataset.tab;
+
+        uxTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        uxPanels.forEach(panel => {
+          panel.classList.toggle(
+            'uxflow-panel--hidden',
+            panel.id !== `tab-${target}`
+          );
+        });
+      });
+    });
+  }
+
 })();
+
