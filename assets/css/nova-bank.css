@@ -263,34 +263,51 @@ a    { text-decoration: none; color: inherit; }
 
 
 /* ══════════════════════════════════════════════
-   BUTTONS
+   BUTTONS same as Unnie Box
 ══════════════════════════════════════════════ */
-.nb-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 16px; border-radius: 999px;
-  border: 1px solid rgba(238,238,238,.14);
-  background: rgba(238,238,238,.05);
-  color: var(--nb-text); font-family: var(--nb-sans);
-  font-size: 14px; font-weight: 500;
-  transition: transform .2s, background .2s;
-}
-.nb-btn:hover { transform: translateY(-1px); background: rgba(238,238,238,.10); }
 
-.nb-btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 20px; border-radius: 999px;
-  border: 1px solid var(--nb-ac);
-  background: var(--nb-ac);
-  color: #fff; font-family: var(--nb-sans);
-  font-size: 14px; font-weight: 600;
-  transition: transform .2s, background .2s, box-shadow .2s;
+.case-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
 }
-.nb-btn-primary:hover {
+
+.nb-body .btn-case {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: var(--nb-sans);
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform .2s, background .2s, border-color .2s, color .2s;
+}
+
+.nb-body .btn-case:hover {
   transform: translateY(-1px);
-  background: var(--nb-ac-2);
-  box-shadow: 0 8px 28px rgba(255,120,77,0.40);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
+.nb-body .btn-case.primary,
+.nb-body .btn-case.nb-btn-primary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--nb-ac);
+  font-weight: 700;
+}
+
+.nb-body .btn-case.primary:hover,
+.nb-body .btn-case.nb-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.90);
+  color: var(--nb-ac);
+  box-shadow: none;
+}
 
 /* ══════════════════════════════════════════════
    META CARDS
