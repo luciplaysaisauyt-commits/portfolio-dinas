@@ -987,177 +987,55 @@ a    { text-decoration: none; color: inherit; }
 .nb-screens-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 34px;
+  gap: 28px;
+  margin-top: 32px;
   align-items: start;
-  margin-top: 28px;
 }
 
 .nb-screen-card {
   position: relative;
   overflow: hidden;
+  padding: 16px 16px 22px;
   border-radius: 34px;
-  padding: 20px 20px 18px;
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 120, 77, 0.16), transparent 46%),
+    linear-gradient(180deg, rgba(255, 120, 77, 0.12), rgba(255, 120, 77, 0.035)),
     rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 120, 77, 0.22);
   box-shadow:
-    0 30px 90px rgba(0, 0, 0, 0.42),
+    0 24px 70px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .nb-screen-img-wrap {
   width: 100%;
-  height: 520px;
+  min-height: 455px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   border-radius: 28px;
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 120, 77, 0.18), transparent 48%),
-    linear-gradient(180deg, rgba(255, 120, 77, 0.08), rgba(0, 0, 0, 0.18));
+    linear-gradient(180deg, rgba(255, 120, 77, 0.10), rgba(0, 0, 0, 0.18));
 }
 
 .nb-screen-img-wrap img {
-  width: auto;
-  height: 96%;
-  max-width: 92%;
-  object-fit: contain;
   display: block;
+  width: auto;
+  max-width: 96%;
+  max-height: 438px;
+  object-fit: contain;
   filter: drop-shadow(0 22px 38px rgba(0, 0, 0, 0.48));
-}
-
-.nb-screen-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 18px;
-  color: rgba(255, 255, 255, 0.88);
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-.nb-screen-num {
-  color: #ff784d;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.nb-themes-showcase {
-  margin-top: 58px;
-}
-
-.nb-themes-title {
-  margin: 8px 0 10px;
-  color: #ffffff;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(30px, 4vw, 54px);
-  font-weight: 700;
-  line-height: 1;
-}
-
-.nb-themes-frame {
-  margin-top: 28px;
-  overflow: hidden;
-  border-radius: 34px;
-  background: #f3f3f3;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.45);
-}
-
-.nb-themes-frame img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-@media (max-width: 1180px) {
-  .nb-screens-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
-  }
-
-  .nb-screen-img-wrap {
-    height: 500px;
-  }
-}
-
-@media (max-width: 720px) {
-  .nb-screens-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .nb-screen-card {
-    padding: 16px;
-    border-radius: 28px;
-  }
-
-  .nb-screen-img-wrap {
-    height: 500px;
-    border-radius: 24px;
-  }
-
-  .nb-screen-img-wrap img {
-    height: 95%;
-    max-width: 94%;
-  }
-
-  .nb-screen-label {
-    font-size: 16px;
-  }
-
-  .nb-themes-frame {
-    border-radius: 24px;
-  }
-}
-
-
-.nb-screens-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 34px 34px;
-  margin-top: 32px;
-}
-
-.nb-screen-card {
-  padding: 18px 18px 24px;
-  border-radius: 34px;
-  background:
-    linear-gradient(180deg, rgba(255, 120, 77, 0.16), rgba(255, 120, 77, 0.04)),
-    rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 120, 77, 0.22);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-}
-
-.nb-screen-img-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 455px;
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 120, 77, 0.16), rgba(0, 0, 0, 0.18));
-}
-
-.nb-screen-img-wrap img {
-  display: block;
-  width: auto;
-  max-width: 92%;
-  max-height: 430px;
-  object-fit: contain;
 }
 
 .nb-screen-label {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  margin: 22px 6px 0;
+  margin: 20px 6px 0;
   color: #eeeeee;
+  font-family: var(--nb-sans);
   font-size: 21px;
   line-height: 1.15;
   font-weight: 800;
@@ -1175,11 +1053,14 @@ a    { text-decoration: none; color: inherit; }
   margin: 10px 6px 0;
   max-width: 320px;
   color: rgba(238, 238, 238, 0.58);
+  font-family: var(--nb-sans);
   font-size: 14px;
   line-height: 1.45;
   font-weight: 400;
   letter-spacing: -0.02em;
 }
+
+/* NOVA BANK THEME PREVIEW */
 
 .nb-theme-preview {
   padding-top: 90px;
@@ -1204,4 +1085,61 @@ a    { text-decoration: none; color: inherit; }
   height: auto;
   border-radius: 24px;
   object-fit: cover;
+}
+
+/* RESPONSIVE FINAL SCREENS */
+
+@media (max-width: 1180px) {
+  .nb-screens-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .nb-screen-img-wrap {
+    min-height: 480px;
+  }
+
+  .nb-screen-img-wrap img {
+    max-height: 455px;
+  }
+}
+
+@media (max-width: 720px) {
+  .nb-screens-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .nb-screen-card {
+    padding: 16px;
+    border-radius: 28px;
+  }
+
+  .nb-screen-img-wrap {
+    min-height: 500px;
+    border-radius: 24px;
+  }
+
+  .nb-screen-img-wrap img {
+    max-width: 96%;
+    max-height: 470px;
+  }
+
+  .nb-screen-label {
+    font-size: 18px;
+  }
+
+  .nb-screen-desc {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .nb-theme-image-wrap {
+    padding: 14px;
+    border-radius: 24px;
+  }
+
+  .nb-theme-image {
+    border-radius: 18px;
+  }
 }
