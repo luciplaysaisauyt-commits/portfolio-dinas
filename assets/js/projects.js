@@ -31,7 +31,7 @@ const PROJECTS = [
     desc:     "Mobile banking app concept focused on clean onboarding, simple money transfers, card management, transaction tracking, and a modern financial dashboard.",
     tags:     ["Figma", "Mobile App", "UI UX"],
     listTags: ["UI UX", "Mobile Banking"],
-    href:     "portfolio/nova-bank.html",
+    href:     "portfolio/novabank.html",
     bg:       "wbg7",
     featured: true,
   },
