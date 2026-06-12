@@ -14,7 +14,6 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/typography.css">
   <link rel="stylesheet" href="/assets/css/unniebox.css">
   <link rel="stylesheet" href="/assets/css/project-frames.css">
 
@@ -38,7 +37,6 @@
     <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
     <nav class="menu">
       <a href="../index.html">Home</a>
-      <a href="../gallery.html">Gallery</a>
       <a href="../about.html">About</a>
       <a href="../contactus.html">Contact</a>
     </nav>
@@ -92,7 +90,7 @@
     </p>
 
     <div class="case-actions">
-      <a class="btn-case primary" href="../gallery.html">← Back to gallery</a>
+      <a class="btn-case primary" href="../index.html">← Back to gallery</a>
       <a class="btn-case" href="../contactus.html">Get in touch</a>
       <a class="btn-case" href="clm.html" rel="prev">← Prev</a>
       <a class="btn-case" href="avion.html" rel="next">Next →</a>
@@ -408,7 +406,7 @@
               <p>I'm a UI/UX designer focused on clean, conversion-friendly experiences. Let's talk.</p>
               <div class="cta-actions">
                 <a class="btn-case primary" href="../contactus.html">Get in touch</a>
-                <a class="btn-case" href="../gallery.html">All projects</a>
+                <a class="btn-case" href="../index.html">All projects</a>
               </div>
             </div>
           </section>
@@ -429,7 +427,6 @@
           <p class="case-footer__title">Navigation</p>
           <nav class="case-footer__nav">
             <a href="../index.html">Home</a>
-            <a href="../gallery.html">Gallery</a>
             <a href="../about.html">About</a>
             <a href="../contactus.html">Contact</a>
           </nav>
@@ -452,7 +449,7 @@
         <span>© 2025 DIN. All rights reserved.</span>
         <span class="case-footer__case-label">UnnieBox · UI UX Case Study</span>
         <div class="case-footer__proj-nav">
-          <a href="../gallery.html">All projects</a>
+
           <a href="clm.html">← Prev</a>
           <a href="avion.html">Next →</a>
           <a class="cta" href="../contactus.html">Hire me →</a>
@@ -462,19 +459,31 @@
 
   </div><!-- /ub-page-wrap -->
 
-  <audio id="bgMusic" loop preload="auto">
-    <source src="/assets/music/videoplayback_2.flac" type="audio/flac">
-    <source src="/assets/music/videoplayback_1.m4a"  type="audio/mp4">
-    <source src="/assets/music/videoplayback_1.mp3"  type="audio/mpeg">
-  </audio>
-  <button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
 
   <!-- SCRIPTS -->
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/unniebox.js" defer></script>
-  <script src="/assets/js/project-frames.js" defer></script>
+  <script src="/assets/js/projectframes.js" defer></script>
 
-
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabs = document.querySelectorAll('.uxflow-tab');
+    var panels = document.querySelectorAll('.uxflow-panel');
+    
+    console.log('tabs found:', tabs.length, 'panels found:', panels.length);
+    
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var target = tab.dataset.tab;
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        panels.forEach(function(panel) {
+          panel.classList.toggle('uxflow-panel--hidden', panel.id !== 'tab-' + target);
+        });
+      });
+    });
+  });
+</script>
 
 </body>
 </html>

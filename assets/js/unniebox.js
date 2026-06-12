@@ -113,29 +113,36 @@
 
 
 
-     /* ── UX Flow tabs ── */
-  const uxTabs = document.querySelectorAll('.uxflow-tab');
-  const uxPanels = document.querySelectorAll('.uxflow-panel');
+    /* ── UX Flow tabs ── */
+const uxTabs = document.querySelectorAll('.uxflow-tab');
+const uxPanels = document.querySelectorAll('.uxflow-panel');
 
-  if (uxTabs.length && uxPanels.length) {
-    uxTabs.forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.preventDefault();
+if (uxTabs.length && uxPanels.length) {
+  uxTabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      const target = tab.dataset.tab;
 
-        const target = tab.dataset.tab;
+      uxTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-        uxTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+      uxPanels.forEach(panel => {
+        const hide = panel.id !== `tab-${target}`;
+        panel.classList.toggle('uxflow-panel--hidden', hide);
 
-        uxPanels.forEach(panel => {
-          panel.classList.toggle(
-            'uxflow-panel--hidden',
-            panel.id !== `tab-${target}`
-          );
-        });
+        if (!hide) {
+          panel.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => {
+            el.classList.add('revealed');
+          });
+        }
       });
     });
-  }
+  });
+}
 
+
+
+
+  
 })();
 

@@ -1,30 +1,37 @@
-<header class="nav" id="topnav">
-  <div class="logo">
-    <a href="/index.html">
-      <img src="/assets/images/DIN.png" alt="DIN" class="logo-img">
-    </a>
+<!-- header.html — подключается через fetch на всех страницах -->
+<nav class="pill-nav" id="pillNav">
+  <div class="pill-nav__logo">
+   <img src="/assets/images/DIN.png" alt="DIN" class="pill-nav__logo-img" style="width:22px;height:22px;object-fit:contain;" onerror="this.style.display='none'">
   </div>
-  <nav class="menu">
-    <a href="/index.html">Home</a>
-    <a href="/gallery.html">Gallery</a>
-    <a href="/about.html">About</a>
-    <a href="/contactus.html">Contact</a>
-  </nav>
-  <button class="burger" id="burger" aria-label="Menu" type="button">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+  <div class="pill-nav__links">
+    <a href="/index.html" class="pill-nav__link" data-match="index">Home</a>
+    <a href="/about.html" class="pill-nav__link" data-match="about">About</a>
+    <a href="/contactus.html" class="pill-nav__link" data-match="contact">Contact</a>
+  </div>
+  
+</nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-panel">
-    <div class="mobile-menu-top">
-      <button class="mobile-close" id="mobileClose" aria-label="Close">✕</button>
-    </div>
-    <nav class="mobile-menu-links">
-      <a href="/index.html">Home</a>
-      <a href="/gallery.html">Gallery</a>
-      <a href="/about.html">About</a>
-      <a href="/contactus.html">Contact</a>
-    </nav>
-  </div>
-</div>
+<script>
+  // Подсветить активный пункт по URL
+  (function() {
+    const path = window.location.pathname;
+    document.querySelectorAll('.pill-nav__link').forEach(function(link) {
+      const match = link.getAttribute('data-match');
+      if (
+        (match === 'index' && (path === '/' || path.endsWith('index.html'))) ||
+        (match === 'about' && path.includes('about')) ||
+        (match === 'contact' && path.includes('contact'))
+      ) {
+        link.classList.add('active');
+      }
+    });
+
+    // Scrolled effect
+    const nav = document.getElementById('pillNav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
+  
+</script>

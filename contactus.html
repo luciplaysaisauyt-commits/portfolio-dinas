@@ -6,82 +6,221 @@
   <title>DIN – Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/contactus.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/contact.css">
+  <style>
+   
+  </style>
 </head>
+
 <body>
-<div class="din-cursor" id="dinCursor"></div>
-<div class="din-cursor-ring" id="dinCursorRing"></div>
+
+  <!-- Cursor -->
+  <div class="din-cursor" id="dinCursor"></div>
+  <div class="din-cursor-ring" id="dinCursorRing"></div>
+
+  <!-- HEADER (injected via fetch) -->
+  <div id="site-header"></div>
 
 
-<div id="header-placeholder"></div>
+  <!-- MAIN CONTACT -->
+  <section class="contact-section" id="contactForm">
+    <div class="contact-section__inner">
 
-<section class="contact-hero">
-  <span class="contact-hero-eyebrow fade-up">Let's connect</span>
-  <h1 class="fade-up delay-1">Say <em>hello</em></h1>
-  <p class="fade-up delay-2">Any question or remarks? Write me a message and I'll get back to you as soon as possible.</p>
-</section>
+      <!-- Left info panel -->
+      <div class="contact-left">
+        <span class="contact-left__label">Get in touch</span>
+        <h2 class="contact-left__title">Contact<br><em>Information</em></h2>
+        <p class="contact-left__sub">Fill out the form and I'll be in touch soon. Open to freelance work, collaborations, and exciting new challenges.</p>
 
-<div class="contact-main fade-up delay-3">
-  <div class="contact-left">
-    <h2>Contact Information</h2>
-    <p class="contact-left-sub">Fill out the form and I'll be in touch soon.</p>
-    <div class="contact-details-wrap">
-      <div class="contact-detail">
-        <div class="contact-detail-icon"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-        <div><p class="contact-detail-label">Email</p><p class="contact-detail-value">din.design.world@gmail.com</p></div>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Email</p>
+              <p class="contact-info-item__value">dinmukhammed.aisauyt@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Location</p>
+              <p class="contact-info-item__value">Milton, Ontario, Canada</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Response time</p>
+              <p class="contact-info-item__value">Within 24 hours</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-quote">
+          <p>"Great design is not just what it looks like — it's how it works."</p>
+        </div>
+
+        <div class="avail-badge">
+          <span class="avail-dot"></span>
+          Available for new projects
+        </div>
       </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-        <div><p class="contact-detail-label">Location</p><p class="contact-detail-value">Canada</p></div>
-      </div>
+
+      <!-- Right form -->
+      <form class="contact-right" id="theForm" novalidate>
+        <div class="form-header">
+          <span class="form-header__eyebrow">Drop a message</span>
+          <h3 class="form-header__title">Send me a <em>note</em></h3>
+        </div>
+
+        <!-- Project type chips -->
+        <div class="subject-chips">
+          <span class="subject-chips__label">I'm interested in</span>
+          <button type="button" class="chip-btn active" data-val="UI/UX Design">UI/UX Design</button>
+          <button type="button" class="chip-btn" data-val="Web Development">Web Development</button>
+          <button type="button" class="chip-btn" data-val="Branding">Branding</button>
+          <button type="button" class="chip-btn" data-val="Other">Other</button>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" placeholder="John" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Doe" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+        </div>
+
+        <div class="form-bottom">
+          <p class="form-note">I'll reply within 24 hours</p>
+          <button class="send-btn" type="submit">
+            Send Message
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </form>
+
     </div>
-    <div class="contact-quote"><p>"Great design is not just what it looks like — it's how it works."</p></div>
-    <div class="contact-availability"><span class="avail-dot"></span><span>Available for new projects</span></div>
+  </section>
+
+  <!-- SUCCESS POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-box">
+      <div class="popup-icon">✓</div>
+      <h3>Message Sent!</h3>
+      <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+      <button class="popup-close" id="popupClose">Done</button>
+    </div>
   </div>
+  <div id="site-footer"></div>
 
-  <form class="contact-right" id="contactForm">
-    <div class="form-grid">
-      <div class="field"><label for="firstName">First Name</label><input id="firstName" name="firstName" type="text" placeholder="John" required></div>
-      <div class="field"><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Doe" required></div>
-      <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="john@example.com" required></div>
-      <div class="field full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea></div>
-    </div>
-    <div class="form-footer">
-      <p class="form-note">I'll reply within 24 hours.</p>
-      <button class="send-btn" type="submit">Send Message <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
-    </div>
-  </form>
-</div>
+  
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    // ── Cursor ──
+    const cur = document.getElementById('dinCursor');
+    const ring = document.getElementById('dinCursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
 
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <div class="popup-icon">✓</div>
-    <h3>Message Sent!</h3>
-    <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
-    <button class="popup-close" id="popupClose">Done</button>
-  </div>
-</div>
+    document.querySelectorAll('a, button, input, textarea').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '52px'; ring.style.height = '52px';
+        ring.style.borderColor = 'rgba(200,169,110,0.35)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '34px'; ring.style.height = '34px';
+        ring.style.borderColor = 'rgba(255,255,255,0.18)';
+      });
+    });
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__col site-footer__col--brand"><img src="/assets/images/DIN.png" alt="DIN Logo" class="site-footer__logo-img"><p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p></div>
-    <div class="site-footer__col"><p class="site-footer__col-title">Navigation</p><nav class="site-footer__nav"><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contactus.html">Contact</a></nav></div>
-    <div class="site-footer__col"><p class="site-footer__col-title">Contact</p><div class="site-footer__item">din.design.world@gmail.com</div><div class="site-footer__item">Canada</div></div>
-    <div class="site-footer__col"><p class="site-footer__col-title">Newsletter</p><p class="site-footer__form-label">Stay updated with new projects.</p><form class="site-footer__form" id="newsletterForm"><input type="email" id="newsletterEmail" placeholder="your@email.com"><button type="submit">Subscribe</button></form></div></div>
-  <div class="site-footer__bottom"><span>© 2025 DIN. All rights reserved.</span><span>Designed &amp; built with care</span></div>
-</footer>
-<script src="/assets/js/main.js" defer></script>
+    // ── Subject chips ──
+    document.querySelectorAll('.chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
 
-<!-- В начале body, ДО скриптов -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="/assets/music/videoplayback_2.flac" type="audio/flac">
-  <source src="/assets/music/videoplayback_1.m4a"  type="audio/mp4">
-  <source src="/assets/music/videoplayback_1.mp3"  type="audio/mpeg">
-</audio>
-<button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
+    // ── Form submit ──
+    const form = document.getElementById('theForm');
+    const popup = document.getElementById('popup');
+    const popupClose = document.getElementById('popupClose');
 
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      popup.classList.add('open');
+    });
+    popupClose.addEventListener('click', () => {
+      popup.classList.remove('open');
+      form.reset();
+      document.querySelectorAll('.chip-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+    });
+    popup.addEventListener('click', e => {
+      if (e.target === popup) popup.classList.remove('open');
+    });
+
+    // ── Load partials ──
+    function loadPartial(url, id, callback) {
+      fetch(url)
+        .then(r => r.text())
+        .then(html => {
+          const el = document.getElementById(id);
+          el.innerHTML = html;
+          el.querySelectorAll('script').forEach(old => {
+            const s = document.createElement('script');
+            s.textContent = old.textContent;
+            old.replaceWith(s);
+          });
+          if (callback) callback();
+        })
+        .catch(() => console.warn(url + ' not found'));
+    }
+
+    loadPartial('/header.html', 'site-header');
+
+    // Newsletter слушается ПОСЛЕ загрузки footer
+    loadPartial('/footer.html', 'site-footer', () => {
+      const newsletterForm = document.getElementById('newsletterForm');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = e.target.querySelector('button');
+          btn.textContent = 'Subscribed ✓';
+          btn.style.background = '#3eb85a';
+          btn.style.color = '#fff';
+          setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+          e.target.querySelector('input').value = '';
+        });
+      }
+    });
+  </script>
 </body>
 </html>

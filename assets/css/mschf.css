@@ -645,3 +645,16 @@ body::before {
 
 /* Задержки не работают для мгновенного показа */
 [data-reveal].no-anim[data-reveal-delay] { transition-delay: 0s !important; }
+
+.case-subnav-link.active {
+  color: #fff;
+  background: rgba(255,255,255,.12); /* замени на var(--ac) если хочешь цветной */
+}
+
+.case-subnav-pill {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.case-subnav-pill::-webkit-scrollbar { display: none; }

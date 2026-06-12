@@ -731,3 +731,24 @@ a.cta-value:hover { color: var(--accent); }
   top: -0.05em;
 }
 
+/* ── Фикс отступа под навбар ── */
+.gallery-section {
+  padding-top: var(--navH);
+}
+
+.gallery-header {
+  padding-top: 36px; /* убираем лишние 72px, navH уже учтён */
+}
+
+@media (max-width: 820px) {
+  .gallery-header {
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-header {
+    padding-top: 16px;
+  }
+}
+

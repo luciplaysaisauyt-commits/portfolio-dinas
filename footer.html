@@ -1,0 +1,55 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand">
+      <img src="/assets/images/DIN.png" alt="DIN Logo" class="site-footer__logo-img">
+      <p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Navigation</p>
+      <nav class="site-footer__nav">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contactus.html">Contact</a>
+      </nav>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Contact</p>
+      <div class="site-footer__item">dinmukhammed.aisauyt@gmail.com</div>
+      <div class="site-footer__item">Milton, Ontario, Canada</div>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__col-title">Newsletter</p>
+      <p class="site-footer__form-label">Stay updated with new projects.</p>
+      <form class="site-footer__form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="your@email.com">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2025 DIN. All rights reserved.</span>
+    <span>Designed &amp; built with care</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const form = document.getElementById('newsletterForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const input = document.getElementById('newsletterEmail');
+      if (!input || !input.value) return;
+      input.value = '';
+      const btn = form.querySelector('button');
+      const orig = btn.textContent;
+      btn.textContent = 'Sent ✓';
+      btn.disabled = true;
+      setTimeout(function () { btn.textContent = orig; btn.disabled = false; }, 3000);
+    });
+  })();
+</script>

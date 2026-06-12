@@ -1,123 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIN – Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/index.css">
-  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIN – Portfolio Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/index.css">
+<link rel="icon" type="image/png" href="/assets/images/DIN.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="din-cursor" id="dinCursor"></div>
 <div class="din-cursor-ring" id="dinCursorRing"></div>
-<div id="header-placeholder"></div>
 
-<!-- HERO -->
-<section class="idx-hero">
-  <canvas id="heroCanvas" class="idx-hero-canvas" aria-hidden="true"></canvas>
-  <div class="idx-hero-corner idx-hero-corner--tl" aria-hidden="true">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 20 L0 0 L20 0"/></svg>
+<div id="site-header"></div>
+
+<section class="gallery-section">
+
+  <!-- Header -->
+  <div class="gallery-header sr d1">
+    <div class="gallery-header__left">
+      <span class="gallery-header__eyebrow">Portfolio</span>
+      <h2 class="gallery-header__title">Selected<br><em>Work</em></h2>
+    </div>
+    <span class="gallery-header__count" aria-hidden="true">06</span>
   </div>
-  <div class="idx-hero-corner idx-hero-corner--br" aria-hidden="true">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 0 L20 20 L0 20"/></svg>
+
+  <!-- Bento -->
+  <div class="bento">
+
+    <!-- INTRO -->
+    <div class="bcard bc-intro sr d1">
+      <div class="bcard__bg pg-intro"></div>
+      <div class="intro__ring"></div>
+      <div class="bcard__content">
+        <div>
+          <span class="intro__eyebrow">UI/UX &amp; Interactive Media</span>
+          <h2 class="intro__name">Dinmukhammed<br><em>Aisauyt</em></h2>
+          <p class="intro__role">Designer &amp; Developer</p>
+          <div class="intro__line"></div>
+          <p class="intro__bio">I design modern digital products, user-friendly interfaces, and impactful user experiences. My expertise includes web design, mobile applications, and interactive digital solutions.</p>
+        </div>
+        <div>
+          <span class="intro__avail">
+            <span class="avail-dot"></span>
+            Available for work
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNNIEBOX -->
+    <a href="portfolio/unnie-box.html" class="bcard bc-unnie sr d2">
+      <div class="bcard__bg pg-unnie"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">UnnieBox</span></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">UX &amp; Interface</span>
+        <h3 class="bcard__title">UnnieBox</h3>
+        <p class="bcard__desc">Korean beauty subscription platform — end-to-end product design</p>
+        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </div>
+    </a>
+
+    <!-- NOVA BANK -->
+    <a href="portfolio/novabank.html" class="bcard bc-nova sr d3">
+      <div class="bcard__bg pg-nova"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">Nova Bank</span></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">UX &amp; Interface</span>
+        <h3 class="bcard__title">Nova Bank</h3>
+        <p class="bcard__desc">Mobile banking app concept</p>
+        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </div>
+    </a>
+
+    <!-- AVION -->
+    <a href="portfolio/avion.html" class="bcard bc-avion sr d4">
+      <div class="bcard__bg pg-avion"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">Avion Furniture</span></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">E-commerce</span>
+        <h3 class="bcard__title">Avion Furniture</h3>
+        <p class="bcard__desc">E-commerce furniture store redesign</p>
+        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </div>
+    </a>
+
+    <!-- HYPE -->
+<!-- YOUTRANSPORT -->
+<div class="bcard bc-hype sr d4" style="cursor:default">
+  <div class="bcard__bg pg-hype"></div>
+  <div class="bcard__overlay"></div>
+  <div class="bcard__tag">
+    <span class="bcard__tag-dot"></span>
+    <span class="bcard__tag-name">YouTransport</span>
   </div>
-  <div class="idx-hero-inner">
-    <div class="idx-din-label fu">Studio · Portfolio</div>
-    <p class="idx-eyebrow fu fd1">Design &amp; Development · 2025</p>
-    <h1 class="fu fd1">Crafting<br><em>digital</em><br>experiences</h1>
-    <div class="idx-hero-divider fu fd2"></div>
-    <p class="idx-sub fu fd2">Selected works in UI/UX &amp; frontend — where ideas become interfaces.</p>
-    <a href="#works" class="idx-scroll fu fd3">
-      <span>Scroll to explore</span>
-      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+  <div class="bcard__content">
+    <span class="bcard__cat">UI/UX</span>
+    <h3 class="bcard__title">YouTransport</h3>
+    <p class="bcard__desc">Furniture transportation company.</p>
+    <span class="bcard__cta" style="background:rgba(200,169,110,0.10);border-color:rgba(200,169,110,0.22);color:var(--accent)">
+      <span style="width:6px;height:6px;border-radius:50%;background:#c8a96e;display:inline-block;flex-shrink:0;animation:avpulse 2.4s ease-in-out infinite"></span>
+      In Progress
+    </span>
+  </div>
+</div>
+
+    <!-- MSCHF -->
+    <a href="portfolio/mschf.html" class="bcard bc-mschf sr d5">
+      <div class="bcard__bg pg-mschf"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">MSCHF Platform</span></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">Brand &amp; Digital</span>
+        <h3 class="bcard__title">MSCHF Platform</h3>
+        <p class="bcard__desc">Conceptual brand platform — visual identity &amp; digital experience</p>
+        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </div>
+    </a>
+
+    <!-- CLM -->
+    <a href="portfolio/clm.html" class="bcard bc-clm sr d6">
+      <div class="bcard__bg pg-clm"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">CLM Mafia</span></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">Product Design</span>
+        <h3 class="bcard__title">CLM Mafia</h3>
+        <p class="bcard__desc">Board game platform — full product redesign</p>
+        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </div>
+    </a>
+
+    <!-- CTA -->
+    <div class="bcard bc-cta sr d7">
+      <div class="bcard__bg pg-cta"></div>
+      <div class="bcard__overlay"></div>
+      <div class="bcard__content">
+        <span class="cta__eyebrow">Open to work</span>
+        <h3 class="cta__title">Let's Work<br><em>Together</em></h3>
+        <div class="cta__line"></div>
+        <p class="cta__sub">I’m always open to new projects, collaborations, and creative opportunities. Let’s build something exceptional together.</p>
+        <div class="cta__btns">
+          <a href="contactus.html" class="cta-btn cta-btn--primary">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Contact Me
+          </a>
+
+
+
+          <div class="cv-dropdown">
+  <button class="cta-btn cta-btn--ghost cv-dropdown-btn">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>
+    Resume
+    <svg class="cv-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </button>
+  <div class="cv-dropdown-menu">
+    <a href="/assets/images/pdf/Dinmukhammedru.pdf" download="CV_DIN_RU.pdf" class="cv-dropdown-item">
+      <span class="cv-lang">RU</span>
+      <span>Скачать резюме</span>
+    </a>
+    <a href="/assets/images/pdf/Dinmukhammedeng.pdf" download="CV_DIN_EN.pdf" class="cv-dropdown-item">
+      <span class="cv-lang">EN</span>
+      <span>Download resume</span>
     </a>
   </div>
-  <div class="idx-hero-hint" aria-hidden="true">Move your mouse · Click to burst</div>
-</section>
+</div>
 
-<!-- WORKS -->
-<section class="idx-works" id="works">
-  <div class="idx-works-head">
-    <div class="idx-works-labels">
-      <span class="label-tag">Portfolio</span>
-      <div class="idx-works-title">
-        <span class="wt-script">Recent</span>
-        <span class="wt-bold">WORK</span>
+
+
+
+          <a href="https://www.linkedin.com/in/dinmukhammed-aisauyt/" target="_blank" class="cta-btn cta-btn--ghost">
+            <img src="assets/images/logo/ln.png" alt="LinkedIn Logo" width="12" height="12">
+            LinkedIn
+          </a>
+        </div>
       </div>
-      <p class="wt-desc">Selected projects — click to explore the full case study.</p>
     </div>
-    <div class="idx-works-nav">
-      <button class="wnav-btn" id="wPrev" aria-label="Prev">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <div class="wnav-track"><div class="wnav-fill" id="wFill"></div></div>
-      <button class="wnav-btn" id="wNext" aria-label="Next">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-      </button>
-      <span class="wnav-counter"><span id="wNum">01</span>&thinsp;/&thinsp;<span id="wTotal">03</span></span>
-    </div>
-    <a href="gallery.html" class="all-link">● All projects</a>
-  </div>
 
-  <div class="idx-track-wrap" id="wTrackWrap">
-    <!-- Карточки заполняются из /assets/js/projects.js -->
-    <div class="idx-track" id="wTrack"></div>
-  </div>
+  </div><!-- /bento -->
 </section>
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__col site-footer__col--brand">
-      <img src="assets/images/DIN.png" alt="DIN Logo" class="site-footer__logo-img">
-      <p class="site-footer__tagline">Creative designer &amp; developer crafting digital experiences that matter.</p>
-    </div>
-    <div class="site-footer__col">
-      <p class="site-footer__col-title">Navigation</p>
-      <nav class="site-footer__nav">
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a href="contactus.html">Contact</a>
-      </nav>
-    </div>
-    <div class="site-footer__col">
-      <p class="site-footer__col-title">Contact</p>
-      <div class="site-footer__item">din.design.world@gmail.com</div>
-      <div class="site-footer__item">Canada</div>
-    </div>
-    <div class="site-footer__col">
-      <p class="site-footer__col-title">Newsletter</p>
-      <p class="site-footer__form-label">Stay updated with new projects.</p>
-      <form class="site-footer__form" id="newsletterForm">
-        <input type="email" id="newsletterEmail" placeholder="your@email.com">
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-  </div>
-  <div class="site-footer__bottom">
-    <span>© 2025 DIN. All rights reserved.</span>
-    <span>Designed &amp; built with care</span>
-  </div>
-</footer>
+<div id="site-footer"></div>
 
-<!-- projects.js ДОЛЖЕН быть первым и БЕЗ defer -->
-<script src="assets/js/projects.js"></script>
-<script src="assets/js/index.js" defer></script>
-<script src="assets/js/main.js" defer></script>
-<script src="assets/js/project-frames.js" defer></script>
+<script>
+  // ── Scroll reveal ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.sr').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight) el.classList.add('visible');
+    else obs.observe(el);
+  });
 
+  // ── Load partials ──
+  function loadPartial(url, id) {
+    fetch(url)
+      .then(r => r.text())
+      .then(html => {
+        const el = document.getElementById(id);
+        el.innerHTML = html;
+        el.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script');
+          s.textContent = old.textContent;
+          old.replaceWith(s);
+        });
+      })
+      .catch(() => console.warn(url + ' not found'));
+  }
 
-<audio id="bgMusic" loop preload="auto">
-  <source src="assets/music/videoplayback_2.flac" type="audio/flac">
-  <source src="assets/music/videoplayback_1.m4a"  type="audio/mp4">
-  <source src="assets/music/videoplayback_1.mp3"  type="audio/mpeg">
-</audio>
-<button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
+  loadPartial('/header.html', 'site-header');
+  loadPartial('/footer.html', 'site-footer');
+
+  // ── CV Dropdown ──
+const cvDropdown = document.querySelector('.cv-dropdown');
+const cvBtn      = document.querySelector('.cv-dropdown-btn');
+
+if (cvBtn && cvDropdown) {
+  cvBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    cvDropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function() {
+    cvDropdown.classList.remove('open');
+  });
+}
+
+</script>
+
 
 </body>
 </html>
