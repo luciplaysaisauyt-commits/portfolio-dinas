@@ -1,490 +1,2248 @@
 <!-- portfolio/unnie-box.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIN – UnnieBox Case Study</title>
-  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIN – UnnieBox Case Study</title>
+    <link rel="icon" type="image/png" href="/assets/images/DIN.png" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/unniebox.css">
-  <link rel="stylesheet" href="/assets/css/project-frames.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/unniebox.css" />
+    <link rel="stylesheet" href="/assets/css/project-frames.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
+    <style>
+      /* ── Source links ── */
+      .rp-source-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: rgba(74, 162, 255, 0.75);
+        font-family: var(--font-mono, "Space Mono", monospace);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(74, 162, 255, 0.22);
+        padding-bottom: 1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .rp-source-link:hover {
+        color: #7dc3ff;
+        border-color: rgba(74, 162, 255, 0.55);
+      }
 
-</head>
+      /* ── Chart overrides — lighter bars ── */
+      .rp-chart-lighter canvas {
+        filter: brightness(1.35) saturate(1.1);
+      }
+    </style>
+  </head>
 
-<body class="ub-body theme-unniebox">
+  <body class="ub-body theme-unniebox">
+    <!-- BG -->
+    <div class="ub-bg"></div>
+    <div class="ub-grid-overlay"></div>
+    <div class="ub-orb ub-orb-1"></div>
+    <div class="ub-orb ub-orb-2"></div>
+    <div class="ub-orb ub-orb-3"></div>
+    <div class="ub-orb ub-orb-4"></div>
+    <div class="ub-progress-bar" id="ubProgress"></div>
 
-  <!-- BG -->
-  <div class="ub-bg"></div>
-  <div class="ub-grid-overlay"></div>
-  <div class="ub-orb ub-orb-1"></div>
-  <div class="ub-orb ub-orb-2"></div>
-  <div class="ub-orb ub-orb-3"></div>
-  <div class="ub-orb ub-orb-4"></div>
-  <div class="ub-progress-bar" id="ubProgress"></div>
-
-  <!-- NAV -->
-  <header class="nav" id="topnav">
-    <div class="logo"><a href="../index.html"><img src="/assets/images/DIN.png" alt="DIN" class="logo-img"></a></div>
-    <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
-    <nav class="menu">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../contactus.html">Contact</a>
-    </nav>
-  </header>
-
-
-  <div class="ub-page-wrap">
-    <div class="case-subnav" data-case-subnav>
-  <div class="case-subnav-inner">
-    <div class="case-subnav-pill" role="navigation" aria-label="Case sections">
-      <a href="#overview"  class="case-subnav-link">Overview</a>
-      <a href="#products"  class="case-subnav-link">Products</a>
-      <a href="#problem"   class="case-subnav-link">Problem</a>
-      <a href="#process"   class="case-subnav-link">Process</a>
-      <a href="#uxflow"    class="case-subnav-link">Wireframe</a>
-      <a href="#colors"    class="case-subnav-link">Colors & Type</a>
-      <a href="#landing"   class="case-subnav-link">Full Page</a>
-      <a href="#uikit"     class="case-subnav-link">UI Kit</a>
-      <a href="#modals"    class="case-subnav-link">Modals</a>
-      <a href="#mobile"    class="case-subnav-link">Mobile</a>
-      <a href="#branding"  class="case-subnav-link">Branding</a>
-      <a href="#learnings" class="case-subnav-link">Learnings</a>
-    </div>
-  </div>
-</div>
-
-    <main style="position:relative;z-index:1;color:#fff;padding-top:14px">
-      <div class="case-wrap">
-
- 
-<!-- HERO -->
-<div class="hero case-hero" data-reveal>
-
-  <!-- LEFT TEXT -->
-  <div>
-
-    <div class="hero-accent"></div>
-
-    <div class="eyebrow">
-      UI WEB DESIGN · CASE STUDY
-    </div>
-
-    <h1 class="case-title">
-      UnnieBox
-    </h1>
-
-    <p class="case-sub">
-      Premium landing page and UI system for a Korean beauty box subscription.
-      Designed to build trust, highlight product value, and guide users through
-      a simple and elegant purchase flow.
-    </p>
-
-    <div class="case-actions">
-      <a class="btn-case primary" href="../index.html">← Back to gallery</a>
-      <a class="btn-case" href="../contactus.html">Get in touch</a>
-      <a class="btn-case" href="clm.html" rel="prev">← Prev</a>
-      <a class="btn-case" href="avion.html" rel="next">Next →</a>
-    </div>
-
-    <div class="case-meta" style="margin-top:22px">
-
-      <div class="meta-card">
-        <div class="meta-k">Role</div>
-        <div class="meta-v">UI Designer · UX Flows</div>
+    <!-- NAV -->
+    <header class="nav" id="topnav">
+      <div class="logo">
+        <a href="../index.html"
+          ><img src="/assets/images/DIN.png" alt="DIN" class="logo-img"
+        /></a>
       </div>
+      <button class="burger" id="burger" aria-label="Menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../contactus.html">Contact</a>
+      </nav>
+    </header>
 
-      <div class="meta-card">
-        <div class="meta-k">Tools</div>
-        <div class="meta-v">
-          <span class="chip">Figma</span>
-          <span class="chip">Adobe Illustrator</span>
+    <div class="ub-page-wrap">
+      <div class="case-subnav" data-case-subnav>
+        <div class="case-subnav-inner">
+          <div
+            class="case-subnav-pill"
+            role="navigation"
+            aria-label="Case sections"
+          >
+            <a href="#overview" class="case-subnav-link">Overview</a>
+            <a href="#products" class="case-subnav-link">Products</a>
+            <a href="#problem" class="case-subnav-link">Problem</a>
+            <a href="#process" class="case-subnav-link">Process</a>
+            <a href="#research" class="case-subnav-link">Research</a>
+            <a href="#uxflow" class="case-subnav-link">Wireframe</a>
+            <a href="#colors" class="case-subnav-link">Colors &amp; Type</a>
+            <a href="#landing" class="case-subnav-link">Full Page</a>
+            <a href="#uikit" class="case-subnav-link">UI Kit</a>
+            <a href="#modals" class="case-subnav-link">Modals</a>
+            <a href="#mobile" class="case-subnav-link">Mobile</a>
+            <a href="#branding" class="case-subnav-link">Branding</a>
+            <a href="#learnings" class="case-subnav-link">Learnings</a>
+          </div>
         </div>
       </div>
 
-      <div class="meta-card">
-        <div class="meta-k">Type</div>
-        <div class="meta-v">Landing page · UI System</div>
-      </div>
-
-      <div class="meta-card">
-        <div class="meta-k">Deliverables</div>
-        <div class="meta-v">Screens · UI kit · Components</div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- RIGHT IMAGE -->
-  <div class="pf pf--hero" data-reveal data-reveal-delay="2">
-
-    <img 
-      src="/assets/images/unniebox/main page.png"
-      alt="UnnieBox Korean beauty subscription landing page design"
-      loading="lazy"
-      decoding="async"
-    >
-
-    <div class="pf__overlay"></div>
-
-    <span class="pf__badge">
-      Korean Beauty
-    </span>
-
-  </div>
-
-  
-
-</div>
-
-
-        <!-- ── SECTIONS ── -->
-        <section class="case-sections">
-
-          <!-- OVERVIEW -->
-          <section class="case-section" id="overview" data-reveal>
-            <div class="case-overview-top">
-              <div class="case-eyebrow">PROJECT OVERVIEW</div>
-              <h2 class="case-h2">Beauty boxes from Korea, reimagined</h2>
-              <p class="case-p">UnnieBox is a subscription beauty service curating boxes with Korean skincare and cosmetics, shipped internationally. The challenge: design a complete landing page that builds trust fast, communicates product value visually, and guides users through a simple order flow.</p>
-              <p class="case-p" style="margin-top:10px">I designed the full UI system — from logo and favicon to every button state, modal, and micro-interaction.</p>
-              <div class="case-stats" style="margin-top:24px">
-                <div class="stat" data-reveal data-reveal-delay="1"><div class="stat-n">9+</div><div class="stat-t">Unique page sections designed</div></div>
-                <div class="stat" data-reveal data-reveal-delay="2"><div class="stat-n">5</div><div class="stat-t">Modal flow variants</div></div>
-                <div class="stat" data-reveal data-reveal-delay="3"><div class="stat-n">100%</div><div class="stat-t">Custom UI kit from scratch</div></div>
+      <main
+        style="position: relative; z-index: 1; color: #fff; padding-top: 14px"
+      >
+        <div class="case-wrap">
+          <!-- HERO -->
+          <div class="hero case-hero" data-reveal>
+            <!-- LEFT TEXT -->
+            <div>
+              <div class="hero-accent"></div>
+              <div class="eyebrow">UI WEB DESIGN · CASE STUDY</div>
+              <h1 class="case-title">UnnieBox</h1>
+              <p class="case-sub">
+                Premium landing page and UI system for a Korean beauty box
+                subscription. Designed to build trust, highlight product value,
+                and guide users through a simple and elegant purchase flow.
+              </p>
+              <div class="case-actions">
+                <a class="btn-case primary" href="../index.html"
+                  >← Back to gallery</a
+                >
+                <a class="btn-case" href="../contactus.html">Get in touch</a>
+                <a class="btn-case" href="clm.html" rel="prev">← Prev</a>
+                <a class="btn-case" href="avion.html" rel="next">Next →</a>
               </div>
-            </div>
-          </section>
-
-          <!-- PRODUCTS -->
-          <section class="case-section" id="products" data-reveal>
-            <h2 class="case-h2">Featured products</h2>
-            <p class="case-p">Each box is curated with dermatologist-tested Korean beauty products. Clean formulas, certified ingredients — zero SLS, SLES, sulfates, or artificial dyes.</p>
-            <div class="ub-products-grid">
-              <div class="ub-product-card" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/products%20for%20website.png" alt="Cleanser">
-                <span class="ub-product-pill">Cleanser</span>
-              </div>
-              <div class="ub-product-card" data-reveal data-reveal-delay="2">
-                <img src="/assets/images/unniebox/products%20for%20website2.png" alt="Moisturizer">
-                <span class="ub-product-pill">Moisturizer</span>
-              </div>
-              <div class="ub-product-card" data-reveal data-reveal-delay="3">
-                <img src="/assets/images/unniebox/products%20for%20website3.png" alt="SPF 50+">
-                <span class="ub-product-pill">SPF 50+</span>
-              </div>
-            </div>
-          </section>
-
-          <!-- PROBLEM -->
-          <section class="case-section" id="problem" data-reveal>
-            <h2 class="case-h2">Problem and goals</h2>
-            <div class="case-grid2">
-              <div class="case-card" data-reveal data-reveal-delay="1">
-                <h3>Problem</h3>
-                <p>Beauty subscription boxes live or die on trust. Users are asked to share personal details and pay before they've touched the product — so if the page doesn't immediately feel premium and credible, they leave. The challenge was to design a landing experience that earns trust fast, explains the offer clearly, and removes every reason to hesitate.</p>
-              </div>
-              <div class="case-card" data-reveal data-reveal-delay="2">
-                <h3>Goals</h3>
-                <p>Design a premium landing page that communicates product value at a glance, guides users through a natural learn → trust → order flow, and converts hesitation into action. Every section needed to answer a real objection before the user even thought to ask it.</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- PROCESS -->
-          <section class="case-section" id="process" data-reveal>
-            <h2 class="case-h2">Process</h2>
-            <p class="case-p">I worked from story structure to reusable components. Each step focused on clarity, hierarchy, and conversion.</p>
-            <div class="case-process">
-              <div class="pstep" data-reveal data-reveal-delay="1"><div class="pnum">01</div><div class="ptitle">Story and layout</div><div class="pdesc">Defined the page narrative, section order, and CTA rhythm for a smooth user journey.</div></div>
-              <div class="pstep" data-reveal data-reveal-delay="2"><div class="pnum">02</div><div class="ptitle">Design system</div><div class="pdesc">Set colors, typography, spacing, and card styles to keep everything consistent.</div></div>
-              <div class="pstep" data-reveal data-reveal-delay="3"><div class="pnum">03</div><div class="ptitle">Components</div><div class="pdesc">Built a UI kit of buttons, inputs, tags, icons, and card templates to speed up design.</div></div>
-              <div class="pstep" data-reveal data-reveal-delay="4"><div class="pnum">04</div><div class="ptitle">Interaction and polish</div><div class="pdesc">Designed modal flows, micro-interactions, and final visual refinements for a premium feel.</div></div>
-            </div>
-          </section>
-
-
-          <!-- WIREFRAME & USER FLOW -->
-          <section class="case-section" id="uxflow" data-reveal>
-            <div class="case-eyebrow">RESEARCH & PLANNING</div>
-            <h2 class="case-h2">Wireframe &amp; User Flow</h2>
-            <p class="case-p">Before any pixel was styled, I mapped out the complete user journey and page structure. The wireframe defines every section layout; the user flow captures all 3 paths — direct buyer, hesitant user, and lead capture — so no edge case was left undesigned.</p>
-
-            <div class="uxflow-tabs" style="margin-top:24px">
-              <button class="uxflow-tab active" data-tab="wireframe">Wireframe</button>
-              <button class="uxflow-tab" data-tab="userflow">User Flow</button>
-            </div>
-
-            <div class="uxflow-panel" id="tab-wireframe" style="margin-top:16px">
-              <div class="pf pf--full" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/wireframe.png" alt="UnnieBox Wireframe full page layout" loading="lazy" decoding="async">
-                <span class="pf__tag">Wireframe — Full Page Layout</span>
-              </div>
-              <div class="uxflow-caption">
-                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Hero + Nav structure</div>
-                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Trust signals &amp; product sections</div>
-                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Modal entry points mapped</div>
-                <div class="uxflow-cap-item"><span class="uxflow-dot"></span>Reviews, FAQ, final CTA</div>
-              </div>
-            </div>
-
-            <div class="uxflow-panel uxflow-panel--hidden" id="tab-userflow" style="margin-top:16px">
-              <div class="pf pf--full" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/Userflow.png" alt="UnnieBox User Flow 3 paths" loading="lazy" decoding="async">
-                <span class="pf__tag">User Flow — 3 Paths Mapped</span>
-              </div>
-              <div class="uxflow-paths" style="margin-top:16px">
-                <div class="uxflow-path-card" data-reveal data-reveal-delay="1">
-                  <div class="uxflow-path-num">01</div>
-                  <div class="uxflow-path-title">Direct Buyer</div>
-                  <div class="uxflow-path-desc">Hero → Composition → Order form → Payment. Quick decision maker who needs minimal convincing.</div>
+              <div class="case-meta" style="margin-top: 22px">
+                <div class="meta-card">
+                  <div class="meta-k">Role</div>
+                  <div class="meta-v">UI Designer · UX Flows</div>
                 </div>
-                <div class="uxflow-path-card" data-reveal data-reveal-delay="2">
-                  <div class="uxflow-path-num">02</div>
-                  <div class="uxflow-path-title">Hesitant User</div>
-                  <div class="uxflow-path-desc">Trust signals → Reviews → FAQ → Order. Needs social proof and clear answers before committing.</div>
+                <div class="meta-card">
+                  <div class="meta-k">Tools</div>
+                  <div class="meta-v">
+                    <span class="chip">Figma</span>
+                    <span class="chip">Adobe Illustrator</span>
+                  </div>
                 </div>
-                <div class="uxflow-path-card" data-reveal data-reveal-delay="3">
-                  <div class="uxflow-path-num">03</div>
-                  <div class="uxflow-path-title">Lead Capture</div>
-                  <div class="uxflow-path-desc">Guide CTA → Phone number → Nurture later. Not ready to buy — captured for future conversion.</div>
+                <div class="meta-card">
+                  <div class="meta-k">Type</div>
+                  <div class="meta-v">Landing page · UI System</div>
+                </div>
+                <div class="meta-card">
+                  <div class="meta-k">Deliverables</div>
+                  <div class="meta-v">Screens · UI kit · Components</div>
                 </div>
               </div>
             </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="pf pf--hero" data-reveal data-reveal-delay="2">
+              <img
+                src="/assets/images/unniebox/main page.png"
+                alt="UnnieBox Korean beauty subscription landing page design"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="pf__overlay"></div>
+              <span class="pf__badge">Korean Beauty</span>
+            </div>
+          </div>
+
+          <!-- ── SECTIONS ── -->
+          <section class="case-sections">
+            <!-- OVERVIEW -->
+            <section class="case-section" id="overview" data-reveal>
+              <div class="case-overview-top">
+                <div class="case-eyebrow">PROJECT OVERVIEW</div>
+                <h2 class="case-h2">Beauty boxes from Korea, reimagined</h2>
+                <p class="case-p">
+                  UnnieBox is a subscription beauty service curating boxes with
+                  Korean skincare and cosmetics, shipped internationally. The
+                  challenge: design a complete landing page that builds trust
+                  fast, communicates product value visually, and guides users
+                  through a simple order flow.
+                </p>
+                <p class="case-p" style="margin-top: 10px">
+                  I designed the full UI system — from logo and favicon to every
+                  button state, modal, and micro-interaction.
+                </p>
+                <div class="case-stats" style="margin-top: 24px">
+                  <div class="stat" data-reveal data-reveal-delay="1">
+                    <div class="stat-n">9+</div>
+                    <div class="stat-t">Unique page sections designed</div>
+                  </div>
+                  <div class="stat" data-reveal data-reveal-delay="2">
+                    <div class="stat-n">5</div>
+                    <div class="stat-t">Modal flow variants</div>
+                  </div>
+                  <div class="stat" data-reveal data-reveal-delay="3">
+                    <div class="stat-n">100%</div>
+                    <div class="stat-t">Custom UI kit from scratch</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- PRODUCTS -->
+            <section class="case-section" id="products" data-reveal>
+              <h2 class="case-h2">Featured products</h2>
+              <p class="case-p">
+                Each box is curated with dermatologist-tested Korean beauty
+                products. Clean formulas, certified ingredients — zero SLS,
+                SLES, sulfates, or artificial dyes.
+              </p>
+              <div class="ub-products-grid">
+                <div class="ub-product-card" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/products%20for%20website.png"
+                    alt="Cleanser"
+                  />
+                  <span class="ub-product-pill">Cleanser</span>
+                </div>
+                <div class="ub-product-card" data-reveal data-reveal-delay="2">
+                  <img
+                    src="/assets/images/unniebox/products%20for%20website2.png"
+                    alt="Moisturizer"
+                  />
+                  <span class="ub-product-pill">Moisturizer</span>
+                </div>
+                <div class="ub-product-card" data-reveal data-reveal-delay="3">
+                  <img
+                    src="/assets/images/unniebox/products%20for%20website3.png"
+                    alt="SPF 50+"
+                  />
+                  <span class="ub-product-pill">SPF 50+</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- PROBLEM -->
+            <section class="case-section" id="problem" data-reveal>
+              <h2 class="case-h2">Problem and goals</h2>
+              <div class="case-grid2">
+                <div class="case-card" data-reveal data-reveal-delay="1">
+                  <h3>Problem</h3>
+                  <p>
+                    Beauty subscription boxes live or die on trust. Users are
+                    asked to share personal details and pay before they've
+                    touched the product — so if the page doesn't immediately
+                    feel premium and credible, they leave. The challenge was to
+                    design a landing experience that earns trust fast, explains
+                    the offer clearly, and removes every reason to hesitate.
+                  </p>
+                </div>
+                <div class="case-card" data-reveal data-reveal-delay="2">
+                  <h3>Goals</h3>
+                  <p>
+                    Design a premium landing page that communicates product
+                    value at a glance, guides users through a natural learn →
+                    trust → order flow, and converts hesitation into action.
+                    Every section needed to answer a real objection before the
+                    user even thought to ask it.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- PROCESS -->
+            <section class="case-section" id="process" data-reveal>
+              <h2 class="case-h2">Process</h2>
+              <p class="case-p">
+                I worked from story structure to reusable components. Each step
+                focused on clarity, hierarchy, and conversion.
+              </p>
+              <div class="case-process">
+                <div class="pstep" data-reveal data-reveal-delay="1">
+                  <div class="pnum">01</div>
+                  <div class="ptitle">Story and layout</div>
+                  <div class="pdesc">
+                    Defined the page narrative, section order, and CTA rhythm
+                    for a smooth user journey.
+                  </div>
+                </div>
+                <div class="pstep" data-reveal data-reveal-delay="2">
+                  <div class="pnum">02</div>
+                  <div class="ptitle">Design system</div>
+                  <div class="pdesc">
+                    Set colors, typography, spacing, and card styles to keep
+                    everything consistent.
+                  </div>
+                </div>
+                <div class="pstep" data-reveal data-reveal-delay="3">
+                  <div class="pnum">03</div>
+                  <div class="ptitle">Components</div>
+                  <div class="pdesc">
+                    Built a UI kit of buttons, inputs, tags, icons, and card
+                    templates to speed up design.
+                  </div>
+                </div>
+                <div class="pstep" data-reveal data-reveal-delay="4">
+                  <div class="pnum">04</div>
+                  <div class="ptitle">Interaction and polish</div>
+                  <div class="pdesc">
+                    Designed modal flows, micro-interactions, and final visual
+                    refinements for a premium feel.
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- RESEARCH & PLANNING -->
+            <section class="case-section" id="research" data-reveal>
+              <div class="case-eyebrow">RESEARCH &amp; PLANNING</div>
+              <h2 class="case-h2">Market Overview</h2>
+              <p class="case-p">
+                The Korean beauty subscription market is experiencing rapid
+                global growth, driven by Gen Z and Millennial demand for
+                personalized, clean skincare experiences.
+              </p>
+
+              <!-- Market Value Cards -->
+              <div class="rp-market-grid" style="margin-top: 24px">
+                <!-- Left: Global Market Value -->
+                <div class="rp-card rp-card--dark">
+                  <div class="rp-label">GLOBAL MARKET VALUE</div>
+                  <div class="rp-big-num">$1.11B</div>
+                  <div class="rp-year">2024</div>
+                  <div style="margin-top: auto; padding-top: 24px">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      <span style="font-size: 13px; color: var(--text-dim)"
+                        >Projected 2030</span
+                      >
+                      <span
+                        style="font-size: 18px; font-weight: 700; color: #fff"
+                        >$2.99B</span
+                      >
+                    </div>
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 44%"></div>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 8px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          color: var(--text-dim);
+                          font-family: var(--font-mono);
+                          letter-spacing: 0.1em;
+                        "
+                        >CAGR</span
+                      >
+                      <span
+                        style="
+                          font-size: 15px;
+                          font-weight: 700;
+                          color: #22c55e;
+                        "
+                        >17.7%</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Area Chart card -->
+                <div class="rp-card rp-card--chart">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    <div>
+                      <div class="rp-label">MARKET GROWTH FORECAST</div>
+                      <div
+                        style="
+                          font-family: var(--font-serif);
+                          font-size: 20px;
+                          color: #fff;
+                          margin-top: 4px;
+                        "
+                      >
+                        2022 → 2030
+                      </div>
+                    </div>
+                    <div class="rp-badge">+315%</div>
+                  </div>
+                  <div style="position: relative; height: 160px">
+                    <canvas
+                      id="rpAreaChart"
+                      role="img"
+                      aria-label="Korean beauty market growth 2022–2030 from $0.72B to $2.99B"
+                      >Market value rises from $0.72B in 2022 to $2.99B in
+                      2030.</canvas
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stat Bars -->
+              <div
+                style="
+                  margin-top: 14px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <div class="rp-stat-row">
+                  <span class="rp-stat-pct">42.7%</span>
+                  <div class="rp-stat-right">
+                    <span class="rp-stat-label"
+                      >of beauty subscriptions are skincare</span
+                    >
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 42.7%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rp-stat-row">
+                  <span class="rp-stat-pct">42.3%</span>
+                  <div class="rp-stat-right">
+                    <span class="rp-stat-label"
+                      >North America market share</span
+                    >
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 42.3%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rp-stat-row">
+                  <span class="rp-stat-pct">58%</span>
+                  <div class="rp-stat-right">
+                    <span class="rp-stat-label"
+                      >Monthly subscription model share</span
+                    >
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 58%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rp-stat-row">
+                  <span class="rp-stat-pct">78%</span>
+                  <div class="rp-stat-right">
+                    <span class="rp-stat-label"
+                      >Individual consumers among subscribers</span
+                    >
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 78%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rp-stat-row">
+                  <span class="rp-stat-pct">34%</span>
+                  <div class="rp-stat-right">
+                    <span class="rp-stat-label"
+                      >of 18–29 y.o. plan to try K-Beauty in 2025</span
+                    >
+                    <div class="rp-bar-track">
+                      <div class="rp-bar-fill" style="width: 34%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rp-sources">
+                <a
+                  href="https://www.grandviewresearch.com/industry-analysis/beauty-subscription-box-market"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Grand View Research — Beauty Subscription Box Market ↗</a
+                >
+                <a
+                  href="https://www.emergenresearch.com/industry-report/beauty-subscription-box-market"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Emergen Research — Beauty Subscription Box Market ↗</a
+                >
+              </div>
+
+              <!-- DIVIDER -->
+              <div class="rp-divider" style="margin: 52px 0 40px"></div>
+
+              <!-- TARGET AUDIENCE -->
+              <div class="case-eyebrow">TARGET AUDIENCE</div>
+              <h2 class="case-h2">Who buys beauty subscription boxes</h2>
+
+              <div class="rp-audience-grid" style="margin-top: 24px">
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="1"
+                >
+                  <div class="rp-big-num" style="font-size: 42px">$16.7B</div>
+                  <p
+                    style="
+                      color: var(--text-muted);
+                      font-size: 14px;
+                      margin-top: 8px;
+                      line-height: 1.5;
+                    "
+                  >
+                    Gen Z &amp; Millennials spend annually on beauty online
+                  </p>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: #22c55e;
+                      margin-top: 8px;
+                      font-weight: 600;
+                    "
+                  >
+                    +13.3% YoY
+                  </div>
+                </div>
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="2"
+                >
+                  <div class="rp-big-num" style="font-size: 52px">56%</div>
+                  <p
+                    style="
+                      color: var(--text-muted);
+                      font-size: 14px;
+                      margin-top: 8px;
+                      line-height: 1.5;
+                    "
+                  >
+                    look for natural / clean ingredients
+                  </p>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: var(--text-dim);
+                      margin-top: 6px;
+                    "
+                  >
+                    Hydration = #1 skincare factor
+                  </div>
+                </div>
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="3"
+                >
+                  <div class="rp-big-num" style="font-size: 52px">64%</div>
+                  <p
+                    style="
+                      color: var(--text-muted);
+                      font-size: 14px;
+                      margin-top: 8px;
+                      line-height: 1.5;
+                    "
+                  >
+                    of subscribers stay for personalization
+                  </p>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: var(--text-dim);
+                      margin-top: 6px;
+                    "
+                  >
+                    retention driver
+                  </div>
+                </div>
+              </div>
+
+              <!-- Purchase Factors + Discovery side by side -->
+              <div class="rp-2col" style="margin-top: 14px">
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="1"
+                >
+                  <div class="rp-label" style="margin-bottom: 4px">
+                    GEN Z PURCHASE FACTORS
+                  </div>
+                  <div
+                    style="
+                      font-family: var(--font-serif);
+                      font-size: 18px;
+                      color: #fff;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    What drives the decision
+                  </div>
+                  <div style="position: relative; height: 160px">
+                    <canvas
+                      id="rpPieChart"
+                      role="img"
+                      aria-label="Pie chart: Price 63%, Clean ingredients 56%, Personalized 64%, Quality 53%"
+                      >Price 63%, Clean ingr. 56%, Personalized 64%, Quality
+                      53%.</canvas
+                    >
+                  </div>
+                  <div
+                    style="
+                      margin-top: 12px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 6px;
+                    "
+                  >
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #0b6dff"
+                      ></span
+                      ><span>Price</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >63%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 63%; background: #0b6dff"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #4aa2ff"
+                      ></span
+                      ><span>Clean ingr.</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >56%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 56%; background: #4aa2ff"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #22c55e"
+                      ></span
+                      ><span>Personalized</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >64%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 64%; background: #22c55e"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #e8c15a"
+                      ></span
+                      ><span>Quality</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >53%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 53%; background: #e8c15a"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="2"
+                >
+                  <div class="rp-label" style="margin-bottom: 4px">
+                    SKINCARE DISCOVERY
+                  </div>
+                  <div
+                    style="
+                      font-family: var(--font-serif);
+                      font-size: 18px;
+                      color: #fff;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    How they find products
+                  </div>
+                  <div style="position: relative; height: 160px">
+                    <canvas
+                      id="rpDonutChart"
+                      role="img"
+                      aria-label="Donut chart: Word of mouth 38%, TikTok 31%, Search 18%, Other 13%"
+                      >Word of mouth 38%, TikTok 31%, Search 18%, Other
+                      13%.</canvas
+                    >
+                  </div>
+                  <div
+                    style="
+                      margin-top: 12px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 6px;
+                    "
+                  >
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #0b6dff"
+                      ></span
+                      ><span>Word of mouth</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >38%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 38%; background: #0b6dff"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #4aa2ff"
+                      ></span
+                      ><span>TikTok / Social</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >31%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 31%; background: #4aa2ff"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: #e8c15a"
+                      ></span
+                      ><span>Search</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >18%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 18%; background: #e8c15a"
+                      ></div>
+                    </div>
+                    <div class="rp-mini-stat">
+                      <span
+                        class="rp-mini-dot"
+                        style="background: rgba(255, 255, 255, 0.3)"
+                      ></span
+                      ><span>Other</span
+                      ><span
+                        style="margin-left: auto; font-weight: 600; color: #fff"
+                        >13%</span
+                      >
+                    </div>
+                    <div class="rp-mini-bar-track">
+                      <div
+                        class="rp-mini-bar-fill"
+                        style="width: 13%; background: rgba(255, 255, 255, 0.3)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rp-sources">
+                <a
+                  href="https://nielseniq.com/global/en/insights/report/2024/beauty-and-personal-care-trends/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >NielsenIQ — Beauty Trends 2024 ↗</a
+                >
+                <a
+                  href="https://www.retaildive.com/news/gen-z-beauty-spending-yougov/697432/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >YouGov / Retail Dive ↗</a
+                >
+                <a
+                  href="https://www.retaildive.com/news/gen-z-skincare-habits-clean-beauty/700123/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Retail Dive — Gen Z Skincare Habits ↗</a
+                >
+              </div>
+
+              <!-- DIVIDER -->
+              <div class="rp-divider" style="margin: 52px 0 40px"></div>
+
+              <!-- UX & CONVERSION RESEARCH -->
+              <div class="case-eyebrow">UX &amp; CONVERSION RESEARCH</div>
+              <h2 class="case-h2">Why trust-first design matters</h2>
+
+              <!-- Bar Chart: Conversion Uplift -->
+              <div class="rp-2col" style="margin-top: 24px; align-items: start">
+                <!-- TRUST & UX IMPACT -->
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="1"
+                >
+                  <div class="rp-label" style="margin-bottom: 4px">
+                    TRUST &amp; UX CONVERSION DRIVERS
+                  </div>
+                  <div
+                    style="
+                      font-family: var(--font-serif);
+                      font-size: 18px;
+                      color: #fff;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    % increase from optimized experience factors
+                  </div>
+
+                  <div style="position: relative; height: 200px">
+                    <canvas
+                      id="rpBarChart"
+                      role="img"
+                      aria-label="Bar chart showing conversion impact: UX Design 400%, Social Proof 270%, Testimonials 38%, Free Gift 27%, Personalization 28%"
+                    >
+                      UX Design 400%, Social Proof 270%, Testimonials 38%, Free
+                      Gift 27%, Personalization 28%.
+                    </canvas>
+                  </div>
+                </div>
+
+                <!-- CTA FOCUS -->
+                <div
+                  class="rp-card rp-card--dark"
+                  data-reveal
+                  data-reveal-delay="2"
+                >
+                  <div class="rp-label" style="margin-bottom: 4px">
+                    CTA STRATEGY
+                  </div>
+                  <div
+                    style="
+                      font-family: var(--font-serif);
+                      font-size: 18px;
+                      color: #fff;
+                      margin-bottom: 16px;
+                    "
+                  >
+                    Single vs Multi-CTA Performance
+                  </div>
+
+                  <div style="position: relative; height: 110px">
+                    <canvas
+                      id="rpCTAChart"
+                      role="img"
+                      aria-label="Comparison of conversion rates: Single CTA 13.5%, Multi-CTA 10.5%"
+                    >
+                      Single CTA 13.5%, Multi-CTA 10.5%.
+                    </canvas>
+                  </div>
+
+                  <div
+                    style="
+                      margin-top: 14px;
+                      padding: 14px;
+                      background: rgba(11, 109, 255, 0.08);
+                      border: 1px solid rgba(11, 109, 255, 0.2);
+                      border-radius: 10px;
+                    "
+                  >
+                    <span style="font-size: 13px; color: var(--text-muted)">
+                      +3pp lift from focus —
+                      <strong style="color: #fff">one clear action wins</strong>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Key Numbers table -->
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">5.8%</span>
+                <span class="rp-kv-text">
+                  Average conversion rate for subscription landing pages, used
+                  as the baseline for planning the user journey.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--neutral">baseline</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">270%</span>
+                <span class="rp-kv-text">
+                  Social proof can significantly improve conversions, which led
+                  to the dedicated reviews and testimonials section.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--up">social proof</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">34%</span>
+                <span class="rp-kv-text">
+                  Consumers value flexible cancellation policies, so pricing and
+                  subscription terms were displayed clearly.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--trust">trust</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">18%</span>
+                <span class="rp-kv-text">
+                  Users abandon checkout when flows feel complex, which
+                  influenced the simplified modal-based order process.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--warn">friction</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">27%</span>
+                <span class="rp-kv-text">
+                  Free gifts increase sign-ups, inspiring promotional and
+                  onboarding modal concepts.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--up">engagement</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">38%</span>
+                <span class="rp-kv-text">
+                  Landing pages with testimonials often perform better,
+                  reinforcing the decision to highlight customer reviews.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--up">reviews</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">+28%</span>
+                <span class="rp-kv-text">
+                  Personalization improves conversion rates, which inspired the
+                  skincare guide and tailored recommendation flows.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--up">personalization</span>
+              </div>
+
+              <div class="rp-kv-row">
+                <span class="rp-kv-num">13.5%</span>
+                <span class="rp-kv-text">
+                  Single-CTA pages outperform multi-CTA layouts, supporting a
+                  focused conversion strategy throughout the landing page.
+                </span>
+                <span class="rp-kv-tag rp-kv-tag--focus">CTA strategy</span>
+              </div>
+
+              <div class="rp-sources">
+                <a
+                  href="https://marketingltb.com/blog/statistics/subscription-statistics/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Marketing LTB — Subscription Statistics 2026 ↗</a
+                >
+                <a
+                  href="https://www.flint.digital/trust-signal-statistics/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Flint — Trust Signal Statistics ↗</a
+                >
+              </div>
+
+              <!-- DIVIDER -->
+              <div class="rp-divider" style="margin: 52px 0 40px"></div>
+
+              <!-- USER PERSONA -->
+              <div class="case-eyebrow">USER PERSONA</div>
+              <h2 class="case-h2">User Persona</h2>
+
+              <div
+                class="rp-persona"
+                style="margin-top: 24px"
+                data-reveal
+                data-reveal-delay="1"
+              >
+                <!-- Left: IMAGE -->
+                <div
+                  class="rp-persona__img"
+                  style="overflow: hidden; border-radius: 16px"
+                >
+                  <img
+                    src="/assets/images/unniebox/sophie.jpg"
+                    alt="User persona portrait: Sophie, 23"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      display: block;
+                    "
+                  />
+                </div>
+
+                <!-- Right: persona details -->
+                <div class="rp-persona__info">
+                  <div style="margin-bottom: 18px">
+                    <div
+                      style="
+                        font-family: var(--font-serif);
+                        font-size: 28px;
+                        color: #fff;
+                        margin-bottom: 6px;
+                      "
+                    >
+                      Sophie, 23
+                    </div>
+
+                    <div style="font-size: 14px; color: var(--text-muted)">
+                      Toronto, Canada
+                    </div>
+
+                    <div style="font-size: 14px; color: var(--text-muted)">
+                      University student / part-time barista
+                    </div>
+
+                    <div style="font-size: 14px; color: var(--text-muted)">
+                      $1,200–1,800 / month
+                    </div>
+
+                    <div
+                      style="
+                        display: flex;
+                        gap: 8px;
+                        margin-top: 10px;
+                        flex-wrap: wrap;
+                      "
+                    >
+                      <span class="chip">TikTok</span>
+                      <span class="chip">Instagram</span>
+                      <span class="chip">Pinterest</span>
+                    </div>
+                  </div>
+
+                  <div class="rp-persona__group">
+                    <div class="rp-persona__group-title">Goals</div>
+                    <ul class="rp-bullet-list">
+                      <li>
+                        Discover Korean skincare without hours of research
+                      </li>
+                      <li>Try products without risk of wasting money</li>
+                      <li>Build a consistent daily skincare routine</li>
+                    </ul>
+                  </div>
+
+                  <div class="rp-persona__group">
+                    <div class="rp-persona__group-title">Pain Points</div>
+                    <ul class="rp-bullet-list">
+                      <li>Doesn't trust subscription boxes</li>
+                      <li>Overwhelmed by choice on Amazon and Sephora</li>
+                      <li>Wants clean ingredients but can't read formulas</li>
+                    </ul>
+                  </div>
+
+                  <div class="rp-persona__group">
+                    <div class="rp-persona__group-title">Behaviour</div>
+                    <ul class="rp-bullet-list">
+                      <li>Finds products through TikTok and YouTube</li>
+                      <li>Reads 5–10 reviews before any purchase</li>
+                      <li>Makes decisions on-page — won't leave to Google</li>
+                    </ul>
+                  </div>
+
+                  <div class="rp-quote">
+                    "I want to try K-beauty but I don't know where to start —
+                    and I don't want to waste money on the wrong thing."
+                  </div>
+                </div>
+              </div>
+
+              <!-- DIVIDER -->
+              <div class="rp-divider" style="margin: 52px 0 40px"></div>
+
+              <!-- COMPETITIVE ANALYSIS -->
+              <div class="case-eyebrow">COMPETITIVE ANALYSIS</div>
+              <h2 class="case-h2">Competitive Analysis</h2>
+
+              <!-- Competitor logos row -->
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 14px;
+                  margin-top: 24px;
+                "
+              >
+                <!-- Bomibox -->
+                <div
+                  class="rp-card rp-card--dark"
+                  style="display: flex; align-items: center; gap: 14px"
+                >
+                  <div
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      border-radius: 12px;
+                      background: rgba(11, 109, 255, 0.15);
+                      border: 1px solid rgba(11, 109, 255, 0.25);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      flex-shrink: 0;
+                      overflow: hidden;
+                    "
+                  >
+                    <img
+                      src="/assets/images/unniebox/bombibox.png"
+                      alt="Bomibox"
+                      style="width: 80%; height: 80%; object-fit: contain"
+                    />
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #fff">
+                      Bomibox
+                    </div>
+                    <div
+                      style="
+                        font-size: 12px;
+                        color: var(--text-dim);
+                        margin-top: 2px;
+                      "
+                    >
+                      Direct K-Beauty competitor
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Soko Glam -->
+                <div
+                  class="rp-card rp-card--dark"
+                  style="display: flex; align-items: center; gap: 14px"
+                >
+                  <div
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      border-radius: 12px;
+                      background: rgba(11, 109, 255, 0.15);
+                      border: 1px solid rgba(11, 109, 255, 0.25);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      flex-shrink: 0;
+                      overflow: hidden;
+                    "
+                  >
+                    <img
+                      src="/assets/images/unniebox/sologlam.webp"
+                      alt="Soko Glam"
+                      style="width: 80%; height: 80%; object-fit: contain"
+                    />
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #fff">
+                      Soko Glam
+                    </div>
+                    <div
+                      style="
+                        font-size: 12px;
+                        color: var(--text-dim);
+                        margin-top: 2px;
+                      "
+                    >
+                      K-Beauty retail, editorial trust
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Ipsy -->
+                <div
+                  class="rp-card rp-card--dark"
+                  style="display: flex; align-items: center; gap: 14px"
+                >
+                  <div
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      border-radius: 12px;
+                      background: rgba(11, 109, 255, 0.15);
+                      border: 1px solid rgba(11, 109, 255, 0.25);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      flex-shrink: 0;
+                      overflow: hidden;
+                    "
+                  >
+                    <img
+                      src="/assets/images/unniebox/IPSY_Logo.jpg"
+                      alt="Ipsy"
+                      style="width: 80%; height: 80%; object-fit: contain"
+                    />
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #fff">
+                      Ipsy
+                    </div>
+                    <div
+                      style="
+                        font-size: 12px;
+                        color: var(--text-dim);
+                        margin-top: 2px;
+                      "
+                    >
+                      General beauty subscription
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Comparison table — FIXED SYMBOLS -->
+              <div class="rp-table-wrap" style="margin-top: 16px">
+                <table class="rp-table">
+                  <thead>
+                    <tr>
+                      <th>Feature</th>
+                      <th class="rp-th--highlight">UnnieBox</th>
+                      <th>Bomibox</th>
+                      <th>Soko Glam</th>
+                      <th>Ipsy</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>K-Beauty focus</td>
+                      <td class="rp-td--highlight">
+                        <span class="rp-check">✓</span>
+                      </td>
+                      <td><span class="rp-check">✓</span></td>
+                      <td><span class="rp-check">✓</span></td>
+                      <td><span class="rp-cross">✗</span></td>
+                    </tr>
+                    <tr>
+                      <td>Clean ingredients</td>
+                      <td class="rp-td--highlight">
+                        <span class="rp-check">✓</span>
+                      </td>
+                      <td><span class="rp-warn">△</span></td>
+                      <td><span class="rp-check">✓</span></td>
+                      <td><span class="rp-cross">✗</span></td>
+                    </tr>
+                    <tr>
+                      <td>Trust signals</td>
+                      <td
+                        class="rp-td--highlight"
+                        style="color: #22c55e; font-weight: 600"
+                      >
+                        Strong
+                      </td>
+                      <td style="color: var(--text-muted)">Moderate</td>
+                      <td style="color: #22c55e; font-weight: 600">Strong</td>
+                      <td style="color: #22c55e; font-weight: 600">Strong</td>
+                    </tr>
+                    <tr>
+                      <td>Modal UX flows</td>
+                      <td class="rp-td--highlight">
+                        <span class="rp-check">✓</span>
+                      </td>
+                      <td><span class="rp-cross">✗</span></td>
+                      <td><span class="rp-cross">✗</span></td>
+                      <td><span class="rp-cross">✗</span></td>
+                    </tr>
+                    <tr>
+                      <td>Mobile optimized</td>
+                      <td class="rp-td--highlight">
+                        <span class="rp-check">✓</span>
+                      </td>
+                      <td><span class="rp-warn">△</span></td>
+                      <td><span class="rp-check">✓</span></td>
+                      <td><span class="rp-check">✓</span></td>
+                    </tr>
+                    <tr>
+                      <td>Price transparency</td>
+                      <td
+                        class="rp-td--highlight"
+                        style="color: #22c55e; font-weight: 600"
+                      >
+                        Clear
+                      </td>
+                      <td style="color: #f87171; font-weight: 600">Unclear</td>
+                      <td style="color: #22c55e; font-weight: 600">Clear</td>
+                      <td style="color: #22c55e; font-weight: 600">Clear</td>
+                    </tr>
+                    <tr>
+                      <td>Cancel anytime</td>
+                      <td class="rp-td--highlight">
+                        <span class="rp-check">✓</span>
+                      </td>
+                      <td><span class="rp-cross">✗</span></td>
+                      <td style="color: var(--text-dim)">N/A</td>
+                      <td><span class="rp-check">✓</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="rp-quote" style="margin-top: 14px">
+                "No direct competitor combines clean ingredient focus,
+                transparent pricing, cancel-anytime flexibility, and modal UX
+                flows in one product."
+              </div>
+
+              <!-- DIVIDER -->
+              <div class="rp-divider" style="margin: 52px 0 40px"></div>
+
+              <!-- DESIGN DECISIONS -->
+              <div class="case-eyebrow">DESIGN DECISIONS BASED ON RESEARCH</div>
+              <h2 class="case-h2">
+                Every section answers a real user objection
+              </h2>
+
+              <div class="rp-decisions-grid" style="margin-top: 24px">
+                <div class="rp-decision-card" data-reveal data-reveal-delay="1">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Hero</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >01</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    What is this and is it worth my time? — answered in under 3
+                    seconds.
+                  </p>
+                </div>
+                <div class="rp-decision-card" data-reveal data-reveal-delay="2">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Product section</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >02</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    What will I actually get? — shown visually, not described.
+                  </p>
+                </div>
+                <div class="rp-decision-card" data-reveal data-reveal-delay="3">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Ingredients callout</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >03</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    Are these products safe? — zero SLS, SLES, sulfates,
+                    artificial dyes.
+                  </p>
+                </div>
+                <div class="rp-decision-card" data-reveal data-reveal-delay="4">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Reviews section</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >04</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    Can I trust this brand? — real social proof.
+                  </p>
+                </div>
+                <div class="rp-decision-card" data-reveal data-reveal-delay="5">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Modal flows</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >05</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    I have a question but don't want to leave the page — modals
+                    keep focus.
+                  </p>
+                </div>
+                <div class="rp-decision-card" data-reveal data-reveal-delay="5">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: flex-start;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    <span style="font-size: 14px; font-weight: 600; color: #fff"
+                      >Order flow</span
+                    >
+                    <span
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 11px;
+                        color: rgba(74, 162, 255, 0.6);
+                      "
+                      >06</span
+                    >
+                  </div>
+                  <div class="rp-decision-bar"></div>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      line-height: 1.6;
+                      margin-top: 10px;
+                    "
+                  >
+                    Is checkout going to be complicated? — single modal, 3 steps
+                    max.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rp-sources" style="margin-top: 20px">
+                <a
+                  href="https://unbounce.com/conversion-benchmark-report/"
+                  target="_blank"
+                  rel="noopener"
+                  class="rp-source-link"
+                  >Unbounce Q4 2024 Conversion Benchmark ↗</a
+                >
+              </div>
+            </section>
+
+            <!-- WIREFRAME & USER FLOW -->
+            <section class="case-section" id="uxflow" data-reveal>
+              <div class="case-eyebrow">RESEARCH &amp; PLANNING</div>
+              <h2 class="case-h2">Wireframe &amp; User Flow</h2>
+              <p class="case-p">
+                Before any pixel was styled, I mapped out the complete user
+                journey and page structure. The wireframe defines every section
+                layout; the user flow captures all 3 paths — direct buyer,
+                hesitant user, and lead capture — so no edge case was left
+                undesigned.
+              </p>
+
+              <div class="uxflow-tabs" style="margin-top: 24px">
+                <button class="uxflow-tab active" data-tab="wireframe">
+                  Wireframe
+                </button>
+                <button class="uxflow-tab" data-tab="userflow">
+                  User Flow
+                </button>
+              </div>
+
+              <div
+                class="uxflow-panel"
+                id="tab-wireframe"
+                style="margin-top: 16px"
+              >
+                <div class="pf pf--full" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/wireframe.png"
+                    alt="UnnieBox Wireframe full page layout"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="pf__tag">Wireframe — Full Page Layout</span>
+                </div>
+                <div class="uxflow-caption">
+                  <div class="uxflow-cap-item">
+                    <span class="uxflow-dot"></span>Hero + Nav structure
+                  </div>
+                  <div class="uxflow-cap-item">
+                    <span class="uxflow-dot"></span>Trust signals &amp; product
+                    sections
+                  </div>
+                  <div class="uxflow-cap-item">
+                    <span class="uxflow-dot"></span>Modal entry points mapped
+                  </div>
+                  <div class="uxflow-cap-item">
+                    <span class="uxflow-dot"></span>Reviews, FAQ, final CTA
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="uxflow-panel uxflow-panel--hidden"
+                id="tab-userflow"
+                style="margin-top: 16px"
+              >
+                <div class="pf pf--full" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/Userflow.png"
+                    alt="UnnieBox User Flow 3 paths"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="pf__tag">User Flow — 3 Paths Mapped</span>
+                </div>
+                <div class="uxflow-paths" style="margin-top: 16px">
+                  <div
+                    class="uxflow-path-card"
+                    data-reveal
+                    data-reveal-delay="1"
+                  >
+                    <div class="uxflow-path-num">01</div>
+                    <div class="uxflow-path-title">Direct Buyer</div>
+                    <div class="uxflow-path-desc">
+                      Hero → Composition → Order form → Payment. Quick decision
+                      maker who needs minimal convincing.
+                    </div>
+                  </div>
+                  <div
+                    class="uxflow-path-card"
+                    data-reveal
+                    data-reveal-delay="2"
+                  >
+                    <div class="uxflow-path-num">02</div>
+                    <div class="uxflow-path-title">Hesitant User</div>
+                    <div class="uxflow-path-desc">
+                      Trust signals → Reviews → FAQ → Order. Needs social proof
+                      and clear answers before committing.
+                    </div>
+                  </div>
+                  <div
+                    class="uxflow-path-card"
+                    data-reveal
+                    data-reveal-delay="3"
+                  >
+                    <div class="uxflow-path-num">03</div>
+                    <div class="uxflow-path-title">Lead Capture</div>
+                    <div class="uxflow-path-desc">
+                      Guide CTA → Phone number → Nurture later. Not ready to buy
+                      — captured for future conversion.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- COLORS -->
+            <section class="case-section" id="colors" data-reveal>
+              <h2 class="case-h2">Colors and typography</h2>
+              <p class="case-p">
+                A calm, clean palette with one strong blue for actions.
+                Editorial headings create a premium vibe, while the UI font
+                keeps details readable.
+              </p>
+              <div class="case-swatch-row" style="margin-top: 18px">
+                <div class="sw" style="--c: #0b6dff">
+                  <span>Accent</span><b>#0B6DFF</b>
+                </div>
+                <div class="sw" style="--c: #111318">
+                  <span>Text</span><b>#111318</b>
+                </div>
+                <div class="sw" style="--c: #4aa2ff">
+                  <span>Secondary</span><b>#4AA2FF</b>
+                </div>
+                <div class="sw" style="--c: #eaf3ff">
+                  <span>Surface</span><b>#EAF3FF</b>
+                </div>
+                <div class="sw" style="--c: #e8c15a">
+                  <span>Warm</span><b>#E8C15A</b>
+                </div>
+              </div>
+              <div class="case-type-row">
+                <div class="type-card">
+                  <span class="type-k">DISPLAY FONT</span>
+                  <div class="type-s">Cormorant Garamond</div>
+                  <div
+                    class="type-ex"
+                    style="
+                      font-family: &quot;Cormorant Garamond&quot;, serif;
+                      font-style: italic;
+                    "
+                  >
+                    Beauty from Korea
+                  </div>
+                </div>
+                <div class="type-card">
+                  <span class="type-k">UI FONT</span>
+                  <div class="type-s">DM Sans</div>
+                  <div
+                    class="type-ex"
+                    style="font-family: &quot;DM Sans&quot;, sans-serif"
+                  >
+                    Clear UI and body text
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- LANDING — FULL PAGE -->
+            <section class="case-section" id="landing" data-reveal>
+              <div class="landing-head">
+                <div class="case-eyebrow">FULL PAGE DESIGN</div>
+                <h2 class="case-h2">The complete landing experience</h2>
+              </div>
+              <div
+                class="pf pf--full"
+                style="margin-top: 20px"
+                data-reveal
+                data-reveal-delay="1"
+              >
+                <img
+                  src="/assets/images/unniebox/main%20page.png"
+                  alt="Full landing page design"
+                />
+                <span class="pf__tag">Full Landing Page</span>
+              </div>
+              <div class="pf-grid" style="margin-top: 16px">
+                <div class="pf" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows3.png"
+                    alt="Lead capture modal"
+                  />
+                  <span class="pf__tag pf__tag--after">Lead Capture</span>
+                </div>
+                <div class="pf" data-reveal data-reveal-delay="2">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows4.png"
+                    alt="Instagram modal"
+                  />
+                  <span class="pf__tag pf__tag--after">Instagram CTA</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- UI KIT -->
+            <section class="case-section" id="uikit" data-reveal>
+              <h2 class="case-h2">UI kit</h2>
+              <p class="case-p">
+                Reusable components designed for speed: buttons, cards, icons,
+                tags, and input fields.
+              </p>
+              <div
+                class="pf pf--uikit"
+                style="
+                  margin-top: 20px;
+                  border: 2px solid rgba(100, 180, 255, 0.35);
+                  box-shadow: 0 0 60px rgba(100, 180, 255, 0.1);
+                "
+                data-reveal
+                data-reveal-delay="1"
+              >
+                <img
+                  src="/assets/images/unniebox/UIkit.png"
+                  alt="UI kit components"
+                />
+                <span class="pf__tag">UI Kit — Full Component Library</span>
+              </div>
+            </section>
+
+            <!-- MODALS -->
+            <section class="case-section" id="modals" data-reveal>
+              <h2 class="case-h2">Modal UX flows</h2>
+              <p class="case-p">
+                Instead of pushing users away from the main flow, key
+                interactions open in modals. This keeps focus on conversion.
+              </p>
+              <div class="pf-grid" style="margin-top: 20px">
+                <div class="pf" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows1.png"
+                    alt="Skin guide modal"
+                  />
+                  <span class="pf__tag">Skin guide CTA</span>
+                </div>
+                <div class="pf" data-reveal data-reveal-delay="2">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows2.png"
+                    alt="Instagram modal"
+                  />
+                  <span class="pf__tag">Instagram follow</span>
+                </div>
+                <div class="pf" data-reveal data-reveal-delay="3">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows3.png"
+                    alt="Payment modal"
+                  />
+                  <span class="pf__tag">Payment troubleshoot</span>
+                </div>
+                <div class="pf" data-reveal data-reveal-delay="4">
+                  <img
+                    src="/assets/images/unniebox/UX%20flows4.png"
+                    alt="Order form modal"
+                  />
+                  <span class="pf__tag">Order form</span>
+                </div>
+              </div>
+              <div
+                class="pf pf--full"
+                style="margin-top: 16px"
+                data-reveal
+                data-reveal-delay="1"
+              >
+                <img
+                  src="/assets/images/unniebox/UX%20flows5.png"
+                  alt="Daily care modal"
+                />
+                <span class="pf__tag">Daily care tip</span>
+              </div>
+            </section>
+
+            <!-- MOBILE -->
+            <section class="case-section" id="mobile" data-reveal>
+              <div class="case-eyebrow">MOBILE EXPERIENCE</div>
+              <h2 class="case-h2">Mobile screens</h2>
+              <p class="case-p">
+                The full landing and pop-up menu adapted for mobile — clean,
+                thumb-friendly layouts optimised for small screens.
+              </p>
+              <div class="pf-grid--mobile-2" style="margin-top: 22px">
+                <div class="pf pf--mobile" data-reveal data-reveal-delay="1">
+                  <img
+                    src="/assets/images/unniebox/mobile.png"
+                    alt="UnnieBox Mobile Screen"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="pf__tag">Mobile — Main Screen</span>
+                </div>
+                <div class="pf pf--mobile" data-reveal data-reveal-delay="2">
+                  <img
+                    src="/assets/images/unniebox/pop-upmenumobile.png"
+                    alt="UnnieBox Mobile Pop-up Menu"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="pf__tag">Mobile — Pop-up Menu</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- BRANDING -->
+            <section class="case-section" id="branding" data-reveal>
+              <h2 class="case-h2">Branding and mockups</h2>
+              <p class="case-p">
+                The wordmark uses a simple gift icon replacing the "O" in BOX —
+                making the idea instantly readable.
+              </p>
+              <div class="pf-grid" style="margin-top: 20px">
+                <div
+                  class="pf"
+                  style="
+                    background: #111;
+                    border-color: rgba(255, 255, 255, 0.12);
+                  "
+                  data-reveal
+                  data-reveal-delay="1"
+                >
+                  <img
+                    src="/assets/images/unniebox/logo black.png"
+                    alt="Logo dark"
+                  />
+                  <span class="pf__tag">Logo — Dark</span>
+                </div>
+                <div
+                  class="pf"
+                  style="background: #f5f5f5; border-color: rgba(0, 0, 0, 0.08)"
+                  data-reveal
+                  data-reveal-delay="2"
+                >
+                  <img
+                    src="/assets/images/unniebox/lgoo%20white%202.png"
+                    alt="Logo light"
+                  />
+                  <span class="pf__tag">Logo — Light</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- LEARNINGS -->
+            <section class="case-section" id="learnings" data-reveal>
+              <div class="case-eyebrow">KEY LEARNINGS</div>
+              <h2 class="case-h2">What I learned building this</h2>
+              <div class="learn-grid">
+                <div class="learn-card" data-reveal data-reveal-delay="1">
+                  <div class="learn-n">01</div>
+                  <div class="learn-t">Conversion flows need storytelling</div>
+                  <div class="learn-p">
+                    Each section must answer an objection and guide the user to
+                    the next step confidently.
+                  </div>
+                </div>
+                <div class="learn-card" data-reveal data-reveal-delay="2">
+                  <div class="learn-n">02</div>
+                  <div class="learn-t">Design systems save time</div>
+                  <div class="learn-p">
+                    A strong UI kit makes every new section faster and keeps the
+                    page visually consistent.
+                  </div>
+                </div>
+                <div class="learn-card" data-reveal data-reveal-delay="3">
+                  <div class="learn-n">03</div>
+                  <div class="learn-t">Typography sets the tone</div>
+                  <div class="learn-p">
+                    Editorial display type feels premium but must be balanced
+                    with clean UI text.
+                  </div>
+                </div>
+                <div class="learn-card" data-reveal data-reveal-delay="4">
+                  <div class="learn-n">04</div>
+                  <div class="learn-t">Trust signals must be authentic</div>
+                  <div class="learn-p">
+                    Real credentials, clear reviews, and transparent steps build
+                    confidence quickly.
+                  </div>
+                </div>
+              </div>
+
+              <div class="ub-cta-banner" data-reveal>
+                <h3>Let's build something great together</h3>
+                <p>
+                  I'm a UI/UX designer focused on clean, conversion-friendly
+                  experiences. Let's talk.
+                </p>
+                <div class="cta-actions">
+                  <a class="btn-case primary" href="../contactus.html"
+                    >Get in touch</a
+                  >
+                  <a class="btn-case" href="../index.html">All projects</a>
+                </div>
+              </div>
+            </section>
           </section>
+        </div>
+      </main>
 
-          <!-- COLORS -->
-          <section class="case-section" id="colors" data-reveal>
-            <h2 class="case-h2">Colors and typography</h2>
-            <p class="case-p">A calm, clean palette with one strong blue for actions. Editorial headings create a premium vibe, while the UI font keeps details readable.</p>
-            <div class="case-swatch-row" style="margin-top:18px">
-              <div class="sw" style="--c:#0b6dff"><span>Accent</span><b>#0B6DFF</b></div>
-              <div class="sw" style="--c:#111318"><span>Text</span><b>#111318</b></div>
-              <div class="sw" style="--c:#4aa2ff"><span>Secondary</span><b>#4AA2FF</b></div>
-              <div class="sw" style="--c:#eaf3ff"><span>Surface</span><b>#EAF3FF</b></div>
-              <div class="sw" style="--c:#e8c15a"><span>Warm</span><b>#E8C15A</b></div>
-            </div>
-            <div class="case-type-row">
-              <div class="type-card">
-                <span class="type-k">DISPLAY FONT</span>
-                <div class="type-s">Cormorant Garamond</div>
-                <div class="type-ex" style="font-family:'Cormorant Garamond',serif;font-style:italic;">Beauty from Korea</div>
-              </div>
-              <div class="type-card">
-                <span class="type-k">UI FONT</span>
-                <div class="type-s">DM Sans</div>
-                <div class="type-ex" style="font-family:'DM Sans',sans-serif;">Clear UI and body text</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- LANDING — FULL PAGE -->
-          <section class="case-section" id="landing" data-reveal>
-            <div class="landing-head">
-              <div class="case-eyebrow">FULL PAGE DESIGN</div>
-              <h2 class="case-h2">The complete landing experience</h2>
-            </div>
-
-            <div class="pf pf--full" style="margin-top:20px" data-reveal data-reveal-delay="1">
-              <img src="/assets/images/unniebox/main%20page.png" alt="Full landing page design">
-              <span class="pf__tag">Full Landing Page</span>
-            </div>
-
-            <div class="pf-grid" style="margin-top:16px">
-              <div class="pf" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/UX%20flows3.png" alt="Lead capture modal">
-                <span class="pf__tag pf__tag--after">Lead Capture</span>
-              </div>
-              <div class="pf" data-reveal data-reveal-delay="2">
-                <img src="/assets/images/unniebox/UX%20flows4.png" alt="Instagram modal">
-                <span class="pf__tag pf__tag--after">Instagram CTA</span>
-              </div>
-            </div>
-          </section>
-
-          <!-- UI KIT -->
-          <section class="case-section" id="uikit" data-reveal>
-            <h2 class="case-h2">UI kit</h2>
-            <p class="case-p">Reusable components designed for speed: buttons, cards, icons, tags, and input fields.</p>
-
-            <div class="pf pf--uikit" style="margin-top:20px;border:2px solid rgba(100,180,255,0.35);box-shadow:0 0 60px rgba(100,180,255,0.10)" data-reveal data-reveal-delay="1">
-              <img src="/assets/images/unniebox/UIkit.png" alt="UI kit components">
-              <span class="pf__tag">UI Kit — Full Component Library</span>
-            </div>
-          </section>
-
-          <!-- MODALS -->
-          <section class="case-section" id="modals" data-reveal>
-            <h2 class="case-h2">Modal UX flows</h2>
-            <p class="case-p">Instead of pushing users away from the main flow, key interactions open in modals. This keeps focus on conversion.</p>
-
-            <div class="pf-grid" style="margin-top:20px">
-              <div class="pf" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/UX%20flows1.png" alt="Skin guide modal">
-                <span class="pf__tag">Skin guide CTA</span>
-              </div>
-              <div class="pf" data-reveal data-reveal-delay="2">
-                <img src="/assets/images/unniebox/UX%20flows2.png" alt="Instagram modal">
-                <span class="pf__tag">Instagram follow</span>
-              </div>
-              <div class="pf" data-reveal data-reveal-delay="3">
-                <img src="/assets/images/unniebox/UX%20flows3.png" alt="Payment modal">
-                <span class="pf__tag">Payment troubleshoot</span>
-              </div>
-              <div class="pf" data-reveal data-reveal-delay="4">
-                <img src="/assets/images/unniebox/UX%20flows4.png" alt="Order form modal">
-                <span class="pf__tag">Order form</span>
-              </div>
-            </div>
-
-            <div class="pf pf--full" style="margin-top:16px" data-reveal data-reveal-delay="1">
-              <img src="/assets/images/unniebox/UX%20flows5.png" alt="Daily care modal">
-              <span class="pf__tag">Daily care tip</span>
-            </div>
-          </section>
-
-          <!-- BRANDING -->
-          <section class="case-section" id="branding" data-reveal>
-            <h2 class="case-h2">Branding and mockups</h2>
-            <p class="case-p">The wordmark uses a simple gift icon replacing the "O" in BOX — making the idea instantly readable.</p>
-
-            <div class="pf-grid" style="margin-top:20px">
-              <div class="pf" style="background:#111;border-color:rgba(255,255,255,0.12)" data-reveal data-reveal-delay="1">
-                <img src="/assets/images/unniebox/logo black.png" alt="Logo dark">
-                <span class="pf__tag">Logo — Dark</span>
-              </div>
-              <div class="pf" style="background:#f5f5f5;border-color:rgba(0,0,0,0.08)" data-reveal data-reveal-delay="2">
-                <img src="/assets/images/unniebox/lgoo%20white%202.png" alt="Logo light">
-                <span class="pf__tag">Logo — Light</span>
-              </div>
-            </div>
-          </section>
-
-           <!-- MOBILE -->
-<section class="case-section" id="mobile" data-reveal>
-  <div class="case-eyebrow">MOBILE EXPERIENCE</div>
-  <h2 class="case-h2">Mobile screens</h2>
-  <p class="case-p">The full landing and pop-up menu adapted for mobile — clean, thumb-friendly layouts optimised for small screens.</p>
-
-  <div class="pf-grid--mobile-2" style="margin-top:22px">
-    <div class="pf pf--mobile" data-reveal data-reveal-delay="1">
-      <img src="/assets/images/unniebox/mobile.png" alt="UnnieBox Mobile Screen" loading="lazy" decoding="async">
-      <span class="pf__tag">Mobile — Main Screen</span>
+      <!-- FOOTER -->
+      <footer class="case-footer case-footer--ub">
+        <div class="case-footer__inner">
+          <div class="case-footer__brand">
+            <img
+              src="/assets/images/DIN.png"
+              alt="DIN Logo"
+              class="case-footer__logo"
+            />
+            <p class="case-footer__tagline">
+              Creative designer crafting digital experiences that matter.
+            </p>
+          </div>
+          <div class="case-footer__col">
+            <p class="case-footer__title">Navigation</p>
+            <nav class="case-footer__nav">
+              <a href="../index.html">Home</a>
+              <a href="../about.html">About</a>
+              <a href="../contactus.html">Contact</a>
+            </nav>
+          </div>
+          <div class="case-footer__col">
+            <p class="case-footer__title">Contact</p>
+            <div class="case-footer__item">din.design.world@gmail.com</div>
+            <div class="case-footer__item">Canada</div>
+          </div>
+          <div class="case-footer__col">
+            <p class="case-footer__title">Newsletter</p>
+            <p class="case-footer__hint">Stay updated with new projects.</p>
+            <form
+              class="case-footer__form"
+              id="newsletterForm"
+              onsubmit="return false;"
+            >
+              <input
+                type="email"
+                id="newsletterEmail"
+                placeholder="your@email.com"
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <div class="case-footer__bottom">
+          <span>© 2025 DIN. All rights reserved.</span>
+          <span class="case-footer__case-label"
+            >UnnieBox · UI UX Case Study</span
+          >
+          <div class="case-footer__proj-nav">
+            <a href="clm.html">← Prev</a>
+            <a href="avion.html">Next →</a>
+            <a class="cta" href="../contactus.html">Hire me →</a>
+          </div>
+        </div>
+      </footer>
     </div>
-    <div class="pf pf--mobile" data-reveal data-reveal-delay="2">
-      <img src="/assets/images/unniebox/pop-upmenumobile.png" alt="UnnieBox Mobile Pop-up Menu" loading="lazy" decoding="async">
-      <span class="pf__tag">Mobile — Pop-up Menu</span>
-    </div>
-  </div>
-</section>
+    <!-- /ub-page-wrap -->
 
+    <!-- SCRIPTS -->
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/unniebox.js"></script>
+    <script src="/assets/js/projectframes.js" defer></script>
 
+    <!-- Inline chart init — lighter, more readable colors -->
+    <script>
+      (function () {
+        function initCharts() {
+          if (typeof Chart === "undefined") {
+            setTimeout(initCharts, 120);
+            return;
+          }
+          if (!document.getElementById("rpAreaChart")) return;
 
-          <!-- LEARNINGS -->
-          <section class="case-section" id="learnings" data-reveal>
-            <div class="case-eyebrow">KEY LEARNINGS</div>
-            <h2 class="case-h2">What I learned building this</h2>
-            <div class="learn-grid">
-              <div class="learn-card" data-reveal data-reveal-delay="1"><div class="learn-n">01</div><div class="learn-t">Conversion flows need storytelling</div><div class="learn-p">Each section must answer an objection and guide the user to the next step confidently.</div></div>
-              <div class="learn-card" data-reveal data-reveal-delay="2"><div class="learn-n">02</div><div class="learn-t">Design systems save time</div><div class="learn-p">A strong UI kit makes every new section faster and keeps the page visually consistent.</div></div>
-              <div class="learn-card" data-reveal data-reveal-delay="3"><div class="learn-n">03</div><div class="learn-t">Typography sets the tone</div><div class="learn-p">Editorial display type feels premium but must be balanced with clean UI text.</div></div>
-              <div class="learn-card" data-reveal data-reveal-delay="4"><div class="learn-n">04</div><div class="learn-t">Trust signals must be authentic</div><div class="learn-p">Real credentials, clear reviews, and transparent steps build confidence quickly.</div></div>
-            </div>
+          /* Shared palette — brighter, easier on the eye */
+          const BLUE = "#4da3ff"; /* was #0b6dff — now much lighter */
+          const BLUE2 = "#80c3ff"; /* was #4aa2ff */
+          const BLUE_MID = "rgba(77,163,255,0.55)";
+          const BLUE_DIM = "rgba(77,163,255,0.35)";
+          const GRID = "rgba(255,255,255,0.09)";
+          const TICK =
+            "rgba(200,220,255,0.75)"; /* was 0.9 grey — now light blue-white */
 
-            <div class="ub-cta-banner" data-reveal>
-              <h3>Let's build something great together</h3>
-              <p>I'm a UI/UX designer focused on clean, conversion-friendly experiences. Let's talk.</p>
-              <div class="cta-actions">
-                <a class="btn-case primary" href="../contactus.html">Get in touch</a>
-                <a class="btn-case" href="../index.html">All projects</a>
-              </div>
-            </div>
-          </section>
+          const base = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { displayColors: false },
+            },
+          };
 
-        </section>
-      </div>
-    </main>
+          /* 1 — Area chart: Market Growth */
+          const areaEl = document.getElementById("rpAreaChart");
+          if (areaEl && !areaEl._chartInited) {
+            areaEl._chartInited = true;
+            new Chart(areaEl, {
+              type: "line",
+              data: {
+                labels: [
+                  "2022",
+                  "2023",
+                  "2024",
+                  "2025",
+                  "2026",
+                  "2027",
+                  "2028",
+                  "2029",
+                  "2030",
+                ],
+                datasets: [
+                  {
+                    data: [
+                      0.72, 0.85, 1.11, 1.31, 1.54, 1.82, 2.15, 2.54, 2.99,
+                    ],
+                    borderColor: BLUE,
+                    borderWidth: 2.5,
+                    backgroundColor: "rgba(77,163,255,0.14)",
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: BLUE,
+                    pointBorderColor: "#fff",
+                    pointBorderWidth: 1.5,
+                  },
+                ],
+              },
+              options: {
+                ...base,
+                scales: {
+                  x: {
+                    ticks: { color: TICK, font: { size: 10 } },
+                    grid: { color: GRID },
+                  },
+                  y: {
+                    ticks: {
+                      color: TICK,
+                      font: { size: 10 },
+                      callback: (v) => "$" + v + "B",
+                    },
+                    grid: { color: GRID },
+                  },
+                },
+              },
+            });
+          }
 
+          /* 2 — Doughnut: Purchase Factors */
+          const pieEl = document.getElementById("rpPieChart");
+          if (pieEl && !pieEl._chartInited) {
+            pieEl._chartInited = true;
+            new Chart(pieEl, {
+              type: "doughnut",
+              data: {
+                labels: ["Price", "Clean ingr.", "Personalized", "Quality"],
+                datasets: [
+                  {
+                    data: [63, 56, 64, 53],
+                    backgroundColor: [
+                      "#4da3ff",
+                      "#80c3ff",
+                      "#4ade80",
+                      "#fcd34d",
+                    ],
+                    borderWidth: 0,
+                  },
+                ],
+              },
+              options: { ...base, cutout: "62%" },
+            });
+          }
 
-    <!-- FOOTER -->
-    <footer class="case-footer case-footer--ub">
-      <div class="case-footer__inner">
-        <div class="case-footer__brand">
-          <img src="/assets/images/DIN.png" alt="DIN Logo" class="case-footer__logo">
-          <p class="case-footer__tagline">Creative designer crafting digital experiences that matter.</p>
-        </div>
-        <div class="case-footer__col">
-          <p class="case-footer__title">Navigation</p>
-          <nav class="case-footer__nav">
-            <a href="../index.html">Home</a>
-            <a href="../about.html">About</a>
-            <a href="../contactus.html">Contact</a>
-          </nav>
-        </div>
-        <div class="case-footer__col">
-          <p class="case-footer__title">Contact</p>
-          <div class="case-footer__item">din.design.world@gmail.com</div>
-          <div class="case-footer__item">Canada</div>
-        </div>
-        <div class="case-footer__col">
-          <p class="case-footer__title">Newsletter</p>
-          <p class="case-footer__hint">Stay updated with new projects.</p>
-          <form class="case-footer__form" id="newsletterForm" onsubmit="return false">
-            <input type="email" id="newsletterEmail" placeholder="your@email.com">
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-      </div>
-      <div class="case-footer__bottom">
-        <span>© 2025 DIN. All rights reserved.</span>
-        <span class="case-footer__case-label">UnnieBox · UI UX Case Study</span>
-        <div class="case-footer__proj-nav">
+          /* 3 — Doughnut: Discovery */
+          const donutEl = document.getElementById("rpDonutChart");
+          if (donutEl && !donutEl._chartInited) {
+            donutEl._chartInited = true;
+            new Chart(donutEl, {
+              type: "doughnut",
+              data: {
+                labels: ["Word of mouth", "TikTok / Social", "Search", "Other"],
+                datasets: [
+                  {
+                    data: [38, 31, 18, 13],
+                    backgroundColor: [
+                      "#4da3ff",
+                      "#80c3ff",
+                      "#fcd34d",
+                      "rgba(255,255,255,0.25)",
+                    ],
+                    borderWidth: 0,
+                  },
+                ],
+              },
+              options: { ...base, cutout: "62%" },
+            });
+          }
 
-          <a href="clm.html">← Prev</a>
-          <a href="avion.html">Next →</a>
-          <a class="cta" href="../contactus.html">Hire me →</a>
-        </div>
-      </div>
-    </footer>
+          /* 4 — Bar: Conversion Uplift — LIGHTER bars */
+          const barEl = document.getElementById("rpBarChart");
+          if (barEl && !barEl._chartInited) {
+            barEl._chartInited = true;
+            new Chart(barEl, {
+              type: "bar",
+              data: {
+                labels: [
+                  "UX Design",
+                  "Social Proof",
+                  "Testimonials",
+                  "Free Gift",
+                  "Personalization",
+                ],
+                datasets: [
+                  {
+                    data: [400, 270, 38, 27, 28],
+                    backgroundColor: [
+                      BLUE,
+                      BLUE2,
+                      BLUE_MID,
+                      BLUE_DIM,
+                      BLUE_DIM,
+                    ],
+                    borderRadius: 6,
+                    borderSkipped: false,
+                  },
+                ],
+              },
+              options: {
+                ...base,
+                scales: {
+                  x: {
+                    ticks: { color: TICK, font: { size: 10 } },
+                    grid: { display: false },
+                  },
+                  y: {
+                    ticks: {
+                      color: TICK,
+                      font: { size: 10 },
+                      callback: (v) => v + "%",
+                    },
+                    grid: { color: GRID },
+                  },
+                },
+              },
+            });
+          }
 
-  </div><!-- /ub-page-wrap -->
+          /* 5 — Horizontal bar: CTA — LIGHTER */
+          const ctaEl = document.getElementById("rpCTAChart");
+          if (ctaEl && !ctaEl._chartInited) {
+            ctaEl._chartInited = true;
+            new Chart(ctaEl, {
+              type: "bar",
+              data: {
+                labels: ["Single CTA", "Multi-CTA"],
+                datasets: [
+                  {
+                    data: [13.5, 10.5],
+                    backgroundColor: [BLUE, BLUE_MID],
+                    borderRadius: 6,
+                    borderSkipped: false,
+                  },
+                ],
+              },
+              options: {
+                ...base,
+                indexAxis: "y",
+                scales: {
+                  x: {
+                    ticks: {
+                      color: TICK,
+                      font: { size: 10 },
+                      callback: (v) => v + "%",
+                    },
+                    grid: { color: GRID },
+                    max: 18,
+                  },
+                  y: {
+                    ticks: { color: TICK, font: { size: 10 } },
+                    grid: { display: false },
+                  },
+                },
+              },
+            });
+          }
+        }
 
-
-  <!-- SCRIPTS -->
-  <script src="/assets/js/main.js" defer></script>
-  <script src="/assets/js/unniebox.js" defer></script>
-  <script src="/assets/js/projectframes.js" defer></script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var tabs = document.querySelectorAll('.uxflow-tab');
-    var panels = document.querySelectorAll('.uxflow-panel');
-    
-    console.log('tabs found:', tabs.length, 'panels found:', panels.length);
-    
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        var target = tab.dataset.tab;
-        tabs.forEach(function(t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-        panels.forEach(function(panel) {
-          panel.classList.toggle('uxflow-panel--hidden', panel.id !== 'tab-' + target);
-        });
-      });
-    });
-  });
-</script>
-
-</body>
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initCharts);
+        } else {
+          initCharts();
+        }
+      })();
+    </script>
+  </body>
 </html>
-<!-- Note: add these styles to unniebox.css -->

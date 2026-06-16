@@ -1,8 +1,8 @@
 /* ============================================================
-   Исправленный JS — без конфликтов и дублирований
+   unniebox.js — исправленная версия
    ============================================================ */
 
-(() => {
+document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Progress bar ── */
   const progressBar = document.getElementById('progressBar') || document.getElementById('ubProgress');
@@ -33,7 +33,6 @@
   document.querySelectorAll('.case-section[id]').forEach(s => secObs.observe(s));
 
   /* ── Lightbox ── */
-  // Одна функция openModal/closeModal — без дублирования
   const modal    = document.getElementById('imgModal');
   const modalImg = document.getElementById('imgModalSrc');
 
@@ -54,7 +53,6 @@
     setTimeout(() => { if (modalImg) modalImg.src = ''; }, 250);
   }
 
-  // Клик по картинкам — все типы карточек
   document.querySelectorAll([
     '.hero-img-wrap',
     '.screen-card',
@@ -69,26 +67,21 @@
   ].join(', ')).forEach(el => {
     el.style.cursor = 'zoom-in';
     el.addEventListener('click', () => {
-      // Если клик по контейнеру — берём img внутри
       const img = el.tagName === 'IMG' ? el : el.querySelector('img');
       if (img) openModal(img.currentSrc || img.src);
     });
   });
 
-  // Кнопка "Expand full" (если есть)
   document.getElementById('expandFull')?.addEventListener('click', () => {
-    // Берём src из data-атрибута или из ближайшей картинки
     const btn = document.getElementById('expandFull');
     const src = btn.dataset.src || '/assets/images/unniebox/main%20page.png';
     openModal(src);
   });
 
-  // Закрытие: кнопка data-close, клик по backdrop, Escape
   modal?.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
   modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // Публичный API
   window.openModal  = openModal;
   window.closeModal = closeModal;
 
@@ -110,39 +103,170 @@
   mClose?.addEventListener('click', closeMobileMenu);
   mobileMenu?.addEventListener('click', e => { if (e.target === mobileMenu) closeMobileMenu(); });
 
+  /* ── UX Flow tabs ── */
+  const uxTabs   = document.querySelectorAll('.uxflow-tab');
+  const uxPanels = document.querySelectorAll('.uxflow-panel');
 
-
-
-    /* ── UX Flow tabs ── */
-const uxTabs = document.querySelectorAll('.uxflow-tab');
-const uxPanels = document.querySelectorAll('.uxflow-panel');
-
-if (uxTabs.length && uxPanels.length) {
-  uxTabs.forEach(tab => {
-    tab.addEventListener('click', e => {
-      e.preventDefault();
-      const target = tab.dataset.tab;
-
-      uxTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      uxPanels.forEach(panel => {
-        const hide = panel.id !== `tab-${target}`;
-        panel.classList.toggle('uxflow-panel--hidden', hide);
-
-        if (!hide) {
-          panel.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => {
-            el.classList.add('revealed');
-          });
-        }
+  if (uxTabs.length && uxPanels.length) {
+    uxTabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const target = tab.dataset.tab;
+        uxTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        uxPanels.forEach(panel => {
+          const hide = panel.id !== `tab-${target}`;
+          panel.classList.toggle('uxflow-panel--hidden', hide);
+          if (!hide) {
+            panel.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => el.classList.add('revealed'));
+          }
+        });
       });
     });
-  });
-}
+  }
 
+  /* ── Charts — запускаем только если Canvas элементы существуют ── */
+  if (!document.getElementById('rpAreaChart')) return;
 
+  /* Ждём Chart.js если он ещё не загрузился */
+  function initCharts() {
+    if (typeof Chart === 'undefined') {
+      setTimeout(initCharts, 100);
+      return;
+    }
 
+    const blue      = '#0b6dff';
+    const blue2     = '#4aa2ff';
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const tickColor = 'rgba(139,156,182,0.9)';
 
-  
-})();
+    const base = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend:  { display: false },
+        tooltip: { displayColors: false }
+      }
+    };
 
+    /* Area chart — Market Growth */
+    const areaEl = document.getElementById('rpAreaChart');
+    if (areaEl) {
+      new Chart(areaEl, {
+        type: 'line',
+        data: {
+          labels: ['2022','2023','2024','2025','2026','2027','2028','2029','2030'],
+          datasets: [{
+            data: [0.72, 0.85, 1.11, 1.31, 1.54, 1.82, 2.15, 2.54, 2.99],
+            borderColor: blue,
+            borderWidth: 2,
+            backgroundColor: 'rgba(11,109,255,0.12)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 3,
+            pointBackgroundColor: blue
+          }]
+        },
+        options: {
+          ...base,
+          scales: {
+            x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { color: gridColor } },
+            y: { ticks: { color: tickColor, font: { size: 10 }, callback: v => '$' + v + 'B' }, grid: { color: gridColor } }
+          }
+        }
+      });
+    }
+
+    /* Doughnut — Purchase Factors */
+    const pieEl = document.getElementById('rpPieChart');
+    if (pieEl) {
+      new Chart(pieEl, {
+        type: 'doughnut',
+        data: {
+          labels: ['Price', 'Clean ingr.', 'Personalized', 'Quality'],
+          datasets: [{
+            data: [63, 56, 64, 53],
+            backgroundColor: [blue, '#4aa2ff', '#22c55e', '#e8c15a'],
+            borderWidth: 0
+          }]
+        },
+        options: { ...base, cutout: '62%' }
+      });
+    }
+
+    /* Doughnut — Discovery */
+    const donutEl = document.getElementById('rpDonutChart');
+    if (donutEl) {
+      new Chart(donutEl, {
+        type: 'doughnut',
+        data: {
+          labels: ['Word of mouth', 'TikTok / Social', 'Search', 'Other'],
+          datasets: [{
+            data: [38, 31, 18, 13],
+            backgroundColor: [blue, '#4aa2ff', '#e8c15a', 'rgba(255,255,255,0.2)'],
+            borderWidth: 0
+          }]
+        },
+        options: { ...base, cutout: '62%' }
+      });
+    }
+
+    /* Bar — Conversion Uplift */
+    const barEl = document.getElementById('rpBarChart');
+    if (barEl) {
+      new Chart(barEl, {
+        type: 'bar',
+        data: {
+          labels: ['UX Design', 'Social Proof', 'Testimonials', 'Free Gift', 'Personalization'],
+          datasets: [{
+            data: [400, 270, 38, 27, 28],
+            backgroundColor: [
+              blue,
+              blue2,
+              'rgba(11,109,255,0.5)',
+              'rgba(11,109,255,0.4)',
+              'rgba(11,109,255,0.4)'
+            ],
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          ...base,
+          scales: {
+            x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { size: 10 }, callback: v => v + '%' }, grid: { color: gridColor } }
+          }
+        }
+      });
+    }
+
+    /* Horizontal bar — CTA */
+    const ctaEl = document.getElementById('rpCTAChart');
+    if (ctaEl) {
+      new Chart(ctaEl, {
+        type: 'bar',
+        data: {
+          labels: ['Single CTA', 'Multi-CTA'],
+          datasets: [{
+            data: [13.5, 10.5],
+            backgroundColor: [blue, 'rgba(11,109,255,0.35)'],
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          ...base,
+          indexAxis: 'y',
+          scales: {
+            x: { ticks: { color: tickColor, font: { size: 10 }, callback: v => v + '%' }, grid: { color: gridColor }, max: 18 },
+            y: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } }
+          }
+        }
+      });
+    }
+  }
+
+  initCharts();
+
+}); /* end DOMContentLoaded */
