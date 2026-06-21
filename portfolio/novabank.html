@@ -46,15 +46,17 @@
     <div class="case-subnav nb-subnav" data-case-subnav>
       <div class="case-subnav-inner">
         <div class="case-subnav-pill" role="navigation" aria-label="Case sections">
-          <a href="#overview"   class="case-subnav-link">Overview</a>
-          <a href="#research"   class="case-subnav-link">Research</a>
-          <a href="#problem"    class="case-subnav-link">Problem</a>
-          <a href="#process"    class="case-subnav-link">Process</a>
-          <a href="#wireframes" class="case-subnav-link">Wireframes</a>
-          <a href="#userflow"   class="case-subnav-link">User Flow</a>
-          <a href="#designsys"  class="case-subnav-link">Design System</a>
-          <a href="#screens"    class="case-subnav-link">Screens</a>
-          <a href="#learnings"  class="case-subnav-link">Learnings</a>
+          <a href="#overview"    class="case-subnav-link">Overview</a>
+          <a href="#research"    class="case-subnav-link">Research</a>
+          <a href="#audience"    class="case-subnav-link">Audience</a>
+          <a href="#competitors" class="case-subnav-link">Competitors</a>
+          <a href="#problem"     class="case-subnav-link">Problem</a>
+          <a href="#process"     class="case-subnav-link">Process</a>
+          <a href="#wireframes"  class="case-subnav-link">Wireframes</a>
+          <a href="#userflow"    class="case-subnav-link">User Flow</a>
+          <a href="#designsys"   class="case-subnav-link">Design System</a>
+          <a href="#screens"     class="case-subnav-link">Screens</a>
+          <a href="#learnings"   class="case-subnav-link">Learnings</a>
         </div>
       </div>
     </div>
@@ -200,6 +202,126 @@ UI system built from scratch</div>
                 <h3>Outdated visual design</h3>
                 <p>Many banking apps feel visually outdated compared to modern consumer products. Users expect a cleaner, more premium digital experience.</p>
               </div>
+            </div>
+          </section>
+
+
+          <!-- ── TARGET AUDIENCE ── -->
+          <section class="case-section nb-section" id="audience" data-reveal>
+            <div class="nb-eyebrow">TARGET AUDIENCE</div>
+            <h2 class="case-h2 nb-h2">Who Nova Bank is designed for</h2>
+            <p class="case-p nb-p">
+              Nova Bank targets mobile-first users who already bank with — or have switched away from —
+              neobanks like Revolut, Monzo, or Chime. They expect the speed and clarity of those apps,
+              but want a visual identity that feels more premium than the typical neobank palette.
+            </p>
+
+            <div class="nb-research-grid" style="margin-top:22px">
+              <div class="nb-research-card" data-reveal data-reveal-delay="1">
+                <div class="nb-research-icon"></div>
+                <h3>Young professionals (22–35)</h3>
+                <p>Salary, daily spending, and savings managed almost entirely from a phone — minimal patience for friction.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="2">
+                <div class="nb-research-icon"></div>
+                <h3>Neobank-fluent users</h3>
+                <p>Already use Revolut, Monzo, or Chime daily; benchmark every new fintech app against that bar.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="3">
+                <div class="nb-research-icon"></div>
+                <h3>Frequent transactors</h3>
+                <p>Send money, split bills, and check balances multiple times a day — every extra tap is a cost.</p>
+              </div>
+              <div class="nb-research-card" data-reveal data-reveal-delay="4">
+                <div class="nb-research-icon"></div>
+                <h3>Design-conscious users</h3>
+                <p>Want their banking app to feel as considered as the rest of the apps on their phone — not generic fintech green/blue.</p>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ── COMPETITOR RESEARCH / COMPARATIVE MATRIX ── -->
+          <section class="case-section nb-section" id="competitors" data-reveal>
+            <div class="nb-eyebrow">COMPETITOR RESEARCH</div>
+            <h2 class="case-h2 nb-h2">How Nova Bank compares</h2>
+            <p class="case-p nb-p">
+              I benchmarked Nova Bank against three neobanks widely recognized for strong UX —
+              Revolut, Monzo, and Chime — to find the gap Nova Bank could realistically own.
+            </p>
+
+            <div class="nb-matrix-wrap" style="margin-top:22px" data-reveal data-reveal-delay="1">
+              <table class="nb-matrix">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Revolut</th>
+                    <th>Monzo</th>
+                    <th>Chime</th>
+                    <th>Nova Bank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Feature">Instant transaction notifications</td>
+                    <td class="nb-yes" data-label="Revolut"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Monzo"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Chime"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Nova Bank"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Budgeting / savings pots</td>
+                    <td class="nb-yes" data-label="Revolut"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Monzo"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-partial" data-label="Chime"><span class="nb-icon nb-icon-partial" aria-label="Partial"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M3 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="none"/></svg></span></td>
+                    <td class="nb-partial" data-label="Nova Bank"><span class="nb-icon nb-icon-partial" aria-label="Partial"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M3 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="none"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Card freeze / unfreeze in 1 tap</td>
+                    <td class="nb-yes" data-label="Revolut"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Monzo"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Chime"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Nova Bank"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Premium / non-generic visual identity</td>
+                    <td class="nb-partial" data-label="Revolut"><span class="nb-icon nb-icon-partial" aria-label="Partial"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M3 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="none"/></svg></span></td>
+                    <td class="nb-no" data-label="Monzo"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                    <td class="nb-no" data-label="Chime"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                    <td class="nb-yes" data-label="Nova Bank"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Designed error &amp; failure states</td>
+                    <td class="nb-partial" data-label="Revolut"><span class="nb-icon nb-icon-partial" aria-label="Partial"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M3 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="none"/></svg></span></td>
+                    <td class="nb-partial" data-label="Monzo"><span class="nb-icon nb-icon-partial" aria-label="Partial"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M3 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="none"/></svg></span></td>
+                    <td class="nb-no" data-label="Chime"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                    <td class="nb-yes" data-label="Nova Bank"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Transfer flow in ≤3 steps</td>
+                    <td class="nb-yes" data-label="Revolut"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Monzo"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Chime"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-yes" data-label="Nova Bank"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Feature">Multi-currency / travel features</td>
+                    <td class="nb-yes" data-label="Revolut"><span class="nb-icon nb-icon-yes" aria-label="Yes"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M4 12.5L9.5 18L20 6"/></svg></span></td>
+                    <td class="nb-no" data-label="Monzo"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                    <td class="nb-no" data-label="Chime"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                    <td class="nb-no" data-label="Nova Bank"><span class="nb-icon nb-icon-no" aria-label="No"><svg viewBox="0 0 24 24"><path class="nb-icon-path" d="M5 5L19 19"/><path class="nb-icon-path" d="M19 5L5 19"/></svg></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="nb-matrix-note" data-reveal data-reveal-delay="2">
+              Revolut, Monzo, and Chime have already solved speed and core functionality — that bar is
+              table stakes, not a differentiator. Where they consistently fall short is visual
+              identity (most lean on generic fintech color systems) and designed edge cases: failed
+              transfers, security alerts, and incorrect-PIN states are often an afterthought. Nova Bank's
+              opportunity is a premium dark UI paired with fully designed system states, not a wider
+              feature set.
             </div>
           </section>
 

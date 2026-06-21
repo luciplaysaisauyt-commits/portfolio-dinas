@@ -353,8 +353,6 @@ a    { text-decoration: none; color: inherit; }
 
 .nb-section {
   border-top: 1px solid rgba(255,120,77,0.14);
-  padding-top: 28px;
-  scroll-margin-top: calc(var(--navH) + var(--subnavH) + 20px);
 }
 
 .nb-h2 {
@@ -1173,3 +1171,244 @@ a    { text-decoration: none; color: inherit; }
   scrollbar-width: none;
 }
 .case-subnav-pill::-webkit-scrollbar { display: none; }
+
+
+/* ══════════════════════════════════════════════
+   COMPARATIVE MATRIX TABLE (Target Audience / Competitors)
+══════════════════════════════════════════════ */
+.nb-matrix-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid var(--nb-ac-bdr);
+  background: var(--nb-ac-dim);
+}
+
+.nb-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--nb-sans);
+  font-size: 14px;
+  min-width: 620px;
+}
+
+.nb-matrix thead th {
+  text-align: left;
+  padding: 16px 18px;
+  font-family: var(--nb-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,120,77,0.80);
+  border-bottom: 1px solid var(--nb-ac-bdr);
+  white-space: nowrap;
+}
+
+.nb-matrix thead th:not(:first-child),
+.nb-matrix tbody td:not(:first-child) {
+  text-align: center;
+}
+
+.nb-matrix tbody td {
+  padding: 14px 18px;
+  color: var(--nb-muted);
+  border-bottom: 1px solid rgba(255,120,77,0.08);
+}
+
+.nb-matrix tbody tr:last-child td { border-bottom: none; }
+
+.nb-matrix tbody tr:hover { background: rgba(255,120,77,0.05); }
+
+.nb-matrix .nb-yes {
+  color: var(--nb-success);
+  font-weight: 700;
+}
+
+.nb-matrix .nb-no {
+  color: var(--nb-error);
+  font-weight: 700;
+  opacity: .7;
+}
+
+.nb-matrix .nb-partial {
+  color: var(--nb-warn);
+  font-weight: 700;
+}
+
+.nb-matrix-note {
+  margin-top: 16px;
+  padding: 18px 22px;
+  border-left: 3px solid var(--nb-ac);
+  background: var(--nb-ac-dim);
+  border-radius: 0 16px 16px 0;
+  color: var(--nb-muted);
+  font-size: 14px;
+  line-height: 1.65;
+  font-family: var(--nb-sans);
+  max-width: 72ch;
+}
+
+/* ══════════════════════════════════════════════
+   ANIMATED MATRIX ICONS (✓ ✗ ~)
+══════════════════════════════════════════════ */
+.nb-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+}
+
+.nb-icon svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.nb-icon-path {
+  fill: none;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Checkmark — draws itself in */
+.nb-icon-yes .nb-icon-path {
+  stroke: var(--nb-success);
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: nbDrawCheck 0.6s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes nbDrawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Cross — fades + tiny shake */
+.nb-icon-no .nb-icon-path {
+  stroke: var(--nb-error);
+  opacity: 0;
+  transform-origin: center;
+  animation: nbCrossIn 0.45s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes nbCrossIn {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+  60%  { opacity: 1; transform: scale(1.08) rotate(4deg); }
+  100% { opacity: .75; transform: scale(1) rotate(0deg); }
+}
+
+/* Partial (~) — gentle continuous wave pulse */
+.nb-icon-partial .nb-icon-path {
+  stroke: var(--nb-warn);
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: nbDrawCheck 0.5s ease forwards, nbWavePulse 1.8s ease-in-out 0.6s infinite;
+}
+
+@keyframes nbWavePulse {
+  0%, 100% { opacity: .65; }
+  50%      { opacity: 1; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .nb-icon-yes .nb-icon-path,
+  .nb-icon-no .nb-icon-path,
+  .nb-icon-partial .nb-icon-path {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Re-trigger animation each time a row scrolls into view */
+.nb-matrix-wrap[data-reveal].revealed .nb-icon-yes .nb-icon-path,
+.nb-matrix-wrap[data-reveal].revealed .nb-icon-no .nb-icon-path {
+  animation-play-state: running;
+}
+
+
+/* ══════════════════════════════════════════════
+   HEADING / SUBNAV OVERLAP FIX
+══════════════════════════════════════════════ */
+.nb-section .nb-h2,
+.nb-section .nb-eyebrow {
+  position: relative;
+  z-index: 1;
+}
+
+.nb-section {
+  scroll-margin-top: calc(var(--navH) + var(--subnavH) + 36px);
+  padding-top: 36px;
+}
+
+@media (max-width: 640px) {
+  .nb-section {
+    padding-top: 28px;
+    scroll-margin-top: calc(var(--navH) + var(--subnavH) + 24px);
+  }
+}
+@media (max-width: 600px) {
+  .nb-matrix-wrap {
+    overflow-x: visible;
+    background: transparent;
+    border: none;
+  }
+
+  .nb-matrix {
+    min-width: 0;
+    display: block;
+  }
+
+  .nb-matrix thead { display: none; }
+
+  .nb-matrix tbody {
+    display: grid;
+    gap: 14px;
+  }
+
+  .nb-matrix tbody tr {
+    display: block;
+    background: var(--nb-ac-dim);
+    border: 1px solid var(--nb-ac-bdr);
+    border-radius: 16px;
+    padding: 6px 4px;
+  }
+
+  .nb-matrix tbody tr:hover { background: var(--nb-ac-dim); }
+
+  .nb-matrix tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255,120,77,0.08);
+    text-align: right;
+    white-space: normal;
+  }
+
+  .nb-matrix tbody tr td:first-child {
+    font-family: var(--nb-sans);
+    font-weight: 600;
+    color: var(--nb-text);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,120,77,0.18);
+    text-align: left;
+  }
+
+  .nb-matrix tbody tr td:last-child { border-bottom: none; }
+
+  .nb-matrix tbody td::before {
+    content: attr(data-label);
+    font-family: var(--nb-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,120,77,0.65);
+  }
+
+  .nb-matrix tbody tr td:first-child::before { display: none; }
+}
