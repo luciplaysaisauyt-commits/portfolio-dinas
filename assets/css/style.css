@@ -393,7 +393,17 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 }
 @media (max-width: 640px) {
   .pill-nav { top: 14px; padding: 10px 10px 10px 16px; gap: 8px; }
-  .pill-nav__logo { margin-right: 6px; }
-  .pill-nav__logo-img { width: 26px; height: 26px; }
+  .pill-nav__logo {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: 6px;
+  }
+  .pill-nav__logo-img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.9 !important;
+    width: 26px;
+    height: 26px;
+  }
   .pill-nav__link { font-size: 11px; padding: 10px 16px; }
 }
