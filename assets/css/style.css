@@ -361,13 +361,16 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
   align-items: center;
   margin-right: 10px;
 }
+
+
 .pill-nav__logo-img {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   opacity: 0.9;
 }
+
+
 .pill-nav__links {
   order: 2;
   display: flex;
@@ -411,15 +414,15 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
     width: 26px;
     height: 26px;
   }
+
   .pill-nav__logo-img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 26px !important;
-    height: 26px !important;
-    object-fit: contain !important;
-    filter: brightness(0) invert(1) !important;
-  }
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 26px !important;
+  height: 26px !important;
+  object-fit: contain !important;
+}
   .pill-nav__links {
     gap: 3px;
   }
@@ -429,4 +432,160 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
     min-height: 30px;
     letter-spacing: 0.10em;
   }
+}
+
+/* ── LOGO DRAW-ON ANIMATION (offset-path / signature style) ──
+   Контур рисуется через stroke-dasharray/dashoffset.
+   Перо (.pen) едет вдоль того же контура через CSS offset-path,
+   создавая эффект "рисуется как подпись от руки".
+   Анимация запускается классом .is-animating (ставится JS-ом
+   из header.html). Если анимация уже была сыграна за эту сессию,
+   JS ставит класс .is-done — лого сразу полностью нарисовано. */
+
+.logo-draw{
+  display:block;
+  overflow:visible; /* перо может на миг выйти за пределы viewBox при толстом stroke-width */
+}
+
+.logo-draw .logo-path{
+  fill:none;
+  stroke:#fff;
+  stroke-width:22px;
+  stroke-miterlimit:10;
+  /* stroke-dasharray/dashoffset выставляются в JS под реальную длину path */
+}
+
+.logo-draw .logo-dot{
+  fill:#fff;
+  stroke:#fff;
+  stroke-miterlimit:10;
+  opacity:0;
+  transform-origin:18.5px 18.5px;
+  transform:scale(0);
+}
+
+.logo-draw .pen{
+  fill:#fff;
+  opacity:0;
+  offset-path:path("M45.65,18.5s134.84-.16,134.85,161.84c0,153.77-145.96,161.58-160.78,161.98-.56.02-.93-.57-.69-1.08,40.62-86.89,40.78-173.74.33-260.55-.3-.63.34-1.3.98-1.02,100.83,43.7,207.18,127.94,319.9,260,.53.62,1.79-.04,1.3-.7-79.53-105.27-84.04-212.57.97-320.64");
+  offset-rotate:0deg;
+  offset-distance:0%;
+}
+
+/* ── Запуск анимации (класс ставится JS-ом при первом проигрывании) ── */
+.logo-draw.is-animating .logo-path{
+  animation:logo-draw-line 2.1s cubic-bezier(.65,0,.35,1) forwards;
+}
+.logo-draw.is-animating .logo-dot{
+  opacity:1;
+  animation:logo-dot-in .45s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation-delay:1.95s;
+}
+.logo-draw.is-animating .pen{
+  opacity:1;
+  animation:logo-pen-move 2.1s cubic-bezier(.65,0,.35,1) forwards,
+            logo-pen-fade .25s linear 1.95s forwards;
+}
+
+@keyframes logo-draw-line{
+  to{ stroke-dashoffset:0; }
+}
+@keyframes logo-dot-in{
+  from{ opacity:0; transform:scale(0); }
+  to{ opacity:1; transform:scale(1); }
+}
+@keyframes logo-pen-move{
+  0%{ offset-distance:0%; }
+  100%{ offset-distance:100%; }
+}
+@keyframes logo-pen-fade{
+  to{ opacity:0; }
+}
+
+/* ── Финальное состояние (анимация уже была сыграна за сессию) ── */
+.logo-draw.is-done .logo-path{ stroke-dashoffset:0; }
+.logo-draw.is-done .logo-dot{ opacity:1; transform:scale(1); }
+.logo-draw.is-done .pen{ opacity:0; }
+
+@media (prefers-reduced-motion: reduce){
+  .logo-draw .logo-path{ stroke-dashoffset:0 !important; animation:none !important; }
+  .logo-draw .logo-dot{ opacity:1 !important; transform:scale(1) !important; animation:none !important; }
+  .logo-draw .pen{ opacity:0 !important; animation:none !important; }
+}
+
+/* ── LOGO DRAW-ON ANIMATION (looping signature style) ──
+   Цикл (6.5s, бесконечный):
+     0%    → 32.3%   : контур рисуется (2.1s), перо едет вдоль пути
+     32.3% → 93.8%    : лого стоит полностью нарисованным (4s)
+     93.8% → 100%     : всё плавно гаснет (0.4s), затем цикл начинается снова
+   Контур рисуется через stroke-dasharray/dashoffset.
+   Перо (.pen) едет вдоль того же контура через CSS offset-path.
+   Чистый CSS, без JS и sessionStorage — анимация идёт постоянно,
+   на любой странице, при каждой подгрузке header. */
+
+.logo-draw{
+  display:block;
+  overflow:visible; /* перо может на миг выйти за пределы viewBox при толстом stroke-width */
+}
+
+.logo-draw .logo-path{
+  fill:none;
+  stroke:#fff;
+  stroke-width:22px;
+  stroke-miterlimit:10;
+  /* 1533 — точная длина контура лого (getTotalLength), посчитана заранее,
+     поэтому JS не нужен вообще, чистый CSS-цикл */
+  stroke-dasharray:1533;
+  stroke-dashoffset:1533;
+  animation:logo-cycle-path 6.5s cubic-bezier(.65,0,.35,1) infinite;
+}
+
+.logo-draw .logo-dot{
+  fill:#fff;
+  stroke:#fff;
+  stroke-miterlimit:10;
+  transform-origin:18.5px 18.5px;
+  opacity:0;
+  transform:scale(0);
+  animation:logo-cycle-dot 6.5s cubic-bezier(.65,0,.35,1) infinite;
+}
+
+.logo-draw .pen{
+  fill:#fff;
+  opacity:0;
+  offset-path:path("M45.65,18.5s134.84-.16,134.85,161.84c0,153.77-145.96,161.58-160.78,161.98-.56.02-.93-.57-.69-1.08,40.62-86.89,40.78-173.74.33-260.55-.3-.63.34-1.3.98-1.02,100.83,43.7,207.18,127.94,319.9,260,.53.62,1.79-.04,1.3-.7-79.53-105.27-84.04-212.57.97-320.64");
+  offset-rotate:0deg;
+  offset-distance:0%;
+  animation:logo-cycle-pen 6.5s cubic-bezier(.65,0,.35,1) infinite;
+}
+
+/* ── Контур: рисуется 0–32.3%, держится до 93.8%, гаснет к 100% ── */
+@keyframes logo-cycle-path{
+  0%      { stroke-dashoffset:1533; opacity:1; }
+  32.3%   { stroke-dashoffset:0;    opacity:1; }
+  93.8%   { stroke-dashoffset:0;    opacity:1; }
+  100%    { stroke-dashoffset:0;    opacity:0; }
+}
+
+/* ── Точка: появляется чуть раньше конца линии (нахлёст), держится, гаснет ── */
+@keyframes logo-cycle-dot{
+  0%      { opacity:0; transform:scale(0); }
+  29%     { opacity:0; transform:scale(0); }
+  33.8%   { opacity:1; transform:scale(1); }
+  93.8%   { opacity:1; transform:scale(1); }
+  100%    { opacity:0; transform:scale(1); }
+}
+
+/* ── Перо: едет вдоль пути 0–32.3%, затем прячется до конца цикла ── */
+@keyframes logo-cycle-pen{
+  0%      { offset-distance:0%;   opacity:1; }
+  32.3%   { offset-distance:100%; opacity:1; }
+  36%     { opacity:0; }
+  100%    { opacity:0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .logo-draw .logo-path{ stroke-dashoffset:0 !important; opacity:1 !important; animation:none !important; }
+  .logo-draw .logo-dot{ opacity:1 !important; transform:scale(1) !important; animation:none !important; }
+  .logo-draw .pen{ opacity:0 !important; animation:none !important; }
 }

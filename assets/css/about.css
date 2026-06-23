@@ -759,3 +759,29 @@ a.cta-value:hover { color: var(--accent); }
     padding-top: 16px;
   }
 }
+
+/* ── INLINE NAME LOGO (теперь SVG с анимацией рисования, не img) ──
+   Используют тот же .logo-draw / .logo-path / .logo-dot / .pen
+   набор стилей и @keyframes из style.css (logo-cycle-path/dot/pen).
+   Здесь только размер и выравнивание под текстовую строку. */
+ 
+.name-logo-svg{
+  height:1.4em;
+  width:auto;
+  vertical-align:middle;
+  position:relative;
+  top:-0.05em; /* оптическое выравнивание с текстом */
+}
+ 
+.name-logo--inline .inline-logo{
+  height:1.4em;
+  width:auto;
+  vertical-align:middle;
+  position:relative;
+  top:-0.05em;
+}
+ 
+/* старые правила для img.name-logo / img.inline-logo с
+   filter: brightness(0) invert(1) больше не нужны —
+   SVG уже белый по fill/stroke, можно удалить их из about.css */
+ 

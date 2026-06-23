@@ -1,7 +1,11 @@
 <!-- header.html — подключается через fetch на всех страницах -->
 <nav class="pill-nav" id="pillNav">
   <div class="pill-nav__logo">
-    <img src="/assets/images/DIN.png" alt="DIN" class="pill-nav__logo-img">
+    <svg class="pill-nav__logo-img logo-draw" id="pillLogo" viewBox="0 0 352.64 353.31" xmlns="http://www.w3.org/2000/svg" aria-label="DIN">
+      <path class="logo-path" d="M45.65,18.5s134.84-.16,134.85,161.84c0,153.77-145.96,161.58-160.78,161.98-.56.02-.93-.57-.69-1.08,40.62-86.89,40.78-173.74.33-260.55-.3-.63.34-1.3.98-1.02,100.83,43.7,207.18,127.94,319.9,260,.53.62,1.79-.04,1.3-.7-79.53-105.27-84.04-212.57.97-320.64"/>
+      <circle class="logo-dot" cx="18.5" cy="18.5" r="18"/>
+      <circle class="pen" r="13"/>
+    </svg>
   </div>
   <div class="pill-nav__links">
     <a href="/index.html" class="pill-nav__link" data-match="index">Home</a>
@@ -11,24 +15,59 @@
 </nav>
 
 <script>
-  // Подсветить активный пункт по URL
-  (function() {
-    const path = window.location.pathname;
-    document.querySelectorAll('.pill-nav__link').forEach(function(link) {
-      const match = link.getAttribute('data-match');
-      if (
-        (match === 'index' && (path === '/' || path.endsWith('index.html'))) ||
-        (match === 'about' && path.includes('about')) ||
-        (match === 'contact' && path.includes('contact'))
-      ) {
-        link.classList.add('active');
-      }
-    });
+(function() {
 
-    // Scrolled effect
-    const nav = document.getElementById('pillNav');
-    window.addEventListener('scroll', function() {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-  })();
+  /* ───────────────── Active nav link by URL ───────────────── */
+  const path = window.location.pathname;
+  document.querySelectorAll('.pill-nav__link').forEach(function(link) {
+    const match = link.getAttribute('data-match');
+    if (
+      (match === 'index' && (path === '/' || path.endsWith('index.html'))) ||
+      (match === 'about' && path.includes('about')) ||
+      (match === 'contact' && path.includes('contact'))
+    ) {
+      link.classList.add('active');
+    }
+  });
+
+  /* ───────────────── Scrolled effect ───────────────── */
+  const nav = document.getElementById('pillNav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ───────────────── Logo draw-on (offset-path версия) ─────────────────
+     Контур рисуется через stroke-dasharray/dashoffset (CSS animation),
+     перо едет вдоль того же контура через CSS offset-path.
+     Стили лежат в style.css (.logo-draw, .logo-path, .logo-dot, .pen).
+     Анимация играет один раз за сессию вкладки; при следующих
+     подгрузках header (переход по страницам) лого сразу статично. */
+
+  const svg = document.getElementById('pillLogo');
+  if (!svg) return;
+
+  const logoPath = svg.querySelector('.logo-path');
+  if (!logoPath) return;
+
+  // подгоняем stroke-dasharray под реальную длину path
+  const len = logoPath.getTotalLength();
+  logoPath.style.strokeDasharray = len;
+  logoPath.style.strokeDashoffset = len;
+
+  const ALREADY_PLAYED_KEY = 'din_logo_drawn';
+  let alreadyPlayed = false;
+  try {
+    alreadyPlayed = sessionStorage.getItem(ALREADY_PLAYED_KEY) === '1';
+  } catch (e) {
+    // sessionStorage недоступен — просто играем анимацию каждый раз
+  }
+
+  if (alreadyPlayed) {
+    svg.classList.add('is-done');
+  } else {
+    svg.classList.add('is-animating');
+    try { sessionStorage.setItem(ALREADY_PLAYED_KEY, '1'); } catch (e) {}
+  }
+
+})();
 </script>
