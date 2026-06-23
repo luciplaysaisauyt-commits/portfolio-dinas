@@ -400,27 +400,32 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 @media (max-width: 640px) {
   .pill-nav {
     top: 14px;
-    padding: 10px 14px 10px 16px;
-    gap: 8px;
+    padding: 8px 10px 8px 12px;
+    gap: 6px;
   }
   .pill-nav__logo {
     display: flex !important;
     align-items: center !important;
-    margin-right: 8px;
+    margin-right: 6px;
   }
   .pill-nav__logo-img {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 26px;
-    height: 26px;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain !important;
+    filter: brightness(0) invert(1) !important;
   }
   .pill-nav__links {
-    gap: 6px;
+    gap: 3px;
   }
   .pill-nav__link {
-    font-size: 11px;
-    padding: 9px 14px;
-    min-height: 34px;
+    font-size: 9.5px;
+    padding: 7px 10px;
+    min-height: 30px;
+    letter-spacing: 0.10em;
   }
+}
+
 }
