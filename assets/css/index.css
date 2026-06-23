@@ -18,7 +18,7 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
-  color: #f0ece4;
+  color: rgba(255, 255, 255, 0.849);
   font-family: var(--sans);
   font-weight: 300;
   line-height: 1.6;
@@ -40,6 +40,7 @@ a { text-decoration: none; color: inherit; }
 ───────────────────────────────────── */
 .gallery-section {
   padding: 0 32px 100px;
+  padding-top: calc(var(--navH) + 60px);
   max-width: 1360px;
   margin: 0 auto;
 }
@@ -51,7 +52,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 72px 0 36px;
+  padding: 0 0 36px;
   margin-bottom: 28px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
@@ -184,7 +185,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 5px;
 }
 .bcard__desc {
-  font-size: 11.5px; color: rgba(255,255,255,0.58);
+  font-size: 11.5px; color: rgba(255, 255, 255, 0.849);
   line-height: 1.55; margin-bottom: 14px;
 }
 .bcard__cta {
@@ -204,20 +205,20 @@ a { text-decoration: none; color: inherit; }
    RESTING TAG
 ───────────────────────────────────── */
 .bcard__tag {
-  position: absolute; bottom: 14px; left: 16px;
+  position: absolute; bottom: 16px; left: 18px;
   z-index: 3;
-  display: flex; align-items: center; gap: 7px;
+  display: flex; align-items: center; gap: 9px;
   transition: opacity 0.28s;
 }
 .bcard:not(.bc-intro):not(.bc-cta):hover .bcard__tag { opacity: 0; }
 
 .bcard__tag-dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--accent); opacity: 0.55; flex-shrink: 0;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); opacity: 0.6; flex-shrink: 0;
 }
 .bcard__tag-name {
   font-family: var(--serif);
-  font-size: 12px; color: rgba(255,255,255,0.45);
+  font-size: 25px; color: rgba(240, 231, 231, 0.829);
 }
 
 /* ─────────────────────────────────────
@@ -258,7 +259,7 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 16px; opacity: 0.55;
 }
 .intro__bio {
-  font-size: 12.5px; color: rgba(255,255,255,0.48);
+  font-size: 12.5px; color: rgba(255, 255, 255, 0.849);
   line-height: 1.75; flex: 1;
 }
 
@@ -506,7 +507,7 @@ a { text-decoration: none; color: inherit; }
 ───────────────────────────────────── */
 @media (max-width: 1080px) {
   :root { --row: 70px; }
-  .gallery-section { padding: 0 20px 80px; }
+  .gallery-section { padding-left: 20px; padding-right: 20px; padding-bottom: 80px; }
 }
 
 @media (max-width: 820px) {
@@ -580,7 +581,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 480px) {
-  .gallery-section { padding: 0 14px 60px; }
+  .gallery-section { padding-left: 14px; padding-right: 14px; padding-bottom: 60px; }
   .gallery-header { padding: 36px 0 22px; }
 
   .bento {
@@ -609,25 +610,4 @@ a { text-decoration: none; color: inherit; }
     object-fit: contain;
     margin-right: 6px;
   }
-
-  /* ── Фикс отступа под навбар ── */
-.gallery-section {
-  padding-top: var(--navH);
-}
-
-.gallery-header {
-  padding-top: 36px; /* убираем лишние 72px, navH уже учтён */
-}
-
-@media (max-width: 820px) {
-  .gallery-header {
-    padding-top: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-header {
-    padding-top: 16px;
-  }
-}
 }
