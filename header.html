@@ -1,14 +1,13 @@
 <!-- header.html — подключается через fetch на всех страницах -->
 <nav class="pill-nav" id="pillNav">
   <div class="pill-nav__logo">
-   <img src="/assets/images/DIN.png" alt="DIN" class="pill-nav__logo-img" style="width:22px;height:22px;object-fit:contain;" onerror="this.style.display='none'">
+    <img src="/assets/images/DIN.png" alt="DIN" class="pill-nav__logo-img">
   </div>
   <div class="pill-nav__links">
     <a href="/index.html" class="pill-nav__link" data-match="index">Home</a>
     <a href="/about.html" class="pill-nav__link" data-match="about">About</a>
     <a href="/contactus.html" class="pill-nav__link" data-match="contact">Contact</a>
   </div>
-  
 </nav>
 
 <script>
@@ -32,6 +31,4 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
   })();
-
-  
 </script>
