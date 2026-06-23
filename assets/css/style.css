@@ -400,7 +400,7 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
 @media (max-width: 640px) {
   .pill-nav {
     top: 14px;
-    padding: 8px 10px 8px 12px;
+    padding: 8px 10px 8px 20px;
     gap: 6px;
   }
   .pill-nav__logo {
