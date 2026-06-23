@@ -406,14 +406,17 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
   .pill-nav__logo {
     display: flex !important;
     align-items: center !important;
-    margin-right: 6px;
+    justify-content: center !important;
+    margin-right: 8px;
+    width: 26px;
+    height: 26px;
   }
   .pill-nav__logo-img {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 26px !important;
+    height: 26px !important;
     object-fit: contain !important;
     filter: brightness(0) invert(1) !important;
   }
@@ -426,6 +429,4 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
     min-height: 30px;
     letter-spacing: 0.10em;
   }
-}
-
 }
