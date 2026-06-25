@@ -342,7 +342,7 @@ input,textarea{border-bottom:1px solid rgba(255,255,255,0.25)!important}
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 12px 12px 22px;
+  padding: 12px 12px 12px 24px;
   background: rgba(14,14,14,0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

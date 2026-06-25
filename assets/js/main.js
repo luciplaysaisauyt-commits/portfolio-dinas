@@ -130,7 +130,7 @@
       var TG = 'https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage';
       Promise.all([
         fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:'service_ewg5w2n',template_id:'template_ce4qo7t',user_id:'mJztgAOONni1NaDaq',template_params:data})}),
-        fetch(TG,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'8249291699',text:'Новое сообщение!\n\nИмя: '+data.firstName+' '+data.lastName+'\nEmail: '+data.email+'\n\nСообщение:\n'+data.message})}),
+        fetch(TG,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:'Новое сообщение!\n\nИмя: '+data.firstName+' '+data.lastName+'\nEmail: '+data.email+'\n\nСообщение:\n'+data.message})}),
       ])
       .then(function(){ form.reset(); if(popup) popup.classList.add('show'); })
       .catch(function(){ if(popup) popup.classList.add('show'); })
@@ -150,7 +150,7 @@
     nlForm.addEventListener('submit', function(e){
       e.preventDefault();
       var email = nlEmail ? nlEmail.value : '';
-      if (email) fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'8249291699',text:'Новый подписчик: '+email})}).catch(function(){});
+      if (email) fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:'Новый подписчик: '+email})}).catch(function(){});
       if (nlEmail) nlEmail.value='';
     });
   }
@@ -160,7 +160,7 @@
     var page=window.location.pathname, ref=document.referrer?'\nОткуда: '+document.referrer:'\nОткуда: прямой';
     var device=/Mobi|Android/i.test(navigator.userAgent)?'Мобильный':'Десктоп';
     var time=new Date().toLocaleString('ru-RU',{timeZone:'Europe/Moscow'});
-    function sendTG(text){ fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'8249291699',text:text})}).catch(function(){}); }
+    function sendTG(text){ fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:text})}).catch(function(){}); }
     fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(geo){
       var country=geo.country_name||'Неизвестно', city=geo.city||'', ip=geo.ip||'';
       var location=country+(city?', '+city:'')+(ip?' ('+ip+')':'');

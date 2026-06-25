@@ -1,0 +1,125 @@
+/* ============================================================
+   PRINT / PDF EXPORT STYLES — v2 (fix: пустой/белый PDF)
+   Подключать на ВСЕХ страницах кейсов:
+   avion.html, clm.html, mschf.html, novabank.html, unnie-box.html
+
+   ПРИЧИНА БАГА v1: дизайн использует светлый текст на тёмных
+   карточках. Мы перекрашивали в белый только внешние обёртки —
+   сам текст внутри карточек оставался светлым → светлый текст
+   на белом листе = невидим. Плюс Chrome по умолчанию не печатает
+   цветные фоны ("Background graphics" выключена), поэтому все
+   тёмные фоны-подложки пропадали, а текст оставался светлым.
+
+   РЕШЕНИЕ v2: форсируем тёмный текст АБСОЛЮТНО везде (*) и
+   светло-серый фон у карточек — результат не зависит от того,
+   включена ли в браузере печать фоновых цветов.
+   ============================================================ */
+
+@media print {
+
+  /* ── СКРЫВАЕМ ВСЁ, ЧЕГО НЕ ДОЛЖНО БЫТЬ В PDF ── */
+  header,
+  .burger,
+  .pdf-download-btn,
+  [class*="-nav"],
+  [class*="-subnav"],
+  [class*="-bg"],
+  [class*="-grid-overlay"],
+  [class*="-orb"],
+  [class*="progress-bar"],
+  .case-actions,
+  .cta-actions,
+  [class*="-footer-form"],
+  button,
+  [class*="-tabs"],
+  [class*="-placeholder-icon"],
+  [class*="-placeholder-label"],
+  [class*="-placeholder-hint"],
+  [class*="__overlay"],
+  [class*="footer__proj-nav"],
+  [class*="-footer-proj-nav"]
+  {
+    display: none !important;
+  }
+
+  /* ── показываем скрытые вкладки (Wireframe / User Flow и т.п.),
+     чтобы в PDF попал весь контент, а не только активная вкладка ── */
+  [class*="panel--hidden"],
+  [class*="tab-panel--hidden"] {
+    display: block !important;
+  }
+
+  /* ── reveal-анимации должны быть видны сразу,
+     а не только после скролла ── */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ══════════════════════════════════════════════
+     ГЛАВНЫЙ ФИКС: ВСЁ — белый фон + тёмный текст
+     Это и решает проблему "невидимого" текста.
+  ══════════════════════════════════════════════ */
+  html, body, * {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #1a1a1a !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── у карточек/таблиц — светло-серый фон + тонкая рамка
+     вместо тёмной подложки, чтобы они визуально не "пропадали" ── */
+  [class*="-card"],
+  [class*="rp-"],
+  [class*="-pf"],
+  [class*="-stat"],
+  [class*="-meta-card"],
+  [class*="-chip"],
+  [class*="-product-card"],
+  [class*="-sw"],
+  table, th, td
+  {
+    background: #f7f7f9 !important;
+    border: 1px solid #ddd !important;
+  }
+
+  /* ── ссылки читаемы на бумаге ── */
+  a {
+    color: #1d4ed8 !important;
+    text-decoration: underline;
+  }
+
+  /* ── контейнер кейса на всю ширину листа ── */
+  [class*="case-wrap"] {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* ── картинки не растягиваются за лист и не режутся ── */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* ── блоки не разрезаются между страницами ── */
+  [class*="-card"],
+  [class*="-stat"],
+  [class*="-pf"],
+  table,
+  [class*="-screen-card"],
+  [class*="-matrix-wrap"],
+  [class*="-persona"]
+  {
+    page-break-inside: avoid;
+  }
+
+  /* ── поля страницы ── */
+  @page {
+    margin: 16mm 14mm;
+  }
+}
