@@ -954,3 +954,33 @@ body:not(.is-loaded) .ub-content { opacity: 0; transform: translateY(14px); }
     transform: none !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE (≤640px) — Process section fine-tuning
+════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .case-process {
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .pstep {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .pnum {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+
+  .ptitle {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .pdesc {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
