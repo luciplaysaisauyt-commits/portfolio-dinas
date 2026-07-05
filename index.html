@@ -30,28 +30,6 @@
   </div>
 
   <!--
-    ─────────────────────────────────────────────────────────────
-    HOW TO ADD A REAL PROJECT PREVIEW (upgrades a card from the flat
-    gradient to a premium visual — nothing breaks if the file is missing):
-
-      • Image cover:  put   <img class="bcard__media" src="/assets/…/cover.jpg" alt="Project name">
-                      right after the <div class="bcard__bg …"></div>
-
-      • Device shot:  <div class="mock mock--phone"><img src="/assets/…/screen.png" alt=""></div>
-                      or  <div class="mock mock--browser"><img src="…"></div>
-
-      • Video preview: video cards already autoplay muted from data-video="…"
-
-      • Stats (optional): inside .bcard__reveal-inner add
-          <div class="bcard__stats">
-            <span class="bcard__chip">8 screens</span>
-            <span class="bcard__chip">Figma</span>
-            <span class="bcard__chip">Lead designer</span>
-          </div>
-    ─────────────────────────────────────────────────────────────
-  -->
-
-  <!--
     Bento layout (matches the hand sketch, 4 cols × 4 rows via
     grid-template-areas defined in index.css):
 
@@ -86,7 +64,6 @@
     <!-- c2: UNNIEBOX -->
     <a href="portfolio/unnie-box.html" class="bcard bc-unnie is-media sr d2">
       <div class="bcard__bg pg-unnie"></div>
-      <!-- <img class="bcard__media" src="/assets/images/covers/unnie.jpg" alt="UnnieBox"> -->
       <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI/UX</span>
@@ -99,24 +76,23 @@
     </a>
 
     <!-- c3: KINETIC TYPE REEL (in progress) -->
-<div class="bcard bc-kinetic sr d2" style="cursor:default">
-  <div class="bcard__bg pg-kinetic"></div>
-  <div class="bcard__scrim"></div>
-  <div class="bcard__content">
-    <span class="bcard__cat">Motion Design</span>
-    <h3 class="bcard__title">Kinetic Type Reel</h3>
-    <p class="bcard__desc">Typography-driven motion study — timing, rhythm, and type as image</p>
-    <span class="bcard__cta bcard__cta--status">
-      <span class="status-dot"></span>
-      In Progress
-    </span>
-  </div>
-</div>
+    <div class="bcard bc-kinetic sr d2" style="cursor:default">
+      <div class="bcard__bg pg-kinetic"></div>
+      <div class="bcard__scrim"></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">Motion Design</span>
+        <h3 class="bcard__title">Kinetic Type Reel</h3>
+        <p class="bcard__desc">Typography-driven motion study — timing, rhythm, and type as image</p>
+        <span class="bcard__cta bcard__cta--status">
+          <span class="status-dot"></span>
+          In Progress
+        </span>
+      </div>
+    </div>
 
     <!-- c4: NOVA BANK -->
     <a href="portfolio/novabank.html" class="bcard bc-nova is-media sr d3">
       <div class="bcard__bg pg-nova"></div>
-      <!-- <img class="bcard__media" src="/assets/images/covers/nova.jpg" alt="Nova Bank"> -->
       <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI/UX</span>
@@ -131,7 +107,6 @@
     <!-- c5: MSCHF -->
     <a href="portfolio/mschf.html" class="bcard bc-mschf is-media sr d4">
       <div class="bcard__bg pg-mschf"></div>
-      <!-- <img class="bcard__media" src="/assets/images/covers/mschf.jpg" alt="MSCHF Platform"> -->
       <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI Redesign</span>
@@ -146,7 +121,6 @@
     <!-- c6: AVION -->
     <a href="portfolio/avion.html" class="bcard bc-avion is-media sr d4">
       <div class="bcard__bg pg-avion"></div>
-      <!-- <img class="bcard__media" src="/assets/images/covers/avion.jpg" alt="Avion Furniture"> -->
       <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI</span>
@@ -165,7 +139,8 @@
          data-cat="3D Animation"
          tabindex="0" role="button" aria-label="Play The Weeknd Poster">
       <div class="bcard__bg pg-weeknd"></div>
-      <video class="bcard__media bcard__video" muted loop playsinline preload="none"></video>
+      <video class="bcard__media bcard__video" muted loop playsinline preload="none"
+             poster="/assets/images/dinmukready/weeknd-poster.webp"></video>
       <div class="bcard__scrim"></div>
       <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
       <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
@@ -181,7 +156,6 @@
     <!-- c8: CLM -->
     <a href="portfolio/clm.html" class="bcard bc-clm is-media sr d6">
       <div class="bcard__bg pg-clm"></div>
-      <!-- <img class="bcard__media" src="/assets/images/covers/clm.jpg" alt="CLM Mafia"> -->
       <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI Web Design</span>
@@ -193,21 +167,20 @@
       </div>
     </a>
 
-    
     <!-- c9: KINETIC TYPOGRAPHY (in progress) -->
-<div class="bcard bc-ktypo sr d6" style="cursor:default">
-  <div class="bcard__bg pg-ktypo"></div>
-  <div class="bcard__scrim"></div>
-  <div class="bcard__content">
-    <span class="bcard__cat">Motion Design</span>
-    <h3 class="bcard__title">Kinetic Typography</h3>
-    <p class="bcard__desc">Animated typography — dynamic text movement, transitions, scaling, and rhythm</p>
-    <span class="bcard__cta bcard__cta--status">
-      <span class="status-dot"></span>
-      In Progress
-    </span>
-  </div>
-</div>
+    <div class="bcard bc-ktypo sr d6" style="cursor:default">
+      <div class="bcard__bg pg-ktypo"></div>
+      <div class="bcard__scrim"></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">Motion Design</span>
+        <h3 class="bcard__title">Kinetic Typography</h3>
+        <p class="bcard__desc">Animated typography — dynamic text movement, transitions, scaling, and rhythm</p>
+        <span class="bcard__cta bcard__cta--status">
+          <span class="status-dot"></span>
+          In Progress
+        </span>
+      </div>
+    </div>
 
     <!-- c10: LOGO LOOP ANIMATION -->
     <div class="bcard bc-loop bcard--video is-media sr d7"
@@ -216,7 +189,8 @@
          data-cat="Motion Design"
          tabindex="0" role="button" aria-label="Play Kinetic Typography">
       <div class="bcard__bg pg-loop"></div>
-      <video class="bcard__media bcard__video" muted loop playsinline preload="none"></video>
+      <video class="bcard__media bcard__video" muted loop playsinline preload="none"
+             poster="/assets/images/007/loop-poster.webp"></video>
       <div class="bcard__scrim"></div>
       <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
       <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
@@ -494,5 +468,3 @@
 
 </body>
 </html>
-
-

@@ -162,10 +162,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ─────────────────────────────────────
    MEDIA LAYER  (gradient fallback + real image/video drop-in)
-   Drop a real preview in with:
-     <img  class="bcard__media" src="…" alt="…">   or
-     <video class="bcard__media bcard__video" …>
-   If it's missing/404, the gradient .bcard__bg shows through — nothing breaks.
 ───────────────────────────────────── */
 .bcard__bg {
   position: absolute; inset: 0; z-index: 0;
@@ -275,12 +271,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ─────────────────────────────────────
    STAT CHIPS  (optional per card — fill with real numbers)
-   Usage inside .bcard__reveal-inner:
-     <div class="bcard__stats">
-       <span class="bcard__chip">8 screens</span>
-       <span class="bcard__chip">Figma</span>
-       <span class="bcard__chip">Lead designer</span>
-     </div>
 ───────────────────────────────────── */
 .bcard__stats {
   display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
@@ -297,10 +287,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ─────────────────────────────────────
    DEVICE MOCKUP FRAMES  (optional utilities for UI shots)
-   Wrap a screenshot to frame it:
-     <div class="mock mock--phone"><img src="screen.png" alt=""></div>
-     <div class="mock mock--browser"><img src="screen.png" alt=""></div>
-   Position/scale it inside the card as you like.
 ───────────────────────────────────── */
 .mock { position: absolute; z-index: 1; overflow: hidden; }
 .mock img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -329,11 +315,8 @@ a { text-decoration: none; color: inherit; }
    MOTION / VIDEO TILES
 ───────────────────────────────────── */
 .bcard--video { cursor: pointer; }
-
-/* inline muted looping preview */
 .bcard__video { /* inherits .bcard__media */ }
 
-/* thin progress bar pinned to the very bottom edge */
 .bcard__progress {
   position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
   z-index: 4; background: rgba(255,255,255,0.09);
@@ -634,9 +617,6 @@ a { text-decoration: none; color: inherit; }
 /* ═════════════════════════════════════
    RESPONSIVE
    4 columns (sketch layout) → 2 columns (≤1024) → 1 column (≤620).
-   Below the desktop breakpoint we drop the fixed areas and let
-   cards flow naturally, since the sketch composition is a desktop-only
-   arrangement.
 ═════════════════════════════════════ */
 /* tablets : 2-up, natural flow */
 @media (max-width: 1024px) {
@@ -651,7 +631,9 @@ a { text-decoration: none; color: inherit; }
   .bc-kinetic { grid-row: span 2; }
 }
 
-/* phones : 1-up, height driven by content */
+/* phones : 1-up, height driven by content
+   (объединённый блок — дублирующиеся правила из старой второй @media убраны,
+   плюс добавлен более точный фикс высоты текстовых карточек) */
 @media (max-width: 620px) {
   .gallery-header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 8px 0 26px; }
   .gallery-header__count { font-size: 46px; }
@@ -676,8 +658,25 @@ a { text-decoration: none; color: inherit; }
     height: auto !important;
   }
 
+  /* текстовые / in-progress карточки — высота точно по контенту, без пустого воздуха */
+  .bcard.is-media,
+  .bc-kinetic,
+  .bc-ktypo {
+    height: auto !important;
+    aspect-ratio: auto !important;
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+    position: relative;
+  }
+  .bcard.is-media .bcard__content,
+  .bc-kinetic .bcard__content,
+  .bc-ktypo .bcard__content {
+    padding: 18px 20px;
+  }
+
   /* always show full card content on small screens (no hover) */
   .bcard__reveal { grid-template-rows: 1fr !important; opacity: 1 !important; }
+  .bcard__reveal-inner { padding-bottom: 0 !important; }
 
   .intro__bio { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 
@@ -704,13 +703,4 @@ a { text-decoration: none; color: inherit; }
   .bcard.is-media:hover .bcard__bg,
   .bcard.is-media:hover .bcard__media { transform: none; }
   .bcard__expand { opacity: 1; transform: none; }
-}
-
-@media (max-width: 620px) {
-  .bcard.is-media {
-    height: auto !important;
-  }
-  .bcard__reveal-inner {
-    padding-bottom: 0 !important;
-  }
 }
