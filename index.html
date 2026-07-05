@@ -26,13 +26,43 @@
       <span class="gallery-header__eyebrow">Portfolio</span>
       <h2 class="gallery-header__title">Selected<br><em>Work</em></h2>
     </div>
-    <span class="gallery-header__count" aria-hidden="true">06</span>
+    <span class="gallery-header__count" aria-hidden="true">11</span>
   </div>
 
-  <!-- Bento -->
+  <!--
+    ─────────────────────────────────────────────────────────────
+    HOW TO ADD A REAL PROJECT PREVIEW (upgrades a card from the flat
+    gradient to a premium visual — nothing breaks if the file is missing):
+
+      • Image cover:  put   <img class="bcard__media" src="/assets/…/cover.jpg" alt="Project name">
+                      right after the <div class="bcard__bg …"></div>
+
+      • Device shot:  <div class="mock mock--phone"><img src="/assets/…/screen.png" alt=""></div>
+                      or  <div class="mock mock--browser"><img src="…"></div>
+
+      • Video preview: video cards already autoplay muted from data-video="…"
+
+      • Stats (optional): inside .bcard__reveal-inner add
+          <div class="bcard__stats">
+            <span class="bcard__chip">8 screens</span>
+            <span class="bcard__chip">Figma</span>
+            <span class="bcard__chip">Lead designer</span>
+          </div>
+    ─────────────────────────────────────────────────────────────
+  -->
+
+  <!--
+    Bento layout (matches the hand sketch, 4 cols × 4 rows via
+    grid-template-areas defined in index.css):
+
+      c1  c2  c2  c3
+      c4  c5  c6  c3
+      c7  c7  c7  c8
+      c9  c10 c10 c11
+  -->
   <div class="bento">
 
-    <!-- INTRO -->
+    <!-- c1: INTRO -->
     <div class="bcard bc-intro sr d1">
       <div class="bcard__bg pg-intro"></div>
       <div class="intro__ring"></div>
@@ -53,95 +83,155 @@
       </div>
     </div>
 
-    <!-- UNNIEBOX -->
-    <a href="portfolio/unnie-box.html" class="bcard bc-unnie sr d2">
+    <!-- c2: UNNIEBOX -->
+    <a href="portfolio/unnie-box.html" class="bcard bc-unnie is-media sr d2">
       <div class="bcard__bg pg-unnie"></div>
-      <div class="bcard__overlay"></div>
-      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">UnnieBox</span></div>
+      <!-- <img class="bcard__media" src="/assets/images/covers/unnie.jpg" alt="UnnieBox"> -->
+      <div class="bcard__scrim"></div>
       <div class="bcard__content">
-        <span class="bcard__cat">UX &amp; UI</span>
+        <span class="bcard__cat">UI/UX</span>
         <h3 class="bcard__title">UnnieBox</h3>
-        <p class="bcard__desc">Korean beauty subscription platform — end-to-end product design</p>
-        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Korean beauty subscription platform — end-to-end product design</p>
+          <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
       </div>
     </a>
 
-    <!-- NOVA BANK -->
-    <a href="portfolio/novabank.html" class="bcard bc-nova sr d3">
-      <div class="bcard__bg pg-nova"></div>
-      <div class="bcard__overlay"></div>
-      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">Nova Bank</span></div>
-      <div class="bcard__content">
-        <span class="bcard__cat">UX &amp; UI</span>
-        <h3 class="bcard__title">Nova Bank</h3>
-        <p class="bcard__desc">Mobile banking app concept</p>
-        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </div>
-    </a>
-
-    <!-- AVION -->
-    <a href="portfolio/avion.html" class="bcard bc-avion sr d4">
-      <div class="bcard__bg pg-avion"></div>
-      <div class="bcard__overlay"></div>
-      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">Avion Furniture</span></div>
-      <div class="bcard__content">
-        <span class="bcard__cat">UI</span>
-        <h3 class="bcard__title">Avion Furniture</h3>
-        <p class="bcard__desc">E-commerce furniture store</p>
-        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </div>
-    </a>
-
-  
-<!-- YOUTRANSPORT -->
-<div class="bcard bc-hype sr d4" style="cursor:default">
-  <div class="bcard__bg pg-hype"></div>
-  <div class="bcard__overlay"></div>
-  <div class="bcard__tag">
-    <span class="bcard__tag-dot"></span>
-    <span class="bcard__tag-name">YouTransport</span>
-  </div>
+    <!-- c3: KINETIC TYPE REEL (in progress) -->
+<div class="bcard bc-kinetic sr d2" style="cursor:default">
+  <div class="bcard__bg pg-kinetic"></div>
+  <div class="bcard__scrim"></div>
   <div class="bcard__content">
-    <span class="bcard__cat">UI/UX</span>
-    <h3 class="bcard__title">YouTransport</h3>
-    <p class="bcard__desc">Furniture transportation company.</p>
-    <span class="bcard__cta" style="background:rgba(200,169,110,0.10);border-color:rgba(200,169,110,0.22);color:var(--accent)">
-      <span style="width:6px;height:6px;border-radius:50%;background:#c8a96e;display:inline-block;flex-shrink:0;animation:avpulse 2.4s ease-in-out infinite"></span>
+    <span class="bcard__cat">Motion Design</span>
+    <h3 class="bcard__title">Kinetic Type Reel</h3>
+    <p class="bcard__desc">Typography-driven motion study — timing, rhythm, and type as image</p>
+    <span class="bcard__cta bcard__cta--status">
+      <span class="status-dot"></span>
       In Progress
     </span>
   </div>
 </div>
 
-    <!-- MSCHF -->
-    <a href="portfolio/mschf.html" class="bcard bc-mschf sr d5">
-      <div class="bcard__bg pg-mschf"></div>
-      <div class="bcard__overlay"></div>
-      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">MSCHF Platform</span></div>
+    <!-- c4: NOVA BANK -->
+    <a href="portfolio/novabank.html" class="bcard bc-nova is-media sr d3">
+      <div class="bcard__bg pg-nova"></div>
+      <!-- <img class="bcard__media" src="/assets/images/covers/nova.jpg" alt="Nova Bank"> -->
+      <div class="bcard__scrim"></div>
       <div class="bcard__content">
-        <span class="bcard__cat">UI redesign</span>
-        <h3 class="bcard__title">MSCHF Platform</h3>
-        <p class="bcard__desc">Conceptual brand platform — visual identity &amp; digital experience</p>
-        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <span class="bcard__cat">UI/UX</span>
+        <h3 class="bcard__title">Nova Bank</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Mobile banking app concept</p>
+          <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
       </div>
     </a>
 
-    <!-- CLM -->
-    <a href="portfolio/clm.html" class="bcard bc-clm sr d6">
+    <!-- c5: MSCHF -->
+    <a href="portfolio/mschf.html" class="bcard bc-mschf is-media sr d4">
+      <div class="bcard__bg pg-mschf"></div>
+      <!-- <img class="bcard__media" src="/assets/images/covers/mschf.jpg" alt="MSCHF Platform"> -->
+      <div class="bcard__scrim"></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">UI Redesign</span>
+        <h3 class="bcard__title">MSCHF Platform</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Conceptual brand platform — visual identity &amp; digital experience</p>
+          <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
+      </div>
+    </a>
+
+    <!-- c6: AVION -->
+    <a href="portfolio/avion.html" class="bcard bc-avion is-media sr d4">
+      <div class="bcard__bg pg-avion"></div>
+      <!-- <img class="bcard__media" src="/assets/images/covers/avion.jpg" alt="Avion Furniture"> -->
+      <div class="bcard__scrim"></div>
+      <div class="bcard__content">
+        <span class="bcard__cat">UI</span>
+        <h3 class="bcard__title">Avion Furniture</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">E-commerce furniture store</p>
+          <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
+      </div>
+    </a>
+
+    <!-- c7: THE WEEKND POSTER — 3D ANIMATION (featured video, wide) -->
+    <div class="bcard bc-weeknd bcard--video is-media sr d5"
+         data-video="/assets/images/Wekkend/Dinmuk_ready2.mp4"
+         data-title="The Weeknd Poster"
+         data-cat="3D Animation"
+         tabindex="0" role="button" aria-label="Play The Weeknd Poster">
+      <div class="bcard__bg pg-weeknd"></div>
+      <video class="bcard__media bcard__video" muted loop playsinline preload="none"></video>
+      <div class="bcard__scrim"></div>
+      <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
+      <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
+      <div class="bcard__content">
+        <span class="bcard__cat">3D Animation</span>
+        <h3 class="bcard__title">The Weeknd Poster</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Cinematic 3D motion poster — dynamic lighting, depth, camera movement, and animated visual effects</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- c8: CLM -->
+    <a href="portfolio/clm.html" class="bcard bc-clm is-media sr d6">
       <div class="bcard__bg pg-clm"></div>
-      <div class="bcard__overlay"></div>
-      <div class="bcard__tag"><span class="bcard__tag-dot"></span><span class="bcard__tag-name">CLM Mafia</span></div>
+      <!-- <img class="bcard__media" src="/assets/images/covers/clm.jpg" alt="CLM Mafia"> -->
+      <div class="bcard__scrim"></div>
       <div class="bcard__content">
         <span class="bcard__cat">UI Web Design</span>
         <h3 class="bcard__title">CLM Mafia</h3>
-        <p class="bcard__desc">Board game platform — full product redesign</p>
-        <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Board game platform — full product redesign</p>
+          <span class="bcard__cta">View Case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
       </div>
     </a>
 
-    <!-- CTA -->
+    <!-- c9: KINETIC TYPOGRAPHY — MOTION DESIGN -->
+    <!-- c9: KINETIC TYPOGRAPHY (in progress) -->
+<div class="bcard bc-ktypo sr d6" style="cursor:default">
+  <div class="bcard__bg pg-ktypo"></div>
+  <div class="bcard__scrim"></div>
+  <div class="bcard__content">
+    <span class="bcard__cat">Motion Design</span>
+    <h3 class="bcard__title">Kinetic Typography</h3>
+    <p class="bcard__desc">Animated typography — dynamic text movement, transitions, scaling, and rhythm</p>
+    <span class="bcard__cta bcard__cta--status">
+      <span class="status-dot"></span>
+      In Progress
+    </span>
+  </div>
+</div>
+
+    <!-- c10: LOGO LOOP ANIMATION -->
+    <div class="bcard bc-loop bcard--video is-media sr d7"
+         data-video="/assets/images/007/FINAL%20VIDEO.mp4"
+         data-title="Logo Loop Animation"
+         data-cat="Motion Design"
+         tabindex="0" role="button" aria-label="Play Logo Loop Animation">
+      <div class="bcard__bg pg-loop"></div>
+      <video class="bcard__media bcard__video" muted loop playsinline preload="none"></video>
+      <div class="bcard__scrim"></div>
+      <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
+      <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
+      <div class="bcard__content">
+        <span class="bcard__cat">Motion Design</span>
+        <h3 class="bcard__title">Logo Loop Animation</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Seamless brand mark loop</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- c11: CTA -->
     <div class="bcard bc-cta sr d7">
       <div class="bcard__bg pg-cta"></div>
-      <div class="bcard__overlay"></div>
       <div class="bcard__content">
         <span class="cta__eyebrow">Open to work</span>
         <h3 class="cta__title">Let's Work<br><em>Together</em></h3>
@@ -153,33 +243,28 @@
             Contact Me
           </a>
 
-
-
           <div class="cv-dropdown">
-  <button class="cta-btn cta-btn--ghost cv-dropdown-btn">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-    Resume
-    <svg class="cv-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"/>
-    </svg>
-  </button>
-  <div class="cv-dropdown-menu">
-    <a href="/assets/images/pdf/Dinmukhammedru.pdf" download="CV_DIN_RU.pdf" class="cv-dropdown-item">
-      <span class="cv-lang">RU</span>
-      <span>Скачать резюме</span>
-    </a>
-    <a href="/assets/images/pdf/Dinmukhammedeng.pdf" download="CV_DIN_EN.pdf" class="cv-dropdown-item">
-      <span class="cv-lang">EN</span>
-      <span>Download resume</span>
-    </a>
-  </div>
-</div>
-
-
-
+            <button class="cta-btn cta-btn--ghost cv-dropdown-btn">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Resume
+              <svg class="cv-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="cv-dropdown-menu">
+              <a href="/assets/images/pdf/Dinmukhammedru.pdf" download="CV_DIN_RU.pdf" class="cv-dropdown-item">
+                <span class="cv-lang">RU</span>
+                <span>Скачать резюме</span>
+              </a>
+              <a href="/assets/images/pdf/Dinmukhammedeng.pdf" download="CV_DIN_EN.pdf" class="cv-dropdown-item">
+                <span class="cv-lang">EN</span>
+                <span>Download resume</span>
+              </a>
+            </div>
+          </div>
 
           <a href="https://www.linkedin.com/in/dinmukhammed-aisauyt/" target="_blank" class="cta-btn cta-btn--ghost">
             <img src="assets/images/logo/ln.png" alt="LinkedIn Logo" width="12" height="12">
@@ -193,6 +278,24 @@
 </section>
 
 <div id="site-footer"></div>
+
+
+<!-- ============ Reel lightbox (enlarged video player) ============ -->
+<div class="reel-lightbox" id="reelLightbox">
+  <div class="reel-lightbox__backdrop" id="reelBackdrop"></div>
+  <div class="reel-lightbox__stage" id="reelStage">
+    <video id="reelVideo" playsinline muted loop></video>
+    <div class="reel-lightbox__meta">
+      <div class="reel-lightbox__meta-cat" id="reelCat"></div>
+      <div class="reel-lightbox__meta-title" id="reelTitle"></div>
+    </div>
+    <div class="reel-lightbox__progress"><div class="reel-lightbox__progress-fill" id="reelProgressFill"></div></div>
+    <button class="reel-lightbox__btn reel-lightbox__mute" id="reelMute" aria-label="Toggle sound">🔇</button>
+    <button class="reel-lightbox__btn reel-lightbox__close" id="reelClose" aria-label="Close">&times;</button>
+  </div>
+</div>
+<!-- ============ /Reel lightbox ============ -->
+
 
 <script>
   // ── Scroll reveal ──
@@ -225,22 +328,171 @@
   loadPartial('/footer.html', 'site-footer');
 
   // ── CV Dropdown ──
-const cvDropdown = document.querySelector('.cv-dropdown');
-const cvBtn      = document.querySelector('.cv-dropdown-btn');
+  const cvDropdown = document.querySelector('.cv-dropdown');
+  const cvBtn      = document.querySelector('.cv-dropdown-btn');
 
-if (cvBtn && cvDropdown) {
-  cvBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    cvDropdown.classList.toggle('open');
-  });
-
-  document.addEventListener('click', function() {
-    cvDropdown.classList.remove('open');
-  });
-}
-
+  if (cvBtn && cvDropdown) {
+    cvBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      cvDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      cvDropdown.classList.remove('open');
+    });
+  }
 </script>
 
+<!-- ── Video: inline muted previews + click opens player WITH sound ── -->
+<script>
+(function () {
+  const cards = Array.from(document.querySelectorAll('.bcard--video'));
+  if (!cards.length) return;
+
+  const allVideos = cards.map(c => c.querySelector('.bcard__video')).filter(Boolean);
+  const visible = new Set();
+
+  // ── Lightbox refs ──
+  const lightbox = document.getElementById('reelLightbox');
+  const stage    = document.getElementById('reelStage');
+  const backdrop = document.getElementById('reelBackdrop');
+  const video    = document.getElementById('reelVideo');
+  const closeBtn = document.getElementById('reelClose');
+  const muteBtn  = document.getElementById('reelMute');
+  const catEl    = document.getElementById('reelCat');
+  const titleEl  = document.getElementById('reelTitle');
+  const lbFill   = document.getElementById('reelProgressFill');
+  let originRect = null;
+
+  // ── Inline previews: play only what's on screen (lazy src) ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const card = e.target;
+      const v = card.querySelector('.bcard__video');
+      if (!v) return;
+      if (e.isIntersecting) {
+        visible.add(v);
+        if (!v.getAttribute('src') && card.dataset.video) v.setAttribute('src', card.dataset.video);
+        if (!lightbox.classList.contains('is-open')) v.play().catch(() => {});
+      } else {
+        visible.delete(v);
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  cards.forEach(card => {
+    const v = card.querySelector('.bcard__video');
+    const fill = card.querySelector('.bcard__progress-fill');
+
+    if (v) {
+      v.muted = true;                        // ambient card preview stays muted
+      io.observe(card);
+      if (fill) {
+        v.addEventListener('timeupdate', () => {
+          if (v.duration) fill.style.width = (v.currentTime / v.duration * 100) + '%';
+        });
+      }
+    }
+
+    // Clicking the video opens the enlarged player and plays it WITH sound.
+    card.addEventListener('click', () => openReel(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openReel(card); }
+    });
+  });
+
+  // ── Lightbox logic ──
+  function finalRect() {
+    const isMobile = window.innerWidth <= 820;
+    const w = isMobile ? window.innerWidth * 0.94 : Math.min(window.innerWidth * 0.82, 1100);
+    const h = Math.min(window.innerHeight * (isMobile ? 0.7 : 0.8), w * 9 / 16);
+    return { top: (window.innerHeight - h) / 2, left: (window.innerWidth - w) / 2, width: w, height: h };
+  }
+
+  video.addEventListener('timeupdate', () => {
+    if (lbFill && video.duration) lbFill.style.width = (video.currentTime / video.duration * 100) + '%';
+  });
+
+  function openReel(card) {
+    allVideos.forEach(v => v.pause());     // pause inline previews so audio never doubles up
+    originRect = card.getBoundingClientRect();
+    video.src = card.dataset.video || '';
+    catEl.textContent = card.dataset.cat || '';
+    titleEl.textContent = card.dataset.title || '';
+    video.muted = false;                 // play WITH sound on click
+    muteBtn.textContent = '🔊';
+    if (lbFill) lbFill.style.width = '0%';
+
+    stage.style.transition = 'none';
+    stage.style.top = originRect.top + 'px';
+    stage.style.left = originRect.left + 'px';
+    stage.style.width = originRect.width + 'px';
+    stage.style.height = originRect.height + 'px';
+    stage.style.borderRadius = '16px';
+    lightbox.classList.add('is-open');
+    void stage.offsetWidth;
+
+    requestAnimationFrame(() => {
+      stage.style.transition = '';
+      lightbox.classList.add('is-visible');
+      const f = finalRect();
+      stage.style.top = f.top + 'px';
+      stage.style.left = f.left + 'px';
+      stage.style.width = f.width + 'px';
+      stage.style.height = f.height + 'px';
+      stage.style.borderRadius = '10px';
+    });
+
+    // click is a user gesture, so sound is allowed; if a browser still blocks it, fall back to muted
+    video.play().catch(() => {
+      video.muted = true;
+      muteBtn.textContent = '🔇';
+      video.play().catch(() => {});
+    });
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeReel() {
+    lightbox.classList.remove('is-visible');
+    stage.style.top = originRect.top + 'px';
+    stage.style.left = originRect.left + 'px';
+    stage.style.width = originRect.width + 'px';
+    stage.style.height = originRect.height + 'px';
+    stage.style.borderRadius = '16px';
+
+    setTimeout(() => {
+      lightbox.classList.remove('is-open');
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      // resume inline previews still on screen (muted)
+      visible.forEach(v => { v.muted = true; v.play().catch(() => {}); });
+    }, 480);
+
+    document.removeEventListener('keydown', onKeydown);
+  }
+
+  function onKeydown(e) { if (e.key === 'Escape') closeReel(); }
+
+  closeBtn.addEventListener('click', closeReel);
+  backdrop.addEventListener('click', closeReel);
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.textContent = video.muted ? '🔇' : '🔊';
+  });
+
+  window.addEventListener('resize', () => {
+    if (!lightbox.classList.contains('is-visible')) return;
+    const f = finalRect();
+    stage.style.top = f.top + 'px';
+    stage.style.left = f.left + 'px';
+    stage.style.width = f.width + 'px';
+    stage.style.height = f.height + 'px';
+  });
+})();
+</script>
 
 </body>
 </html>
+
+
