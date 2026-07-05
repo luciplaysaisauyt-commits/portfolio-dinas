@@ -598,7 +598,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 40px 100px rgba(0,0,0,0.6);
   transition: top .48s var(--ease), left .48s var(--ease), width .48s var(--ease), height .48s var(--ease), border-radius .48s var(--ease);
 }
-.reel-lightbox__stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel-lightbox__stage video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
 .reel-lightbox__meta {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 24px 26px; z-index: 2;
   background: linear-gradient(to top, rgba(0,0,0,0.78), transparent);
