@@ -31,7 +31,10 @@
 
   <!--
     Bento layout (matches the hand sketch, 4 cols × 4 rows via
-    grid-template-areas defined in index.css):
+    grid-template-areas defined in index.css). Note: Kinetic Type Reel
+    and The Weeknd Poster are swapped via grid-area in the CSS
+    (bc-kinetic → c7, bc-weeknd → c3), so the DOM order below no
+    longer matches the visual position — that's intentional.
 
       c1  c2  c2  c3
       c4  c5  c6  c3
@@ -75,7 +78,7 @@
       </div>
     </a>
 
-    <!-- c3: KINETIC TYPE REEL (in progress) -->
+    <!-- c7 (visually c3): KINETIC TYPE REEL (in progress) -->
     <div class="bcard bc-kinetic sr d2" style="cursor:default">
       <div class="bcard__bg pg-kinetic"></div>
       <div class="bcard__scrim"></div>
@@ -132,14 +135,14 @@
       </div>
     </a>
 
-    <!-- c7: THE WEEKND POSTER — 3D ANIMATION (featured video, wide) -->
+    <!-- c3 (visually c7): THE WEEKND POSTER — 3D ANIMATION (featured video) -->
     <div class="bcard bc-weeknd bcard--video is-media sr d5"
          data-video="/assets/images/dinmukready/dinmukready.mp4"
          data-title="The Weeknd Poster"
          data-cat="3D Animation"
          tabindex="0" role="button" aria-label="Play The Weeknd Poster">
       <div class="bcard__bg pg-weeknd"></div>
-      <video class="bcard__media bcard__video" muted loop playsinline preload="none"
+      <video class="bcard__media bcard__video" muted loop playsinline webkit-playsinline preload="metadata"
              poster="/assets/images/dinmukready/weeknd-poster.webp"></video>
       <div class="bcard__scrim"></div>
       <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
@@ -189,7 +192,7 @@
          data-cat="Motion Design"
          tabindex="0" role="button" aria-label="Play Kinetic Typography">
       <div class="bcard__bg pg-loop"></div>
-      <video class="bcard__media bcard__video" muted loop playsinline preload="none"
+      <video class="bcard__media bcard__video" muted loop playsinline webkit-playsinline preload="metadata"
              poster="/assets/images/007/loop-poster.webp"></video>
       <div class="bcard__scrim"></div>
       <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
@@ -258,7 +261,7 @@
 <div class="reel-lightbox" id="reelLightbox">
   <div class="reel-lightbox__backdrop" id="reelBackdrop"></div>
   <div class="reel-lightbox__stage" id="reelStage">
-    <video id="reelVideo" playsinline muted loop></video>
+    <video id="reelVideo" playsinline webkit-playsinline muted loop></video>
     <div class="reel-lightbox__meta">
       <div class="reel-lightbox__meta-cat" id="reelCat"></div>
       <div class="reel-lightbox__meta-title" id="reelTitle"></div>
@@ -337,7 +340,9 @@
   const lbFill   = document.getElementById('reelProgressFill');
   let originRect = null;
 
-  // ── Inline previews: play only what's on screen (lazy src) ──
+  // ── Inline previews: play only what's on screen (lazy src).
+  //    rootMargin gives mobile browsers a head start so video is
+  //    ready by the time the card actually enters the viewport. ──
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       const card = e.target;
@@ -352,7 +357,7 @@
         v.pause();
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.15, rootMargin: '200px 0px 200px 0px' });
 
   cards.forEach(card => {
     const v = card.querySelector('.bcard__video');

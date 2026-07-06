@@ -46,7 +46,7 @@ a { text-decoration: none; color: inherit; }
    SECTION WRAPPER
 ───────────────────────────────────── */
 .gallery-section {
-  padding: 0 clamp(16px, 4vw, 32px) 100px;
+  padding: 0 clamp(16px, 4vw, 32px) 48px;
   padding-top: calc(var(--navH, 72px) + 28px);
   max-width: 1440px;
   margin: 0 auto;
@@ -84,14 +84,15 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   BENTO GRID — layout matches the hand sketch exactly:
+   BENTO GRID — layout matches the hand sketch, but with
+   Kinetic Type Reel (c3) swapped with The Weeknd Poster (c7):
 
      ┌────┬─────────────┬────┐
      │ 1  │      2      │    │
-     ├────┼────┬────┬───┤ 3  │
+     ├────┼────┬────┬───┤ 3  │   ← now Weeknd (video)
      │ 4  │ 5  │ 6  │   │    │
      ├────┴────┴────┴───┼────┤
-     │         7         │ 8  │
+     │         7         │ 8  │   ← now Kinetic Type Reel
      ├────┬───────┬──────┴────┤
      │ 9  │  10   │    11     │
      └────┴───────┴───────────┘
@@ -101,8 +102,8 @@ a { text-decoration: none; color: inherit; }
 ───────────────────────────────────── */
 .bento {
   display: grid;
-  grid-template-columns: 1.5fr 0.9fr 0.9fr 1.25fr;
-  grid-template-rows: 260px 180px 200px 300px;
+  grid-template-columns: 1.25fr 0.8fr 0.8fr 1.85fr;
+  grid-template-rows: 360px 180px 200px 360px;
   grid-template-areas:
     "c1 c2 c2 c3"
     "c4 c5 c6 c3"
@@ -113,11 +114,11 @@ a { text-decoration: none; color: inherit; }
 
 .bc-intro   { grid-area: c1; }
 .bc-unnie   { grid-area: c2; }
-.bc-kinetic { grid-area: c3; }
+.bc-kinetic { grid-area: c7; }   /* swapped: was c3 */
 .bc-nova    { grid-area: c4; }
 .bc-mschf   { grid-area: c5; }
 .bc-avion   { grid-area: c6; }
-.bc-weeknd  { grid-area: c7; }
+.bc-weeknd  { grid-area: c3; }   /* swapped: was c7 */
 .bc-clm     { grid-area: c8; }
 .bc-ktypo   { grid-area: c9; }
 .bc-loop    { grid-area: c10; }
@@ -358,8 +359,27 @@ a { text-decoration: none; color: inherit; }
 .bcard--video:hover .bcard__expand { opacity: 1; transform: none; }
 .bcard__expand svg { width: 10px; height: 10px; stroke: currentColor; fill: none; }
 
-.bc-kinetic .bcard__title,
-.bc-weeknd  .bcard__title { font-size: clamp(20px, 2.4vw, 30px); }
+.bc-weeknd .bcard__title { font-size: clamp(20px, 2.4vw, 30px); }
+
+/* status-only cards (no hover reveal) — content anchored to the bottom,
+   consistent with the other media cards */
+.bc-kinetic .bcard__content,
+.bc-ktypo   .bcard__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 22px;
+}
+.bc-kinetic .bcard__cat,
+.bc-ktypo   .bcard__cat { margin-bottom: 0; }
+.bc-kinetic .bcard__desc,
+.bc-ktypo   .bcard__desc { margin-top: 0; }
+.bc-kinetic .bcard__cta,
+.bc-ktypo   .bcard__cta { margin-top: 0; }
 
 /* ─────────────────────────────────────
    INTRO CARD
@@ -379,8 +399,8 @@ a { text-decoration: none; color: inherit; }
 }
 .intro__name {
   font-family: var(--serif);
-  font-size: clamp(20px, 2.1vw, 27px);
-  font-weight: 300; line-height: 1.0; color: #fff; margin-bottom: 5px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 300; line-height: 1.0; color: #fff; margin-bottom: 8px;
 }
 .intro__name em { font-style: italic; color: var(--accent); }
 .intro__role {
@@ -394,7 +414,7 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 12px; opacity: 0.55;
 }
 .intro__bio {
-  font-size: 11.5px; color: rgba(255,255,255,0.82);
+  font-size: 14px; color: rgba(255,255,255,0.52);
   line-height: 1.55; flex: 1;
 }
 .intro__ring {
@@ -436,9 +456,9 @@ a { text-decoration: none; color: inherit; }
 .bc-cta .bcard__bg { filter: none !important; transition: none; }
 .bc-cta .bcard__content {
   inset: 0;
-  padding: 20px 18px 18px;
+  padding: 24px 30px 24px;
   display: flex; flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100%;
   overflow: visible;
 }
@@ -450,32 +470,32 @@ a { text-decoration: none; color: inherit; }
 }
 .cta__eyebrow {
   font-family: var(--mono);
-  font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 8px; display: block;
 }
 .cta__title {
   font-family: var(--serif);
-  font-size: clamp(19px, 1.9vw, 25px);
-  font-weight: 300; line-height: 1.0; color: #fff; margin-bottom: 6px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 10px;
 }
 .cta__title em { font-style: italic; color: var(--accent); }
 .cta__line {
-  width: 22px; height: 1px;
+  width: 30px; height: 1px;
   background: linear-gradient(to right, var(--accent), transparent);
-  margin-bottom: 8px; opacity: 0.5;
+  margin-bottom: 9px; opacity: 0.5;
 }
 .cta__sub {
-  font-size: 11px; color: rgba(255,255,255,0.48);
-  line-height: 1.55; margin-bottom: 14px;
+  font-size: 13.5px; color: rgba(255,255,255,0.52);
+  line-height: 1.5; margin-bottom: 16px;
 }
 .cta__btns {
   display: flex; flex-direction: column; gap: 6px;
   overflow: visible; position: relative; z-index: 10;
 }
 .cta-btn {
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 8px 14px; border-radius: 9px;
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 11px 18px; border-radius: 10px;
+  font-family: var(--sans); font-size: 14px; font-weight: 500;
   cursor: pointer; transition: all 0.25s var(--ease);
   text-decoration: none; border: none; width: 100%;
 }
@@ -499,17 +519,17 @@ a { text-decoration: none; color: inherit; }
   border-color: rgba(255,255,255,0.20);
   color: #fff;
 }
-.cta-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-.cta-btn img { width: 12px; height: 12px; object-fit: contain; }
+.cta-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.cta-btn img { width: 14px; height: 14px; object-fit: contain; }
 
 /* ─────────────────────────────────────
    CV DROPDOWN
 ───────────────────────────────────── */
 .cv-dropdown { position: relative; width: 100%; }
 .cv-dropdown-btn {
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  width: 100%; padding: 8px 14px; border-radius: 9px;
-  font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.05em;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  width: 100%; padding: 11px 18px; border-radius: 10px;
+  font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: 0.05em;
   cursor: pointer;
   background: rgba(255,255,255,0.04);
   color: rgba(255,255,255,0.68);
@@ -624,16 +644,15 @@ a { text-decoration: none; color: inherit; }
   .bento {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: none;
-    grid-auto-rows: 220px;
+    grid-auto-rows: 200px;
   }
   .bento > * { grid-area: auto !important; }
-  .bc-intro, .bc-weeknd, .bc-cta { grid-column: span 2; }
-  .bc-kinetic { grid-row: span 2; }
+  .bc-intro, .bc-weeknd, .bc-kinetic, .bc-cta { grid-column: span 2; }
+  /* CTA is text-heavy: span full width + two rows so its buttons never clip */
+  .bc-cta { grid-column: span 2 !important; grid-row: span 2 !important; }
 }
 
-/* phones : 1-up, height driven by content
-   (объединённый блок — дублирующиеся правила из старой второй @media убраны,
-   плюс добавлен более точный фикс высоты текстовых карточек) */
+/* phones : 1-up, height driven by content, with a robust fix for video cards */
 @media (max-width: 620px) {
   .gallery-header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 8px 0 26px; }
   .gallery-header__count { font-size: 46px; }
@@ -658,8 +677,8 @@ a { text-decoration: none; color: inherit; }
     height: auto !important;
   }
 
-  /* текстовые / in-progress карточки — высота точно по контенту, без пустого воздуха */
-  .bcard.is-media,
+  /* ── Картиночные / статусные (текстовые) карточки — высота по контенту ── */
+  .bcard.is-media:not(.bcard--video),
   .bc-kinetic,
   .bc-ktypo {
     height: auto !important;
@@ -668,9 +687,34 @@ a { text-decoration: none; color: inherit; }
     contain-intrinsic-size: auto !important;
     position: relative;
   }
-  .bcard.is-media .bcard__content,
+  .bcard.is-media:not(.bcard--video) .bcard__content,
   .bc-kinetic .bcard__content,
   .bc-ktypo .bcard__content {
+    padding: 18px 20px;
+  }
+
+  /* ── Видео-карточки — фиксированная высота через aspect-ratio + страховка
+       min-height, иначе видео-слой (position:absolute; inset:0) может схлопнуться
+       в 0 высоты на некоторых мобильных браузерах ── */
+  .bcard--video {
+    aspect-ratio: 4 / 3 !important;
+    min-height: 260px !important;
+    height: auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .bcard--video .bcard__bg,
+  .bcard--video .bcard__media {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .bcard--video .bcard__content {
+    position: absolute !important;
+    inset: auto 0 0 0 !important;
+    height: auto !important;
     padding: 18px 20px;
   }
 
@@ -687,8 +731,8 @@ a { text-decoration: none; color: inherit; }
   .bc-mschf   { order: 4; }
   .bc-avion   { order: 5; }
   .bc-clm     { order: 6; }
-  .bc-kinetic { order: 7; }
-  .bc-weeknd  { order: 8; }
+  .bc-weeknd  { order: 7; }
+  .bc-kinetic { order: 8; }
   .bc-ktypo   { order: 9; }
   .bc-loop    { order: 10; }
   .bc-cta     { order: 11; }
