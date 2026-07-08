@@ -468,7 +468,7 @@
          tabindex="0" role="button" aria-label="Play The Weeknd Poster">
       <div class="bcard__bg pg-weeknd"></div>
       <video class="bcard__media bcard__video" muted loop playsinline webkit-playsinline preload="metadata"
-             poster="/assets/images/dinmukready/weeknd-poster.webp"></video>
+             poster="/assets/images/dinmukready/dinmukready.mp4"></video>
       <div class="bcard__scrim"></div>
       <div class="bcard__progress"><div class="bcard__progress-fill"></div></div>
       <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
@@ -714,7 +714,13 @@
   function startPreview(v, src){
     v.muted = true; v.setAttribute('muted',''); v.setAttribute('playsinline','');
     v.playsInline = true;
-    if (!v.getAttribute('src') && src){ v.setAttribute('src', src); v.load(); }
+    if (!v.querySelector('source') && src){
+      const source = document.createElement('source');
+      source.src = src;
+      source.type = 'video/mp4';
+      v.appendChild(source);
+      v.load();
+    }
     const go = () => v.play().catch(() => {});
     if (v.readyState >= 2) go(); else v.addEventListener('canplay', go, { once: true });
   }
@@ -766,7 +772,12 @@
 
     video.setAttribute('playsinline','');
     video.playsInline = true;
-    video.src = currentSrc; video.load();
+    video.querySelectorAll('source').forEach(s => s.remove());
+    const source = document.createElement('source');
+    source.src = currentSrc;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
     catEl.textContent = card.dataset.cat || '';
     titleEl.textContent = card.dataset.title || '';
     video.muted = false; muteBtn.textContent = '🔊';   // play WITH sound on click
@@ -799,7 +810,9 @@
     place(originRect, '16px');
     setTimeout(() => {
       lightbox.classList.remove('is-open');
-      video.pause(); video.removeAttribute('src'); video.load();
+      video.pause();
+      video.querySelectorAll('source').forEach(s => s.remove());
+      video.load();
       hideError();
       lockScroll(false);
       visible.forEach(v => startPreview(v));   // resume on-screen previews (muted)
