@@ -222,12 +222,6 @@
 
           </p>
 
-          <!-- ===================================================================
-               MOCKUPS — свои PNG клади в /assets/images/saigacandid/ :
-                 mockup-1.png , mockup-2.png , mockup-3.png
-               (пока файла нет — покажется рамка-заглушка «Add PNG»).
-               Подписи (figcaption) меняй свободно.
-          ==================================================================== -->
           <div class="sgc-lightbox__mocks">
             <figure class="sgc-mock">
               <div class="sgc-mock__img">
@@ -252,29 +246,24 @@
             </figure>
           </div>
         </div>
-        <!-- ===== SAIGA — logo colour variants (drop your PNGs here) ===== -->
-      
 
         <button class="sgc-lightbox__close" id="sgcLbClose" type="button" aria-label="Close">&times;</button>
       </div>
-      
+
     </div>
     <!-- ============ /SAIGA CANDID lightbox ============ -->
-      
+
 <style>
-  /* poster on the card (unchanged) */
   .sgc-card-stage{position:absolute;inset:0;overflow:hidden;pointer-events:none;background:#082342;}
   .sgc-card-stage .sgc-svg{width:100%;height:100%;display:block;object-fit:contain;}
   .sgc-card-stage .sgc-f,
   .sgc-card-stage .sgc-t{opacity:1;}
   #kineticCard{cursor:pointer;}
 
-  /* card: kill the extra air between desc and CTA */
   #kineticCard .bcard__reveal-inner{gap:8px;}
   #kineticCard .bcard__desc{margin:0 0 8px;}
   #kineticCard .bcard__cta{margin-top:0;}
 
-  /* ===== Lightbox = centered scrollable modal ===== */
   .sgc-lightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
     padding:20px;visibility:hidden;opacity:0;transition:opacity .3s ease,visibility 0s linear .3s;}
   .sgc-lightbox.is-open{visibility:visible;opacity:1;transition:opacity .3s ease;}
@@ -298,7 +287,7 @@
   .sgc-lightbox__stage .sgc-t{opacity:0;transition:opacity .5s ease;}
 
   .sgc-lightbox__body{padding:22px 28px 30px;color:#e9eef5;}
-  
+
   .sgc-lightbox__cat{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;
     text-transform:uppercase;color:#cc9e2b;}
   .sgc-lightbox__title{font-family:Georgia,serif;font-size:26px;color:#fdf9d2;margin:4px 0 12px;}
@@ -325,7 +314,6 @@
   .sgc-lightbox__close{position:fixed;top:18px;right:18px;width:38px;height:38px;font-size:20px;line-height:1;
     padding:0;z-index:5;}
 
-  /* responsive: phones */
   @media (max-width:640px){
     .sgc-lightbox{padding:0;}
     .sgc-lightbox__panel{width:100vw;max-height:100vh;border-radius:0;border:none;}
@@ -334,10 +322,21 @@
     .sgc-lightbox__title{font-size:22px;}
     .sgc-lightbox__mocks{grid-template-columns:1fr;}
   }
+
+  /* ===== NEW: iOS video fallback (poster + error message shown instead of black screen) ===== */
+  .reel-lightbox__fallback-poster{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:1;
+  }
+  .reel-lightbox__errorMsg{
+  position:absolute; inset:0; z-index:2;
+  cursor:pointer;
+  /* просто прозрачный слой-кликер поверх постера, без текста */
+}
+  .reel-lightbox__errorMsg span{ font-size:12px; opacity:.7; text-decoration:underline; }
 </style>
 
 <script>
-/* ============ SAIGA lightbox (centered modal + build animation) ============ */
 (function(){
   var card = document.getElementById('kineticCard');
   if(!card) return;
@@ -587,7 +586,11 @@
 <div class="reel-lightbox" id="reelLightbox">
   <div class="reel-lightbox__backdrop" id="reelBackdrop"></div>
   <div class="reel-lightbox__stage" id="reelStage">
-    <video id="reelVideo" playsinline webkit-playsinline muted loop></video>
+    <video id="reelVideo" playsinline webkit-playsinline muted loop preload="auto"></video>
+    <img id="reelFallbackPoster" class="reel-lightbox__fallback-poster" alt="" hidden>
+    <div class="reel-lightbox__errorMsg" id="reelErrorMsg" hidden>
+      Video couldn't load on this device.<br><span>Tap to open directly</span>
+    </div>
     <div class="reel-lightbox__meta">
       <div class="reel-lightbox__meta-cat" id="reelCat"></div>
       <div class="reel-lightbox__meta-title" id="reelTitle"></div>
@@ -645,7 +648,7 @@
   }
 </script>
 
-<!-- ── Video: mobile-safe inline previews + click opens player WITH sound ── -->
+<!-- ── Video: mobile-safe inline previews + click opens player WITH sound + iOS fallback ── -->
 <script>
 (function () {
   const cards = Array.from(document.querySelectorAll('.bcard--video'));
@@ -654,16 +657,20 @@
   const allVideos = cards.map(c => c.querySelector('.bcard__video')).filter(Boolean);
   const visible = new Set();
 
-  const lightbox = document.getElementById('reelLightbox');
-  const stage    = document.getElementById('reelStage');
-  const backdrop = document.getElementById('reelBackdrop');
-  const video    = document.getElementById('reelVideo');
-  const closeBtn = document.getElementById('reelClose');
-  const muteBtn  = document.getElementById('reelMute');
-  const catEl    = document.getElementById('reelCat');
-  const titleEl  = document.getElementById('reelTitle');
-  const lbFill   = document.getElementById('reelProgressFill');
+  const lightbox    = document.getElementById('reelLightbox');
+  const stage       = document.getElementById('reelStage');
+  const backdrop    = document.getElementById('reelBackdrop');
+  const video       = document.getElementById('reelVideo');
+  const closeBtn    = document.getElementById('reelClose');
+  const muteBtn     = document.getElementById('reelMute');
+  const catEl       = document.getElementById('reelCat');
+  const titleEl     = document.getElementById('reelTitle');
+  const lbFill      = document.getElementById('reelProgressFill');
+  const fallbackImg = document.getElementById('reelFallbackPoster');
+  const errorMsg    = document.getElementById('reelErrorMsg');
   let originRect = null;
+  let currentSrc = '';
+  let stallTimer = null;
 
   // visualViewport gives the true visible size on mobile (URL bar in/out)
   const vw = () => (window.visualViewport && window.visualViewport.width)  || window.innerWidth;
@@ -674,18 +681,39 @@
     document.body.style.overflow = on ? 'hidden' : '';
   };
 
-  // surface the real reason a clip won't play (codec/path) instead of failing silently
+  // ── iOS-safe error handling: show poster + message instead of a black screen ──
+  function showError(){
+  errorMsg.hidden = false;               // остаётся невидимым слоем-кликером
+  if (fallbackImg.getAttribute('src')) fallbackImg.hidden = false;
+  video.hidden = true;
+  clearTimeout(stallTimer);
+  }
+  function hideError(){
+    errorMsg.hidden = true;
+    fallbackImg.hidden = true;
+    video.hidden = false;
+  }
+  function armStallWatchdog(){
+    clearTimeout(stallTimer);
+    stallTimer = setTimeout(() => { if (video.readyState < 2) showError(); }, 6000);
+  }
+
   video.addEventListener('error', () => {
     const code = video.error ? video.error.code : '?';
     console.warn('Reel video failed:', video.currentSrc, 'MediaError code', code);
-    if (titleEl && titleEl.textContent.indexOf('video error') === -1)
-      titleEl.textContent = titleEl.textContent + ' — video error';
+    showError();
+  });
+  video.addEventListener('playing', () => clearTimeout(stallTimer));
+
+  errorMsg.addEventListener('click', () => {
+    if (currentSrc) window.open(currentSrc, '_blank');
   });
 
   // make an inline preview actually start on mobile: MUST be muted + playsinline;
   // on iOS set src → load() → play() in the same task; retry once as muted.
   function startPreview(v, src){
     v.muted = true; v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    v.playsInline = true;
     if (!v.getAttribute('src') && src){ v.setAttribute('src', src); v.load(); }
     const go = () => v.play().catch(() => {});
     if (v.readyState >= 2) go(); else v.addEventListener('canplay', go, { once: true });
@@ -705,7 +733,7 @@
   cards.forEach(card => {
     const v = card.querySelector('.bcard__video'), fill = card.querySelector('.bcard__progress-fill');
     if (v) {
-      v.muted = true; io.observe(card);
+      v.muted = true; v.playsInline = true; io.observe(card);
       if (fill) v.addEventListener('timeupdate', () => { if (v.duration) fill.style.width = (v.currentTime / v.duration * 100) + '%'; });
     }
     card.addEventListener('click', () => openReel(card));
@@ -730,9 +758,15 @@
     allVideos.forEach(v => v.pause());   // pause inline previews so audio never doubles up
     originRect = card.getBoundingClientRect();
     lockScroll(true);
+    hideError();
+
+    currentSrc = card.dataset.video || '';
+    const posterSrc = card.querySelector('.bcard__video')?.getAttribute('poster') || '';
+    fallbackImg.src = posterSrc;
 
     video.setAttribute('playsinline','');
-    video.src = card.dataset.video || ''; video.load();
+    video.playsInline = true;
+    video.src = currentSrc; video.load();
     catEl.textContent = card.dataset.cat || '';
     titleEl.textContent = card.dataset.title || '';
     video.muted = false; muteBtn.textContent = '🔊';   // play WITH sound on click
@@ -749,20 +783,24 @@
       place(finalRect(), '10px');
     });
 
+    armStallWatchdog();
+
     // tap is a user gesture, so sound is allowed; if still blocked, fall back to muted
     video.play().catch(() => {
       video.muted = true; muteBtn.textContent = '🔇';
-      video.play().catch(() => {});
+      video.play().catch(() => showError());
     });
     document.addEventListener('keydown', onKeydown);
   }
 
   function closeReel() {
+    clearTimeout(stallTimer);
     lightbox.classList.remove('is-visible');
     place(originRect, '16px');
     setTimeout(() => {
       lightbox.classList.remove('is-open');
       video.pause(); video.removeAttribute('src'); video.load();
+      hideError();
       lockScroll(false);
       visible.forEach(v => startPreview(v));   // resume on-screen previews (muted)
     }, 480);
@@ -780,6 +818,17 @@
   window.addEventListener('orientationchange', () => setTimeout(reposition, 300));
   if (window.visualViewport) window.visualViewport.addEventListener('resize', reposition);
 })();
+
+
+function checkPoster(videoEl){
+  const posterUrl = videoEl.getAttribute('poster');
+  if(!posterUrl) return;
+  const test = new Image();
+  test.onerror = () => videoEl.removeAttribute('poster');
+  test.src = posterUrl;
+}
+document.querySelectorAll('.bcard__video[poster]').forEach(checkPoster);
+
 </script>
 
 </body>

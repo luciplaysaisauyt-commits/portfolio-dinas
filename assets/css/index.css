@@ -752,7 +752,14 @@ a { text-decoration: none; color: inherit; }
 
 
 
-
+.reel-lightbox__fallback-poster{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:1;
+  display:none; /* добавили */
+}
+.reel-lightbox__fallback-poster:not([hidden]){
+  display:block; /* добавили */
+}
 
 
 
