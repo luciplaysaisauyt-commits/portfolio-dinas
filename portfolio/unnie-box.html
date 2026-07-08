@@ -464,13 +464,13 @@
                   </div>
                 </div>
                 <div class="rp-stat-row">
-                  <span class="rp-stat-pct">34%</span>
+                  <span class="rp-stat-pct">90%</span>
                   <div class="rp-stat-right">
                     <span class="rp-stat-label"
-                      >of 18–29 y.o. plan to try K-Beauty in 2025</span
+                      >of Gen Z &amp; younger millennials interested in clean beauty</span
                     >
                     <div class="rp-bar-track">
-                      <div class="rp-bar-fill" style="width: 34%"></div>
+                      <div class="rp-bar-fill" style="width: 90%"></div>
                     </div>
                   </div>
                 </div>
@@ -813,11 +813,11 @@
                   >YouGov / Retail Dive ↗</a
                 >
                 <a
-                  href="hhttps://www.retaildive.com/news/clean-beauty-retail-sustainability-regulations-sephora-ulta/696865/"
+                  href="https://www.retaildive.com/news/clean-beauty-retail-sustainability-regulations-sephora-ulta/696865/"
                   target="_blank"
                   rel="noopener"
                   class="rp-source-link"
-                  >Retail Dive — Gen Z Skincare Habits ↗</a
+                  >Retail Dive — The State of Clean Beauty ↗</a
                 >
               </div>
 
@@ -886,9 +886,9 @@
                     <canvas
                       id="rpCTAChart"
                       role="img"
-                      aria-label="Comparison of conversion rates: Single CTA 13.5%, Multi-CTA 10.5%"
+                      aria-label="Relative conversion index: single-CTA layouts convert about 32% better than multi-CTA (Multi-CTA = 100 baseline)"
                     >
-                      Single CTA 13.5%, Multi-CTA 10.5%.
+                      Single-CTA pages convert ~32% better than multi-CTA (index: Single 132, Multi 100).
                     </canvas>
                   </div>
 
@@ -902,7 +902,7 @@
                     "
                   >
                     <span style="font-size: 13px; color: var(--text-muted)">
-                      +3pp lift from focus —
+                      ~+32% relative lift from focus —
                       <strong style="color: #fff">one clear action wins</strong>
                     </span>
                   </div>
@@ -956,10 +956,10 @@
               </div>
 
               <div class="rp-kv-row">
-                <span class="rp-kv-num">38%</span>
+                <span class="rp-kv-num">34%</span>
                 <span class="rp-kv-text">
-                  Landing pages with testimonials often perform better,
-                  reinforcing the decision to highlight customer reviews.
+                  Testimonials on sales pages lift conversions by ~34% on
+                  average (VWO), reinforcing the decision to highlight reviews.
                 </span>
                 <span class="rp-kv-tag rp-kv-tag--up">reviews</span>
               </div>
@@ -974,10 +974,11 @@
               </div>
 
               <div class="rp-kv-row">
-                <span class="rp-kv-num">13.5%</span>
+                <span class="rp-kv-num">+32%</span>
                 <span class="rp-kv-text">
-                  Single-CTA pages outperform multi-CTA layouts, supporting a
-                  focused conversion strategy throughout the landing page.
+                  Landing pages with a single, focused CTA convert around 32%
+                  better than multi-CTA layouts, supporting a focused conversion
+                  strategy throughout the page.
                 </span>
                 <span class="rp-kv-tag rp-kv-tag--focus">CTA strategy</span>
               </div>
@@ -2146,7 +2147,7 @@
                     ],
                 datasets: [
                   {
-                    data: [400, 270, 38, 27, 28],
+                    data: [400, 270, 34, 27, 28],
                     backgroundColor: [
                       BLUE,
                       BLUE2,
@@ -2179,7 +2180,7 @@
             });
           }
 
-          /* 5 — Horizontal bar: CTA — LIGHTER */
+          /* 5 — Horizontal bar: CTA — relative conversion index (single vs multi) */
           const ctaEl = document.getElementById("rpCTAChart");
           if (ctaEl && !ctaEl._chartInited) {
             ctaEl._chartInited = true;
@@ -2189,7 +2190,9 @@
                 labels: ["Single CTA", "Multi-CTA"],
                 datasets: [
                   {
-                    data: [13.5, 10.5],
+                    // relative index: Multi-CTA = 100 baseline,
+                    // Single-CTA ≈ +32% per CRO benchmarks (WiserReview / Whitehat)
+                    data: [132, 100],
                     backgroundColor: [BLUE, BLUE_MID],
                     borderRadius: 6,
                     borderSkipped: false,
@@ -2199,15 +2202,24 @@
               options: {
                 ...base,
                 indexAxis: "y",
+                plugins: {
+                  ...base.plugins,
+                  tooltip: {
+                    displayColors: false,
+                    callbacks: { label: (c) => c.parsed.x + " (index)" },
+                  },
+                },
                 scales: {
                   x: {
-                    ticks: {
-                      color: TICK,
-                      font: { size: 10 },
-                      callback: (v) => v + "%",
-                    },
+                    ticks: { color: TICK, font: { size: 10 } },
                     grid: { color: GRID },
-                    max: 18,
+                    max: 150,
+                    title: {
+                      display: true,
+                      text: "Relative conversion (Multi = 100)",
+                      color: TICK,
+                      font: { size: 9 },
+                    },
                   },
                   y: {
                     ticks: { color: TICK, font: { size: 10 } },

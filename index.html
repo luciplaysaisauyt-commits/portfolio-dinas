@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>DIN – Portfolio Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="stylesheet" href="/assets/css/index.css">
 <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -78,20 +79,345 @@
       </div>
     </a>
 
-    <!-- c7 (visually c3): KINETIC TYPE REEL (in progress) -->
-    <div class="bcard bc-kinetic sr d2" style="cursor:default">
+    <!-- c7 (визуально c3): SAIGA CANDID LOGO — click anywhere to open the construction animation -->
+    <div class="bcard bc-kinetic is-media sr d2"
+         id="kineticCard"
+         data-title="Saiga Candid logo"
+         data-cat="Logo Design"
+         tabindex="0" role="button" aria-label="Open Saiga Candid logo construction animation">
       <div class="bcard__bg pg-kinetic"></div>
+
+      <!-- poster: finished mark only (grid + outline layers stay hidden here) -->
+      <div class="sgc-card-stage" id="sgcCardStage">
+        <svg class="sgc-svg" viewBox="0 0 680 1130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Логотип SAIGA CANDID">
+          <rect width="680" height="1130" fill="#082342"/>
+          <defs>
+            <linearGradient id="sgcCardG1" x1="339.45" y1="957.63" x2="385.87" y2="957.63" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+            <linearGradient id="sgcCardG2" x1="450.68" y1="972.45" x2="526.14" y2="972.45" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+            <linearGradient id="sgcCardG3" x1="330.81" y1="727.56" x2="636.4" y2="727.56" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+            <linearGradient id="sgcCardG4" x1="173.65" y1="1075.72" x2="794.09" y2="1075.72" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+          </defs>
+          <g transform="translate(-150,-240)">
+            <path class="sgc-f" d="M384.75,959.17c-.38,3.37-1.11,6.91-2.15,10.58l-9.2,53.47v.03s0,0,0,0c1.45,6.45,5.45,6.73,3.68,10.61-5.27,11.51-9.38,30.7-22.64,37.58-.69.36-3.64-.74-4-.04.29-.69.57-1.39.85-2.1,4.93-12.43,8.77-28.54,11.4-48.73,1.47-11.25,2.56-23.77,3.25-37.63.3-5.8.52-11.82.67-18.09-11.67-47.58-25.41-83.98-27.15-121.13,9.99,19.67,26.17,35.66,45.98,45.4l-2.52,49.26c4.58,14.28,2.71,12.93,1.84,20.77Z" fill="url(#sgcCardG1)"/>
+            <path class="sgc-f" d="M526.14,962.05c0,2.1-.46,4.08-1.29,5.86-.36.64-.71,1.26-1.06,1.9-.02.02-.03.04-.04.06-.3.42-.61.84-.95,1.24-.01,0-.01.01-.02.01-18.82,33.64-33.1,65.3-41.09,94.52-.54,1.98-1.05,3.94-1.53,5.89h-27.41l3.07-5.73,15.9-29.61c1.21-2.12,2.3-4.3,3.25-6.54.04-.1.07-.2.11-.3.49-1.3.97-2.6,1.46-3.9.01-.04.02-.08.04-.12,7.21-19.4,12.81-38.8,12.73-50.68.05-.82.08-1.66.08-2.5,0-9.56-3.67-18.28-9.68-24.82h0l-18.37-25.13-.03-.03c-2.62-2.6-4.82-5.63-6.53-8.94-.15-.28-.3-.56-.44-.86-2.19-4.51-3.49-9.53-3.65-14.84,18.19-3.67,34.62-12.19,47.89-24.16-.76,4.82-1.14,9.76-1.14,14.8,0,9.26,1.31,18.22,3.77,26.7,1.29,4.48,2.91,8.82,4.82,13,2.69,5.94,5.97,11.54,9.77,16.74,2.39,3.28,4.99,6.42,7.79,9.36,1.61,2.28,2.56,5.06,2.56,8.08Z" fill="url(#sgcCardG2)"/>
+            <path class="sgc-f" d="M635.1,1049.14c-7-21.34-11.89-42.42-15.75-68.61-1.25-8.56-2.4-17.66-3.48-27.5-.16-1.51-.32-3.02-.48-4.56-.04-.39-.08-.77-.12-1.14-.52-3.71-3.58-7.92-7.56-12.32l-4.94-5.18c-5.62-6.34-10.4-13.42-14.19-21.09-6.35-12.81-9.91-27.23-9.91-42.5v-45.54c0-9.27-1.31-18.21-3.77-26.69-1.98-6.87-4.71-13.42-8.09-19.56-3.38-6.13-7.42-11.86-12.02-17.08-10.1-11.5-22.92-20.57-37.46-26.17-2.26-.56-4.43-1.31-6.5-2.27-2.98-1.35-5.74-3.1-8.22-5.17-1.26-1.04-2.45-2.18-3.56-3.39-6-6.51-9.66-15.21-9.66-24.77,0-2.46.24-4.88.7-7.21.66-3.28,7.13-20.54,7.33-21.08l-92.84,97.75c-7.53,10.54-12.97,22.68-15.73,35.81.51-12.59,4.89-28.69,17.03-43.46,8.73-10.64,52.92-59.31,89.99-98.46l18.98,1.73,22.57,1.56h.01c4.63,5.21,10.73,9.11,17.66,11.02,3.1.84,6.37,1.3,9.75,1.3,6.23,0,12.09-1.55,17.23-4.3,0,0,.16-.08.24-.12,2.4-1.31,4.63-2.87,6.67-4.65.03-.02.05-.06.07-.08,2.54-2.23,5.57-13.17,5.39-15.19-.67-7.33-13.97-36.48-26.35-48.79-.06-.07-.16-.1-.24-.16l-42.75-40.47c6.94-44.12-2.51-84.37-40.28-117.93-12.5-13.26-22-31.35-22.44-62.23-4.25,20.5-2.69,40.56,6.89,60,31,50.31,37.33,69.69,27.77,109.1h-11c-11.71-27.12-32.18-54.65-58.44-82.44-32.15-31.59-49.96-60.79-40.83-85.5-7.29,9.52-8.67,25.4-2.39,49.5,4.99,13.79,14.85,33.8,39.55,64.84,14.03,19.23,25.37,39.04,33,59.66-7.38,3.73-13.32,8.07-17.66,13.09-14.67-7.4-29.96-10.84-46.03-8.65-.74.09-1.48.21-2.22.34h-.02c-3.61,1.04-6.24,4.37-6.24,8.31,0,.96.15,1.87.44,2.71t0,.02c.03.14.09.31.18.52.04.1.09.21.15.35.04.07.15.31.26.52.02.05.05.11.07.15h0s.09.18.09.18c2.24,4.36,8.71,14.44,12.55,16.57,4.53,2.52,9.5,11.37,11.59,13.56l15.83-.83c1.86,4.83,2.18,11.89,2.89,19.77-3.37-4.23-6.16-8.67-7.78-13.54-12.48,10.97-41.7,68.71-43.79,72.55h0c-4.92,11.27-8.75,24.02-11.85,37.7-.03.15-.07.29-.1.44-2.33,10.4-4.25,21.33-5.91,32.52-.67,4.5-1.3,9.06-1.9,13.66-.37-3.64-.66-7.29-.83-10.94-.46-9.18-.27-18.33.76-27.45l.12-.99c1.25-10.46,3.61-20.88,7.38-31.22-16.77,20.87-28.23,46.18-32.38,73.87-1.14,7.57-1.73,15.32-1.73,23.21,0,9.41,1.41,18.06,3.57,26.48.03.11.05.22.08.32.13.5.26.99.39,1.48.17.6.33,1.2.5,1.8v.03c.05.19.11.39.17.58,9.29,31.7,33.82,56.88,65.12,67.07.54-5.51,1.11-12.7,1.73-16.9,1.83-12.69,3.99-24.36,6.67-34.44,2.33,12.5,2.31,27.66.64,44.23-.27,2.73-.59,5.52-.96,8.33-.04.33-.09.67-.14,1.01-.21,1.61-.43,3.23-.67,4.86-1.24,8.6-2.86,17.45-4.75,26.42-2.02,9.57-4.35,19.28-6.88,28.92-.11.44-.23.89-.35,1.33-4.66,23.73-12.73,46.75-22.53,69.48v.03s0,0,0,0c-1.68,3.9-3.41,7.79-5.18,11.67-5.27,11.51-16.71,34.38-16.71,34.38,0,0,20.25,1.14,29.84-1.46h0c.05-4.93.56-10.04,1.45-15.33,4.24-25.03,17.28-53.78,33.41-83.11,0,0,0-.02,0-.02.3-.55.61-1.11.92-1.66,2.3-4.15,4.13-8.56,5.37-13.14.43-1.58.93-3.3,1.48-5.14v-.02c.19-.63.39-1.29.6-1.96,1.06-3.39,2.29-7.14,3.65-11.16,3.07-9.07,6.82-19.5,10.71-30.23.86-2.37,1.73-4.75,2.6-7.13.57-1.57,1.14-3.15,1.71-4.72.22-.6.44-1.2.66-1.8l14.86-54.79c2.11,11.12.66,25.19-4.1,42.04,0,0-4.51,13.3-4.51,13.3,19-3.72,36.72-14.05,49.63-26.03,1.24-1.15,2.44-2.33,3.6-3.54,5.29-5.48,13.36-18.15,13.36-18.15,1.02-1.87,8.76-15.66,9.21-16.58-.08.25-.36,1.08-.78,2.3h0c-1.75,5.12-9.07,21.46-9.53,22.48,0,.03-.02.05-.02.05,3.19,17.4,13.15,31.4,24.37,44.15v.02c7.46,9.94,15.96,19.98,23.66,29,10.62,12.42,19.75,22.92,22.61,28.62,4.05,8.82,7.81,18.46,11.33,28.71,6.82,19.8,12.77,41.94,18.33,65.13,1.51,6.93,1.59,13.64.99,20.21,0,0,1.1-7.05,0,0,.03,5.05,20.03,7.89,19.47,1.17h0s-1.29-21.39-1.29-21.39ZM581.14,654.04c-6.16-.71-8.1-8.56-9.22-10.4,3.63,1.84,13.62,10.91,9.22,10.4ZM580.35,663.06s-25,10.08-40.66-12.42c0,0,14.66,15.42,40.66,12.42ZM483.56,643.37c.19-.24.38-.12.61.27-.23-.13-.44-.21-.61-.27ZM503.03,586.85c1.47.26-17.52,6.71-19.54,7.23s-15.34-1.9-19.93-3.73c13.89-13.27,27.09-12.88,39.47-3.5ZM411.16,585.25c-1.38-.4-6.96-8.81-9.11-11.43,16.39-.57,19.05,2.76,23.41,12.38-1.02-.2-12.92-.55-14.3-.95Z" fill="url(#sgcCardG3)"/>
+            <path class="sgc-f" d="M794.09,1085.8H173.65c59.89-7.78,119.09-13.22,177.63-16.48.08,0,.15,0,.22,0,9.97-.55,19.91-1.04,29.84-1.46,24.95-1.08,49.77-1.76,74.48-2.05,8.64-.1,17.26-.15,25.87-.16,45.47-.04,90.54,1.22,135.23,3.72,6.5.35,12.99.74,19.47,1.17,53.11,3.38,105.67,8.51,157.7,15.27Z" fill="url(#sgcCardG4)"/>
+           <text class="sgc-t" x="490" y="1222" text-anchor="middle" fill="#fff" font-size="150" font-family="'Cinzel',serif" font-weight="700" letter-spacing="10">SAIGA</text>
+            <text class="sgc-t" x="490" y="1300" text-anchor="middle" fill="#fff" font-size="58" font-family="'Cinzel',serif" font-weight="700" letter-spacing="18">CANDID</text>
+            <text class="sgc-t" x="490" y="1345" text-anchor="middle" fill="#cc9e2b" font-size="22" font-family="'Cinzel',serif" letter-spacing="6">φ 1.618</text>
+        </svg>
+      </div>
+
       <div class="bcard__scrim"></div>
+      <span class="bcard__expand"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand</span>
+
       <div class="bcard__content">
-        <span class="bcard__cat">Motion Design</span>
-        <h3 class="bcard__title">Kinetic Type Reel</h3>
-        <p class="bcard__desc">Typography-driven motion study — timing, rhythm, and type as image</p>
-        <span class="bcard__cta bcard__cta--status">
-          <span class="status-dot"></span>
-          In Progress
-        </span>
+        <span class="bcard__cat">Logo Design</span>
+        <h3 class="bcard__title">Saiga Candid logo</h3>
+        <div class="bcard__reveal"><div class="bcard__reveal-inner">
+          <p class="bcard__desc">Golden-ratio grid construction — interactive build of the SAIGA CANDID mark</p>
+          <span class="bcard__cta">View Animation Logo <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </div></div>
       </div>
     </div>
+
+    <!-- ============ SAIGA CANDID lightbox — centered modal: animation + description + PNG mockups ============ -->
+    <div class="sgc-lightbox" id="sgcLightbox" aria-hidden="true">
+      <div class="sgc-lightbox__backdrop" id="sgcLbBackdrop"></div>
+
+      <div class="sgc-lightbox__panel" id="sgcLbPanel" role="dialog" aria-modal="true" aria-label="Saiga Candid — logo case study">
+
+        <div class="sgc-lightbox__hero">
+          <div class="sgc-lightbox__stage" id="sgcLbStage">
+            <svg class="sgc-svg" id="sgcLbSvg" viewBox="0 0 680 1130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Построение логотипа SAIGA CANDID на сетке золотого сечения">
+              <rect width="680" height="1130" fill="#082342"/>
+              <defs>
+                <linearGradient id="sgcLbG1" x1="339.45" y1="957.63" x2="385.87" y2="957.63" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+                <linearGradient id="sgcLbG2" x1="450.68" y1="972.45" x2="526.14" y2="972.45" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+                <linearGradient id="sgcLbG3" x1="330.81" y1="727.56" x2="636.4" y2="727.56" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+                <linearGradient id="sgcLbG4" x1="173.65" y1="1075.72" x2="794.09" y2="1075.72" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="#cc9e2b"/><stop offset="1" stop-color="#ecc95f"/></linearGradient>
+              </defs>
+              <g transform="translate(-150,-240)">
+
+                <path fill="none" d="M398.09,575.31c13.53-1.6,20.7,3.16,23.41,12.38-9.11,1.3-17.2-1.63-23.41-12.38Z" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M392.59,561.12c16.63,1.07,33.38,2.01,43.07,10.22" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M520.45,561.67c23.25,21.62,45.63,42.61,52.67,52.65" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <polyline fill="none" points="533.43 664.21 491.91 660.44 395.69 767.62" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="180.54" y1="1067.13" x2="787.2" y2="1067.13" class="sgc-g" stroke="#cc9e2b" stroke-width="1.2"/>
+                <path fill="none" d="M404.57,891.15c-6.39,63.33-27.55,121.02-55.87,175.98" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="381.91" y1="891.92" x2="378.95" y2="939.89" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="376.64" y1="982.85" x2="370.97" y2="1021.11" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <circle fill="none" cx="562.37" cy="891.15" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="648.33" cy="881.82" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="415.8" cy="979.82" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="311.85" cy="954.71" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="428.75" cy="525.59" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="519.34" cy="659.47" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="485.86" cy="797.13" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="514.86" cy="884.65" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="569.83" cy="907.76" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="541.57" cy="611.19" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="576.39" cy="608.86" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="503.06" cy="808.78" r="70.06" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="389.71" cy="821.1" r="183.4" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="409.79" cy="536.99" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="567.96" cy="371.47" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="489.71" cy="400.89" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="490.71" cy="375.23" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="369.38" cy="578.56" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="569.83" cy="396.8" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <circle fill="none" cx="343.03" cy="587.69" r="113.35" class="sgc-g" stroke="#cc9e2b" stroke-width="0.8"/>
+                <ellipse fill="none" cx="427.48" cy="790.87" rx="103.61" ry="104.89" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <circle fill="none" cx="529.36" cy="694.53" r="43.3" class="sgc-g" stroke="#cc9e2b" stroke-width="0.6"/>
+                <circle fill="none" cx="458.43" cy="585.4" r="26.76" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <circle fill="none" cx="486.43" cy="578.56" r="26.76" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <circle fill="none" cx="391.21" cy="571.34" r="10.22" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="569.83" y1="763.3" x2="581.54" y2="975.74" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M600.65,862.64c6.88,72.73,17.17,143.07,31.78,210.38" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="550.72" y1="891.92" x2="468.96" y2="1088.36" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="526.74" y1="893.22" x2="444.98" y2="1089.66" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M445.45,902.83c-36.09,55.94-60.44,124.56-81.76,196.43" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="331.54" y1="830.6" x2="377.36" y2="1021.11" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="462.96" y1="817.67" x2="398.03" y2="1020.29" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M326.85,763.3l37.8-80c-9.02,29.09-13.78,56.95-11.24,82.7l27.3-135.28" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <polyline fill="none" points="385.97 581.47 406.14 604.96 421.97 604.13 424.86 623.9 417.08 610.36 355.64 715.3" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M364.59,966.26c-1.19,30.09-8.05,67.1-16.99,106.66" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M499.07,588.34c-13.17-9.54-26.33-7.76-39.47,3.5,13.21,5.4,26.37,4.24,39.47-3.5Z" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M394.5,462.43c21.29,27.62,39.11,54.06,51.67,78.71" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="415.71" y1="460.74" x2="458.43" y2="508.43" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M479.64,465.21c6.89,13.56,11.68,24.83,13.6,32.95" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M496.78,459.69c9.13,11.58,15.57,24.44,19.53,38.47" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M446.72,899.02c18.12-3.11,33.17-11.84,46.79-23.18" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M511.67,855c4.01,20.42,29.12,54.86,69.87,99.7,17.76,47.06,32.52,90.68,31.42,116.15" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M567.96,645.13c4.66,2.51,7.78,6.24,10.32,10.42-5.42-1.09-8.86-4.56-10.32-10.42Z" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <path fill="none" d="M537.15,653.45c10.53,12.35,22.81,17.98,38.23,11.46-13.32.6-26.16-2.46-38.23-11.46Z" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <line fill="none" x1="493.46" y1="668.8" x2="399.58" y2="768.03" class="sgc-g" stroke="#4a7ab5" stroke-width="0.7"/>
+                <text class="sgc-g" x="200" y="430" fill="#cc9e2b" font-size="22" font-family="Georgia,serif" font-style="italic">φ = 1.618</text>
+
+                <path class="sgc-s" d="M384.75,959.17c-.38,3.37-1.11,6.91-2.15,10.58l-9.2,53.47v.03s0,0,0,0c1.45,6.45,5.45,6.73,3.68,10.61-5.27,11.51-9.38,30.7-22.64,37.58-.69.36-3.64-.74-4-.04.29-.69.57-1.39.85-2.1,4.93-12.43,8.77-28.54,11.4-48.73,1.47-11.25,2.56-23.77,3.25-37.63.3-5.8.52-11.82.67-18.09-11.67-47.58-25.41-83.98-27.15-121.13,9.99,19.67,26.17,35.66,45.98,45.4l-2.52,49.26c4.58,14.28,2.71,12.93,1.84,20.77Z" fill="none" stroke="#ecc95f" stroke-width="1.5"/>
+                <path class="sgc-s" d="M526.14,962.05c0,2.1-.46,4.08-1.29,5.86-.36.64-.71,1.26-1.06,1.9-.02.02-.03.04-.04.06-.3.42-.61.84-.95,1.24-.01,0-.01.01-.02.01-18.82,33.64-33.1,65.3-41.09,94.52-.54,1.98-1.05,3.94-1.53,5.89h-27.41l3.07-5.73,15.9-29.61c1.21-2.12,2.3-4.3,3.25-6.54.04-.1.07-.2.11-.3.49-1.3.97-2.6,1.46-3.9.01-.04.02-.08.04-.12,7.21-19.4,12.81-38.8,12.73-50.68.05-.82.08-1.66.08-2.5,0-9.56-3.67-18.28-9.68-24.82h0l-18.37-25.13-.03-.03c-2.62-2.6-4.82-5.63-6.53-8.94-.15-.28-.3-.56-.44-.86-2.19-4.51-3.49-9.53-3.65-14.84,18.19-3.67,34.62-12.19,47.89-24.16-.76,4.82-1.14,9.76-1.14,14.8,0,9.26,1.31,18.22,3.77,26.7,1.29,4.48,2.91,8.82,4.82,13,2.69,5.94,5.97,11.54,9.77,16.74,2.39,3.28,4.99,6.42,7.79,9.36,1.61,2.28,2.56,5.06,2.56,8.08Z" fill="none" stroke="#ecc95f" stroke-width="1.5"/>
+                <path class="sgc-s" d="M635.1,1049.14c-7-21.34-11.89-42.42-15.75-68.61-1.25-8.56-2.4-17.66-3.48-27.5-.16-1.51-.32-3.02-.48-4.56-.04-.39-.08-.77-.12-1.14-.52-3.71-3.58-7.92-7.56-12.32l-4.94-5.18c-5.62-6.34-10.4-13.42-14.19-21.09-6.35-12.81-9.91-27.23-9.91-42.5v-45.54c0-9.27-1.31-18.21-3.77-26.69-1.98-6.87-4.71-13.42-8.09-19.56-3.38-6.13-7.42-11.86-12.02-17.08-10.1-11.5-22.92-20.57-37.46-26.17-2.26-.56-4.43-1.31-6.5-2.27-2.98-1.35-5.74-3.1-8.22-5.17-1.26-1.04-2.45-2.18-3.56-3.39-6-6.51-9.66-15.21-9.66-24.77,0-2.46.24-4.88.7-7.21.66-3.28,7.13-20.54,7.33-21.08l-92.84,97.75c-7.53,10.54-12.97,22.68-15.73,35.81.51-12.59,4.89-28.69,17.03-43.46,8.73-10.64,52.92-59.31,89.99-98.46l18.98,1.73,22.57,1.56h.01c4.63,5.21,10.73,9.11,17.66,11.02,3.1.84,6.37,1.3,9.75,1.3,6.23,0,12.09-1.55,17.23-4.3,0,0,.16-.08.24-.12,2.4-1.31,4.63-2.87,6.67-4.65.03-.02.05-.06.07-.08,2.54-2.23,5.57-13.17,5.39-15.19-.67-7.33-13.97-36.48-26.35-48.79-.06-.07-.16-.1-.24-.16l-42.75-40.47c6.94-44.12-2.51-84.37-40.28-117.93-12.5-13.26-22-31.35-22.44-62.23-4.25,20.5-2.69,40.56,6.89,60,31,50.31,37.33,69.69,27.77,109.1h-11c-11.71-27.12-32.18-54.65-58.44-82.44-32.15-31.59-49.96-60.79-40.83-85.5-7.29,9.52-8.67,25.4-2.39,49.5,4.99,13.79,14.85,33.8,39.55,64.84,14.03,19.23,25.37,39.04,33,59.66-7.38,3.73-13.32,8.07-17.66,13.09-14.67-7.4-29.96-10.84-46.03-8.65-.74.09-1.48.21-2.22.34h-.02c-3.61,1.04-6.24,4.37-6.24,8.31,0,.96.15,1.87.44,2.71t0,.02c.03.14.09.31.18.52.04.1.09.21.15.35.04.07.15.31.26.52.02.05.05.11.07.15h0s.09.18.09.18c2.24,4.36,8.71,14.44,12.55,16.57,4.53,2.52,9.5,11.37,11.59,13.56l15.83-.83c1.86,4.83,2.18,11.89,2.89,19.77-3.37-4.23-6.16-8.67-7.78-13.54-12.48,10.97-41.7,68.71-43.79,72.55h0c-4.92,11.27-8.75,24.02-11.85,37.7-.03.15-.07.29-.1.44-2.33,10.4-4.25,21.33-5.91,32.52-.67,4.5-1.3,9.06-1.9,13.66-.37-3.64-.66-7.29-.83-10.94-.46-9.18-.27-18.33.76-27.45l.12-.99c1.25-10.46,3.61-20.88,7.38-31.22-16.77,20.87-28.23,46.18-32.38,73.87-1.14,7.57-1.73,15.32-1.73,23.21,0,9.41,1.41,18.06,3.57,26.48.03.11.05.22.08.32.13.5.26.99.39,1.48.17.6.33,1.2.5,1.8v.03c.05.19.11.39.17.58,9.29,31.7,33.82,56.88,65.12,67.07.54-5.51,1.11-12.7,1.73-16.9,1.83-12.69,3.99-24.36,6.67-34.44,2.33,12.5,2.31,27.66.64,44.23-.27,2.73-.59,5.52-.96,8.33-.04.33-.09.67-.14,1.01-.21,1.61-.43,3.23-.67,4.86-1.24,8.6-2.86,17.45-4.75,26.42-2.02,9.57-4.35,19.28-6.88,28.92-.11.44-.23.89-.35,1.33-4.66,23.73-12.73,46.75-22.53,69.48v.03s0,0,0,0c-1.68,3.9-3.41,7.79-5.18,11.67-5.27,11.51-16.71,34.38-16.71,34.38,0,0,20.25,1.14,29.84-1.46h0c.05-4.93.56-10.04,1.45-15.33,4.24-25.03,17.28-53.78,33.41-83.11,0,0,0-.02,0-.02.3-.55.61-1.11.92-1.66,2.3-4.15,4.13-8.56,5.37-13.14.43-1.58.93-3.3,1.48-5.14v-.02c.19-.63.39-1.29.6-1.96,1.06-3.39,2.29-7.14,3.65-11.16,3.07-9.07,6.82-19.5,10.71-30.23.86-2.37,1.73-4.75,2.6-7.13.57-1.57,1.14-3.15,1.71-4.72.22-.6.44-1.2.66-1.8l14.86-54.79c2.11,11.12.66,25.19-4.1,42.04,0,0-4.51,13.3-4.51,13.3,19-3.72,36.72-14.05,49.63-26.03,1.24-1.15,2.44-2.33,3.6-3.54,5.29-5.48,13.36-18.15,13.36-18.15,1.02-1.87,8.76-15.66,9.21-16.58-.08.25-.36,1.08-.78,2.3h0c-1.75,5.12-9.07,21.46-9.53,22.48,0,.03-.02.05-.02.05,3.19,17.4,13.15,31.4,24.37,44.15v.02c7.46,9.94,15.96,19.98,23.66,29,10.62,12.42,19.75,22.92,22.61,28.62,4.05,8.82,7.81,18.46,11.33,28.71,6.82,19.8,12.77,41.94,18.33,65.13,1.51,6.93,1.59,13.64.99,20.21,0,0,1.1-7.05,0,0,.03,5.05,20.03,7.89,19.47,1.17h0s-1.29-21.39-1.29-21.39ZM581.14,654.04c-6.16-.71-8.1-8.56-9.22-10.4,3.63,1.84,13.62,10.91,9.22,10.4ZM580.35,663.06s-25,10.08-40.66-12.42c0,0,14.66,15.42,40.66,12.42ZM503.03,586.85c1.47.26-17.52,6.71-19.54,7.23s-15.34-1.9-19.93-3.73c13.89-13.27,27.09-12.88,39.47-3.5ZM411.16,585.25c-1.38-.4-6.96-8.81-9.11-11.43,16.39-.57,19.05,2.76,23.41,12.38-1.02-.2-12.92-.55-14.3-.95Z" fill="none" stroke="#ecc95f" stroke-width="1.5"/>
+                <path class="sgc-s" d="M794.09,1085.8H173.65c59.89-7.78,119.09-13.22,177.63-16.48.08,0,.15,0,.22,0,9.97-.55,19.91-1.04,29.84-1.46,24.95-1.08,49.77-1.76,74.48-2.05,8.64-.1,17.26-.15,25.87-.16,45.47-.04,90.54,1.22,135.23,3.72,6.5.35,12.99.74,19.47,1.17,53.11,3.38,105.67,8.51,157.7,15.27Z" fill="none" stroke="#cc9e2b" stroke-width="1.4"/>
+
+                <path class="sgc-f" d="M384.75,959.17c-.38,3.37-1.11,6.91-2.15,10.58l-9.2,53.47v.03s0,0,0,0c1.45,6.45,5.45,6.73,3.68,10.61-5.27,11.51-9.38,30.7-22.64,37.58-.69.36-3.64-.74-4-.04.29-.69.57-1.39.85-2.1,4.93-12.43,8.77-28.54,11.4-48.73,1.47-11.25,2.56-23.77,3.25-37.63.3-5.8.52-11.82.67-18.09-11.67-47.58-25.41-83.98-27.15-121.13,9.99,19.67,26.17,35.66,45.98,45.4l-2.52,49.26c4.58,14.28,2.71,12.93,1.84,20.77Z" fill="url(#sgcLbG1)"/>
+                <path class="sgc-f" d="M526.14,962.05c0,2.1-.46,4.08-1.29,5.86-.36.64-.71,1.26-1.06,1.9-.02.02-.03.04-.04.06-.3.42-.61.84-.95,1.24-.01,0-.01.01-.02.01-18.82,33.64-33.1,65.3-41.09,94.52-.54,1.98-1.05,3.94-1.53,5.89h-27.41l3.07-5.73,15.9-29.61c1.21-2.12,2.3-4.3,3.25-6.54.04-.1.07-.2.11-.3.49-1.3.97-2.6,1.46-3.9.01-.04.02-.08.04-.12,7.21-19.4,12.81-38.8,12.73-50.68.05-.82.08-1.66.08-2.5,0-9.56-3.67-18.28-9.68-24.82h0l-18.37-25.13-.03-.03c-2.62-2.6-4.82-5.63-6.53-8.94-.15-.28-.3-.56-.44-.86-2.19-4.51-3.49-9.53-3.65-14.84,18.19-3.67,34.62-12.19,47.89-24.16-.76,4.82-1.14,9.76-1.14,14.8,0,9.26,1.31,18.22,3.77,26.7,1.29,4.48,2.91,8.82,4.82,13,2.69,5.94,5.97,11.54,9.77,16.74,2.39,3.28,4.99,6.42,7.79,9.36,1.61,2.28,2.56,5.06,2.56,8.08Z" fill="url(#sgcLbG2)"/>
+                <path class="sgc-f" d="M635.1,1049.14c-7-21.34-11.89-42.42-15.75-68.61-1.25-8.56-2.4-17.66-3.48-27.5-.16-1.51-.32-3.02-.48-4.56-.04-.39-.08-.77-.12-1.14-.52-3.71-3.58-7.92-7.56-12.32l-4.94-5.18c-5.62-6.34-10.4-13.42-14.19-21.09-6.35-12.81-9.91-27.23-9.91-42.5v-45.54c0-9.27-1.31-18.21-3.77-26.69-1.98-6.87-4.71-13.42-8.09-19.56-3.38-6.13-7.42-11.86-12.02-17.08-10.1-11.5-22.92-20.57-37.46-26.17-2.26-.56-4.43-1.31-6.5-2.27-2.98-1.35-5.74-3.1-8.22-5.17-1.26-1.04-2.45-2.18-3.56-3.39-6-6.51-9.66-15.21-9.66-24.77,0-2.46.24-4.88.7-7.21.66-3.28,7.13-20.54,7.33-21.08l-92.84,97.75c-7.53,10.54-12.97,22.68-15.73,35.81.51-12.59,4.89-28.69,17.03-43.46,8.73-10.64,52.92-59.31,89.99-98.46l18.98,1.73,22.57,1.56h.01c4.63,5.21,10.73,9.11,17.66,11.02,3.1.84,6.37,1.3,9.75,1.3,6.23,0,12.09-1.55,17.23-4.3,0,0,.16-.08.24-.12,2.4-1.31,4.63-2.87,6.67-4.65.03-.02.05-.06.07-.08,2.54-2.23,5.57-13.17,5.39-15.19-.67-7.33-13.97-36.48-26.35-48.79-.06-.07-.16-.1-.24-.16l-42.75-40.47c6.94-44.12-2.51-84.37-40.28-117.93-12.5-13.26-22-31.35-22.44-62.23-4.25,20.5-2.69,40.56,6.89,60,31,50.31,37.33,69.69,27.77,109.1h-11c-11.71-27.12-32.18-54.65-58.44-82.44-32.15-31.59-49.96-60.79-40.83-85.5-7.29,9.52-8.67,25.4-2.39,49.5,4.99,13.79,14.85,33.8,39.55,64.84,14.03,19.23,25.37,39.04,33,59.66-7.38,3.73-13.32,8.07-17.66,13.09-14.67-7.4-29.96-10.84-46.03-8.65-.74.09-1.48.21-2.22.34h-.02c-3.61,1.04-6.24,4.37-6.24,8.31,0,.96.15,1.87.44,2.71t0,.02c.03.14.09.31.18.52.04.1.09.21.15.35.04.07.15.31.26.52.02.05.05.11.07.15h0s.09.18.09.18c2.24,4.36,8.71,14.44,12.55,16.57,4.53,2.52,9.5,11.37,11.59,13.56l15.83-.83c1.86,4.83,2.18,11.89,2.89,19.77-3.37-4.23-6.16-8.67-7.78-13.54-12.48,10.97-41.7,68.71-43.79,72.55h0c-4.92,11.27-8.75,24.02-11.85,37.7-.03.15-.07.29-.1.44-2.33,10.4-4.25,21.33-5.91,32.52-.67,4.5-1.3,9.06-1.9,13.66-.37-3.64-.66-7.29-.83-10.94-.46-9.18-.27-18.33.76-27.45l.12-.99c1.25-10.46,3.61-20.88,7.38-31.22-16.77,20.87-28.23,46.18-32.38,73.87-1.14,7.57-1.73,15.32-1.73,23.21,0,9.41,1.41,18.06,3.57,26.48.03.11.05.22.08.32.13.5.26.99.39,1.48.17.6.33,1.2.5,1.8v.03c.05.19.11.39.17.58,9.29,31.7,33.82,56.88,65.12,67.07.54-5.51,1.11-12.7,1.73-16.9,1.83-12.69,3.99-24.36,6.67-34.44,2.33,12.5,2.31,27.66.64,44.23-.27,2.73-.59,5.52-.96,8.33-.04.33-.09.67-.14,1.01-.21,1.61-.43,3.23-.67,4.86-1.24,8.6-2.86,17.45-4.75,26.42-2.02,9.57-4.35,19.28-6.88,28.92-.11.44-.23.89-.35,1.33-4.66,23.73-12.73,46.75-22.53,69.48v.03s0,0,0,0c-1.68,3.9-3.41,7.79-5.18,11.67-5.27,11.51-16.71,34.38-16.71,34.38,0,0,20.25,1.14,29.84-1.46h0c.05-4.93.56-10.04,1.45-15.33,4.24-25.03,17.28-53.78,33.41-83.11,0,0,0-.02,0-.02.3-.55.61-1.11.92-1.66,2.3-4.15,4.13-8.56,5.37-13.14.43-1.58.93-3.3,1.48-5.14v-.02c.19-.63.39-1.29.6-1.96,1.06-3.39,2.29-7.14,3.65-11.16,3.07-9.07,6.82-19.5,10.71-30.23.86-2.37,1.73-4.75,2.6-7.13.57-1.57,1.14-3.15,1.71-4.72.22-.6.44-1.2.66-1.8l14.86-54.79c2.11,11.12.66,25.19-4.1,42.04,0,0-4.51,13.3-4.51,13.3,19-3.72,36.72-14.05,49.63-26.03,1.24-1.15,2.44-2.33,3.6-3.54,5.29-5.48,13.36-18.15,13.36-18.15,1.02-1.87,8.76-15.66,9.21-16.58-.08.25-.36,1.08-.78,2.3h0c-1.75,5.12-9.07,21.46-9.53,22.48,0,.03-.02.05-.02.05,3.19,17.4,13.15,31.4,24.37,44.15v.02c7.46,9.94,15.96,19.98,23.66,29,10.62,12.42,19.75,22.92,22.61,28.62,4.05,8.82,7.81,18.46,11.33,28.71,6.82,19.8,12.77,41.94,18.33,65.13,1.51,6.93,1.59,13.64.99,20.21,0,0,1.1-7.05,0,0,.03,5.05,20.03,7.89,19.47,1.17h0s-1.29-21.39-1.29-21.39ZM581.14,654.04c-6.16-.71-8.1-8.56-9.22-10.4,3.63,1.84,13.62,10.91,9.22,10.4ZM580.35,663.06s-25,10.08-40.66-12.42c0,0,14.66,15.42,40.66,12.42ZM483.56,643.37c.19-.24.38-.12.61.27-.23-.13-.44-.21-.61-.27ZM503.03,586.85c1.47.26-17.52,6.71-19.54,7.23s-15.34-1.9-19.93-3.73c13.89-13.27,27.09-12.88,39.47-3.5ZM411.16,585.25c-1.38-.4-6.96-8.81-9.11-11.43,16.39-.57,19.05,2.76,23.41,12.38-1.02-.2-12.92-.55-14.3-.95Z" fill="url(#sgcLbG3)"/>
+                <path class="sgc-f" d="M794.09,1085.8H173.65c59.89-7.78,119.09-13.22,177.63-16.48.08,0,.15,0,.22,0,9.97-.55,19.91-1.04,29.84-1.46,24.95-1.08,49.77-1.76,74.48-2.05,8.64-.1,17.26-.15,25.87-.16,45.47-.04,90.54,1.22,135.23,3.72,6.5.35,12.99.74,19.47,1.17,53.11,3.38,105.67,8.51,157.7,15.27Z" fill="url(#sgcLbG4)"/>
+
+                <text class="sgc-t" transform="translate(244.0801 1221.785)" fill="#fff" font-size="148.52" font-family="'MinionPro',Georgia,'Times New Roman',serif" font-weight="700" letter-spacing="4"><tspan x="0" y="0">SA</tspan><tspan x="192.33" y="0" letter-spacing="-3">I</tspan><tspan x="246.84" y="0" letter-spacing="-1.5">G</tspan><tspan x="368.93" y="0">A</tspan></text>
+                <text class="sgc-t" transform="translate(352.6792 1302.901)" fill="#fff" font-size="60" font-family="'MinionPro',Georgia,'Times New Roman',serif" font-weight="700" letter-spacing="6"><tspan x="0" y="0">CA</tspan><tspan x="89.82" y="0" letter-spacing="-1.2">N</tspan><tspan x="140.76" y="0" letter-spacing="-1.2">D</tspan><tspan x="189.24" y="0">I</tspan><tspan x="212.46" y="0">D</tspan></text>
+                <text class="sgc-t" x="483" y="1345" text-anchor="middle" fill="#cc9e2b" font-size="14" font-family="'Space Mono',Georgia,serif" letter-spacing="5">φ  1.618</text>
+
+              </g>
+            </svg>
+          </div>
+          <button class="sgc-lightbox__replay" id="sgcLbReplay" hidden type="button">↺ Replay</button>
+        </div>
+
+        <div class="sgc-lightbox__body">
+          <div class="sgc-lightbox__cat">Logo Design · Branding</div>
+          <h3 class="sgc-lightbox__title">Saiga Candid</h3>
+          <p class="sgc-lightbox__desc">
+            The **SAIGA CANDID** mark was built in **Adobe Illustrator** on a **Golden Ratio (φ 1.618)** grid — giving it precise proportions, visual balance, and a harmonious composition. The construction sequence above shows the full brand-identity process: the geometric grid, guide lines, the staged build-up of the silhouette, and the final result. The **SAIGA CANDID** wordmark was created using the **Cinzel Bold** typeface, chosen for its elegant, timeless character and strong visual presence, complementing the logo's geometric construction.
+
+          </p>
+
+          <!-- ===================================================================
+               MOCKUPS — свои PNG клади в /assets/images/saigacandid/ :
+                 mockup-1.png , mockup-2.png , mockup-3.png
+               (пока файла нет — покажется рамка-заглушка «Add PNG»).
+               Подписи (figcaption) меняй свободно.
+          ==================================================================== -->
+          <div class="sgc-lightbox__mocks">
+            <figure class="sgc-mock">
+              <div class="sgc-mock__img">
+                <img src="/assets/images/saiga/mockup1.png" alt="Saiga Candid mockup 1"
+                     loading="lazy" onerror="this.closest('.sgc-mock').classList.add('is-empty')">
+              </div>
+              <figcaption>Brand mockup 1</figcaption>
+            </figure>
+            <figure class="sgc-mock">
+              <div class="sgc-mock__img">
+                <img src="/assets/images/saiga/mockup2.png" alt="Saiga Candid mockup 2"
+                     loading="lazy" onerror="this.closest('.sgc-mock').classList.add('is-empty')">
+              </div>
+              <figcaption>Brand mockup 2</figcaption>
+            </figure>
+            <figure class="sgc-mock">
+              <div class="sgc-mock__img">
+                <img src="/assets/images/saiga/mockup3.png" alt="Saiga Candid mockup 3"
+                     loading="lazy" onerror="this.closest('.sgc-mock').classList.add('is-empty')">
+              </div>
+              <figcaption>Brand mockup 3</figcaption>
+            </figure>
+          </div>
+        </div>
+        <!-- ===== SAIGA — logo colour variants (drop your PNGs here) ===== -->
+      
+
+        <button class="sgc-lightbox__close" id="sgcLbClose" type="button" aria-label="Close">&times;</button>
+      </div>
+      
+    </div>
+    <!-- ============ /SAIGA CANDID lightbox ============ -->
+      
+<style>
+  /* poster on the card (unchanged) */
+  .sgc-card-stage{position:absolute;inset:0;overflow:hidden;pointer-events:none;background:#082342;}
+  .sgc-card-stage .sgc-svg{width:100%;height:100%;display:block;object-fit:contain;}
+  .sgc-card-stage .sgc-f,
+  .sgc-card-stage .sgc-t{opacity:1;}
+  #kineticCard{cursor:pointer;}
+
+  /* card: kill the extra air between desc and CTA */
+  #kineticCard .bcard__reveal-inner{gap:8px;}
+  #kineticCard .bcard__desc{margin:0 0 8px;}
+  #kineticCard .bcard__cta{margin-top:0;}
+
+  /* ===== Lightbox = centered scrollable modal ===== */
+  .sgc-lightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+    padding:20px;visibility:hidden;opacity:0;transition:opacity .3s ease,visibility 0s linear .3s;}
+  .sgc-lightbox.is-open{visibility:visible;opacity:1;transition:opacity .3s ease;}
+  .sgc-lightbox__backdrop{position:absolute;inset:0;background:rgba(5,14,28,.9);}
+
+  .sgc-lightbox__panel{position:relative;width:min(960px,94vw);max-height:92vh;overflow-y:auto;
+    -webkit-overflow-scrolling:touch;background:#061a33;border:1px solid rgba(204,158,43,.25);
+    border-radius:16px;box-shadow:0 40px 120px rgba(0,0,0,.6);
+    transform:translateY(24px) scale(.98);opacity:0;
+    transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .4s ease;}
+  .sgc-lightbox.is-open .sgc-lightbox__panel{transform:none;opacity:1;}
+
+  .sgc-lightbox__hero{position:relative;background:#082342;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:26px 16px 14px;}
+  .sgc-lightbox__stage{display:flex;justify-content:center;width:100%;}
+  .sgc-lightbox__stage .sgc-svg{height:auto;width:auto;max-width:100%;max-height:62vh;
+    display:block;border-radius:10px;background:#082342;}
+  .sgc-lightbox__stage .sgc-g,
+  .sgc-lightbox__stage .sgc-s,
+  .sgc-lightbox__stage .sgc-f,
+  .sgc-lightbox__stage .sgc-t{opacity:0;transition:opacity .5s ease;}
+
+  .sgc-lightbox__body{padding:22px 28px 30px;color:#e9eef5;}
+  
+  .sgc-lightbox__cat{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:#cc9e2b;}
+  .sgc-lightbox__title{font-family:Georgia,serif;font-size:26px;color:#fdf9d2;margin:4px 0 12px;}
+  .sgc-lightbox__desc{font-family:'DM Sans',sans-serif;font-size:14.5px;line-height:1.7;
+    color:#c7d2e0;max-width:66ch;}
+
+  .sgc-lightbox__mocks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+  .sgc-mock{margin:0;border-radius:12px;overflow:hidden;border:1px solid rgba(204,158,43,.18);background:#0a2542;}
+  .sgc-mock__img{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#0a2542,#123a63);}
+  .sgc-mock__img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sgc-mock.is-empty .sgc-mock__img img{display:none;}
+  .sgc-mock.is-empty .sgc-mock__img::after{content:"Add PNG";position:absolute;inset:0;display:flex;
+    align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;
+    letter-spacing:.12em;color:#5b7a9c;}
+  .sgc-mock figcaption{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:#8ba0b8;padding:9px 11px;}
+
+  .sgc-lightbox__replay,
+  .sgc-lightbox__close{border:1px solid rgba(204,158,43,.42);background:rgba(8,20,40,.7);color:#fdf9d2;
+    border-radius:10px;cursor:pointer;font-family:'Space Mono',monospace;transition:background .15s;}
+  .sgc-lightbox__replay:hover,
+  .sgc-lightbox__close:hover{background:rgba(204,158,43,.18);}
+  .sgc-lightbox__replay{margin-top:12px;padding:8px 16px;font-size:12px;letter-spacing:.05em;}
+  .sgc-lightbox__close{position:fixed;top:18px;right:18px;width:38px;height:38px;font-size:20px;line-height:1;
+    padding:0;z-index:5;}
+
+  /* responsive: phones */
+  @media (max-width:640px){
+    .sgc-lightbox{padding:0;}
+    .sgc-lightbox__panel{width:100vw;max-height:100vh;border-radius:0;border:none;}
+    .sgc-lightbox__stage .sgc-svg{max-height:52vh;}
+    .sgc-lightbox__body{padding:20px 18px 28px;}
+    .sgc-lightbox__title{font-size:22px;}
+    .sgc-lightbox__mocks{grid-template-columns:1fr;}
+  }
+</style>
+
+<script>
+/* ============ SAIGA lightbox (centered modal + build animation) ============ */
+(function(){
+  var card = document.getElementById('kineticCard');
+  if(!card) return;
+
+  var lightbox = document.getElementById('sgcLightbox'),
+      backdrop = document.getElementById('sgcLbBackdrop'),
+      panel    = document.getElementById('sgcLbPanel'),
+      svg      = document.getElementById('sgcLbSvg'),
+      closeBtn = document.getElementById('sgcLbClose'),
+      replayBtn= document.getElementById('sgcLbReplay');
+
+  var gs = svg.querySelectorAll('.sgc-g'),
+      ss = svg.querySelectorAll('.sgc-s'),
+      fs = svg.querySelectorAll('.sgc-f'),
+      ts = svg.querySelectorAll('.sgc-t');
+
+  var playing = false;
+
+  function lockScroll(on){
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    document.body.style.overflow = on ? 'hidden' : '';
+  }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function show(list, step, dur){
+    return new Promise(function(res){
+      var i = 0;
+      (function next(){
+        if(i >= list.length){ res(); return; }
+        list[i].style.transition = 'opacity ' + dur + 's';
+        list[i].style.opacity = 1; i++;
+        setTimeout(next, step);
+      })();
+    });
+  }
+  function hide(list, dur){ list.forEach(function(el){ el.style.transition = 'opacity ' + dur + 's'; el.style.opacity = 0; }); }
+  function resetLayers(){ [gs, ss, fs, ts].forEach(function(l){ l.forEach(function(el){ el.style.transition = 'none'; el.style.opacity = 0; }); }); }
+
+  async function run(){
+    if(playing) return;
+    playing = true; replayBtn.hidden = true;
+    resetLayers();
+    await wait(250);
+    await show(gs, 55, .4);
+    await wait(1000);
+    await show(ss, 150, .55);
+    await wait(1100);
+    hide(gs, 1);
+    await wait(1000);
+    await show(fs, 160, .8);
+    hide(ss, .9);
+    await wait(800);
+    await show(ts, 300, .9);
+    await wait(400);
+    replayBtn.hidden = false;
+    playing = false;
+  }
+
+  function open(){
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden','false');
+    lockScroll(true);
+    setTimeout(run, 350);
+    document.addEventListener('keydown', onKey);
+  }
+  function close(){
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden','true');
+    lockScroll(false);
+    setTimeout(function(){ resetLayers(); playing = false; replayBtn.hidden = true; if(panel) panel.scrollTop = 0; }, 300);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e){ if(e.key === 'Escape') close(); }
+
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  closeBtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+  backdrop.addEventListener('click', close);
+  replayBtn.addEventListener('click', function(e){ e.stopPropagation(); run(); });
+})();
+</script>
 
     <!-- c4: NOVA BANK -->
     <a href="portfolio/novabank.html" class="bcard bc-nova is-media sr d3">
@@ -319,7 +645,7 @@
   }
 </script>
 
-<!-- ── Video: inline muted previews + click opens player WITH sound ── -->
+<!-- ── Video: mobile-safe inline previews + click opens player WITH sound ── -->
 <script>
 (function () {
   const cards = Array.from(document.querySelectorAll('.bcard--video'));
@@ -328,7 +654,6 @@
   const allVideos = cards.map(c => c.querySelector('.bcard__video')).filter(Boolean);
   const visible = new Set();
 
-  // ── Lightbox refs ──
   const lightbox = document.getElementById('reelLightbox');
   const stage    = document.getElementById('reelStage');
   const backdrop = document.getElementById('reelBackdrop');
@@ -340,92 +665,93 @@
   const lbFill   = document.getElementById('reelProgressFill');
   let originRect = null;
 
-  // ── Inline previews: play only what's on screen (lazy src).
-  //    rootMargin gives mobile browsers a head start so video is
-  //    ready by the time the card actually enters the viewport. ──
+  // visualViewport gives the true visible size on mobile (URL bar in/out)
+  const vw = () => (window.visualViewport && window.visualViewport.width)  || window.innerWidth;
+  const vh = () => (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+
+  const lockScroll = on => {
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    document.body.style.overflow = on ? 'hidden' : '';
+  };
+
+  // surface the real reason a clip won't play (codec/path) instead of failing silently
+  video.addEventListener('error', () => {
+    const code = video.error ? video.error.code : '?';
+    console.warn('Reel video failed:', video.currentSrc, 'MediaError code', code);
+    if (titleEl && titleEl.textContent.indexOf('video error') === -1)
+      titleEl.textContent = titleEl.textContent + ' — video error';
+  });
+
+  // make an inline preview actually start on mobile: MUST be muted + playsinline;
+  // on iOS set src → load() → play() in the same task; retry once as muted.
+  function startPreview(v, src){
+    v.muted = true; v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    if (!v.getAttribute('src') && src){ v.setAttribute('src', src); v.load(); }
+    const go = () => v.play().catch(() => {});
+    if (v.readyState >= 2) go(); else v.addEventListener('canplay', go, { once: true });
+  }
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      const card = e.target;
-      const v = card.querySelector('.bcard__video');
+      const card = e.target, v = card.querySelector('.bcard__video');
       if (!v) return;
       if (e.isIntersecting) {
         visible.add(v);
-        if (!v.getAttribute('src') && card.dataset.video) v.setAttribute('src', card.dataset.video);
-        if (!lightbox.classList.contains('is-open')) v.play().catch(() => {});
-      } else {
-        visible.delete(v);
-        v.pause();
-      }
+        if (!lightbox.classList.contains('is-open')) startPreview(v, card.dataset.video);
+      } else { visible.delete(v); v.pause(); }
     });
   }, { threshold: 0.15, rootMargin: '200px 0px 200px 0px' });
 
   cards.forEach(card => {
-    const v = card.querySelector('.bcard__video');
-    const fill = card.querySelector('.bcard__progress-fill');
-
+    const v = card.querySelector('.bcard__video'), fill = card.querySelector('.bcard__progress-fill');
     if (v) {
-      v.muted = true;                        // ambient card preview stays muted
-      io.observe(card);
-      if (fill) {
-        v.addEventListener('timeupdate', () => {
-          if (v.duration) fill.style.width = (v.currentTime / v.duration * 100) + '%';
-        });
-      }
+      v.muted = true; io.observe(card);
+      if (fill) v.addEventListener('timeupdate', () => { if (v.duration) fill.style.width = (v.currentTime / v.duration * 100) + '%'; });
     }
-
-    // Clicking the video opens the enlarged player and plays it WITH sound.
     card.addEventListener('click', () => openReel(card));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openReel(card); }
-    });
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openReel(card); } });
   });
 
-  // ── Lightbox logic ──
   function finalRect() {
-    const isMobile = window.innerWidth <= 820;
-    const w = isMobile ? window.innerWidth * 0.94 : Math.min(window.innerWidth * 0.82, 1100);
-    const h = Math.min(window.innerHeight * (isMobile ? 0.7 : 0.8), w * 9 / 16);
-    return { top: (window.innerHeight - h) / 2, left: (window.innerWidth - w) / 2, width: w, height: h };
+    const W = vw(), H = vh(), isMobile = W <= 820;
+    const w = isMobile ? W * 0.94 : Math.min(W * 0.82, 1100);
+    const h = Math.min(H * (isMobile ? 0.7 : 0.8), w * 9 / 16);
+    return { top: (H - h) / 2, left: (W - w) / 2, width: w, height: h };
+  }
+  function place(rect, radius){
+    stage.style.top = rect.top+'px'; stage.style.left = rect.left+'px';
+    stage.style.width = rect.width+'px'; stage.style.height = rect.height+'px';
+    if (radius != null) stage.style.borderRadius = radius;
   }
 
-  video.addEventListener('timeupdate', () => {
-    if (lbFill && video.duration) lbFill.style.width = (video.currentTime / video.duration * 100) + '%';
-  });
+  video.addEventListener('timeupdate', () => { if (lbFill && video.duration) lbFill.style.width = (video.currentTime / video.duration * 100) + '%'; });
 
   function openReel(card) {
-    allVideos.forEach(v => v.pause());     // pause inline previews so audio never doubles up
+    allVideos.forEach(v => v.pause());   // pause inline previews so audio never doubles up
     originRect = card.getBoundingClientRect();
-    video.src = card.dataset.video || '';
+    lockScroll(true);
+
+    video.setAttribute('playsinline','');
+    video.src = card.dataset.video || ''; video.load();
     catEl.textContent = card.dataset.cat || '';
     titleEl.textContent = card.dataset.title || '';
-    video.muted = false;                 // play WITH sound on click
-    muteBtn.textContent = '🔊';
+    video.muted = false; muteBtn.textContent = '🔊';   // play WITH sound on click
     if (lbFill) lbFill.style.width = '0%';
 
     stage.style.transition = 'none';
-    stage.style.top = originRect.top + 'px';
-    stage.style.left = originRect.left + 'px';
-    stage.style.width = originRect.width + 'px';
-    stage.style.height = originRect.height + 'px';
-    stage.style.borderRadius = '16px';
+    place(originRect, '16px');
     lightbox.classList.add('is-open');
     void stage.offsetWidth;
 
     requestAnimationFrame(() => {
       stage.style.transition = '';
       lightbox.classList.add('is-visible');
-      const f = finalRect();
-      stage.style.top = f.top + 'px';
-      stage.style.left = f.left + 'px';
-      stage.style.width = f.width + 'px';
-      stage.style.height = f.height + 'px';
-      stage.style.borderRadius = '10px';
+      place(finalRect(), '10px');
     });
 
-    // click is a user gesture, so sound is allowed; if a browser still blocks it, fall back to muted
+    // tap is a user gesture, so sound is allowed; if still blocked, fall back to muted
     video.play().catch(() => {
-      video.muted = true;
-      muteBtn.textContent = '🔇';
+      video.muted = true; muteBtn.textContent = '🔇';
       video.play().catch(() => {});
     });
     document.addEventListener('keydown', onKeydown);
@@ -433,41 +759,26 @@
 
   function closeReel() {
     lightbox.classList.remove('is-visible');
-    stage.style.top = originRect.top + 'px';
-    stage.style.left = originRect.left + 'px';
-    stage.style.width = originRect.width + 'px';
-    stage.style.height = originRect.height + 'px';
-    stage.style.borderRadius = '16px';
-
+    place(originRect, '16px');
     setTimeout(() => {
       lightbox.classList.remove('is-open');
-      video.pause();
-      video.removeAttribute('src');
-      video.load();
-      // resume inline previews still on screen (muted)
-      visible.forEach(v => { v.muted = true; v.play().catch(() => {}); });
+      video.pause(); video.removeAttribute('src'); video.load();
+      lockScroll(false);
+      visible.forEach(v => startPreview(v));   // resume on-screen previews (muted)
     }, 480);
-
     document.removeEventListener('keydown', onKeydown);
   }
 
   function onKeydown(e) { if (e.key === 'Escape') closeReel(); }
+  function reposition(){ if (lightbox.classList.contains('is-visible')) place(finalRect(), null); }
 
   closeBtn.addEventListener('click', closeReel);
   backdrop.addEventListener('click', closeReel);
-  muteBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? '🔇' : '🔊';
-  });
+  muteBtn.addEventListener('click', () => { video.muted = !video.muted; muteBtn.textContent = video.muted ? '🔇' : '🔊'; });
 
-  window.addEventListener('resize', () => {
-    if (!lightbox.classList.contains('is-visible')) return;
-    const f = finalRect();
-    stage.style.top = f.top + 'px';
-    stage.style.left = f.left + 'px';
-    stage.style.width = f.width + 'px';
-    stage.style.height = f.height + 'px';
-  });
+  window.addEventListener('resize', reposition);
+  window.addEventListener('orientationchange', () => setTimeout(reposition, 300));
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', reposition);
 })();
 </script>
 
