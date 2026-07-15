@@ -1,7 +1,11 @@
- (function () {
-    function initNBTabs() {
-      var tabs = document.querySelectorAll('.nb-tab');
-      var panels = document.querySelectorAll('.nb-tab-panel');
+(function () {
+  function initNBTabs() {
+    var tabGroups = document.querySelectorAll('.nb-tabs');
+
+    tabGroups.forEach(function (tabGroup) {
+      var tabs = tabGroup.querySelectorAll('.nb-tab');
+      var section = tabGroup.closest('.case-section') || document;
+      var panels = section.querySelectorAll('.nb-tab-panel');
 
       if (!tabs.length || !panels.length) return;
 
@@ -24,11 +28,12 @@
           });
         });
       });
-    }
+    });
+  }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initNBTabs);
-    } else {
-      initNBTabs();
-    }
-  })();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNBTabs);
+  } else {
+    initNBTabs();
+  }
+})();
