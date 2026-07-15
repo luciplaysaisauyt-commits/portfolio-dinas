@@ -335,6 +335,7 @@
             <span class="pf-zoom-val" id="pfZoomVal">100%</span>
             <button class="pf-btn" id="pfZoomIn" title="Zoom in">+</button>
             <button class="pf-btn" id="pfReset" title="Reset">⊡</button>
+            <button class="pf-btn" id="pfDownload" title="Download">⬇</button>
             <button class="pf-btn pf-btn--close" id="pfClose" aria-label="Close">✕</button>
           </div>
           <div class="pf-modal__vp" id="pfVp">
@@ -356,6 +357,7 @@
   const loading=document.getElementById('pfLoading'), backdrop=document.getElementById('pfBackdrop');
   const closeBtn=document.getElementById('pfClose'), zoomInB=document.getElementById('pfZoomIn');
   const zoomOutB=document.getElementById('pfZoomOut'), resetB=document.getElementById('pfReset');
+  const downloadBtn=document.getElementById('pfDownload');
   const zoomLbl=document.getElementById('pfZoomVal'), prevBtn=document.getElementById('pfPrev');
   const nextBtn=document.getElementById('pfNext'), counter=document.getElementById('pfCounter');
   const slideInd=document.getElementById('pfSlideInd');
@@ -381,6 +383,24 @@
   function goTo(idx){if(idx<0||idx>=gallery.length)return;currentIdx=idx;const c=gallery[currentIdx],i=c.querySelector('img');if(i)showImage(i.src,i.alt);updateNav();}
   function goPrev(){goTo(currentIdx-1);} function goNext(){goTo(currentIdx+1);}
   prevBtn.addEventListener('click',goPrev); nextBtn.addEventListener('click',goNext);
+  downloadBtn.addEventListener('click', function(){
+  if (!img.src) return;
+  var url = img.src;
+  var filename = url.split('/').pop().split('?')[0] || 'image.png';
+  fetch(url)
+    .then(function(res){ return res.blob(); })
+    .then(function(blob){
+      var blobUrl = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(blobUrl); }, 1000);
+    })
+    .catch(function(){ window.open(url, '_blank'); });
+});
 
   let scale=1; const MIN_SCALE=0.5,MAX_SCALE=6,ZOOM_STEP=0.4;
   function applyScale(){img.style.transform=`scale(${scale})`;img.style.transformOrigin='top center';img.style.width=scale<1?`${100/scale}%`:'100%';zoomLbl.textContent=Math.round(scale*100)+'%';}
@@ -420,6 +440,76 @@
     else{card.classList.add('snapping');card.style.transform='';card.style.opacity='';setTimeout(()=>card.classList.remove('snapping'),320);}
     touchDX=touchDY=0;swipeDir=null;
   },{passive:true});
+
+  /* ── POINTER DRAG SWIPE (десктоп) ── */
+let ptrDown = false, ptrStartX = 0, ptrStartY = 0, ptrDX = 0, ptrDY = 0, ptrSwipeDir = null, ptrVelX = 0, lastPtrX = 0, lastPtrT = 0, activePtrId = null;
+
+vp.addEventListener('pointerdown', function(e){
+  if (e.pointerType !== 'mouse') return; // touch уже обрабатывается отдельно
+  if (scale !== 1) return;
+  if (e.target.closest('.pf-nav-btn, .pf-btn')) return;
+  ptrDown = true; activePtrId = e.pointerId;
+  ptrStartX = e.clientX; ptrStartY = e.clientY;
+  ptrDX = ptrDY = 0; ptrSwipeDir = null; ptrVelX = 0;
+  lastPtrX = ptrStartX; lastPtrT = Date.now();
+  card.classList.remove('snapping', 'sliding');
+  vp.style.cursor = 'grabbing';
+  vp.setPointerCapture(e.pointerId);
+  e.preventDefault();
+});
+
+vp.addEventListener('pointermove', function(e){
+  if (!ptrDown || e.pointerId !== activePtrId) return;
+  const dx = e.clientX - ptrStartX, dy = e.clientY - ptrStartY;
+  ptrDX = dx; ptrDY = dy;
+  const now = Date.now(), dt = now - lastPtrT;
+  if (dt > 0) ptrVelX = (e.clientX - lastPtrX) / dt;
+  lastPtrX = e.clientX; lastPtrT = now;
+
+  if (!ptrSwipeDir) {
+    const absDX = Math.abs(dx), absDY = Math.abs(dy);
+    if (absDX < 6 && absDY < 6) return;
+    ptrSwipeDir = absDX > absDY ? 'x' : 'y';
+  }
+
+  if (ptrSwipeDir === 'x' && scale === 1) {
+    const atStart = currentIdx === 0 && dx > 0, atEnd = currentIdx === gallery.length - 1 && dx < 0;
+    card.style.transform = `translateX(${(atStart || atEnd) ? dx * 0.18 : dx}px)`;
+  }
+});
+
+function endPointerDrag(e){
+  if (!ptrDown || (e && e.pointerId !== activePtrId)) return;
+  ptrDown = false;
+  vp.style.cursor = 'grab';
+  if (activePtrId !== null) { try { vp.releasePointerCapture(activePtrId); } catch(err){} }
+  activePtrId = null;
+
+  if (ptrSwipeDir === 'x' && scale === 1) {
+    card.classList.add('sliding');
+    const fastFlick = Math.abs(ptrVelX) > 0.4;
+    if ((ptrDX < -SWIPE_NAV_X || (fastFlick && ptrVelX < 0)) && currentIdx < gallery.length - 1) {
+      card.style.transform = 'translateX(-48px)';
+      setTimeout(() => { card.classList.remove('sliding'); card.style.transform = ''; goNext(); showIndicator('next'); }, 220);
+    } else if ((ptrDX > SWIPE_NAV_X || (fastFlick && ptrVelX > 0)) && currentIdx > 0) {
+      card.style.transform = 'translateX(48px)';
+      setTimeout(() => { card.classList.remove('sliding'); card.style.transform = ''; goPrev(); showIndicator('prev'); }, 220);
+    } else {
+      card.style.transform = '';
+      setTimeout(() => card.classList.remove('sliding'), 300);
+    }
+  }
+  ptrDX = ptrDY = 0; ptrSwipeDir = null;
+}
+
+vp.addEventListener('pointerup', endPointerDrag);
+vp.addEventListener('pointercancel', endPointerDrag);
+
+var isTouchPF = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+if (!isTouchPF) {
+  vp.style.cursor = 'grab';
+}
+
 
   let hintShown=false;
   function open(clickedCard){
