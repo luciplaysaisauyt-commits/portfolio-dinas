@@ -22,7 +22,7 @@ body {
   font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;       /* kill any horizontal scroll */
+  overflow-x: hidden;
 }
 
 body::before {
@@ -84,21 +84,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   BENTO GRID — layout matches the hand sketch, but with
-   Kinetic Type Reel (c3) swapped with The Weeknd Poster (c7):
-
-     ┌────┬─────────────┬────┐
-     │ 1  │      2      │    │
-     ├────┼────┬────┬───┤ 3  │   ← now Weeknd (video)
-     │ 4  │ 5  │ 6  │   │    │
-     ├────┴────┴────┴───┼────┤
-     │         7         │ 8  │   ← now Kinetic Type Reel
-     ├────┬───────┬──────┴────┤
-     │ 9  │  10   │    11     │
-     └────┴───────┴───────────┘
-
-   4 columns × 4 rows, driven by grid-template-areas so nothing can
-   drift out of place regardless of content length.
+   BENTO GRID
 ───────────────────────────────────── */
 .bento {
   display: grid;
@@ -114,11 +100,11 @@ a { text-decoration: none; color: inherit; }
 
 .bc-intro   { grid-area: c1; }
 .bc-unnie   { grid-area: c2; }
-.bc-kinetic { grid-area: c7; }   /* swapped: was c3 */
+.bc-kinetic { grid-area: c7; }
 .bc-nova    { grid-area: c4; }
 .bc-mschf   { grid-area: c5; }
 .bc-avion   { grid-area: c6; }
-.bc-weeknd  { grid-area: c3; }   /* swapped: was c7 */
+.bc-weeknd  { grid-area: c3; }
 .bc-clm     { grid-area: c8; }
 .bc-ktypo   { grid-area: c9; }
 .bc-loop    { grid-area: c10; }
@@ -138,7 +124,6 @@ a { text-decoration: none; color: inherit; }
   display: block;
   isolation: isolate;
 }
-/* only media cards lift/glow on hover */
 .bcard.is-media:hover {
   transform: translateY(-3px);
   border-color: var(--border-h);
@@ -149,10 +134,8 @@ a { text-decoration: none; color: inherit; }
   z-index: 10;
 }
 
-/* CTA card — overflow visible for the resume dropdown */
 .bcard.bc-cta { overflow: visible; }
 
-/* keyboard focus */
 .bcard:focus-visible,
 .cta-btn:focus-visible,
 .cv-dropdown-btn:focus-visible,
@@ -162,7 +145,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   MEDIA LAYER  (gradient fallback + real image/video drop-in)
+   MEDIA LAYER
 ───────────────────────────────────── */
 .bcard__bg {
   position: absolute; inset: 0; z-index: 0;
@@ -184,7 +167,6 @@ a { text-decoration: none; color: inherit; }
   filter: brightness(0.95) saturate(1);
 }
 
-/* gradient fills (fallback tones) */
 .pg-intro  { background: radial-gradient(ellipse at 70% 60%, rgba(200,169,110,0.07) 0%, transparent 65%), #0d0c0a; }
 .pg-unnie  { background: linear-gradient(145deg, #0d1b2a 0%, #1a2f4a 50%, #0a1520 100%); }
 .pg-nova   { background: linear-gradient(145deg, #080f18 0%, #0e1f30 50%, #060d18 100%); }
@@ -198,7 +180,7 @@ a { text-decoration: none; color: inherit; }
 .pg-ktypo  { background: linear-gradient(145deg, #0a0f18 0%, #182a3d 50%, #080d16 100%); }
 
 /* ─────────────────────────────────────
-   READABILITY SCRIM  (always on, so titles read at rest)
+   READABILITY SCRIM
 ───────────────────────────────────── */
 .bcard__scrim {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -212,7 +194,7 @@ a { text-decoration: none; color: inherit; }
 .bcard.is-media:hover .bcard__scrim { opacity: 1; }
 
 /* ─────────────────────────────────────
-   CARD CONTENT  (title visible at rest, details reveal on hover)
+   CARD CONTENT
 ───────────────────────────────────── */
 .bcard__content {
   position: absolute; left: 0; right: 0; bottom: 0;
@@ -231,7 +213,6 @@ a { text-decoration: none; color: inherit; }
   text-shadow: 0 1px 18px rgba(0,0,0,0.5);
 }
 
-/* the reveal drawer (desc + stats + cta) animates height smoothly */
 .bcard__reveal {
   display: grid;
   grid-template-rows: 0fr;
@@ -259,7 +240,6 @@ a { text-decoration: none; color: inherit; }
 .bcard__cta:hover { background: rgba(200,169,110,0.14); border-color: rgba(200,169,110,0.5); }
 .bcard__cta svg { width: 9px; height: 9px; }
 
-/* status pill variant (e.g. "In Progress") */
 .bcard__cta--status {
   background: rgba(200,169,110,0.10);
   border-color: rgba(200,169,110,0.22);
@@ -271,7 +251,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   STAT CHIPS  (optional per card — fill with real numbers)
+   STAT CHIPS
 ───────────────────────────────────── */
 .bcard__stats {
   display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
@@ -287,36 +267,90 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   DEVICE MOCKUP FRAMES  (optional utilities for UI shots)
+   DEVICE MOCKUP FRAMES (phone + browser preview placeholders)
+   Fixed px sizing so cards of any grid size (1-cell or 2-cell) stay stable.
 ───────────────────────────────────── */
-.mock { position: absolute; z-index: 1; overflow: hidden; }
-.mock img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.mock--phone {
-  width: 46%; aspect-ratio: 9 / 19.5;
-  right: 8%; bottom: -8%;
-  border-radius: 22px;
-  border: 6px solid #111;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-  transform: rotate(4deg);
-  transition: transform 0.6s var(--ease);
+.bcard__mockup{
+  position: absolute;
+  top: 20px; left: 16px; right: 16px; bottom: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
-.bcard.is-media:hover .mock--phone { transform: rotate(2deg) translateY(-6px); }
-.mock--browser {
-  width: 74%; aspect-ratio: 16 / 10;
-  right: -6%; bottom: -10%;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+
+.bcard__phone{
+  position: relative;
+  width: 130px;
+  aspect-ratio: 9 / 19.5;
+  background: #0a0a0a;
+  border-radius: 24px;
+  border: 3px solid rgba(255,255,255,.10);
+  box-shadow: 0 20px 40px rgba(0,0,0,.55);
+  overflow: hidden;
+  flex-shrink: 0;
   transform: rotate(-3deg);
-  transition: transform 0.6s var(--ease);
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
-.bcard.is-media:hover .mock--browser { transform: rotate(-1.5deg) translateY(-6px); }
+.bcard:hover .bcard__phone{ transform: rotate(0deg) scale(1.05); }
+.bcard__phone-notch{
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 36%; height: 12px; background: #0a0a0a; border-radius: 7px; z-index: 2;
+}
+.bcard__phone-screen{
+  position: absolute; inset: 4px; border-radius: 19px; overflow: hidden;
+  background: linear-gradient(160deg,#12131a,#000);
+  display: flex; align-items: center; justify-content: center;
+}
+.bcard__phone-screen img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.bcard__phone-screen img.is-hidden{ display: none; }
+.bcard__phone-screen .ph-empty{
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.32);
+}
+
+.bcard__browser{
+  position: relative;
+  width: min(280px, 100%);
+  aspect-ratio: 16 / 10.5;
+  background: #0d1420;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 16px 34px rgba(0,0,0,.5);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+}
+.bcard:hover .bcard__browser{ transform: translateY(-3px) scale(1.02); }
+.bcard__browser-bar{
+  height: 22px; display: flex; align-items: center; gap: 4px;
+  padding: 0 9px; background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.bcard__browser-bar span{ width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.16); }
+.bcard__browser-screen{
+  position: absolute; inset: 0; top: 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg,#0f1826,#050a12);
+}
+.bcard__browser-screen img{ width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.bcard__browser-screen img.is-hidden{ display: none; }
+.bcard__browser-screen .ph-empty{
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.32);
+}
+
+/* small 1-cell cards need a smaller browser frame so it never overflows */
+.bc-mschf .bcard__browser,
+.bc-avion .bcard__browser{ width: 190px; }
 
 /* ─────────────────────────────────────
    MOTION / VIDEO TILES
 ───────────────────────────────────── */
 .bcard--video { cursor: pointer; }
-.bcard__video { /* inherits .bcard__media */ }
+.bcard__video { }
 
 .bcard__progress {
   position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
@@ -328,7 +362,6 @@ a { text-decoration: none; color: inherit; }
   transition: width 0.12s linear;
 }
 
-/* sound toggle — the ONLY control that touches audio */
 .bcard__sound {
   position: absolute; top: 12px; right: 12px; z-index: 6;
   width: 34px; height: 34px; border-radius: 50%;
@@ -346,7 +379,6 @@ a { text-decoration: none; color: inherit; }
 .bcard__sound.is-on .icon-on  { display: block; }
 .bcard__sound.is-on .icon-off { display: none; }
 
-/* subtle "expand" hint appears on hover, bottom-right */
 .bcard__expand {
   position: absolute; right: 12px; bottom: 10px; z-index: 5;
   display: inline-flex; align-items: center; gap: 5px;
@@ -361,8 +393,6 @@ a { text-decoration: none; color: inherit; }
 
 .bc-weeknd .bcard__title { font-size: clamp(20px, 2.4vw, 30px); }
 
-/* status-only cards (no hover reveal) — content anchored to the bottom,
-   consistent with the other media cards */
 .bc-kinetic .bcard__content,
 .bc-ktypo   .bcard__content {
   position: absolute;
@@ -587,7 +617,7 @@ a { text-decoration: none; color: inherit; }
 .d7{transition-delay:.40s} .d8{transition-delay:.46s}
 
 /* ─────────────────────────────────────
-   REEL LIGHTBOX (enlarged video player)
+   REEL LIGHTBOX
 ───────────────────────────────────── */
 .reel-lightbox { position: fixed; inset: 0; z-index: 1000; display: none; }
 .reel-lightbox.is-open { display: block; }
@@ -613,7 +643,6 @@ a { text-decoration: none; color: inherit; }
 .reel-lightbox__meta-cat { font-family: var(--mono); font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
 .reel-lightbox__meta-title { font-family: var(--serif); font-size: clamp(18px, 3vw, 24px); color: #fff; margin-top: 3px; }
 
-/* lightbox progress bar */
 .reel-lightbox__progress {
   position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 3;
   background: rgba(255,255,255,0.14);
@@ -634,11 +663,18 @@ a { text-decoration: none; color: inherit; }
 .reel-lightbox__close { right: 16px; }
 .reel-lightbox__mute { right: 62px; font-size: 13px; }
 
+.reel-lightbox__fallback-poster{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1;
+  display: none;
+}
+.reel-lightbox__fallback-poster:not([hidden]){
+  display: block;
+}
+
 /* ═════════════════════════════════════
    RESPONSIVE
-   4 columns (sketch layout) → 2 columns (≤1024) → 1 column (≤620).
 ═════════════════════════════════════ */
-/* tablets : 2-up, natural flow */
 @media (max-width: 1024px) {
   :root { --gap: 10px; }
   .bento {
@@ -648,11 +684,9 @@ a { text-decoration: none; color: inherit; }
   }
   .bento > * { grid-area: auto !important; }
   .bc-intro, .bc-weeknd, .bc-kinetic, .bc-cta { grid-column: span 2; }
-  /* CTA is text-heavy: span full width + two rows so its buttons never clip */
   .bc-cta { grid-column: span 2 !important; grid-row: span 2 !important; }
 }
 
-/* phones : 1-up, height driven by content, with a robust fix for video cards */
 @media (max-width: 620px) {
   .gallery-header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 8px 0 26px; }
   .gallery-header__count { font-size: 46px; }
@@ -670,14 +704,12 @@ a { text-decoration: none; color: inherit; }
     min-height: 0 !important;
   }
 
-  /* контент в потоке у ВСЕХ карточек — фикс наслоения */
   .bcard__content {
     position: relative !important;
     inset: auto !important;
     height: auto !important;
   }
 
-  /* ── Картиночные / статусные (текстовые) карточки — высота по контенту ── */
   .bcard.is-media:not(.bcard--video),
   .bc-kinetic,
   .bc-ktypo {
@@ -693,9 +725,6 @@ a { text-decoration: none; color: inherit; }
     padding: 18px 20px;
   }
 
-  /* ── Видео-карточки — фиксированная высота через aspect-ratio + страховка
-       min-height, иначе видео-слой (position:absolute; inset:0) может схлопнуться
-       в 0 высоты на некоторых мобильных браузерах ── */
   .bcard--video {
     aspect-ratio: 4 / 3 !important;
     min-height: 260px !important;
@@ -718,13 +747,11 @@ a { text-decoration: none; color: inherit; }
     padding: 18px 20px;
   }
 
-  /* always show full card content on small screens (no hover) */
   .bcard__reveal { grid-template-rows: 1fr !important; opacity: 1 !important; }
   .bcard__reveal-inner { padding-bottom: 0 !important; }
 
   .intro__bio { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 
-  /* ── Reorder: intro first → all UI/UX projects → all motion/3D reels → CTA last ── */
   .bc-intro   { order: 1; }
   .bc-unnie   { order: 2; }
   .bc-nova    { order: 3; }
@@ -739,7 +766,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─────────────────────────────────────
-   TOUCH DEVICES — hover degrades gracefully
+   TOUCH DEVICES
 ───────────────────────────────────── */
 @media (hover: none) {
   .bcard__reveal { grid-template-rows: 1fr !important; opacity: 1 !important; }
@@ -748,20 +775,3 @@ a { text-decoration: none; color: inherit; }
   .bcard.is-media:hover .bcard__media { transform: none; }
   .bcard__expand { opacity: 1; transform: none; }
 }
-
-
-
-
-.reel-lightbox__fallback-poster{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; z-index:1;
-  display:none; /* добавили */
-}
-.reel-lightbox__fallback-poster:not([hidden]){
-  display:block; /* добавили */
-}
-
-
-
-
-
