@@ -701,8 +701,8 @@ h1, h2, h3, h4 {
 .theme-dairy .pf--slide > img { object-fit: contain; object-position: center; }
 .theme-dairy .pf--slide:hover > img { transform: scale(1.02); }
 
-/* Cropped hi-fi phone screens (label banner + phone) — fill frame exactly */
-.theme-dairy .pf--screen { aspect-ratio: 376 / 1022; background: #cdeff3; }
+/* Clean hi-res phone screens — fill frame exactly */
+.theme-dairy .pf--screen { aspect-ratio: 652 / 1452; background: #eef7f8; }
 .theme-dairy .pf--screen > img { object-fit: cover; object-position: top center; }
 
 /* Grid of the 8 hi-fi screens */
