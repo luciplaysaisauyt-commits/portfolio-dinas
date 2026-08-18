@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN – Dairy Drop Case Study</title>
+  <link rel="icon" type="image/png" href="/assets/images/DIN.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/typography.css">
+  <link rel="stylesheet" href="/assets/css/dairydrop.css">
+  <link rel="stylesheet" href="/assets/css/project-frames.css">
+</head>
+
+<body class="theme-dairy">
+
+  <!-- BG Elements -->
+  <div class="ps-bg"></div>
+  <div class="ps-grid"></div>
+  <div class="ps-orb ps-orb-1"></div>
+  <div class="ps-orb ps-orb-2"></div>
+  <div class="ps-orb ps-orb-3"></div>
+  <div class="ps-orb ps-orb-4"></div>
+  <div class="ps-progress" id="psProgress"></div>
+
+  <!-- HEADER -->
+  <header class="nav" id="topnav">
+    <div class="logo"><a href="../index.html"><img src="/assets/images/DIN.png" alt="DIN" class="logo-img"></a></div>
+    <button class="burger" id="burger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
+    <nav class="menu">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../contactus.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-top">
+        <button class="mobile-close" id="mobileClose" type="button">✕</button>
+      </div>
+      <div class="mobile-menu-links">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../contactus.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="ps-page-wrap">
+
+    <!-- SUBNAV -->
+    <div class="case-subnav" data-case-subnav>
+      <div class="case-subnav-inner">
+        <div class="case-subnav-pill" role="navigation" aria-label="Case sections">
+          <a href="#overview"  class="case-subnav-link">Overview</a>
+          <a href="#problem"   class="case-subnav-link">Problem</a>
+          <a href="#role"      class="case-subnav-link">Role</a>
+          <a href="#brand"     class="case-subnav-link">Brand</a>
+          <a href="#research"  class="case-subnav-link">Research</a>
+          <a href="#personas"  class="case-subnav-link">Personas</a>
+          <a href="#flows"     class="case-subnav-link">Flows & IA</a>
+          <a href="#screens"   class="case-subnav-link">Screens</a>
+          <a href="#learnings" class="case-subnav-link">Reflection</a>
+        </div>
+      </div>
+    </div>
+
+    <main style="position:relative;z-index:1;color:#fff;padding-top:14px">
+      <div class="case-wrap">
+
+        <!-- HERO -->
+        <div class="case-hero" data-reveal>
+
+          <!-- HERO TEXT -->
+          <div>
+            <div class="case-eyebrow">UX/UI · Mobile App · Case Study</div>
+            <h1 class="case-title">Dairy<br>Drop</h1>
+            <p class="case-sub">An end-to-end UX/UI case study for a subscription-based dairy &amp; non-dairy delivery app — designed to feel as effortless as “set it and forget it,” from first search to one-tap subscription control.</p>
+            <div class="case-actions">
+              <a class="btn-case primary" href="https://www.figma.com/proto/KAhnhnkhG43kO1ZOyrz4IA/UX-dairy-?node-id=176-1966&t=i4s4Df1K8RB-hct8d-1" target="_blank" rel="noopener">▶ Live prototype</a>
+              <a class="btn-case" href="../index.html">← Back to gallery</a>
+              <a class="btn-case" href="../contactus.html">Get in touch</a>
+            </div>
+            <div class="case-meta" style="margin-top:22px">
+              <div class="meta-card"><div class="meta-k">Role</div><div class="meta-v">Sole UX/UI Designer</div></div>
+              <div class="meta-card"><div class="meta-k">Tools</div><div class="meta-v"><span class="chip">Figma</span><span class="chip">Miro</span></div></div>
+              <div class="meta-card"><div class="meta-k">Focus</div><div class="meta-v">Research · IA · Subscription UX</div></div>
+              <div class="meta-card"><div class="meta-k">Deliverables</div><div class="meta-v">8 hi-fi screens · Prototype</div></div>
+            </div>
+          </div>
+
+          <!-- HERO IMAGE -->
+          <div class="pf pf--slide" style="border-radius:24px;border-color:rgba(140,228,237,0.28)" data-reveal data-reveal-delay="2">
+            <img src="/assets/images/dairydrop/p001.png" alt="Dairy Drop — UX/UI case study cover" loading="lazy" decoding="async">
+            <span class="pf__badge">UX/UI Case Study</span>
+          </div>
+
+        </div>
+
+        <div class="case-sections">
+
+          <!-- OVERVIEW -->
+          <section class="case-section" id="overview" data-reveal>
+            <div class="case-eyebrow">Project Overview</div>
+            <h2 class="case-h2">“Set it and forget it” dairy delivery</h2>
+            <p class="case-p">DairyDrop is a subscription-based dairy and non-dairy delivery service that gives customers the convenience of a grocery run — without the trip. The goal was a validated, low-friction flow built around three things: search, transparency, and effortless subscription control.</p>
+            <p class="case-p" style="margin-top:12px">The approach combined competitive research, primary user interviews, and quantitative market data to move from assumptions about the target user to a design grounded in real behaviour.</p>
+            <div class="case-stats" style="margin-top:26px">
+              <div class="stat" data-reveal data-reveal-delay="1"><div class="stat-n">8</div><div class="stat-t">Hi-fi screens designed</div></div>
+              <div class="stat" data-reveal data-reveal-delay="2"><div class="stat-n">2</div><div class="stat-t">Validated personas &amp; empathy maps</div></div>
+              <div class="stat" data-reveal data-reveal-delay="3"><div class="stat-n">4</div><div class="stat-t">Competitors benchmarked</div></div>
+            </div>
+          </section>
+
+          <!-- PROBLEM -->
+          <section class="case-section" id="problem" data-reveal>
+            <div class="case-eyebrow">The Challenge</div>
+            <h2 class="case-h2">How might we make dairy delivery reliable and flexible?</h2>
+            <p class="case-p">How might we help customers achieve reliable, flexible dairy delivery without unpredictable delivery windows and confusing subscription management?</p>
+            <div class="pf pf--slide" style="margin-top:20px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Problem &amp; Challenge</span>
+              <img src="/assets/images/dairydrop/p003.png" alt="Problem question and the four core challenges" loading="lazy" decoding="async">
+            </div>
+            <div class="case-process">
+              <div class="pstep" data-reveal data-reveal-delay="1"><div class="pnum">01</div><div class="ptitle">Unpredictable windows</div><div class="pdesc">Customers skipped entire weeks because they couldn’t plan around uncertain arrival times.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="2"><div class="pnum">02</div><div class="ptitle">Confusing subscriptions</div><div class="pdesc">No clear path to pause, skip, or modify an order — leading to cancellations instead of adjustments.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="3"><div class="pnum">03</div><div class="ptitle">No origin transparency</div><div class="pdesc">Customers wanted to know which farm their milk came from — existing UIs gave no traceability.</div></div>
+              <div class="pstep" data-reveal data-reveal-delay="4"><div class="pnum">04</div><div class="ptitle">High new-user friction</div><div class="pdesc">Account creation was required before browsing, causing drop-off at the top of the funnel.</div></div>
+            </div>
+          </section>
+
+          <!-- ROLE -->
+          <section class="case-section" id="role" data-reveal>
+            <div class="case-eyebrow">My Role &amp; Vision</div>
+            <h2 class="case-h2">Sole designer, end-to-end</h2>
+            <p class="case-p">I owned research, strategy, interaction design and visual design. The design goal was <em>invisibility</em> — every decision measured against one question: does this remove a step, or add one?</p>
+            <div class="case-grid2">
+              <div class="case-card" data-reveal data-reveal-delay="1">
+                <h3>Responsibilities</h3>
+                <p>Competitive analysis, qualitative interviews, market &amp; abandonment research, personas, empathy maps, IA and sitemap, speed sketching, A/B testing, wireframes, and a brand-aligned hi-fi UI system.</p>
+              </div>
+              <div class="case-card" data-reveal data-reveal-delay="2">
+                <h3>Success criteria</h3>
+                <p>A first-time user reaches a product page without an account · any product is findable in one search · pause/skip takes no more than two taps · delivery ETA is visible before checkout.</p>
+              </div>
+            </div>
+            <div class="pf pf--slide" style="margin-top:16px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Role &amp; Project Vision</span>
+              <img src="/assets/images/dairydrop/p004.png" alt="My role and project vision" loading="lazy" decoding="async">
+            </div>
+          </section>
+
+          <!-- BRAND -->
+          <section class="case-section" id="brand" data-reveal>
+            <div class="case-eyebrow">Brand Identity</div>
+            <h2 class="case-h2">Colors and typography</h2>
+            <p class="case-p">A clean, dairy-fresh identity — a soft cyan carried by black and neutral surfaces. Confident serif display for headlines, humanist sans for the interface.</p>
+            <div class="case-swatch-row" style="margin-top:18px">
+              <div class="sw" style="--c:#000000"><span>Ink</span><b>#000000</b></div>
+              <div class="sw" style="--c:#8CE4ED"><span>Cyan</span><b>#8CE4ED</b></div>
+              <div class="sw" style="--c:#DFE5E5"><span>Mist</span><b>#DFE5E5</b></div>
+              <div class="sw" style="--c:#FFFFFF;border-color:rgba(255,255,255,.14)"><span>Surface</span><b>#FFFFFF</b></div>
+            </div>
+            <div class="case-type-row">
+              <div class="type-card">
+                <span class="type-k">Display Font</span>
+                <div class="type-s">Eloquent JF Pro</div>
+                <div class="type-ex" style="font-family:'Clash Display',Georgia,serif;font-weight:700;">Every drop counts</div>
+              </div>
+              <div class="type-card">
+                <span class="type-k">UI Font</span>
+                <div class="type-s">Proxima Nova</div>
+                <div class="type-ex" style="font-family:'Satoshi',sans-serif;font-weight:400;font-size:20px;">Clean, readable interface text.</div>
+              </div>
+            </div>
+            <div class="pf pf--slide" style="margin-top:16px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Brand Board</span>
+              <img src="/assets/images/dairydrop/p006.png" alt="Dairy Drop brand identity board" loading="lazy" decoding="async">
+            </div>
+          </section>
+
+          <!-- RESEARCH -->
+          <section class="case-section" id="research" data-reveal>
+            <div class="case-eyebrow">Discovery</div>
+            <h2 class="case-h2">Research &amp; competitive benchmarking</h2>
+            <p class="case-p">I benchmarked four direct competitors across ten feature dimensions, gathered qualitative signal from a walk-and-talk interview, and grounded delivery-abandonment and market-size assumptions in secondary data.</p>
+
+            <div class="pf pf--slide" style="margin-top:20px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Competitive Matrix</span>
+              <img src="/assets/images/dairydrop/p009.png" alt="Competitive matrix across ten feature dimensions" loading="lazy" decoding="async">
+            </div>
+
+            <div class="pf-grid--slides">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag">Competitive Research</span>
+                <img src="/assets/images/dairydrop/p007.png" alt="Competitive research board" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag">Feature Teardown</span>
+                <img src="/assets/images/dairydrop/p008.png" alt="Feature teardown affinity board" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="3">
+                <span class="pf__tag">Primary Research</span>
+                <img src="/assets/images/dairydrop/p014.png" alt="Primary research" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="4">
+                <span class="pf__tag">Secondary Research</span>
+                <img src="/assets/images/dairydrop/p015.png" alt="Secondary research and market trends" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </section>
+
+          <!-- PERSONAS -->
+          <section class="case-section" id="personas" data-reveal>
+            <div class="case-eyebrow">Users</div>
+            <h2 class="case-h2">Personas &amp; empathy maps</h2>
+            <p class="case-p">Two personas anchored the work: Maya, an assumptive qualitative “Explorer,” and David, a validated quantitative “Sage.” Empathy maps turned their frustrations, fears and gains into design fuel.</p>
+            <div class="pf-grid--slides">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag">Persona — The Explorer</span>
+                <img src="/assets/images/dairydrop/p010.png" alt="Qualitative persona: Maya Patel" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag">Empathy Map — Maya</span>
+                <img src="/assets/images/dairydrop/p011.png" alt="Empathy map canvas for Maya" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="3">
+                <span class="pf__tag">Persona — The Sage</span>
+                <img src="/assets/images/dairydrop/p012.png" alt="Quantitative persona: David Kim" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="4">
+                <span class="pf__tag">Empathy Map — David</span>
+                <img src="/assets/images/dairydrop/p013.png" alt="Empathy map canvas for David" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </section>
+
+          <!-- FLOWS & IA -->
+          <section class="case-section" id="flows" data-reveal>
+            <div class="case-eyebrow">Structure</div>
+            <h2 class="case-h2">User flows, IA &amp; journey</h2>
+            <p class="case-p">I mapped an assumptive flow first, then ran a 6-user survey and rebuilt it into a validated flow — guest browsing, search-first discovery, and one-tap subscription control shaped directly by real feedback.</p>
+
+            <div class="pf-grid--slides">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag pf__tag--before">Assumptive Flow</span>
+                <img src="/assets/images/dairydrop/p022.png" alt="Assumptive user flow" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag pf__tag--after">Validated Flow</span>
+                <img src="/assets/images/dairydrop/p023.png" alt="Validated user flow" loading="lazy" decoding="async">
+              </div>
+            </div>
+
+            <div class="pf-grid--slides">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag">IA Site Map</span>
+                <img src="/assets/images/dairydrop/p024.png" alt="Information architecture site map" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag">Customer Journey Map</span>
+                <img src="/assets/images/dairydrop/p025.png" alt="Customer journey map" loading="lazy" decoding="async">
+              </div>
+            </div>
+
+            <div class="case-eyebrow" style="margin-top:28px;margin-bottom:10px">From sketch to structure</div>
+            <div class="pf-grid--slides">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag">Speed Sketches</span>
+                <img src="/assets/images/dairydrop/p016.png" alt="Eight speed-sketch layout variants" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag">A/B Testing</span>
+                <img src="/assets/images/dairydrop/p017.png" alt="A/B testing of two layouts" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="pf pf--slide" style="margin-top:16px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Refined Wireframes</span>
+              <img src="/assets/images/dairydrop/p018.png" alt="Refined wireframes — eight screens" loading="lazy" decoding="async">
+            </div>
+          </section>
+
+          <!-- SCREENS -->
+          <section class="case-section" id="screens" data-reveal>
+            <div class="case-eyebrow">Final UI</div>
+            <h2 class="case-h2">Hi-fi screens</h2>
+            <p class="case-p">Eight screens define the complete experience — from guest-friendly sign-in and search-first home to product detail, checkout, real-time tracking, and two-tap subscription management.</p>
+
+            <div class="pf-grid--screens">
+              <div class="pf pf--screen" data-reveal data-reveal-delay="1"><img src="/assets/images/dairydrop/screen-signin.png" alt="Sign in / Sign up screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="2"><img src="/assets/images/dairydrop/screen-home.png" alt="Home screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="3"><img src="/assets/images/dairydrop/screen-product.png" alt="Product detail screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="4"><img src="/assets/images/dairydrop/screen-catalog.png" alt="Product catalog screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="1"><img src="/assets/images/dairydrop/screen-checkout.png" alt="Checkout screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="2"><img src="/assets/images/dairydrop/screen-track.png" alt="Track order screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="3"><img src="/assets/images/dairydrop/screen-subscriptions.png" alt="Subscriptions screen" loading="lazy" decoding="async"></div>
+              <div class="pf pf--screen" data-reveal data-reveal-delay="4"><img src="/assets/images/dairydrop/screen-profile.png" alt="Profile screen" loading="lazy" decoding="async"></div>
+            </div>
+
+            <div class="pf-grid--slides" style="margin-top:24px">
+              <div class="pf pf--slide" data-reveal data-reveal-delay="1">
+                <span class="pf__tag">Hi-Fi — Discovery</span>
+                <img src="/assets/images/dairydrop/p026.png" alt="Hi-fi wireframes: sign in, home, product, catalog" loading="lazy" decoding="async">
+              </div>
+              <div class="pf pf--slide" data-reveal data-reveal-delay="2">
+                <span class="pf__tag">Hi-Fi — Transactional</span>
+                <img src="/assets/images/dairydrop/p027.png" alt="Hi-fi wireframes: checkout, tracking, subscriptions, profile" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </section>
+
+          <!-- LEARNINGS -->
+          <section class="case-section" id="learnings" data-reveal>
+            <div class="case-eyebrow">Reflection</div>
+            <h2 class="case-h2">What the research changed</h2>
+            <div class="learn-grid">
+              <div class="learn-card" data-reveal data-reveal-delay="1"><div class="learn-n">01</div><div class="learn-t">Being proven wrong</div><div class="learn-p">The assumptive persona expected a sustainability-driven user. Observation showed the opposite — she skipped the ethical story and looked for a farm name and best-before date. Proof over narrative.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="2"><div class="learn-n">02</div><div class="learn-t">Sign-in placement matters</div><div class="learn-p">A sign-in wall right after the splash closed a competitor app in 4 seconds. Guest browsing became non-negotiable.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="3"><div class="learn-n">03</div><div class="learn-t">Cancel-ability = trust</div><div class="learn-p">Subscription, assumed to be a simple benefit, triggered the strongest emotion: fear of not being able to cancel. Easy pause/skip earns the subscription.</div></div>
+              <div class="learn-card" data-reveal data-reveal-delay="4"><div class="learn-n">04</div><div class="learn-t">Watching beats asking</div><div class="learn-p">Users described themselves as browsers — then went straight to the search bar every time. Design for what people do, not what they say.</div></div>
+            </div>
+
+            <div class="pf pf--slide" style="margin-top:20px" data-reveal data-reveal-delay="1">
+              <span class="pf__tag">Reflection &amp; Prototype</span>
+              <img src="/assets/images/dairydrop/p028.png" alt="Reflection and prototype link" loading="lazy" decoding="async">
+            </div>
+
+            <div class="ps-cta-banner" data-reveal style="margin-top:32px">
+              <h3>Want to see it move?</h3>
+              <p>Explore the interactive Figma prototype, or let’s talk about building clean, research-led product experiences.</p>
+              <div class="cta-actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                <a class="btn-case primary" href="https://www.figma.com/proto/KAhnhnkhG43kO1ZOyrz4IA/UX-dairy-?node-id=176-1966&t=i4s4Df1K8RB-hct8d-1" target="_blank" rel="noopener">▶ Open prototype</a>
+                <a class="btn-case" href="../contactus.html">Get in touch</a>
+                <a class="btn-case" href="../index.html">All projects</a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="case-footer case-footer--avion">
+      <div class="case-footer__inner">
+        <div class="case-footer__brand">
+          <img src="/assets/images/DIN.png" alt="DIN Logo" class="case-footer__logo">
+          <p class="case-footer__tagline">Creative designer crafting digital experiences that matter.</p>
+        </div>
+        <div class="case-footer__col">
+          <p class="case-footer__title">Navigation</p>
+          <nav class="case-footer__nav">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../contactus.html">Contact</a>
+          </nav>
+        </div>
+        <div class="case-footer__col">
+          <p class="case-footer__title">Contact</p>
+          <div class="case-footer__item">din.design.world@gmail.com</div>
+          <div class="case-footer__item">Canada</div>
+        </div>
+        <div class="case-footer__col">
+          <p class="case-footer__title">Newsletter</p>
+          <p class="case-footer__hint">Stay updated with new projects.</p>
+          <form class="case-footer__form" id="newsletterForm" onsubmit="return false">
+            <input type="email" id="newsletterEmail" placeholder="your@email.com">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="case-footer__bottom">
+        <span>© 2025 DIN. All rights reserved.</span>
+        <span class="case-footer__case-label">Dairy Drop · UX/UI Case Study</span>
+        <div class="case-footer__proj-nav">
+          <a href="../index.html">All projects</a>
+          <a href="clm.html">← Prev</a>
+          <a href="avion.html">Next →</a>
+          <a class="cta" href="../contactus.html">Hire me →</a>
+        </div>
+      </div>
+    </footer>
+
+    <audio id="bgMusic" loop preload="auto">
+      <source src="/assets/music/videoplayback_2.flac" type="audio/flac">
+      <source src="/assets/music/videoplayback_1.m4a"  type="audio/mp4">
+      <source src="/assets/music/videoplayback_1.mp3"  type="audio/mpeg">
+    </audio>
+    <button id="musicBtn" class="music-btn" title="Toggle music">🎵</button>
+
+  </div><!-- /ps-page-wrap -->
+
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/avion.js" defer></script>
+  <script src="/assets/js/projectframes.js" defer></script>
+
+</body>
+</html>
