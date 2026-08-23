@@ -218,36 +218,6 @@ a { text-decoration: none; color: inherit; }
   text-shadow: 0 1px 18px rgba(0,0,0,0.5);
 }
 
-/* Trust badge — marks real/live projects (top-left corner) */
-.bcard__badge {
-  position: absolute; top: 14px; left: 14px; z-index: 4;
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 10px;
-  font-family: var(--mono);
-  font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: #fff; font-weight: 700;
-  background: rgba(10,10,12,0.62);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: 999px;
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
-}
-.bcard__badge .badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #35d07f; box-shadow: 0 0 0 0 rgba(53,208,127,0.6);
-  animation: badgePulse 1.8s ease-out infinite;
-}
-.bcard__badge--client { border-color: rgba(255,90,90,0.5); }
-.bcard__badge--client .badge-dot { background: #ff5a5a; box-shadow: 0 0 0 0 rgba(255,90,90,0.6); }
-@keyframes badgePulse {
-  0%   { box-shadow: 0 0 0 0 rgba(53,208,127,0.55); }
-  70%  { box-shadow: 0 0 0 7px rgba(53,208,127,0); }
-  100% { box-shadow: 0 0 0 0 rgba(53,208,127,0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .bcard__badge .badge-dot { animation: none; }
-}
-
 .bcard__reveal {
   display: grid;
   grid-template-rows: 0fr;
