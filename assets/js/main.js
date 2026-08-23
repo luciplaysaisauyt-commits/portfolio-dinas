@@ -1,60 +1,19 @@
 /* ============================================================
    MAIN.JS — полная сборка
-   1. Музыка
-   2. Навигация + мобильное меню
-   3. Контактная форма + Telegram
-   4. Newsletter + Telegram
-   5. Посетитель-уведомление Telegram
-   6. Fade-up анимации
-   7. Счётчики
-   8. Кастомный курсор
-   9. Case subnav
-   10. Scroll reveal + progress bar
-   11. Load More (галерея)
-   12. Фильтр проектов
-   13. Project Frames — модалка с свайпом, pinch zoom, галерея
-   14. Page Transitions + Loader
+   1. Навигация + мобильное меню
+   2. Контактная форма + Telegram
+   3. Newsletter + Telegram
+   4. Посетитель-уведомление Telegram
+   5. Fade-up анимации
+   6. Счётчики
+   7. Кастомный курсор
+   8. Case subnav
+   9. Scroll reveal + progress bar
+   10. Load More (галерея)
+   11. Фильтр проектов
+   12. Project Frames — модалка с свайпом, pinch zoom, галерея
+   13. Page Transitions + Loader
    ============================================================ */
-
-/* ── 1. МУЗЫКА ── */
-(function initMusic() {
-  var btn   = document.getElementById('musicBtn');
-  var audio = document.getElementById('bgMusic');
-  if (!btn || !audio) { document.addEventListener('DOMContentLoaded', initMusic); return; }
-  var KEY_PLAYING = 'din:music:playing', KEY_TIME = 'din:music:time', TARGET_VOL = 0.14;
-  var wasPlaying = false, savedTime = 0;
-  try { wasPlaying = localStorage.getItem(KEY_PLAYING) === 'true'; savedTime = parseFloat(localStorage.getItem(KEY_TIME) || '0') || 0; } catch(e) {}
-  audio.volume = 0; audio.loop = true;
-  function restoreTime() { if (savedTime > 1 && audio.duration && savedTime < audio.duration - 1) audio.currentTime = savedTime; }
-  audio.addEventListener('loadedmetadata', restoreTime, { once: true });
-  audio.addEventListener('durationchange', restoreTime, { once: true });
-  function fadeTo(target) {
-    var from = audio.volume, diff = target - from, start = null;
-    function step(ts) { if (!start) start = ts; var p = Math.min((ts-start)/350,1); audio.volume = from+diff*p; if(p<1) requestAnimationFrame(step); }
-    requestAnimationFrame(step);
-  }
-  function updateBtn(playing) { btn.textContent = playing ? '🔊' : '🎵'; btn.classList.toggle('playing', playing); btn.classList.remove('ready'); }
-  function play() {
-    var promise = audio.play();
-    if (promise && promise.then) promise.then(function(){ fadeTo(TARGET_VOL); updateBtn(true); save(true); }).catch(function(){ btn.classList.add('ready'); updateBtn(false); });
-    else { fadeTo(TARGET_VOL); updateBtn(true); save(true); }
-  }
-  function pause() { fadeTo(0); setTimeout(function(){ audio.pause(); }, 360); updateBtn(false); save(false); }
-  function save(playing) { try { localStorage.setItem(KEY_PLAYING, playing?'true':'false'); if(!audio.paused) localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); } catch(e){} }
-  var btnTouched = false;
-  btn.addEventListener('touchend', function(e){ e.preventDefault(); btnTouched=true; removeFirstTouch(); btn.classList.remove('ready'); audio.paused?play():pause(); }, { passive:false });
-  btn.addEventListener('click', function(){ if(btnTouched){btnTouched=false;return;} removeFirstTouch(); btn.classList.remove('ready'); audio.paused?play():pause(); });
-  setInterval(function(){ if(!audio.paused){ try{ localStorage.setItem(KEY_TIME, audio.currentTime.toFixed(2)); }catch(e){} } }, 1000);
-  window.addEventListener('pagehide', function(){ save(!audio.paused); });
-  window.addEventListener('beforeunload', function(){ save(!audio.paused); });
-  function tryAutoplay(){ restoreTime(); wasPlaying ? play() : updateBtn(false); }
-  if (audio.readyState >= 2) tryAutoplay();
-  else { audio.addEventListener('canplay', tryAutoplay, { once:true }); setTimeout(function(){ if(wasPlaying&&audio.paused) play(); }, 2000); }
-  function onFirstTouch(){ removeFirstTouch(); if(wasPlaying&&audio.paused) play(); }
-  function removeFirstTouch(){ document.removeEventListener('touchstart', onFirstTouch); }
-  document.addEventListener('touchstart', onFirstTouch, { passive:true });
-})();
-
 
 /* ── ОСНОВНОЕ ПРИЛОЖЕНИЕ ── */
 (function () {

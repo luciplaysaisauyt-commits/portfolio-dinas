@@ -100,18 +100,18 @@ a { text-decoration: none; color: inherit; }
 }
 
 .bc-intro   { grid-area: c1; }
-.bc-unnie   { grid-area: c2; }
+.bc-omerta  { grid-area: c2; }  /* live product — prominent top-wide slot */
+.bc-clm     { grid-area: c3; }  /* real client project — hero slot (top-right, largest) */
 .bc-kinetic { grid-area: c7; }
 .bc-nova    { grid-area: c4; }
 .bc-mschf   { grid-area: c5; }
 .bc-avion   { grid-area: c6; }
-.bc-weeknd  { grid-area: c3; }
-.bc-clm     { grid-area: c8; }
+.bc-unnie   { grid-area: c8; }
+.bc-weeknd  { grid-area: c13; } /* personal fan-art — moved out of hero slot */
 .bc-ktypo   { grid-area: c9; }
 .bc-loop    { grid-area: c10; }
 .bc-cta     { grid-area: c11; }
 .bc-dairy   { grid-area: c12; }
-.bc-omerta  { grid-area: c13; }
 
 /* ─────────────────────────────────────
    CARD BASE
@@ -216,6 +216,36 @@ a { text-decoration: none; color: inherit; }
   font-size: clamp(18px, 2vw, 26px);
   font-weight: 300; color: #fff; line-height: 1.1;
   text-shadow: 0 1px 18px rgba(0,0,0,0.5);
+}
+
+/* Trust badge — marks real/live projects (top-left corner) */
+.bcard__badge {
+  position: absolute; top: 14px; left: 14px; z-index: 4;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px;
+  font-family: var(--mono);
+  font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #fff; font-weight: 700;
+  background: rgba(10,10,12,0.62);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+.bcard__badge .badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #35d07f; box-shadow: 0 0 0 0 rgba(53,208,127,0.6);
+  animation: badgePulse 1.8s ease-out infinite;
+}
+.bcard__badge--client { border-color: rgba(255,90,90,0.5); }
+.bcard__badge--client .badge-dot { background: #ff5a5a; box-shadow: 0 0 0 0 rgba(255,90,90,0.6); }
+@keyframes badgePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(53,208,127,0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(53,208,127,0); }
+  100% { box-shadow: 0 0 0 0 rgba(53,208,127,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bcard__badge .badge-dot { animation: none; }
 }
 
 .bcard__reveal {
@@ -758,13 +788,13 @@ a { text-decoration: none; color: inherit; }
   .intro__bio { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 
   .bc-intro   { order: 1; }
-  .bc-unnie   { order: 2; }
-  .bc-nova    { order: 3; }
-  .bc-mschf   { order: 4; }
-  .bc-avion   { order: 5; }
-  .bc-clm     { order: 6; }
-  .bc-dairy   { order: 7; }
-  .bc-omerta  { order: 8; }
+  .bc-clm     { order: 2; }  /* real client — first */
+  .bc-omerta  { order: 3; }  /* live product — second */
+  .bc-dairy   { order: 4; }
+  .bc-unnie   { order: 5; }
+  .bc-nova    { order: 6; }
+  .bc-mschf   { order: 7; }
+  .bc-avion   { order: 8; }
   .bc-weeknd  { order: 9; }
   .bc-kinetic { order: 10; }
   .bc-ktypo   { order: 11; }

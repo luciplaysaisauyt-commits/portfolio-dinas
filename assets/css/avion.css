@@ -42,7 +42,6 @@
 @media (max-width: 980px) { :root { --navH: 60px; } }
 @media (max-width: 640px) { :root { --navH: 72px; --subnavH: 72px; } }
 
-
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -68,10 +67,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
 }
 
-
 /* ── PAGE LAYOUT ── */
 .ps-page-wrap { padding-top: var(--navH); position: relative; z-index: 1; }
-
 
 /* ── BACKGROUNDS ── */
 .ps-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
@@ -108,14 +105,12 @@ h1, h2, h3, h4 {
   50%      { transform: translateY(-28px) scale(1.03); }
 }
 
-
 /* ── PROGRESS BAR ── */
 .ps-progress {
   position: fixed; top: 0; left: 0; height: 2px; width: 0%;
   background: linear-gradient(90deg, #4E4D93, #726E8D);
   z-index: 999; transition: width .1s linear;
 }
-
 
 /* ── CURSOR ── */
 .din-cursor {
@@ -132,7 +127,6 @@ h1, h2, h3, h4 {
   transition: width .4s cubic-bezier(.23,1,.32,1), height .4s cubic-bezier(.23,1,.32,1);
 }
 @media (pointer:coarse),(max-width:900px) { .din-cursor,.din-cursor-ring { display: none !important; } }
-
 
 /* ── NAVIGATION ── */
 .nav {
@@ -197,9 +191,7 @@ h1, h2, h3, h4 {
 }
 .mobile-menu-links a:hover { color: #fff; transform: translateX(8px); }
 
-
 /* ── SUBNAV — geometry from style.css, no overrides here ── */
-
 
 /* ── CASE WRAP ── */
 .case-wrap {
@@ -207,7 +199,6 @@ h1, h2, h3, h4 {
   margin: 0 auto;
   padding: 20px 16px 80px;
 }
-
 
 /* ── HERO ── */
 .case-hero {
@@ -244,7 +235,6 @@ h1, h2, h3, h4 {
   font-size: 16px; line-height: 1.6;
 }
 
-
 /* ── ACTION BUTTONS ── */
 .case-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
 
@@ -264,7 +254,6 @@ h1, h2, h3, h4 {
   color: #fff; font-weight: 600;
 }
 .btn-case.primary:hover { background: #5d5cab; filter: brightness(1.1); }
-
 
 /* ── META CARDS ── */
 .case-meta {
@@ -298,7 +287,6 @@ h1, h2, h3, h4 {
   white-space: nowrap; color: rgba(255,255,255,.9);
 }
 
-
 /* ── SECTIONS ── */
 .case-sections { margin-top: 52px; display: grid; gap: 52px; }
 
@@ -320,7 +308,6 @@ h1, h2, h3, h4 {
 
 .case-p { color: var(--text-muted); line-height: 1.75; max-width: 70ch; }
 .case-p + .case-p { margin-top: 12px; }
-
 
 /* ── STATS ── */
 .case-stats {
@@ -345,7 +332,6 @@ h1, h2, h3, h4 {
 }
 .stat-t { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
 
-
 /* ── 2-COL GRID ── */
 .case-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
 
@@ -358,7 +344,6 @@ h1, h2, h3, h4 {
 .case-card:hover { transform: translateY(-4px); border-color: var(--ac-bdr-h); }
 .case-card h3 { font-family: var(--font-serif); font-size: 16px; color: var(--white); margin-bottom: 8px; }
 .case-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-
 
 /* ── PROCESS ── */
 .case-process { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 14px; }
@@ -375,7 +360,6 @@ h1, h2, h3, h4 {
 .ptitle { font-family: var(--font-serif); font-size: 15px; color: var(--white); margin-bottom: 6px; }
 .pdesc  { color: var(--text-muted); font-size: 14px; line-height: 1.58; }
 
-
 /* ── SWATCHES ── */
 .case-swatch-row {
   display: grid; grid-template-columns: repeat(5,1fr);
@@ -386,7 +370,6 @@ h1, h2, h3, h4 {
 .sw::before { content: ''; display: block; height: 52px; background: var(--c); }
 .sw span    { display: block; padding: 8px 10px 0; font-size: 11px; color: rgba(255,255,255,.60); }
 .sw b       { display: block; padding: 3px 10px 10px; font-size: 11px; letter-spacing: .06em; color: rgba(255,255,255,.88); }
-
 
 /* ── TYPE CARDS ── */
 .case-type-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
@@ -399,7 +382,6 @@ h1, h2, h3, h4 {
 .type-k { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(114,110,141,.85); }
 .type-s { font-family: var(--font-serif); font-size: 15px; color: var(--white); margin-top: 7px; }
 .type-ex { font-size: 26px; margin-top: 10px; color: rgba(255,255,255,.88); }
-
 
 /* ── LEARNINGS ── */
 .learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
@@ -415,7 +397,6 @@ h1, h2, h3, h4 {
 .learn-n { font-family: var(--font-serif); font-size: 26px; color: rgba(114,110,141,.50); margin-bottom: 8px; }
 .learn-t { font-family: var(--font-serif); font-size: 15px; color: var(--white); margin-bottom: 6px; }
 .learn-p { font-size: 14px; color: var(--text-muted); line-height: 1.58; }
-
 
 /* ── CTA BANNER ── */
 .ps-cta-banner {
@@ -442,7 +423,6 @@ h1, h2, h3, h4 {
 .ps-cta-banner .btn-case.primary { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
 .ps-cta-banner .btn-case.primary:hover { background: rgba(255,255,255,.90); }
 
-
 /* ── LIGHTBOX ── */
 .no-scroll   { overflow: hidden; }
 .img-modal   { position: fixed; inset: 0; display: none; z-index: 9999; }
@@ -464,7 +444,6 @@ h1, h2, h3, h4 {
   background: rgba(255,255,255,.08); color: #fff; cursor: pointer;
 }
 
-
 /* ── REVEAL ── */
 [data-reveal] {
   opacity: 0; transform: translateY(26px);
@@ -476,7 +455,6 @@ h1, h2, h3, h4 {
 [data-reveal-delay="3"] { transition-delay: .3s; }
 [data-reveal-delay="4"] { transition-delay: .45s; }
 [data-reveal-delay="5"] { transition-delay: .6s; }
-
 
 /* ── FOOTER ── */
 .case-footer {
@@ -547,20 +525,6 @@ h1, h2, h3, h4 {
 .case-footer__proj-nav a.cta   { background: var(--ac-2); color: #fff; border-color: var(--ac-2); font-weight: 600; }
 .case-footer__proj-nav a.cta:hover { background: #5d5cab; }
 
-
-/* ── MUSIC BUTTON ── */
-.music-btn {
-  position: fixed; bottom: 24px; right: 24px; z-index: 8000;
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 1px solid rgba(114,110,141,.30);
-  background: rgba(14,13,22,.85); backdrop-filter: blur(12px);
-  color: #fff; font-size: 18px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .2s, border-color .2s;
-}
-.music-btn:hover { transform: scale(1.1); border-color: var(--ac); }
-
-
 /* ── RESPONSIVE ── */
 @media (max-width: 980px) {
   .case-stats     { grid-template-columns: 1fr; }
@@ -596,7 +560,6 @@ h1, h2, h3, h4 {
   .mobile-menu.open  { justify-content: center; }
   .mobile-menu-panel { width: 100%; border-left: none; }
 }
-
 
 /* ── PF GRIDS ── */
 .pf-grid {
@@ -671,7 +634,6 @@ h1, h2, h3, h4 {
     scroll-snap-stop: always;
   }
 }
-
 
 .case-subnav-link.active {
   color: #fff;
