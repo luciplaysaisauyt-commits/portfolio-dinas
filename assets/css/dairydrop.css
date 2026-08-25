@@ -427,6 +427,29 @@ h1, h2, h3, h4 {
 #role .case-list:not(.case-list--num) li::before { background: #22B8C9; }
 /* numbered markers: plain teal digits, no box */
 #role .case-list--num li::before { background: none; }
+
+/* ── Problem & Role: readability (all screens) ── */
+#problem .pdesc,
+#role .case-card p,
+#role .case-list li { font-size: 15px; line-height: 1.62; }
+#problem .ptitle,
+#role .case-card h3 { font-size: 16.5px; }
+#problem .case-hmw__q { line-height: 1.5; }
+
+/* ── Problem & Role: mobile comfort ── */
+@media (max-width: 640px) {
+  #problem .case-hmw    { padding: 18px 18px; margin-top: 14px; }
+  #problem .case-hmw__q { font-size: 17px; line-height: 1.5; }
+  #problem .pstep       { padding: 16px 16px; }
+  #role   .case-card    { padding: 18px 16px; }
+  #problem .pdesc,
+  #role .case-card p,
+  #role .case-list li   { font-size: 15px; line-height: 1.6; }
+  #problem .ptitle,
+  #role .case-card h3   { font-size: 16px; }
+  #role .case-list li   { margin-bottom: 11px; }
+  #role .case-list--num li { padding-left: 26px; }
+}
 .case-swatch-row {
   display: grid; grid-template-columns: repeat(5,1fr);
   gap: 10px; margin-top: 16px; margin-bottom: 14px;
