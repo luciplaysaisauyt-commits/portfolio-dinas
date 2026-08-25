@@ -260,7 +260,7 @@ body:not(.is-loaded) .ub-content { opacity: 0; transform: translateY(14px); }
   white-space: nowrap; color: rgba(255,255,255,.92);
 }
 
-.case-sections { margin-top: 52px; display: grid; gap: 52px; }
+.case-sections { margin-top: 52px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 52px; }
 
 .case-section {
   border-top: 1px solid rgba(11,109,255,0.18);

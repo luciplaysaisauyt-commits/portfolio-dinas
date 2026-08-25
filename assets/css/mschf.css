@@ -304,7 +304,7 @@ body::before {
 @keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* ── SECTIONS ── */
-.case-sections { margin-top: 52px; display: grid; gap: 52px; }
+.case-sections { margin-top: 52px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 52px; }
 
 .case-section {
   border-top: 1px solid rgba(255,215,0,0.10);
