@@ -51,6 +51,10 @@ body {
 .gl-hero,.idx-hero,.about-hero,.contact-hero { overflow-x: clip; }
 
 img{max-width:100%;height:auto;display:block}
+/* Global mobile safety: media never overflow, long strings (emails/URLs) wrap instead of forcing sideways scroll */
+svg,video,canvas{max-width:100%}
+table{max-width:100%}
+body{overflow-wrap:break-word}
 h1,h2,h3,h4{font-family:var(--font-serif);font-weight:400;line-height:1.15;letter-spacing:-0.01em;color:#fff}
 a{text-decoration:none;color:inherit}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.22}
