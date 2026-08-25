@@ -423,7 +423,10 @@ h1, h2, h3, h4 {
 #problem .pnum,
 #role .case-list--num li::before { color: #0e6f6a; }
 
-#role .case-list li::before { background: #22B8C9; }
+/* bullet dots only on the bulleted list */
+#role .case-list:not(.case-list--num) li::before { background: #22B8C9; }
+/* numbered markers: plain teal digits, no box */
+#role .case-list--num li::before { background: none; }
 .case-swatch-row {
   display: grid; grid-template-columns: repeat(5,1fr);
   gap: 10px; margin-top: 16px; margin-bottom: 14px;
