@@ -399,7 +399,31 @@ h1, h2, h3, h4 {
   font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: var(--ac);
 }
 
-/* ── SWATCHES ── */
+/* ── Problem & Role: white panels for readability on the dark page ── */
+#problem .case-hmw,
+#problem .pstep,
+#role .case-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.10);
+}
+#problem .case-hmw:hover,
+#problem .pstep:hover,
+#role .case-card:hover { border-color: var(--ac-2); }
+
+#problem .case-hmw__q,
+#problem .ptitle,
+#role .case-card h3 { color: #14202b; }
+
+#problem .pdesc,
+#role .case-card p,
+#role .case-list li { color: #41505c; }
+
+/* accents readable on white */
+#problem .case-hmw__k,
+#problem .pnum,
+#role .case-list--num li::before { color: #0e6f6a; }
+
+#role .case-list li::before { background: #22B8C9; }
 .case-swatch-row {
   display: grid; grid-template-columns: repeat(5,1fr);
   gap: 10px; margin-top: 16px; margin-bottom: 14px;
