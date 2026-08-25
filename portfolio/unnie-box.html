@@ -606,7 +606,7 @@
                     <canvas
                       id="rpPieChart"
                       role="img"
-                      aria-label="Pie chart: Price 63%, Clean ingredients 56%, Personalized 64%, Quality 53%"
+                      aria-label="Bar chart: Price 63%, Clean ingredients 56%, Personalized 64%, Quality 53%"
                       >Price 63%, Clean ingr. 56%, Personalized 64%, Quality
                       53%.</canvas
                     >
@@ -854,9 +854,9 @@
                     <canvas
                       id="rpBarChart"
                       role="img"
-                      aria-label="Bar chart showing conversion impact: UX Design 400%, Social Proof 270%, Testimonials 38%, Free Gift 27%, Personalization 28%"
+                      aria-label="Bar chart showing conversion impact: UX Design 400%, Social Proof 270%, Testimonials 34%, Free Gift 27%, Personalization 28%"
                     >
-                      UX Design 400%, Social Proof 270%, Testimonials 38%, Free
+                      UX Design 400%, Social Proof 270%, Testimonials 34%, Free
                       Gift 27%, Personalization 28%.
                     </canvas>
                   </div>
@@ -1668,16 +1668,16 @@
                 <div class="pf" data-reveal data-reveal-delay="1">
                   <img
                     src="/assets/images/unniebox/ux-flows-3.png"
-                    alt="Lead capture modal"
+                    alt="Instagram follow modal"
                   />
-                  <span class="pf__tag pf__tag--after">Lead Capture</span>
+                  <span class="pf__tag pf__tag--after">Instagram follow</span>
                 </div>
                 <div class="pf" data-reveal data-reveal-delay="2">
                   <img
                     src="/assets/images/unniebox/ux-flows-4.png"
-                    alt="Instagram modal"
+                    alt="Order form modal"
                   />
-                  <span class="pf__tag pf__tag--after">Instagram CTA</span>
+                  <span class="pf__tag pf__tag--after">Order form</span>
                 </div>
               </div>
             </section>
@@ -1718,23 +1718,23 @@
                 <div class="pf" data-reveal data-reveal-delay="1">
                   <img
                     src="/assets/images/unniebox/ux-flows-1.png"
-                    alt="Skin guide modal"
+                    alt="Payment troubleshoot modal"
                   />
-                  <span class="pf__tag">Skin guide CTA</span>
+                  <span class="pf__tag">Payment troubleshoot</span>
                 </div>
                 <div class="pf" data-reveal data-reveal-delay="2">
                   <img
                     src="/assets/images/unniebox/ux-flows-2.png"
-                    alt="Instagram modal"
+                    alt="Skin guide modal"
                   />
-                  <span class="pf__tag">Instagram follow</span>
+                  <span class="pf__tag">Skin guide CTA</span>
                 </div>
                 <div class="pf" data-reveal data-reveal-delay="3">
                   <img
                     src="/assets/images/unniebox/ux-flows-3.png"
-                    alt="Payment modal"
+                    alt="Instagram follow modal"
                   />
-                  <span class="pf__tag">Payment troubleshoot</span>
+                  <span class="pf__tag">Instagram follow</span>
                 </div>
                 <div class="pf" data-reveal data-reveal-delay="4">
                   <img
@@ -2039,12 +2039,12 @@
             });
           }
 
-          /* 2 — Doughnut: Purchase Factors */
+          /* 2 — Bar: Purchase Factors (independent %, not parts-of-whole) */
           const pieEl = document.getElementById("rpPieChart");
           if (pieEl && !pieEl._chartInited) {
             pieEl._chartInited = true;
             new Chart(pieEl, {
-              type: "doughnut",
+              type: "bar",
               data: {
                 labels: ["Price", "Clean ingr.", "Personalized", "Quality"],
                 datasets: [
@@ -2056,11 +2056,30 @@
                       "#4ade80",
                       "#fcd34d",
                     ],
-                    borderWidth: 0,
+                    borderRadius: 6,
+                    borderSkipped: false,
                   },
                 ],
               },
-              options: { ...base, cutout: "62%" },
+              options: {
+                ...base,
+                indexAxis: "y",
+                scales: {
+                  x: {
+                    max: 100,
+                    ticks: {
+                      color: TICK,
+                      font: { size: 10 },
+                      callback: (v) => v + "%",
+                    },
+                    grid: { color: GRID },
+                  },
+                  y: {
+                    ticks: { color: TICK, font: { size: 10 } },
+                    grid: { display: false },
+                  },
+                },
+              },
             });
           }
 
