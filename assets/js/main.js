@@ -86,10 +86,9 @@
         email:     (document.getElementById('email')    ||{}).value||'',
         message:   (document.getElementById('message')  ||{}).value||'',
       };
-      var TG = 'https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage';
+      /* Telegram-уведомление теперь отправляет notify.js (в личный чат). */
       Promise.all([
         fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:'service_ewg5w2n',template_id:'template_ce4qo7t',user_id:'mJztgAOONni1NaDaq',template_params:data})}),
-        fetch(TG,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:'Новое сообщение!\n\nИмя: '+data.firstName+' '+data.lastName+'\nEmail: '+data.email+'\n\nСообщение:\n'+data.message})}),
       ])
       .then(function(){ form.reset(); if(popup) popup.classList.add('show'); })
       .catch(function(){ if(popup) popup.classList.add('show'); })
@@ -108,26 +107,12 @@
   if (nlForm) {
     nlForm.addEventListener('submit', function(e){
       e.preventDefault();
-      var email = nlEmail ? nlEmail.value : '';
-      if (email) fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:'Новый подписчик: '+email})}).catch(function(){});
+      /* Telegram-уведомление о подписке отправляет notify.js. */
       if (nlEmail) nlEmail.value='';
     });
   }
 
-  /* ── 5. ПОСЕТИТЕЛЬ-УВЕДОМЛЕНИЕ Telegram ── */
-  setTimeout(function(){
-    var page=window.location.pathname, ref=document.referrer?'\nОткуда: '+document.referrer:'\nОткуда: прямой';
-    var device=/Mobi|Android/i.test(navigator.userAgent)?'Мобильный':'Десктоп';
-    var time=new Date().toLocaleString('ru-RU',{timeZone:'Europe/Moscow'});
-    function sendTG(text){ fetch('https://api.telegram.org/bot8249291699:AAFCpn9TC5wOHHL5RJbGVubgMCyOL3lu4T4/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'-1001740749166',text:text})}).catch(function(){}); }
-    fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(geo){
-      var country=geo.country_name||'Неизвестно', city=geo.city||'', ip=geo.ip||'';
-      var location=country+(city?', '+city:'')+(ip?' ('+ip+')':'');
-      sendTG('Посетитель\n\nСтраница: '+page+ref+'\nУстройство: '+device+'\nЯзык: '+navigator.language+'\nЛокация: '+location+'\nВремя: '+time);
-    }).catch(function(){
-      sendTG('Посетитель\n\nСтраница: '+page+ref+'\nУстройство: '+device+'\nЯзык: '+navigator.language+'\nЛокация: недоступна\nВремя: '+time);
-    });
-  }, 3000);
+  /* ── 5. Посетитель-уведомление → перенесено в notify.js (на все страницы, в личный чат) ── */
 
   /* ── 6. FADE-UP АНИМАЦИИ ── */
   document.addEventListener('DOMContentLoaded', function(){
